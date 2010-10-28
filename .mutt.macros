@@ -1,0 +1,33 @@
+# macro from Mick to edit the allias-file:
+#
+macro index A "!cd $HOME;vim .mutt.aliases\n:source $HOME/.mutt.aliases\n" "Edit Aliases"
+
+
+# Macros to change mailboxes
+#
+macro index 2 "c =INBOX\n" "Inbox"
+macro index 3 "c =Rechnungen\n" "Rechnungen"
+macro index 4 "c =freebsd-mobile\n" "FreeBSD-Mobile"
+macro index 5 "c +IN.deichkind\n" "The Sleepwalker"
+macro index 6 "c +TV-Programm\n" "TV-Programm"
+
+# without those following you can't change boxes in a mail but only in index
+#
+macro pager <F2> "c =[GMail]/Inbox \n" "Inbox"
+macro pager <F3> "c +received\n" "Received Mails"
+macro pager <F4> "c +IN.mad-hatter\n" "Mad-Hatter"
+macro pager <F5> "c +IN.deichkind\n" "The Sleepwalker"
+macro pager <F6> "c +TV-Programm\n" "TV-Programm"
+
+# macro to start fetchmail manualy
+#
+#macro index + "!fetchmail -aK\n" "Invoke Fetchmail"
+
+# adds the actual author to a killfile
+#
+macro index \ck	"|mailkill.sh\nd" "Adds author to a kill list to be processed by procmail."
+
+# mark all mails in the folder as read
+macro index \Cr \
+  "<tag-pattern>~N\n<tag-prefix><clear-flag>N<untag-pattern>.\n" \
+  "Mark all new messages as read"

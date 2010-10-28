@@ -1,0 +1,203 @@
+## Include some files with more settings
+#
+## Include Header definitions
+source ~/.mutt.header
+
+## Include Colors for Agents
+#source ~/.mutt.agent-colors
+
+## Include my color settings
+source ~/.mutt.colors
+
+## Include stuff for mailinglists
+source ~/.mutt.subscribe
+
+## Include GPG-Stuff
+source ~/.gpgrc
+
+## Include my Alias-File
+## deactivated because of lbdb http://www.spinnaker.de/lbdb/
+source ~/.mutt.aliases
+
+## Include my Hooks (folder-hook, send-hook)
+source ~/.mutt.hooks
+
+## Include my Macros (change Mailboxes, edit alias-file, ...)
+source ~/.mutt.macros
+
+## Query command for accessing addresses from the addressbook
+#set query_command="abook --mutt-query '%s'"
+#set query_command="/sw/bin/lbdbq '%s'"
+
+## Location of the mailcap file
+set mailcap_path="/home/madhatter/.mailcap"
+
+#set meta_key=yes
+
+## Header-Section
+#
+# slrn needs the default header set without hooks
+#my_hdr From: Arvid Warnecke <arvid@nostalgix.org>
+## other headers are set with folder-hooks (sourced above)
+## using alternates (see below) does only work with 'set from' and 
+## 'set reverse_name', but not with using 'my_hdr From:'
+
+
+## General settings
+#
+set realname="Arvid Warnecke"
+set hostname="hogwarts.local"
+#set use_from
+set followup_to 		# add Mail-Followup-To field to header.
+
+## Setting Signatur und Alias-File.
+#
+# Signature will be set with folder-hooks
+set signature="~/bin/mksig2_books|"
+set alias_file="~/.mutt.aliases"
+
+## Mailboxes
+#
+#set folder="~/mail"		# changed the default ~/Mail to ~/mail
+#set mbox="~/mail/received"	# where my received mails are
+#set record="~/mail/send"	# save send messages there
+#set spoolfile='/var/mail/warnearv' # where new mails are
+
+set imap_user="arvid.warnecke"
+set imap_pass="********"
+
+#set smtp_url="smtp://arvid.warnecke@smtp.gmail.com:587/"
+#set smtp_pass="********"
+set from="arvid.warnecke@gmail.com"
+set use_from = yes
+set envelope_from ="yes"
+set sendmail="/usr/local/bin/msmtp"
+
+set folder = "imaps://imap.gmail.com:993/"
+set spoolfile = "+INBOX"
+set postponed="+[Gmail]/Drafts"
+set mbox="+[Gmail]/All Mail"
+set record="+[Gmail]/Sent Mail"
+
+set header_cache=~/.mutt/cache/headers
+set message_cachedir=~/.mutt/cache/bodies
+set certificate_file=~/.mutt/certificates
+
+set move = no
+
+## Tell me about new mail
+## let's try this syntax
+#mailboxes `find ~/mail -type f -print | grep -v "procmail.log\|received\|send\|posted\|spam\|virus.warning\|spamprobe" | xargs`
+## greping for all boxes excluded those ones above, coz those are unimportant 
+mailboxes +FreeBSD\ Mobile
+
+## More Settings 
+#
+set ignore_list_reply_to
+set editor="vim"
+set askcc=yes
+set askbcc=yes
+set timeout=60       	# time in seconds, till Mutt looks for new mail
+set write_inc=10     	# Mutt will notify when writing mailbox messages
+set read_inc=10      	# Mutt will notify when reading mailbox messages
+set include=yes		# quote message, when replying
+set mark_old=no 	# mark new messages as old, when leaving the box
+set auto_tag=yes	# functions in index will be applied to all tagged
+			# messages (if there are any)
+# set beep_new=yes	# beep when there is new mail
+set menu_scroll=yes  	# menu will scroll and don't pg_up and pg_dwn
+set beep=no
+set wait_key=no      	# don't let me hit a key to return
+set mime_forward=ask-no # ask me for forwarding with attachments
+
+# set date_format
+set date_format="!%a, %b %d, %Y at %I:%M:%S%p %Z"
+# set index_format="%4C %Z %{%b %d} %-15.15L (%4c) %s"
+#set index_format="%4C %4Z  %{%h %d %g %H:%M}  %-25.25F(%4c) %s"
+set index_format="%4C %4Z  %[%h %d %g %H:%M]  %-25.25F(%4c) %s"
+## small changes L to F to see the authors name on mailinglists
+set allow_8bit
+set ascii_chars
+#set charset="iso-8859-15"
+set charset="utf-8"
+## locale on Mac is annoying in index_format's date
+set locale="de_DE"
+set pager_stop=yes	# not move to the next message when you are at the end 
+			# of a message and invoke the next-page function
+set pager_context=2	# controls the number of lines of context that are given
+			# when displaying the next or previous page in the internal pager
+set pager_index_lines=6 # number of lines to display in a mini-pager above the message
+
+## view annoying html mail inline
+auto_view text/html
+
+## Sort Mails
+## (date-received, date-send, from, mailbox-order, size, subject,
+## to, score) (and everything with a prefixed "reverse-")
+#
+#set strict_threads
+set sort = 'threads'
+set sort_aux = 'last-date-received'
+set imap_check_subscribed
+
+## Sorting Aliases
+## (alias, address, unsorted)
+#
+set sort_alias=alias
+
+## alias_format
+## (format of data displayed for the alias menu)
+## %a alias name    %n index number    %r address    %t tag-character 
+#
+set alias_format="%3n %t %-12a  %r"
+
+## Set "From:" automatically
+#
+## set alternates=(address1|address2|address3)
+#set alternates="(madhatter@nostalgix.org|madhatter@geekpr0n.org|madhatter@geekshell.net|arvid.warnecke@nostalgix.org|arvid.warnecke@heim2.tu-clausthal.de|arvid@nostalgix.org|arvid@mad-hatter.de|the.sleepwalker@gmx.net)"
+unalternates ``*''
+alternates madhatter@magnesium.net
+
+## reply as the user to whom the mail was sent to
+## Example:  I often get emails addressed "To: arvid@mad-hatter.de".
+## With "reverse_name" I can thus reply as "arvid@mad-hatter.de" -
+## even from other accounts.  :-)
+## Can used only with setting alternates and without my_hdr settings 
+set reverse_name 
+
+## Printer settings:
+#
+## printing *without* Header
+## set print_cmd="a2ps -nn -ns -nH -p -1 -B -F10 -nL | lpr"
+## printing *with* Header
+## set print_cmd="a2ps -nn -ns -H  -p -1 -B -F10 -nL | lpr"
+set print_cmd="a2ps -1 -R -f9 -q"
+
+
+## Bindings
+#
+bind pager <left>       exit
+bind pager <down>       next-line
+bind pager <up>         previous-line
+bind pager <BackSpace>  previous-unread
+## Backspace does not work :-(
+bind pager <Return>     next-undeleted
+
+bind index <left>       exit
+bind index <right>      display-message
+bind index <backspace>	previous-line
+bind index +            imap-fetch-mail
+
+## GPG-Configuration was sourced above
+set pgp_autosign			
+set pgp_replysign
+# set pgp_encryptself		#does nothing, why?
+set pgp_replyencrypt
+set pgp_timeout=7200
+set pgp_verify_sig=yes
+set pgp_show_unusable=yes	#mutt will display non-usable keys
+set pgp_sign_as="0x7E0895CC"    #sign with arvid at nostalgix org
+
+## SMTP Configuration
+#set smtp_url="smtp://arvid.warnecke@gutzmann.com:hUstensAft@mail.gutzmann.com"
+#set smtp_authenticators="cram-md5"
