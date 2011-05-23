@@ -8,8 +8,8 @@ set nocompatible
 set noexrc 
 
 " change color scheme
-:colorscheme oceandeep
-":colorscheme darkblue
+":colorscheme oceandeep
+:colorscheme darkblue
 ":colorscheme dante
 
 " break the line after
@@ -110,7 +110,7 @@ au BufRead .mutt* :so /usr/share/vim/vim72/syntax/muttrc.vim
 " Umlaute in HTML documents
 autocmd FileType html call Doit()
 function Doit()
-  set textwidth=75 nonu nobackup
+  set textwidth=75 nobackup
   imap ß &szlig;
   imap ä &auml;
   imap Ä &Auml;
