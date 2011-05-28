@@ -13,17 +13,21 @@
 # set prompt="[ `whoami`@hasseroeder: `pwd` ] "
 # set prompt="[ `whoami`@`hostname`:`pwd` ] "
 
-set path= ( /Users/$USER/bin /data/home/$USER/bin /usr/bin /bin /sbin /usr/sbin /Library/MySQL/bin /usr/local/bin /usr/local/git/bin /usr/X11R6/bin /usr/local/sbin /home/$USER/bin /usr/games )
+set path= ( /Users/$USER/bin /data/home/$USER/bin /usr/local/bin /bin /sbin /usr/sbin /Library/MySQL/bin /usr/bin /usr/local/git/bin /usr/X11R6/bin /usr/local/sbin /home/$USER/bin /usr/games /Users/$USER/mongodb/bin)
 setenv MANPATH /usr/share/man:/usr/local/man:/usr/X11R6/man:/usr/share/openssl/man:/usr/share/perl/man:/home/$USER/man
 #setenv BLOCKSIZE       K
 setenv  LC_CTYPE        de_DE.UTF-8
 #setenv  LC_CTYPE        de_DE.ISO8859-15
 setenv	TZ		CET
-setenv  EDITOR  vim
+setenv  EDITOR  	vim
+setenv  GIT_EDITOR  	vim
 setenv  NNTPSERVER	News.Individual.DE 
-setenv  VIM    /usr/local/share/vim/vim73
+setenv  VIM    		/usr/share/vim/vim72
 # I set SYSSCREENRC to some non-existing file, because the defaults here are buggy
 setenv  SYSSCREENRC	/home/madhatter/.screen_default
+
+# Some tweaks for the look of ri
+setenv  RI 		"--format ansi --width 70"
 
 setenv LD_LIBRARY_PATH /data/home/madhatter/lib
 
@@ -78,6 +82,7 @@ if ($?prompt) then
 	alias btd	'btdownloadgui.py --max_upload_rate 2'
 	alias holemehl	'fetchmail -aK'
 	alias clerasil	'clear'
+	alias rvm 	rvm.tcsh
 
 
 	# this makes the complete scripts work

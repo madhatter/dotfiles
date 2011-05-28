@@ -8,15 +8,15 @@ set nocompatible
 set noexrc 
 
 " change color scheme
-":colorscheme oceandeep
-:colorscheme darkblue
+:colorscheme railscasts2
+":colorscheme darkblue
 ":colorscheme dante
 
 " break the line after
 "set textwidth=75
 
 " text encoding
-set encoding=iso-8859-15
+set encoding=utf-8
 
 " Tab are Tab and Spaces are Spaces!
 set noexpandtab
@@ -40,7 +40,10 @@ set noerrorbells
 set novisualbell
 
 " turn on line numbers
-set number 
+"set number 
+
+" make it relative numbers
+set relativenumber
 
 " We are good up to 99999 lines
 set numberwidth=5 
@@ -69,6 +72,12 @@ set smartcase
 " stay away from the bottom line
 set scrolloff=4
 
+" enhanced command-line completion 
+set wildmenu
+
+" substitute globally by default
+set gdefault 
+
 " autocomplete filenames to the longest or show me a list
 set wildmode=longest,list
 
@@ -88,23 +97,24 @@ set statusline=[%n][File:%f]%m%=[Row:%l][Col:%c][%p%%]
 " ruby standard 2 spaces, always
 au BufRead,BufNewFile *.rb,*.rhtml set shiftwidth=2 
 au BufRead,BufNewFile *.rb,*.rhtml set softtabstop=2 
+"au BufRead *.rb :so /usr/local/share/vim/vim73/syntax/ruby.vim
 
 " Textwidth only for SLRN und Mutt
 au BufNewFile,BufRead .followup,.article.*,.letter.*,/tmp/mutt-*,nn.*,snd.*,mutt* set tw=72
 
 " Colors in Mails
-au BufNewFile,BufRead /tmp/mutt-* :so /usr/share/vim/vim72/syntax/mail.vim
+au BufNewFile,BufRead /tmp/mutt-* :so /usr/lodal/share/vim/vim73/syntax/mail.vim
 
 " Colors for slrn's score-file
-au BufRead .slrn-score :so /usr/share/vim/vim72/syntax/slrnsc.vim
+au BufRead .slrn-score :so /usr/local/share/vim/vim73/syntax/slrnsc.vim
 
 " No Textwidth for HTML 
 au BufRead *.htm,*.html,*.shtml set textwidth=0
 
 " Colors for .muttrc and other mutt-related config-files
-" nmap <F9> :so /usr/local/share/vim/vim72/syntax/muttrc.vim<CR>
+" nmap <F9> :so /usr/local/share/vim/vim73/syntax/muttrc.vim<CR>
 " nope, all beginning with .mutt* automatically please
-au BufRead .mutt* :so /usr/share/vim/vim72/syntax/muttrc.vim
+au BufRead .mutt* :so /usr/local/share/vim/vim73/syntax/muttrc.vim
 
 
 " Umlaute in HTML documents
