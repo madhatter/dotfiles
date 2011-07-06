@@ -18,14 +18,23 @@ setenv MANPATH /usr/share/man:/usr/local/man:/usr/X11R6/man:/usr/share/openssl/m
 #setenv BLOCKSIZE       K
 setenv  LC_CTYPE        de_DE.UTF-8
 #setenv  LC_CTYPE        de_DE.ISO8859-15
+
+# english outputs please
+setenv  LANG 		en_US.UTF-8
+
 setenv	TZ		CET
-setenv  EDITOR  vim
+setenv  EDITOR  	vim
 setenv  NNTPSERVER	News.Individual.DE 
-setenv  VIM    /usr/local/share/vim/vim73
+setenv  VIM    		/usr/share/vim/vim72
+setenv 	CVSROOT 	:pserver:awarnecke@astra.etracker.local:/home/cvsroot
+setenv  PARSTREAM_HOME	/opt/parstream
+setenv  WORKSPACE	/home/awarnecke/workspace
+setenv  PAGER		less
+
 # I set SYSSCREENRC to some non-existing file, because the defaults here are buggy
 setenv  SYSSCREENRC	/home/madhatter/.screen_default
 
-setenv LD_LIBRARY_PATH /data/home/madhatter/lib
+setenv LD_LIBRARY_PATH  /data/home/madhatter/lib
 
 setenv LESS		"-c"
 
@@ -119,6 +128,7 @@ if ($?complete) then
     complete ywho  	n/*/\$hosts/	# argument from list in $hosts
     complete rsh	p/1/\$hosts/ c/-/"(l n)"/   n/-l/u/ N/-l/c/ n/-/c/ p/2/c/ p/*/f/
     complete ssh	p/1/\$hosts/ c/-/"(l n)"/   n/-l/u/ N/-l/c/ n/-/c/ p/2/c/ p/*/f/
+    complete slogin	p/1/\$hosts/ c/-/"(l n)"/   n/-l/u/ N/-l/c/ n/-/c/ p/2/c/ p/*/f/
     complete xrsh	p/1/\$hosts/ c/-/"(l 8 e)"/ n/-l/u/ N/-l/c/ n/-/c/ p/2/c/ p/*/f/
     complete rlogin 	p/1/\$hosts/ c/-/"(l 8 e)"/ n/-l/u/
     complete telnet 	p/1/\$hosts/ p/2/x:'<port>'/ n/*/n/

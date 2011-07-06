@@ -8,8 +8,8 @@ set nocompatible
 set noexrc 
 
 " change color scheme
-:colorscheme oceandeep
-":colorscheme darkblue
+":colorscheme oceandeep
+:colorscheme torte
 ":colorscheme dante
 
 " break the line after
