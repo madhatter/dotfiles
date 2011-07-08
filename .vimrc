@@ -93,18 +93,18 @@ au BufRead,BufNewFile *.rb,*.rhtml set softtabstop=2
 au BufNewFile,BufRead .followup,.article.*,.letter.*,/tmp/mutt-*,nn.*,snd.*,mutt* set tw=72
 
 " Colors in Mails
-au BufNewFile,BufRead /tmp/mutt-* :so /usr/share/vim/vim72/syntax/mail.vim
+au BufNewFile,BufRead /tmp/mutt-* :so /usr/share/vim/vim73/syntax/mail.vim
 
 " Colors for slrn's score-file
-au BufRead .slrn-score :so /usr/share/vim/vim72/syntax/slrnsc.vim
+au BufRead .slrn-score :so /usr/share/vim/vim73/syntax/slrnsc.vim
 
 " No Textwidth for HTML 
 au BufRead *.htm,*.html,*.shtml set textwidth=0
 
 " Colors for .muttrc and other mutt-related config-files
-" nmap <F9> :so /usr/local/share/vim/vim72/syntax/muttrc.vim<CR>
+" nmap <F9> :so /usr/local/share/vim/vim73/syntax/muttrc.vim<CR>
 " nope, all beginning with .mutt* automatically please
-au BufRead .mutt* :so /usr/share/vim/vim72/syntax/muttrc.vim
+au BufRead .mutt* :so /usr/share/vim/vim73/syntax/muttrc.vim
 
 
 " Umlaute in HTML documents

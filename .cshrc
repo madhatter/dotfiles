@@ -25,11 +25,12 @@ setenv  LANG 		en_US.UTF-8
 setenv	TZ		CET
 setenv  EDITOR  	vim
 setenv  NNTPSERVER	News.Individual.DE 
-setenv  VIM    		/usr/share/vim/vim72
+setenv  VIM    		/usr/share/vim/vim73
 setenv 	CVSROOT 	:pserver:awarnecke@astra.etracker.local:/home/cvsroot
 setenv  PARSTREAM_HOME	/opt/parstream
 setenv  WORKSPACE	/home/awarnecke/workspace
 setenv  PAGER		less
+setenv  TERM		rxvt
 
 # I set SYSSCREENRC to some non-existing file, because the defaults here are buggy
 setenv  SYSSCREENRC	/home/madhatter/.screen_default
@@ -39,7 +40,8 @@ setenv LD_LIBRARY_PATH  /data/home/madhatter/lib
 setenv LESS		"-c"
 
 ##Xterm Title Bar Setup
- if ("$term" == "xterm-color") then
+# if ("$term" == "xterm-color") then
+ if ("$term" == "rxvt") then
   alias cwdcmd 'echo -n "]2;${USER}@${HOST} : $cwd ";echo -n "]1;${USER}@${HOST}"'
   cwdcmd
  endif
