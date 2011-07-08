@@ -1,0 +1,14 @@
+## urxvt config
+URxvt*termName: rxvt
+#URxvt*background:  #000000
+URxvt*foreground:  #A8A8A8
+URxvt*scrollBar_right:	false
+URxvt*scrollstyle:	plain
+URxvt*scrollBar:	true
+URxvt*borderLess:	false
+#URxvt*inheritPixmap:	true
+URxvt*geometry:		128x36
+URxvt*transparent:	true
+URxvt*shading:		40
+URxvt*font: xft:terminus-font:size=8x14
+
