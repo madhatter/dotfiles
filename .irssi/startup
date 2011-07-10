@@ -1,0 +1,11 @@
+/statusbar info disable
+/load perl
+/run autorealname.pl
+/run friends.pl
+/run title.pl
+/run binary.pl
+/run alame.pl
+/run chanshare.pl
+/run notonline.pl
+/run country.pl
+/run dccstat.pl
