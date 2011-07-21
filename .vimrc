@@ -8,18 +8,54 @@ set nocompatible
 set noexrc 
 
 " change color scheme
-:colorscheme railscasts2
-":colorscheme darkblue
-":colorscheme dante
+"if !has("gui_running")
+"      colorscheme candy	      " yum candy
+"end
+"if has("gui_running")
+"      colorscheme macvim      " macvim == win
+"      set guioptions-=T       " no toolbar
+"      set cursorline          " show the cursor line
+"end
+
+if (&t_Co == 256 || &t_Co == 88) && !has('gui_running') &&
+      \ filereadable(expand("$HOME/.vim/plugin/guicolorscheme.vim"))
+      " Use the guicolorscheme plugin to makes 256-color or 88-color
+      " terminal use GUI colors rather than cterm colors.
+      runtime! plugin/guicolorscheme.vim
+      "GuiColorScheme darkbone
+      GuiColorScheme darkspectrum
+else
+     " For 8-color 16-color terminals or for gvim, just use the
+     " regular :colorscheme command.
+     colorscheme candy
+endif
 
 " break the line after
 "set textwidth=75
 
 " text encoding
-set encoding=utf-8
+" does not work with --enable-multibyte, dunno
+"set encoding=de_DE.UTF-8
+
+" fast terminal
+set ttyfast 
+
+" Enable filetype detection
+filetype on                   
+
+" Enable filetype-specific indenting
+filetype indent on            
+
+" Enable filetype-specific plugins
+filetype plugin on            
 
 " Tab are Tab and Spaces are Spaces!
 set noexpandtab
+
+"  backup options
+set backup
+set backupdir=~/.backup
+set viminfo=%100,'100,/100,h,\"500,:100,n~/.viminfo
 
 " make the history longer
 set history=500
@@ -85,6 +121,12 @@ set wildmode=longest,list
 " 'titlestring' (if it is not empty)
 set notitle
 
+" fold on syntax automagically, always
+set foldmethod=syntax         
+
+" 2 lines of column for fold showing, always
+set foldcolumn=2              
+
 " Define the look of title
 "set titlestring=%t%(\ %M%)%(\ (%{expand(\"%:~:.:h\")})%)%(\ %a%) 
 set title titlestring=%<%F\ %M%=%l/%L\ -\ %p%% titlelen=70
@@ -93,11 +135,15 @@ set title titlestring=%<%F\ %M%=%l/%L\ -\ %p%% titlelen=70
 " See >:h statusline< for more details
 set statusline=[%n][File:%f]%m%=[Row:%l][Col:%c][%p%%]
 
+" Enable compiler support for ruby
+compiler ruby
+
 " automatically set some special behavior
 " ruby standard 2 spaces, always
 au BufRead,BufNewFile *.rb,*.rhtml set shiftwidth=2 
 au BufRead,BufNewFile *.rb,*.rhtml set softtabstop=2 
 "au BufRead *.rb :so /usr/local/share/vim/vim73/syntax/ruby.vim
+au BufRead *.rb :so /Users/madhatter/.vim/syntax/ruby.vim
 
 " Textwidth only for SLRN und Mutt
 au BufNewFile,BufRead .followup,.article.*,.letter.*,/tmp/mutt-*,nn.*,snd.*,mutt* set tw=72
@@ -136,3 +182,6 @@ nnoremap Q gq}1G
 " keymappings for navigating splitwindows
 map <C-J> <C-W>j<C-W>_
 map <C-K> <C-W>k<C-W>_
+map <C-H> <C-W>h<C-W>_
+map <C-L> <C-W>l<C-W>_
+
