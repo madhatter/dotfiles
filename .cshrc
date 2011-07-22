@@ -13,7 +13,9 @@
 # set prompt="[ `whoami`@hasseroeder: `pwd` ] "
 # set prompt="[ `whoami`@`hostname`:`pwd` ] "
 
-set path= ( /Users/$USER/bin /data/home/$USER/bin /usr/bin /bin /sbin /usr/sbin /Library/MySQL/bin /usr/local/bin /usr/local/git/bin /usr/X11R6/bin /usr/local/sbin /home/$USER/bin /usr/games )
+setenv HADOOP_INSTALL /home/$USER/bin/hadoop-0.21.0
+setenv HADOOP_COMMON_HOME $HADOOP_INSTALL
+set path= ( $HADOOP_INSTALL/bin /home/$USER/bin/eclipse /data/home/$USER/bin /usr/bin /bin /sbin /usr/sbin /Library/MySQL/bin /usr/local/bin /usr/local/git/bin /usr/X11R6/bin /usr/local/sbin /home/$USER/bin /usr/games )
 setenv MANPATH /usr/share/man:/usr/local/man:/usr/X11R6/man:/usr/share/openssl/man:/usr/share/perl/man:/home/$USER/man
 #setenv BLOCKSIZE       K
 setenv  LC_CTYPE        de_DE.UTF-8
@@ -30,7 +32,8 @@ setenv 	CVSROOT 	:pserver:awarnecke@astra.etracker.local:/home/cvsroot
 setenv  PARSTREAM_HOME	/opt/parstream
 setenv  WORKSPACE	/home/awarnecke/workspace
 setenv  PAGER		less
-setenv  TERM		rxvt
+setenv  TERM		rxvt-256color
+setenv  JAVA_HOME       /usr/lib/jvm/java-6-sun
 
 # I set SYSSCREENRC to some non-existing file, because the defaults here are buggy
 setenv  SYSSCREENRC	/home/madhatter/.screen_default
