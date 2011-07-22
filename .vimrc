@@ -8,18 +8,54 @@ set nocompatible
 set noexrc 
 
 " change color scheme
-":colorscheme oceandeep
-:colorscheme torte
-":colorscheme dante
+"if !has("gui_running")
+"      colorscheme candy	      " yum candy
+"end
+"if has("gui_running")
+"      colorscheme macvim      " macvim == win
+"      set guioptions-=T       " no toolbar
+"      set cursorline          " show the cursor line
+"end
+
+if (&t_Co == 256 || &t_Co == 88) && !has('gui_running') &&
+      \ filereadable(expand("$HOME/.vim/plugin/guicolorscheme.vim"))
+      " Use the guicolorscheme plugin to makes 256-color or 88-color
+      " terminal use GUI colors rather than cterm colors.
+      runtime! plugin/guicolorscheme.vim
+      "GuiColorScheme darkbone
+      GuiColorScheme darkspectrum
+else
+     " For 8-color 16-color terminals or for gvim, just use the
+     " regular :colorscheme command.
+     colorscheme candy
+endif
 
 " break the line after
 "set textwidth=75
 
 " text encoding
-set encoding=iso-8859-15
+" does not work with --enable-multibyte, dunno
+"set encoding=de_DE.UTF-8
+
+" fast terminal
+set ttyfast 
+
+" Enable filetype detection
+filetype on                   
+
+" Enable filetype-specific indenting
+filetype indent on            
+
+" Enable filetype-specific plugins
+filetype plugin on            
 
 " Tab are Tab and Spaces are Spaces!
 set noexpandtab
+
+"  backup options
+set backup
+set backupdir=~/.backup
+set viminfo=%100,'100,/100,h,\"500,:100,n~/.viminfo
 
 " make the history longer
 set history=500
@@ -40,7 +76,10 @@ set noerrorbells
 set novisualbell
 
 " turn on line numbers
-set number 
+"set number 
+
+" make it relative numbers
+set relativenumber
 
 " We are good up to 99999 lines
 set numberwidth=5 
@@ -69,12 +108,24 @@ set smartcase
 " stay away from the bottom line
 set scrolloff=4
 
+" enhanced command-line completion 
+set wildmenu
+
+" substitute globally by default
+set gdefault 
+
 " autocomplete filenames to the longest or show me a list
 set wildmode=longest,list
 
 " When on, the title of the window will be set to the value of
 " 'titlestring' (if it is not empty)
 set notitle
+
+" fold on syntax automagically, always
+set foldmethod=syntax         
+
+" 2 lines of column for fold showing, always
+set foldcolumn=2              
 
 " Define the look of title
 "set titlestring=%t%(\ %M%)%(\ (%{expand(\"%:~:.:h\")})%)%(\ %a%) 
@@ -84,19 +135,24 @@ set title titlestring=%<%F\ %M%=%l/%L\ -\ %p%% titlelen=70
 " See >:h statusline< for more details
 set statusline=[%n][File:%f]%m%=[Row:%l][Col:%c][%p%%]
 
+" Enable compiler support for ruby
+compiler ruby
+
 " automatically set some special behavior
 " ruby standard 2 spaces, always
 au BufRead,BufNewFile *.rb,*.rhtml set shiftwidth=2 
 au BufRead,BufNewFile *.rb,*.rhtml set softtabstop=2 
+"au BufRead *.rb :so /usr/local/share/vim/vim73/syntax/ruby.vim
+au BufRead *.rb :so /Users/madhatter/.vim/syntax/ruby.vim
 
 " Textwidth only for SLRN und Mutt
 au BufNewFile,BufRead .followup,.article.*,.letter.*,/tmp/mutt-*,nn.*,snd.*,mutt* set tw=72
 
 " Colors in Mails
-au BufNewFile,BufRead /tmp/mutt-* :so /usr/share/vim/vim73/syntax/mail.vim
+au BufNewFile,BufRead /tmp/mutt-* :so /usr/lodal/share/vim/vim73/syntax/mail.vim
 
 " Colors for slrn's score-file
-au BufRead .slrn-score :so /usr/share/vim/vim73/syntax/slrnsc.vim
+au BufRead .slrn-score :so /usr/local/share/vim/vim73/syntax/slrnsc.vim
 
 " No Textwidth for HTML 
 au BufRead *.htm,*.html,*.shtml set textwidth=0
@@ -104,13 +160,13 @@ au BufRead *.htm,*.html,*.shtml set textwidth=0
 " Colors for .muttrc and other mutt-related config-files
 " nmap <F9> :so /usr/local/share/vim/vim73/syntax/muttrc.vim<CR>
 " nope, all beginning with .mutt* automatically please
-au BufRead .mutt* :so /usr/share/vim/vim73/syntax/muttrc.vim
+au BufRead .mutt* :so /usr/local/share/vim/vim73/syntax/muttrc.vim
 
 
 " Umlaute in HTML documents
 autocmd FileType html call Doit()
 function Doit()
-  set textwidth=75 nonu nobackup
+  set textwidth=75 nobackup
   imap ß &szlig;
   imap ä &auml;
   imap Ä &Auml;
@@ -126,3 +182,6 @@ nnoremap Q gq}1G
 " keymappings for navigating splitwindows
 map <C-J> <C-W>j<C-W>_
 map <C-K> <C-W>k<C-W>_
+map <C-H> <C-W>h<C-W>_
+map <C-L> <C-W>l<C-W>_
+
