@@ -37,6 +37,9 @@ endif
 " does not work with --enable-multibyte, dunno
 "set encoding=de_DE.UTF-8
 
+" make backspace work like most other apps
+set backspace=2
+
 " fast terminal
 set ttyfast 
 
@@ -85,7 +88,7 @@ set relativenumber
 set numberwidth=5 
 
 " four spaces are one TAB
-set shiftwidth=4
+set shiftwidth=8
 
 " String to put at the start of lines that have been wrapped
 set showbreak=+
@@ -122,7 +125,7 @@ set wildmode=longest,list
 set notitle
 
 " fold on syntax automagically, always
-set foldmethod=syntax         
+"set foldmethod=syntax         
 
 " 2 lines of column for fold showing, always
 set foldcolumn=2              
@@ -143,13 +146,16 @@ compiler ruby
 au BufRead,BufNewFile *.rb,*.rhtml set shiftwidth=2 
 au BufRead,BufNewFile *.rb,*.rhtml set softtabstop=2 
 "au BufRead *.rb :so /usr/local/share/vim/vim73/syntax/ruby.vim
-au BufRead *.rb :so /Users/madhatter/.vim/syntax/ruby.vim
+au BufRead *.rb :so /home/awarnecke/.vim/syntax/ruby.vim
+
+" 8 spaces are one tab in php
+au BufRead,BufNewFile *.php set shiftwidth=8
 
 " Textwidth only for SLRN und Mutt
 au BufNewFile,BufRead .followup,.article.*,.letter.*,/tmp/mutt-*,nn.*,snd.*,mutt* set tw=72
 
 " Colors in Mails
-au BufNewFile,BufRead /tmp/mutt-* :so /usr/lodal/share/vim/vim73/syntax/mail.vim
+au BufNewFile,BufRead /tmp/mutt-* :so /usr/local/share/vim/vim73/syntax/mail.vim
 
 " Colors for slrn's score-file
 au BufRead .slrn-score :so /usr/local/share/vim/vim73/syntax/slrnsc.vim
@@ -178,6 +184,12 @@ endfunction
 
 " remap key Q
 nnoremap Q gq}1G
+
+" php-doc plugin
+source ~/.vim/php-doc.vim
+inoremap <C-P> <ESC>:call PhpDocSingle()<CR>i
+nnoremap <C-P> :call PhpDocSingle()<CR>
+vnoremap <C-P> :call PhpDocRange()<CR> 
 
 " keymappings for navigating splitwindows
 map <C-J> <C-W>j<C-W>_

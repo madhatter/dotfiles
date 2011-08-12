@@ -5,7 +5,9 @@
 #
 # see also csh(1), environ(7).
 #
-#
+eval `dircolors --c-shell $HOME/.LS_COLORS`
+
+
 # prompt examples ;-)
 # set prompt = "[ %U%n%u@%B%m%b:%~ ; dev=%l ; time=%P ] %# "
 # set prompt = "[ %l ] [ %n@%B%m%b:%~ ] %# "
@@ -53,8 +55,8 @@ if ($?prompt) then
         # An interactive shell -- set some stuff up
         set nobeep
         set filec
-        set history = 1000
-        set savehist = ( 1000 merge )
+	set history = 100000
+        set savehist = (100000 merge)
         set histdup = erase
         set autolist
         set promptchars = "&#"
@@ -78,6 +80,7 @@ if ($?prompt) then
         endif   
 
 	# Some useful aliases
+	alias ls        ls -F --color=auto
         alias b         logout
         alias h         history 25
         alias j         jobs -l
