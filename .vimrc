@@ -145,7 +145,7 @@ set statusline=[%n][File:%f]%m%=[Row:%l][Col:%c][%p%%]
 compiler ruby
 
 " use ctags
-set tags+=/Users/madhatter/.vim/test.tags
+set tags=tags;/
 
 " automatically set some special behavior
 " ruby standard 2 spaces, always
