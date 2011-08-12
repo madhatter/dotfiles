@@ -130,6 +130,9 @@ set notitle
 " 2 lines of column for fold showing, always
 set foldcolumn=2              
 
+" use ctags
+set tags=tags;/
+
 " Define the look of title
 "set titlestring=%t%(\ %M%)%(\ (%{expand(\"%:~:.:h\")})%)%(\ %a%) 
 set title titlestring=%<%F\ %M%=%l/%L\ -\ %p%% titlelen=70
@@ -197,3 +200,5 @@ map <C-K> <C-W>k<C-W>_
 map <C-H> <C-W>h<C-W>_
 map <C-L> <C-W>l<C-W>_
 
+" toggle the taglist
+nnoremap <silent> <F8> :TlistToggle<CR>
