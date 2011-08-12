@@ -52,6 +52,12 @@ filetype plugin on
 " Tab are Tab and Spaces are Spaces!
 set noexpandtab
 
+" use backspace like every other app
+set backspace=2
+
+" no autoident as it messes up everything...
+set noautoindent
+
 "  backup options
 set backup
 set backupdir=~/.backup
@@ -122,7 +128,7 @@ set wildmode=longest,list
 set notitle
 
 " fold on syntax automagically, always
-set foldmethod=syntax         
+"set foldmethod=syntax         
 
 " 2 lines of column for fold showing, always
 set foldcolumn=2              
@@ -137,6 +143,9 @@ set statusline=[%n][File:%f]%m%=[Row:%l][Col:%c][%p%%]
 
 " Enable compiler support for ruby
 compiler ruby
+
+" use ctags
+set tags+=/Users/madhatter/.vim/test.tags
 
 " automatically set some special behavior
 " ruby standard 2 spaces, always
@@ -185,3 +194,5 @@ map <C-K> <C-W>k<C-W>_
 map <C-H> <C-W>h<C-W>_
 map <C-L> <C-W>l<C-W>_
 
+" toggle the taglist
+map <F2> :TlistToggle<CR>
