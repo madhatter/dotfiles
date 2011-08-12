@@ -28,7 +28,7 @@ source $ZSH/oh-my-zsh.sh
 # Customize to your needs...
 #
 # enhance the path (ordered by priority to make manual installation work)
-export PATH="$HOME/bin:CDH3/hadoop/bin:/usr/local/bin:/usr/local/sbin:/Library/MySQL/bin:/usr/local/git/bin:/usr/X11R6/bin:$PATH"
+export PATH="$HOME/bin:$HOME/CDH3/hadoop/bin:/usr/local/bin:/usr/local/sbin:/Library/MySQL/bin:/usr/local/git/bin:/usr/X11R6/bin:$PATH"
 
 # where is my editor
 export VIM="/usr/local/share/vim/vim73"
@@ -46,11 +46,13 @@ export TZ="CET"
 export HADOOP_HOME="$HOME/CDH3/hadoop"
  
 # history settings
+HISTSIZE=100000
+SAVEHIST=100000
 setopt APPEND_HISTORY
+setopt SHARE_HISTORY
 setopt HIST_IGNORE_DUPS
 setopt HIST_IGNORE_SPACE
 setopt EXTENDED_HISTORY
-
 
 [ -f $HOME/.LS_COLORS ] && eval $(gdircolors -b $HOME/.LS_COLORS)
 eval $( gdircolors -b $HOME/.LS_COLORS )
