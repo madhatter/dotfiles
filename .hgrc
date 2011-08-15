@@ -1,0 +1,8 @@
+[ui]
+username = Arvid Warnecke <warnecke@etracker.com>
+ignore = ~/.hgignore
+
+[extensions]
+hgshelve=/home/awarnecke/src/bitbuckets/hgshelve/hgshelve.py
+hgext.purge=
+color=
