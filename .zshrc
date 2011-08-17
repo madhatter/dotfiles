@@ -27,8 +27,24 @@ source $ZSH/oh-my-zsh.sh
 
 # Customize to your needs...
 #
+# local hadoop installation
+export HADOOP_HOME="$HOME/CDH3/hadoop"
+export HADOOP_INSTALL=$HADOOP_HOME
+ 
+# local hbase installation
+export HBASE_HOME="$HOME/CDH3/hbase"
+export HBASE_CONF_DIR="$HBASE_HOME/conf"
+
+# zookeeper for hbase
+export ZOOKEEPER_HOME="$HOME/CDH3/zookeeper"
+
+export HADOOP_CLASSPATH=$HBASE_HOME/lib/zookeeper-3.3.3-cdh3u1.jar::$HADOOP_CLASSPATH
+
+# sqoop home
+export SQOOP_HOME="$HOME/CDH3/sqoop"
+
 # enhance the path (ordered by priority to make manual installation work)
-export PATH="$HOME/bin:$HOME/CDH3/hadoop/bin:/usr/local/bin:/usr/local/sbin:/Library/MySQL/bin:/usr/local/git/bin:/usr/X11R6/bin:$PATH"
+export PATH="$HOME/bin:$HADOOP_HOME/bin:$HBASE_HOME/bin:$ZOOKEEPER_HOME/bin:$SQOOP_HOME/bin:/usr/local/bin:/usr/local/sbin:/Library/MySQL/bin:/usr/local/git/bin:/usr/X11R6/bin:$PATH"
 
 # where is my editor
 export VIM="/usr/local/share/vim/vim73"
@@ -42,9 +58,6 @@ export LC_CTYPE="de_DE.UTF-8"
 # I needed the timezone sometimes when on other hosts
 export TZ="CET"
 
-# local hadoop installation
-export HADOOP_HOME="$HOME/CDH3/hadoop"
- 
 # history settings
 HISTSIZE=100000
 SAVEHIST=100000
@@ -54,6 +67,7 @@ setopt HIST_IGNORE_DUPS
 setopt HIST_IGNORE_SPACE
 setopt EXTENDED_HISTORY
 
+# everything for colors
 [ -f $HOME/.LS_COLORS ] && eval $(gdircolors -b $HOME/.LS_COLORS)
 eval $( gdircolors -b $HOME/.LS_COLORS )
 export ZLSCOLORS="${LS_COLORS}"
