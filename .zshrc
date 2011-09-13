@@ -11,7 +11,7 @@ ZSH_THEME="madhatter"
 # CASE_SENSITIVE="true"
 
 # Comment this out to disable weekly auto-update checks
-# DISABLE_AUTO_UPDATE="true"
+DISABLE_AUTO_UPDATE="true"
 
 # Uncomment following line if you want to disable colors in ls
 DISABLE_LS_COLORS="true"
@@ -44,16 +44,23 @@ export HADOOP_CLASSPATH=$HBASE_HOME/lib/zookeeper-3.3.3-cdh3u1.jar::$HADOOP_CLAS
 export SQOOP_HOME="$HOME/CDH3/sqoop"
 
 # enhance the path (ordered by priority to make manual installation work)
-export PATH="$HOME/bin:$HADOOP_HOME/bin:$HBASE_HOME/bin:$ZOOKEEPER_HOME/bin:$SQOOP_HOME/bin:/usr/local/bin:/usr/local/sbin:/Library/MySQL/bin:/usr/local/git/bin:/usr/X11R6/bin:$PATH"
+export PATH="$HOME/bin:$HADOOP_HOME/bin:$HBASE_HOME/bin:$ZOOKEEPER_HOME/bin:$SQOOP_HOME/bin:/usr/local/bin:/usr/local/sbin:/usr/local/mysql/bin:/Library/MySQL/bin:/usr/local/git/bin:/usr/X11R6/bin:$PATH"
 
 # where is my editor
 export VIM="/usr/local/share/vim/vim73"
 
+# where is the ruby bin
+export RUBY_BIN="$HOME/.rvm/rubies/default/bin"
+
 # what is the best editor one can wish for
 export EDITOR="vim"
 
+# english outputs please
+export LANG="en_EN.UTF-8"
+
 # encoding
 export LC_CTYPE="de_DE.UTF-8"
+export LC_ALL="de_DE.UTF-8"
 
 # I needed the timezone sometimes when on other hosts
 export TZ="CET"
@@ -78,3 +85,7 @@ zstyle ':completion:*:*:kill:*:processes' list-colors '=(#b) #([0-9]#)*=0=01;31'
 # use LS_COLORS with ls
 alias ls='gls --color=auto'
 alias ll='ls -la'
+
+
+# rvm
+[[ -s $HOME/.rvm/scripts/rvm ]] && source $HOME/.rvm/scripts/rvm
