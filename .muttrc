@@ -30,7 +30,7 @@ source ~/.mutt.macros
 #set query_command="/sw/bin/lbdbq '%s'"
 
 ## Location of the mailcap file
-set mailcap_path="/home/madhatter/.mailcap"
+set mailcap_path="/Users/madhatter/.mailcap"
 
 #set meta_key=yes
 
@@ -58,26 +58,25 @@ set alias_file="~/.mutt.aliases"
 
 ## Mailboxes
 #
-#set folder="~/mail"		# changed the default ~/Mail to ~/mail
-#set mbox="~/mail/received"	# where my received mails are
-#set record="~/mail/send"	# save send messages there
+set folder="~/mail"		# changed the default ~/Mail to ~/mail
+set spoolfile="~/mail/inbox"
+#set mbox="~/mail/inbox"		# where my received mails are
+set record="~/mail/send"	# save send messages there
 #set spoolfile='/var/mail/warnearv' # where new mails are
 
-set imap_user="arvid.warnecke"
-set imap_pass="********"
-
 #set smtp_url="smtp://arvid.warnecke@smtp.gmail.com:587/"
-#set smtp_pass="********"
+#set smtp_pass="************"
+
 set from="arvid.warnecke@gmail.com"
 set use_from = yes
 set envelope_from ="yes"
 set sendmail="/usr/local/bin/msmtp"
 
-set folder = "imaps://imap.gmail.com:993/"
-set spoolfile = "+INBOX"
-set postponed="+[Gmail]/Drafts"
-set mbox="+[Gmail]/All Mail"
-set record="+[Gmail]/Sent Mail"
+#set folder = "imaps://imap.gmail.com:993/"
+#set spoolfile = "+INBOX"
+#set postponed="+[Gmail]/Drafts"
+#set mbox="+[Gmail]/All Mail"
+#set record="+[Gmail]/Sent Mail"
 
 set header_cache=~/.mutt/cache/headers
 set message_cachedir=~/.mutt/cache/bodies

@@ -23,6 +23,10 @@ macro pager <F6> "c +TV-Programm\n" "TV-Programm"
 #
 #macro index + "!fetchmail -aK\n" "Invoke Fetchmail"
 
+# urlview
+macro index \cb "|urlview\n"
+macro pager \cb "|urlview\n"
+
 # adds the actual author to a killfile
 #
 macro index \ck	"|mailkill.sh\nd" "Adds author to a kill list to be processed by procmail."
