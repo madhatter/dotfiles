@@ -21,12 +21,14 @@ DISABLE_LS_COLORS="true"
 
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Example format: plugins=(rails git textmate ruby lighthouse)
-plugins=(git mercurial) 
+plugins=(git mercurial bundler rails3 rvm gem history-substring-search)
 
 source $ZSH/oh-my-zsh.sh
 
 # Customize to your needs...
 #
+export JAVA_HOME="/System/Library/Frameworks/JavaVM.framework/Versions/CurrentJDK/Home"
+
 # local hadoop installation
 export HADOOP_HOME="$HOME/CDH3/hadoop"
 export HADOOP_INSTALL=$HADOOP_HOME
