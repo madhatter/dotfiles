@@ -2,10 +2,13 @@
 #
 macro index A "!cd $HOME;vim .mutt.aliases\n:source $HOME/.mutt.aliases\n" "Edit Aliases"
 
+# set a different from address
+macro generic "<esc>1" ":set from=arvid@nostalgix.org realname='Arvid Warnecke'"
+macro generic "<esc>2" ":set from=arvid.warnecke@gmail.com realname='Arvid Warnecke'"
 
 # Macros to change mailboxes
 #
-macro index 2 "c =INBOX\n" "Inbox"
+macro index 2 "c /var/spool/mail/madhatter\n" "Inbox"
 macro index 3 "c =Rechnungen\n" "Rechnungen"
 macro index 4 "c =freebsd-mobile\n" "FreeBSD-Mobile"
 macro index 5 "c +IN.deichkind\n" "The Sleepwalker"
@@ -21,11 +24,11 @@ macro pager <F6> "c +TV-Programm\n" "TV-Programm"
 
 # macro to start fetchmail manualy
 #
-#macro index + "!fetchmail -aK\n" "Invoke Fetchmail"
+macro index + "!fetchmail -k\n" "Invoke Fetchmail"
 
-# adds the actual author to a killfile
-#
-macro index \ck	"|mailkill.sh\nd" "Adds author to a kill list to be processed by procmail."
+# urlview
+macro index \cb "|urlview\n"
+macro pager \cb "|urlview\n"
 
 # mark all mails in the folder as read
 macro index \Cr \

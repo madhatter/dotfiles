@@ -7,11 +7,10 @@ color hdrdefault brightgreen black
 color header brightwhite black "^(From):"
 color header red         black "^X-Junked-Because:"
 color header brightyellow      black "^(To|Reply-To):"
-# color header brightmagenta  black "^(X-Mailer|User-Agent):"
+ color header brightmagenta  black "^(X-Mailer|User-Agent):"
 # there are special color-definitions sourced
 color header brightcyan   black "^(In-Reply-To|X-UIDL):"
-color header brightred	black "^(Subject):"
-color header brightyellow	black	"^(Reply-To):"
+color header brightblue	black "^(Subject):"
 color header brightmagenta		black    "organi[sz]ation: "
 color header green	black	"(Lines):"
 
