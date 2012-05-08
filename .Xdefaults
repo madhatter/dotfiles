@@ -1,3 +1,6 @@
+!-- colors --!
+#include "/home/madhatter/.colors/dc2"
+
 ## urxvt config
 URxvt*termName: rxvt
 #URxvt*background:  #000000

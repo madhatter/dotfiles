@@ -1,0 +1,48 @@
+out_to_console yes
+out_to_x no
+background yes
+update_interval 1
+total_run_times 0
+no_buffers yes
+
+default_color FFFFFF #blanc
+default_shade_color 333333
+default_outline_color black
+
+use_xft yes
+
+color0 EEEEEE #normal
+color1 B3B3B3 #gris
+color2 FDA53C #orange
+color3 E8DD9E #jaune
+color4 A6D4E0 #bleu
+color5 FFA500 #camel
+color6 BDE077 #vert
+color7 D8ADFF #mauve
+color8 FF95D1 #rose
+
+ 
+TEXT
+^s[left;\#BBBBBB; ]^i[left;0;0;/home/madhatter/.config/wmfs/icons/status/cpu.png] ^s[left;\#BBBBBB; CPU:]^s[left;\#FDA53C; ${cpu}%  ] ^g[left;80;10;${cpu};100;\#333333;\#FDA53C;ckycpu](1;spawn;urxvtc -e htop)\
+^s[left;\#444444; |]\
+^i[left;0;0;/home/madhatter/.config/wmfs/icons/status/mem.png] ^s[left;\#BBBBBB; MEM:]  ^s[left;\#BDE077; $mem ]^s[left;\#444444;/$memmax]^s[left;\#BDE077;  $memperc% ]^g[left;80;10;$memperc;100;\#333333;\#BDE077;ckymem](1;spawn;urxvtc -e htop)\
+^s[left;\#444444; |]\
+^i[left;0;0;/home/madhatter/.config/wmfs/icons/status/pacman.png]^s[left;\#FDA53C; ${top name 1}]\
+^i[left;0;0;/home/madhatter/.config/wmfs/icons/stat/invader1_1_11x8.png]^s[left;\#FDA53C; $battery_percent]\
+${if_running mpd}\
+^i[right;0;0;/home/madhatter/.config/wmfs/icons/status/note.png](1;spawn;urxvt -e ncmpcpp)^s[right;\#BBBBBB; MPD ](1;spawn;urxvt -e ncmpcpp)$else^i[right;0;0;/home/madhatter/.config/wmfs/icons/stat/note.png](1;spawn;urxvt -e ncmpcpp)^s[right;\#A6D4E0;  MOC est arrêté   ](1;spawn;urxvt -e ncmpcpp)$endif\
+${if_running mpd}\
+${if_match "${exec mpc -f %state%}" == "playing"}^s[right;\#BDE077;// ]^s[right;\#BBBBBB;${exec mocp -Q %song} - ${exec mocp -Q %artist}   ]$endif\
+${if_match "${exec mpc -f %state%}" == "paused"}^s[right;\#FDA53C;// ]^s[right;\#BBBBBB;${exec mocp -Q %song} - ${exec mocp -Q %artist}  ]$endif\
+${if_match "${exec mpc -f %state%}" == "playing"}^s[right;\#BDE077;Lecture ](1;spawn;mocp -G)$endif${if_match "${exec mocp -Q %state}" == "PAUSE"}^s[right;\#FDA35C;Pause ](1;spawn;mocp -G)$endif${if_match "${exec mocp -Q %state}" == "STOP"}^s[right;\#A6D4E0;Arrêt ](1;spawn;mocp -p)$endif$endif\
+${if_running mocp}${if_match "${exec mpc -Q %state%}" == "PLAY"}^s[right;\#BDE077;{ ]^i[right;0;0;/home/madhatter/.config/wmfs/icons/stat/pause.png](1;spawn;mocp -G)^s[right;\#BDE077; }]$endif\
+${if_match "${exec mpc -f %state%}" == "PAUSE"}^s[right;\#FDA53C;{ ]^i[right;0;0;/home/madhatter/.config/wmfs/icons/stat/play.png](1;spawn;mocp -G)^s[right;\#FDA53C; }]$endif\
+${if_match "${exec mpc -f %state%}" == "STOP"}^s[right;\#A6D4E0;{ ]^i[right;0;0;/home/madhatter/.config/wmfs/icons/stat/stop.png](1;spawn;mocp -p)^s[right;\#A6D4E0; }  ]$endif\
+$endif\
+${if_running mocp}${if_match "${exec mocp -Q %state}" == "PLAY"}^s[right;\#444444; - ]^i[right;0;0;/home/madhatter/.config/wmfs/icons/stat/previous.png](1;spawn;mocp -r)$endif\
+${if_match "${exec mpc -f %state%}" == "playing"}^s[right;\#444444; ]^i[right;0;0;/home/madhatter/.config/wmfs/icons/stat/next.png](1;spawn;mocp -f)^s[right;\#BBBBBB; ]$endif\
+${if_match "${exec mpc -f %state%}" == "paused"}^s[right;\#444444; - ]^i[right;0;0;/home/madhatter/.config/wmfs/icons/stat/previous.png](1;spawn;mocp -r)$endif\
+${if_match "${exec mpc -f %state%}" == "paused"}^s[right;\#444444; ]^i[right;0;0;/home/madhatter/.config/wmfs/icons/stat/next.png](1;spawn;mocp -f)^s[right;\#BBBBBB; ]$endif\
+${if_match "${exec mpc -f %state%}" == "playing"}^s[right;\#444444; ]^i[right;0;0;/home/madhatter/.config/wmfs/icons/stat/stop.png](1;spawn;mocp -s)^s[right;\#BBBBBB;   ]$endif\
+${if_match "${exec mpc -f %state%}" == "paused"}^s[right;\#444444; ]^i[right;0;0;/home/madhatter/.config/wmfs/icons/stat/stop.png](1;spawn;mocp -s)^s[right;\#BBBBBB;   ]$endif\
+$endif\
