@@ -2,7 +2,7 @@
 # 
 # first some includes for
 # color
-#source ~/.mutt.colors
+source ~/.mutt.colors
 source ~/.mutt/colors/darkcourses
 
 # mailinglist subscriptions
