@@ -1,0 +1,6 @@
+HOW TO CHANGE COLOR OF ICONS
+
+for x in *.xbm; do convert -fill "#afa72e" -transparent white -colorize 100 -bordercolor transparent -border 8x8 -gravity center -crop 16x16+0+0 "${x}" "${x%.*}.png"; done
+
+-border 8x8 real size we want
+-crop 16x16 size of the panel we want to fit
