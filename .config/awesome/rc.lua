@@ -881,10 +881,10 @@ awful.rules.rules = {
                     }
    },
     { rule = { class = "Vlc" },
-      properties = { tag = tags[1][5], switchtotag = true } },
+      properties = { tag = tags[1][6], switchtotag = true } },
     
     { rule = { class = "Gimp" },
-      properties = { tag = tags[1][6] } },
+      properties = { tag = tags[1][7] } },
 
     { rule = { instance = "Blender" },
       properties = { tag = tags[1][6] } },
@@ -911,7 +911,7 @@ awful.rules.rules = {
       properties = { tag = tags[1][4], floating = true, switchtotag = true } },
 
     { rule = { class = "Gpicview" },
-      properties = { tag = tags[1][3], switchtotag = true } },
+      properties = { tag = tags[1][7], switchtotag = true } },
     
     { rule = { class = "Qalculate-gtk" },
       properties = { tag = tags[1][6], switchtotag = true } },
