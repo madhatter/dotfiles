@@ -7,4 +7,5 @@ dropboxd &
 xmodmap ~/.Xmodmap &
 mpd &
 mpdscribble &
+urxvt -e "ssh-add" &
 exec ck-launch-session dbus-launch awesome
