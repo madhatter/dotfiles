@@ -8,19 +8,19 @@ macro generic "<esc>2" ":set from=arvid.warnecke@gmail.com realname='Arvid Warne
 
 # Macros to change mailboxes
 #
-macro index <F2> "c /var/spool/mail/madhatter\n" "Inbox"
-macro index <F3> "c =list.arch-general\n" "ArchLinux General List"
-macro index <F4> "c =list.arch-dev-public\n" "ArchLinux Public Developer List"
-macro index <F5> "c =list.ruby-talk\n" "Ruby Talk List"
-macro index <F6> "c =list.hbase-user\n" "HBase User List"
+macro index 2 "c /var/spool/mail/madhatter\n" "Inbox"
+macro index 3 "c =list.arch-general\n" "ArchLinux General List"
+macro index 4 "c =list.arch-dev-public\n" "ArchLinux Public Developer List"
+macro index 5 "c =list.ruby-talk\n" "Ruby Talk List"
+macro index 6 "c =list.hbase-user\n" "HBase User List"
 
 # without those following you can't change boxes in a mail but only in index
 #
-macro pager <F2> "c /var/spool/mail/madhatter\n" "Inbox"
-macro pager <F3> "c =list.arch-general\n" "ArchLinux General List"
-macro pager <F4> "c =list.arch-dev-public\n" "ArchLinux Public Developer List"
-macro pager <F5> "c =list.ruby-talk\n" "Ruby Talk List"
-macro pager <F6> "c =list.hbase-user\n" "HBase User List"
+macro pager 2 "c /var/spool/mail/madhatter\n" "Inbox"
+macro pager 3 "c =list.arch-general\n" "ArchLinux General List"
+macro pager 4 "c =list.arch-dev-public\n" "ArchLinux Public Developer List"
+macro pager 5 "c =list.ruby-talk\n" "Ruby Talk List"
+macro pager 6 "c =list.hbase-user\n" "HBase User List"
 
 # macro to start fetchmail manualy
 #
