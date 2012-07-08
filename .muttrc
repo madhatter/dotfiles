@@ -12,13 +12,21 @@ source ~/.mutt.subscribe
 source ~/.mutt.macros
 
 # GnuPG
-#source ~/.gpgrc
+source ~/.gpgrc
 
 # personal information
 set realname="Arvid Warnecke"
 set from="arvid@nostalgix.org"
 set use_from=yes
 set envelope_from=yes
+set followup_to
+set reverse_name 
+
+# set from automatically
+unalternates ``*''
+alternates arvid.warnecke@gmail.com
+alternates arvid.warnecke@nostalgix.org
+alternates madhatter@nostalgix.org
 
 # Use msmtp rather than sendmail. Check that 
 # the path is correct for your system:
@@ -42,7 +50,7 @@ set mbox="+archive"			 # Where mutt will store read messages
 
 # Watch these mailboxes for new mail, useful only if 
 # Procmail or Maildrop is used to sort mail.
-mailboxes ! +list.ruby-talk +fetchmail +mutt +list.hbase-user +list.arch-general
+mailboxes ! +list.ruby-talk +fetchmail +mutt +list.hbase-user +list.arch-general +list.arch-dev-public
 set sort_browser=alpha    # Sort mailboxes by alpha(bet)
 set sort=threads
 
@@ -79,6 +87,7 @@ unset help
 
 # view annoying html mail inline
 auto_view text/html
+alternative_order text/plain text/enriched text/html     # save html for last
 
 ## GPG-Configuration was sourced above
 set pgp_autosign     
