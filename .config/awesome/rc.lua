@@ -986,10 +986,10 @@ awful.rules.rules = {
       properties = { tag = tags[1][5] } },
     
     { rule = { class = "Gnome-mplayer" },
-      properties = { tag = tags[1][5], switchtotag = true } },
+      properties = { tag = tags[1][6], switchtotag = true } },
     
     { rule = { class = "MPlayer" },
-      properties = { tag = tags[1][5], switchtotag = true } },
+      properties = { tag = tags[1][6], switchtotag = true } },
     
     { rule = { class = "Pithos" },
       properties = { tag = tags[1][5], switchtotag = true } },
