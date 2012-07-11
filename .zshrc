@@ -100,6 +100,9 @@ zstyle -e ':completion::*:*:*:hosts' hosts 'reply=(${=${${(f)"$(cat {/etc/ssh_,~
 alias ls='ls --color=auto'
 alias ll='ls -la'
 
+# don't correct me when I am talking about hdfs
+alias hadoop="noglob hadoop"
+
 PS1="%{%B$fg[blue]%}┌─[ %{$fg[green]%}%n%{$fg[white]%}(%{$fg[cyan]%}%m%{$fg[white]%}):%{$fg[yellow]%}%~ %{$fg[blue]%}]
 └──╼ %{$reset_color%}"
 
