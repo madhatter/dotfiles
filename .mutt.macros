@@ -37,6 +37,9 @@ macro index \Cr \
   "<tag-pattern>~N\n<tag-prefix><clear-flag>N<untag-pattern>.\n" \
   "Mark all new messages as read"
 
+# add email addresses (with "a" key normally bound to create-alias command):
+macro index,pager a "<pipe-message>goobook add<return>" "add the sender address to Google contacts"
+
 # use the arrow keys to scroll up and down
 macro pager   <up>       <previous-line>
 macro pager   <down>     <next-line>

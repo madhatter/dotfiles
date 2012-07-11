@@ -85,6 +85,10 @@ set pager_index_lines=10 # number of lines to display in a mini-pager above the 
 set status_on_top
 unset help
 
+# Google contacts
+set query_command="goobook query '%s'"
+bind editor <Tab> complete-query
+
 # view annoying html mail inline
 auto_view text/html
 alternative_order text/plain text/enriched text/html     # save html for last
