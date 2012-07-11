@@ -1,0 +1,71 @@
+PATH=/bin:/usr/bin:/usr/local/bin 
+VERBOSE=on  
+DEFAULT=/var/spool/mail/madhatter
+MAILDIR=$HOME/mail            
+LOGFILE=$HOME/.procmaillog  
+# Recipes below this comment:
+#:0
+#SCORE=| /usr/bin/spamprobe train
+#:0 wf
+#| formail -I "X-SpamProbe: $SCORE"
+#
+#:0 a:
+#*^X-SpamProbe: SPAM
+#spamprobe
+#
+
+#Spamassassin start
+:0fw: spamassassin.lock
+| /usr/bin/vendor_perl/spamassassin
+
+:0:
+* ^X-Spam-Level: \*\*\*\*\*\*\*\*\*\*
+spam10
+
+:0:
+* ^X-Spam-Status: Yes
+spamassassin-spam
+
+#Spamassassin end
+
+
+## put all messages from ebay in a special folder
+:0 
+* ^From.*@ebay*
+ebay
+
+## daily television information
+:0:
+* ^From.*support@tvinfo\.de
+TV-Programm
+
+## mailinglists
+:0:
+* ^TOmutt-user
+mutt
+
+:0:
+* ^TOuser@hbase\.apache\.org
+list.hbase-user
+
+:0:
+* ^TOhbase-user@hadoop\.apache\.org
+list.hbase-user
+
+:0
+*^TO_ruby-talk@ruby-lang\.org
+list.ruby-talk
+
+:0
+* ^TOarch-general@archlinux\.org
+list.arch-general
+
+:0
+* ^TOarch-dev-public@archlinux\.org
+list.arch-dev-public
+
+:0
+*^TOvim@vim\.org
+*^TOvim_use@googlegroups\.com
+list.vim
+

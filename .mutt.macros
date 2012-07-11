@@ -11,16 +11,18 @@ macro generic "<esc>2" ":set from=arvid.warnecke@gmail.com realname='Arvid Warne
 macro index 2 "c /var/spool/mail/madhatter\n" "Inbox"
 macro index 3 "c =list.arch-general\n" "ArchLinux General List"
 macro index 4 "c =list.arch-dev-public\n" "ArchLinux Public Developer List"
-macro index 5 "c =list.ruby-talk\n" "Ruby Talk List"
+macro index 5 "c =list.vim\n" "Ruby Talk List"
 macro index 6 "c =list.hbase-user\n" "HBase User List"
+macro index 7 "c =list.ruby-talk\n" "Ruby Talk List"
 
 # without those following you can't change boxes in a mail but only in index
 #
 macro pager 2 "c /var/spool/mail/madhatter\n" "Inbox"
 macro pager 3 "c =list.arch-general\n" "ArchLinux General List"
 macro pager 4 "c =list.arch-dev-public\n" "ArchLinux Public Developer List"
-macro pager 5 "c =list.ruby-talk\n" "Ruby Talk List"
+macro pager 5 "c =list.vim\n" "Ruby Talk List"
 macro pager 6 "c =list.hbase-user\n" "HBase User List"
+macro pager 7 "c =list.ruby-talk\n" "Ruby Talk List"
 
 # macro to start fetchmail manualy
 #
