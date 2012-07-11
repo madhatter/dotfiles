@@ -66,6 +66,8 @@ list.arch-dev-public
 
 :0
 *^TOvim@vim\.org
-*^TOvim_use@googlegroups\.com
 list.vim
 
+:0
+*^TOvim_use@googlegroups\.com
+list.vim

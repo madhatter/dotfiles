@@ -50,7 +50,7 @@ set mbox="+archive"			 # Where mutt will store read messages
 
 # Watch these mailboxes for new mail, useful only if 
 # Procmail or Maildrop is used to sort mail.
-mailboxes ! +list.ruby-talk +fetchmail +mutt +list.hbase-user +list.arch-general +list.arch-dev-public
+mailboxes ! +list.vim +list.ruby-talk +fetchmail +mutt +list.hbase-user +list.arch-general +list.arch-dev-public
 set sort_browser=alpha    # Sort mailboxes by alpha(bet)
 set sort=threads
 
