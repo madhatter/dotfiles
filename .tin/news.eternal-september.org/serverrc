@@ -1,0 +1,10 @@
+# tin server configuration file
+# This file was automatically saved by rtin 2.0.1 20111224 ("Achenvoir")
+#
+# Do not edit while tin is running, since all your changes to this file
+# will be overwritten when you leave tin.
+# Do not edit at all if you don't know what you do.
+############################################################################
+
+version=1.0.0
+last_newnews=1342030168 (2012-07-11 18:09:28 UTC)

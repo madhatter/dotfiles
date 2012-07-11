@@ -1,0 +1,136 @@
+# Group attributes file V1.0.7 for the TIN newsreader
+# Do not edit this comment block
+#
+#  scope=STRING (eg. alt.*,!alt.bin*) [mandatory]
+#  add_posted_to_filter=ON/OFF
+#  advertising=ON/OFF
+#  alternative_handling=ON/OFF
+#  ask_for_metamail=ON/OFF
+#  auto_cc_bcc=NUM
+#    0=No, 1=Cc, 2=Bcc, 3=Cc and Bcc
+#  auto_list_thread=ON/OFF
+#  auto_save=ON/OFF
+#  auto_select=ON/OFF
+#  batch_save=ON/OFF
+#  date_format=STRING (eg. %a, %d %b %Y %H:%M:%S)
+#  delete_tmp_files=ON/OFF
+#  editor_format=STRING (eg. %E +%N %F)
+#  fcc=STRING (eg. =mailbox)
+#  followup_to=STRING
+#  from=STRING (just append wanted From:-line, don't use quotes)
+#  group_catchup_on_exit=ON/OFF
+#  mail_8bit_header=ON/OFF
+#  mail_mime_encoding=supported_encoding
+#    8bit, base64, quoted-printable, 7bit, 
+#  ispell=STRING
+#  maildir=STRING (eg. ~/Mail)
+#  mailing_list=STRING (eg. majordomo@example.org)
+#  mime_types_to_save=STRING (eg. image/*,!image/bmp)
+#  mark_ignore_tags=ON/OFF
+#  mark_saved_read=ON/OFF
+#  mime_forward=ON/OFF
+#  mm_network_charset=supported_charset
+#    US-ASCII, ISO-8859-1, ISO-8859-2, ISO-8859-3, ISO-8859-4, 
+#    ISO-8859-5, ISO-8859-7, ISO-8859-9, ISO-8859-10, ISO-8859-13, 
+#    ISO-8859-14, ISO-8859-15, ISO-8859-16, KOI8-RU, KOI8-R, 
+#    KOI8-U, EUC-CN, EUC-JP, EUC-KR, EUC-TW, 
+#    ISO-2022-CN, ISO-2022-CN-EXT, ISO-2022-JP, ISO-2022-JP-1, ISO-2022-JP-2, 
+#    Big5, UTF-8, 
+#  undeclared_charset=STRING (default is US-ASCII)
+#  news_headers_to_display=STRING
+#  news_headers_to_not_display=STRING
+#  news_quote_format=STRING
+#  organization=STRING (if beginning with '/' read from file)
+#  pos_first_unread=ON/OFF
+#  post_8bit_header=ON/OFF
+#  post_mime_encoding=supported_encoding
+#    8bit, base64, quoted-printable, 7bit, 
+#  post_process_type=NUM
+#    0=No, 1=Shell archive, 2=Yes
+#  post_process_view=ON/OFF
+#  quick_kill_scope=STRING (ie. talk.*)
+#  quick_kill_expire=ON/OFF
+#  quick_kill_case=ON/OFF
+#  quick_kill_header=NUM
+#    0=Subject: (case sensitive)  1=Subject: (ignore case)
+#    2=From: (case sensitive)     3=From: (ignore case)
+#    4=Message-ID: & full References: line
+#    5=Message-ID: & last References: entry only
+#    6=Message-ID: entry only     7=Lines:
+#  quick_select_scope=STRING
+#  quick_select_expire=ON/OFF
+#  quick_select_case=ON/OFF
+#  quick_select_header=NUM
+#    0=Subject: (case sensitive)  1=Subject: (ignore case)
+#    2=From: (case sensitive)     3=From: (ignore case)
+#    4=Message-ID: & full References: line
+#    5=Message-ID: & last References: entry only
+#    6=Message-ID: entry only     7=Lines:
+#  quote_chars=STRING (%s, %S for initials)
+#  print_header=ON/OFF
+#  process_only_unread=ON/OFF
+#  prompt_followupto=ON/OFF
+#  savedir=STRING (eg. ~user/News)
+#  savefile=STRING (eg. =linux)
+#  sigfile=STRING (eg. $var/sig)
+#  show_author=NUM
+#    0=None, 1=Address, 2=Full Name, 3=Address and Name
+#  show_info=NUM
+#    0=None, 1=Lines, 2=Score, 3=Lines & Score
+#  show_signatures=ON/OFF
+#  show_only_unread_arts=ON/OFF
+#  sigdashes=ON/OFF
+#  signature_repost=ON/OFF
+#  sort_article_type=NUM
+#    0=Nothing,
+#    1=Subject: (descending), 2=Subject: (ascending),
+#    3=From: (descending), 4=From: (ascending),
+#    5=Date: (descending), 6=Date: (ascending),
+#    7=Score (descending), 8=Score (ascending),
+#    9=Lines: (descending), 10=Lines: (ascending)
+#  sort_threads_type=NUM
+#    0=Nothing, 1=Score (descending), 2=Score (ascending)
+#    3=Last posting date (descending)
+#    4=Last posting date (ascending)
+#  start_editor_offset=ON/OFF
+#  tex2iso_conv=ON/OFF
+#  thread_catchup_on_exit=ON/OFF
+#  thread_articles=NUM
+#    0=None, 1=Subject, 
+#    2=References, 3=Both Subject and References, 
+#    4=Multipart Subject, 5=Percentage Match, 
+#  thread_perc=NUM
+#  trim_article_body=NUM
+#    0 = Don't trim article body
+#    1 = Skip leading blank lines
+#    2 = Skip trailing blank lines
+#    3 = Skip leading and trailing blank lines
+#    4 = Compact multiple blank lines between text blocks
+#    5 = Compact multiple blank lines between text blocks and skip
+#        leading blank lines
+#    6 = Compact multiple blank lines between text blocks and skip
+#        trailing blank lines
+#    7 = Compact multiple blank lines between text blocks and skip
+#        leading and trailing blank lines
+#  verbatim_handling=ON/OFF
+#  wrap_on_next_unread=ON/OFF
+#  x_body=STRING (eg. ~/.tin/extra-body-text)
+#  x_comment_to=ON/OFF
+#  x_headers=STRING (eg. ~/.tin/extra-headers)
+#
+# Note that it is best to put general (global scoping)
+# entries first followed by group specific entries.
+#
+############################################################################
+
+scope=*
+x_headers=~/.tin/headers
+
+scope=*sources*
+post_process_type=1
+
+scope=*binaries*
+delete_tmp_files=ON
+followup_to=poster
+post_process_type=2
+tex2iso_conv=OFF

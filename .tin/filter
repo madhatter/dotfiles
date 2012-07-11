@@ -1,0 +1,45 @@
+# Filter file V1.0.0 for the TIN newsreader
+#
+# Format:
+#   comment=STRING    Optional. Multiple lines allowed. Comments must be placed
+#                     at the beginning of a rule, or they will be moved to the
+#                     next rule. '#' is not a valid keyword for a comment!
+#   group=STRING      Mandatory. Newsgroups list (e.g. comp.*,!*sources*).
+#   case=NUM          Mandatory. Compare=0 / ignore=1 case when filtering.
+#   score=NUM|STRING  Mandatory. Score to give. Either:
+#     score=NUM         A number (e.g. 70). Or:
+#     score=STRING      One of the two keywords: 'hot' or 'kill'.
+#   subj=STRING       Optional. Subject: line (e.g. How to be a wizard).
+#   from=STRING       Optional. From: line (e.g. *Craig Shergold*).
+#   msgid=STRING      Optional. Message-ID: line (e.g. <123@ether.net>) with
+#                     full references.
+#   msgid_last=STRING Optional. Like above, but with last reference only.
+#   msgid_only=STRING Optional. Like above, but without references.
+#   refs_only=STRING  Optional. References: line (e.g. <123@ether.net>) without
+#                     Message-ID:
+#   lines=[<>]?NUM    Optional. Lines: line. '<' or '>' are optional.
+#   gnksa=[<>]?NUM    Optional. GNKSA parse_from() return code. '<' or '>' opt.
+#   xref=PATTERN      Optional. Kill pattern (e.g. alt.flame*)
+#   time=NUM          Optional. time_t value when rule expires
+#
+
+comment=Rule created by: add_posted_to_filter=ON.
+group=de.alt.test
+case=0
+score=hot
+msgid=*<jsidf7$a3d$1@dont-email.me>*
+time=1343333262 (2012-07-26 20:07:42 UTC)
+
+comment=Rule created by: add_posted_to_filter=ON.
+group=de.alt.test
+case=0
+score=hot
+msgid=*<jsvlrt$lk2$2@arch.eternal-september.org>*
+time=1343767853 (2012-07-31 20:50:53 UTC)
+
+comment=Rule created by: add_posted_to_filter=ON.
+group=eternal-september.support
+case=0
+score=hot
+msgid=*<jt2593$297$2@arch.eternal-september.org>*
+time=1343849173 (2012-08-01 19:26:13 UTC)
