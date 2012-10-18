@@ -6,7 +6,7 @@
 mpd_music_dir = "/home/madhatter/music"
 
 # Playlist
-song_columns_list_format = "(6f)[blue]{l} (20)[red]{a} (40)[green]{t|f} (25)[yellow]{b} (4)[magenta]{y}"
+song_columns_list_format = "(3f)[blue]{n} (20)[red]{a} (40)[green]{t|f} (25)[yellow]{b} (4)[blue]{y} (6f)[white]{l} "
 now_playing_prefix = "$b$5»$7»$1» "
 now_playing_suffix = "$/b"
 playlist_display_mode = "columns" (classic/columns)
