@@ -21,7 +21,7 @@ local function worker(format, warg)
     -- Initialize counters
     local updates = 0
     local manager = {
-        ["Arch"]   = { cmd = "yaourt -Qu" },
+        ["Arch"]   = { cmd = "pacman -Qu --dbpath /home/madhatter/pacman" },
         ["Arch S"] = { cmd = "yes | pacman -Sup", sub = 2 },
         ["Debian"] = { cmd = "apt-show-versions -u -b" },
         ["Ubuntu"] = { cmd = "aptitude search '~U'" },

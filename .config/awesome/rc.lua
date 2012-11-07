@@ -14,7 +14,7 @@ require("beautiful")
 require("revelation")
 -- Notification library
 require("naughty")
-require("vicious")
+vicious = require("vicious")
 
 --}}}
 
@@ -95,7 +95,7 @@ for s = 1, screen.count() do
     -- Each screen has its own tag table.
     -- tags[s] = awful.tag({ "⢷", "⣨", "⡪", "⣌", "⣪", "⡝"}, s,
     -- tags[s] = awful.tag({ "¹ term", "´ web", "² files", "© chat", "ê media", "º work" }, s,
-    tags[s] = awful.tag({ "term", "web", "mail", "news", "chat", "media", "grfx", "vm" }, s,
+    tags[s] = awful.tag({ "term", "code", "mail", "web", "chat", "media", "grfx", "vm" }, s,
     -- tags[s] = awful.tag({ "¹", "´", "²", "©", "ê", "º" }, s,
   		       { layouts[6], layouts[6], layouts[6],
  			  layouts[6], layouts[6], layouts[1], layouts[1], layouts[1]
@@ -282,10 +282,10 @@ mylauncher = awful.widget.launcher({ image = image(beautiful.awesome_icon),
 -- weather_t = awful.tooltip({ objects = { weatherwidget },})
 
 -- vicious.register(weatherwidget, vicious.widgets.weather,
---                 function (widget, args)
---                     weather_t:set_text("City: " .. args["{city}"] .."\nWind: " .. args["{windmph}"] .. " mp/h " .. args["{wind}"] .. "\nSky: " .. args["{sky}"] .. "\nHumidity: " .. args["{humid}"] .. "%")
---                     return args["{tempf}"] .. "F"
---                 end, 1, "ITXX0158")
+                -- function (widget, args)
+                    -- weather_t:set_text("City: " .. args["{city}"] .."\nWind: " .. args["{windmph}"] .. " mp/h " .. args["{wind}"] .. "\nSky: " .. args["{sky}"] .. "\nHumidity: " .. args["{humid}"] .. "%")
+                    -- return args["{tempf}"] .. "F"
+                -- end, 1, "ITXX0158")
                 --'1800': check every 30 minutes.
                 --'CYUL': the Montreal ICAO code.
 
@@ -323,7 +323,7 @@ uptimeicon = widget({ type = "imagebox" })
 uptimeicon.image = image(beautiful.widget_uptime)
 
 uptimewidget = widget({ type = "textbox" })
-vicious.register( uptimewidget, vicious.widgets.uptime, "$2.$3'")
+vicious.register( uptimewidget, vicious.widgets.uptime, "$1d $2.$3'")
 
 uptimeicon:buttons(awful.util.table.join(
 					 awful.button({ }, 1, function () exitmenu:toggle() end )
@@ -373,7 +373,7 @@ pacwidget_t = awful.tooltip({ objects = { pacwidget},})
 vicious.register(pacwidget, vicious.widgets.pkg,
                 function(widget,args)
                     local io = { popen = io.popen }
-                    local s = io.popen("yaourt -Qu")
+                    local s = io.popen("pacman -Qu --dbpath /home/madhatter/pacman")
                     local str = ''
                     for line in s:lines() do
                         str = str .. line .. "\n"
@@ -403,7 +403,8 @@ awful.widget.layout.margins[cpubar.widget] = { top = 5 }
 
 -- Cpu usage
 cpuwidget = widget({ type = "textbox" })
-vicious.register( cpuwidget, vicious.widgets.cpu, "$2% $3% $4% $5%", 3)
+--vicious.register( cpuwidget, vicious.widgets.cpu, "$2% $3% $4% $5%", 3)
+vicious.register( cpuwidget, vicious.widgets.cpu, "$2% $3%", 3)
 
 cpuicon:buttons(awful.util.table.join(
     awful.button({ }, 1, function () awful.util.spawn("urxvtc -e htop", false) end)
@@ -893,10 +894,10 @@ awful.rules.rules = {
       properties = { floating = true } },
 
     { rule = { class = "Firefox" },
-      properties = { tag = tags[1][2], switchtotag = true } },
+      properties = { tag = tags[1][4], switchtotag = true } },
     
     { rule = { class = "Firefox", instance = "Download" },
-      properties = { tag = tags[1][2], floating = true } },
+      properties = { tag = tags[1][4], floating = true } },
 
     { rule = { class = "Qbittorrent" },
       properties = { tag = tags[1][2], switchtotag = true } },

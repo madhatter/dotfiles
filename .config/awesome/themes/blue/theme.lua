@@ -11,7 +11,7 @@
 
 theme = {}
 theme.confdir = awful.util.getdir("config") .. "/themes/blue"
-theme.wallpaper_cmd = { "awsetbg /home/madhatter/.config/awesome/archlinux.png" }
+theme.wallpaper_cmd = { "awsetbg /home/madhatter/.config/awesome/1440x900.png" }
 
 -- }}}
 
