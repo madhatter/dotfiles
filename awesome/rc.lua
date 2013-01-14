@@ -143,9 +143,142 @@ uptimewidget:buttons(awful.util.table.join(
 					 awful.button({ }, 1, function () exitmenu:toggle() end )
 				   ))
 
+-- Temp Icon
+tempicon = wibox.widget.imagebox()
+tempicon:set_image(beautiful.widget_temp)
+
+-- Temp Widget
+tempwidget = wibox.widget.textbox()
+vicious.register(tempwidget, vicious.widgets.thermal, "$1°C", 9, "thermal_zone0")
+
+tempicon:buttons(awful.util.table.join(
+    awful.button({ }, 1, function () awful.util.spawn("urxvtc -e sudo powertop", false) end)
+))
+
+
+-- GMail widget and tooltip
+mygmail = wibox.widget.textbox()
+gmail_t = awful.tooltip({ objects = { mygmail },})
+
+mygmailimg = wibox.widget.imagebox()
+mygmailimg:set_image(beautiful.widget_gmail)
+
+vicious.register(mygmail, vicious.widgets.gmail,
+                function (widget, args)
+                    gmail_t:set_text(args["{subject}"])
+                    gmail_t:add_to_object(mygmailimg)
+                    return args["{count}"]
+                 end, 120) 
+                 --the '120' here means check every 2 minutes.
+
+mygmailimg:buttons(awful.util.table.join(
+    awful.button({ }, 1, function () awful.util.spawn("thunderbird", false) end)
+))
+
+-- Pacman Icon
+pacicon = wibox.widget.imagebox()
+pacicon:set_image(beautiful.widget_pac)
+-- Pacman Widget
+pacwidget = wibox.widget.textbox()
+pacwidget_t = awful.tooltip({ objects = { pacwidget},})
+vicious.register(pacwidget, vicious.widgets.pkg,
+                function(widget,args)
+                    local io = { popen = io.popen }
+                    local s = io.popen("pacman -Qu --dbpath /home/awarnecke/pacman")
+                    local str = ''
+                    for line in s:lines() do
+                        str = str .. line .. "\n"
+                    end
+                    pacwidget_t:set_text(str)
+                    s:close()
+                    return " " .. args[1]
+                end, 10, "Arch")
+                --'1800' means check every 30 minutes
+
+pacicon:buttons(awful.util.table.join(
+    awful.button({ }, 1, function () awful.util.spawn("urxvtc -e yaourt -Syua", false) end)
+))
+
+-- CPU Icon
+cpuicon = wibox.widget.imagebox()
+cpuicon:set_image(beautiful.widget_cpu)
+
+-- CPU Widget
+cpubar = awful.widget.progressbar()
+cpubar:set_width(50)
+cpubar:set_height(6)
+cpubar:set_vertical(false)
+cpubar:set_background_color("#434343")
+--cpubar:set_gradient_colors({ beautiful.fg_normal, beautiful.fg_normal, beautiful.fg_normal, beautiful.bar })
+--local stats_grad = { type = "linear", from = { 0, 0 }, to = { 100, 0 }, stops = { { 0, "#0000ff" }, { 0.5, "#00ff00" }, { 1, "#ff0000" }}}
+local stats_grad = { type = "linear", from = { 0, 0 }, to = { 50, 0 }, stops = { { 0, beautiful.fg_normal }, { 0.5, beautiful.fg_normal }, { 1, beautiful.fg_normal }}}
+cpubar:set_color(stats_grad)
+vicious.register(cpubar, vicious.widgets.cpu, "$1", 3)
+cpubar_with_margin = wibox.layout.margin()
+cpubar_with_margin:set_widget(cpubar)
+cpubar_with_margin:set_top(5)
+cpubar_with_margin:set_bottom(5)
+
+-- Cpu usage
+cpuwidget = wibox.widget.textbox()
+vicious.register( cpuwidget, vicious.widgets.cpu, "$2% $3% $4% $5%", 3)
+--vicious.register( cpuwidget, vicious.widgets.cpu, "$2% $3%", 3)
+
+cpuicon:buttons(awful.util.table.join(
+    awful.button({ }, 1, function () awful.util.spawn("urxvtc -e htop", false) end)
+))
+
+-- BATT Icon
+baticon = wibox.widget.imagebox()
+baticon:set_image(beautiful.widget_batt)
+
+-- Battery usage
+powermenu = awful.menu({items = {
+			     { "Auto" , function () awful.util.spawn("sudo cpufreq-set -r -g ondemand", false) end },
+			     { "Ondemand" , function () awful.util.spawn("sudo cpufreq-set -r -g ondemand", false) end },
+			     { "Powersave" , function () awful.util.spawn("sudo cpufreq-set -r -g powersave", false) end },
+			     { "Performance" , function () awful.util.spawn("sudo cpufreq-set -r -g performance", false) end }
+			  }
+		       })
+
+-- Initialize BATT widget progressbar
+batbar = awful.widget.progressbar()
+batbar:set_width(50)
+batbar:set_height(6)
+batbar:set_vertical(false)
+batbar:set_background_color("#434343")
+batbar:set_border_color(nil)
+--batbar:set_gradient_colors({ beautiful.fg_normal, beautiful.fg_normal, beautiful.fg_normal, beautiful.bar })
+batbar:set_color(stats_grad)
+batbar_with_margin = wibox.layout.margin()
+batbar_with_margin:set_widget(cpubar)
+batbar_with_margin:set_top(5)
+batbar_with_margin:set_bottom(5)
+vicious.register( batbar_with_margin, vicious.widgets.bat, "$2", 1, "BAT0" )
+
+batwidget = wibox.widget.textbox()
+vicious.register( batwidget, vicious.widgets.bat, "$2", 1, "BAT0" )
+baticon:buttons(awful.util.table.join(
+					 awful.button({ }, 1, function () powermenu:toggle() end )
+				   ))
+
+batwidget:buttons(awful.util.table.join(
+					 awful.button({ }, 1, function () powermenu:toggle() end )
+				   ))
+
+
+
+-- Spacers
+rbracket = wibox.widget.textbox()
+rbracket:set_text("]")
+lbracket = wibox.widget.textbox()
+lbracket:set_text("[")
+line = wibox.widget.textbox()
+line:set_text("|")
+
 -- Space
 space = wibox.widget.textbox()
-space.text = " "
+space:set_text(" ")
 
 
 -- Create a wibox for each screen and add it
@@ -249,10 +382,38 @@ for s = 1, screen.count() do
 
     -- Widgets that are aligned to the left
     local bottom_left_layout = wibox.layout.fixed.horizontal()
+	bottom_left_layout:add(lbracket)
+	bottom_left_layout:add(cpuicon)
+	bottom_left_layout:add(space)
+	bottom_left_layout:add(cpubar_with_margin)
+	bottom_left_layout:add(space)
+	bottom_left_layout:add(space)
+	bottom_left_layout:add(cpuwidget)
+	bottom_left_layout:add(space)
+	bottom_left_layout:add(rbracket)
+	bottom_left_layout:add(space)
+	bottom_left_layout:add(lbracket)
+	bottom_left_layout:add(baticon)
+	bottom_left_layout:add(space)
+	bottom_left_layout:add(batbar_with_margin)
+	bottom_left_layout:add(space)
+	bottom_left_layout:add(space)
+	bottom_left_layout:add(batwidget)
+	bottom_left_layout:add(space)
+	bottom_left_layout:add(rbracket)
+
     -- Widgets that are aligned to the right
     local bottom_right_layout = wibox.layout.fixed.horizontal()
+	bottom_right_layout:add(space)
+	bottom_right_layout:add(mygmailimg)
+	bottom_right_layout:add(mygmail)
+	bottom_right_layout:add(space)
+	bottom_right_layout:add(pacicon)
+	bottom_right_layout:add(pacwidget)
+	bottom_right_layout:add(space)
 	bottom_right_layout:add(uptimeicon)
 	bottom_right_layout:add(uptimewidget)
+	bottom_right_layout:add(space)
 
     -- Now bring it all together (with the tasklist in the middle)
     local bottom_layout = wibox.layout.align.horizontal()
