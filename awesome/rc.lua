@@ -304,6 +304,91 @@ volumewidget:buttons(awful.util.table.join(
     awful.button({ }, 5, function () awful.util.spawn("amixer -q sset Master 1dB-", false) end)
 ))
 
+-- Net Widget
+netdownicon = wibox.widget.imagebox()
+netdownicon:set_image(beautiful.widget_netdown)
+netdownicon.align = "middle"
+
+netdowninfo = wibox.widget.textbox()
+vicious.register(netdowninfo, vicious.widgets.net, "${eth0 down_kb}", 1)
+
+netupicon = wibox.widget.imagebox()
+netupicon:set_image(beautiful.widget_netup)
+netupicon.align = "middle"
+
+netupinfo = wibox.widget.textbox()
+vicious.register(netupinfo, vicious.widgets.net, "${eth0 up_kb}", 1)
+
+netmenu = awful.menu({items = {
+			     { "Change ip" , function () awful.util.spawn("sh ./.scripts/restartwifi", false) end },
+			     { "Connect Lan" , function () awful.util.spawn("urxvtc -hold -e sudo netcfg home-ethernet", false) end },
+			     { "Connect Wifi" , function () awful.util.spawn("urxvtc -hold -e sudo netcfg home-wireless-wpa", false) end },
+			     { "Disconnect Lan" , function () awful.util.spawn("urxvtc -hold -e sudo netcfg down home-ethernet", false) end },
+			     { "Disconnect Wifi" , function () awful.util.spawn("urxvtc -hold -e sudo netcfg down home-wireless-wpa", false) end }
+			  }
+		       })
+
+netdownicon:buttons(awful.util.table.join(
+					 awful.button({ }, 1, function () netmenu:toggle() end )
+				   ))
+netdowninfo:buttons(awful.util.table.join(
+					 awful.button({ }, 1, function () netmenu:toggle() end )
+				   ))
+netupicon:buttons(awful.util.table.join(
+					 awful.button({ }, 1, function () netmenu:toggle() end )
+				   ))
+netupinfo:buttons(awful.util.table.join(
+					 awful.button({ }, 1, function () netmenu:toggle() end )
+				   ))
+
+
+-- MEM icon
+memicon = wibox.widget.imagebox()
+memicon:set_image(beautiful.widget_mem)
+-- Initialize MEMBar widget
+membar = awful.widget.progressbar()
+membar:set_width(50)
+membar:set_height(6)
+membar:set_vertical(false)
+membar:set_background_color("#434343")
+membar:set_border_color(nil)
+--membar:set_gradient_colors({ beautiful.fg_normal, beautiful.fg_normal, beautiful.fg_normal, beautiful.bar })
+local memory_grad = { type = "linear", from = { 0, 0 }, to = { 100, 0 }, stops = { { 0, beautiful.fg_normal }, { 0.5, beautiful.fg_normal }, { 1, beautiful.fg_normal }}}
+membar:set_color(memory_grad)
+membar_with_margin = wibox.layout.margin()
+membar_with_margin:set_widget(membar)
+membar_with_margin:set_top(5)
+membar_with_margin:set_bottom(5)
+vicious.register(membar, vicious.widgets.mem, "$1", 1)
+
+-- Memory usage
+memwidget = wibox.widget.textbox()
+vicious.register(memwidget, vicious.widgets.mem, "$2M", 1)
+
+memicon:buttons(awful.util.table.join(
+    awful.button({ }, 1, function () awful.util.spawn("urxvtc -e saidar -c", false) end)
+))
+
+-- MPD Icon
+mpdicon = wibox.widget.imagebox()
+mpdicon:set_image(beautiful.widget_mpd)
+-- Initialize MPD Widget
+mpdwidget = wibox.widget.textbox()
+vicious.register(mpdwidget, vicious.widgets.mpd,
+    function (widget, args)
+        if args["{state}"] == "Stop" then 
+            return "Stopped"
+        elseif args["{state}"] == "Pause" then
+            return "Paused"
+        else 
+            return args["{Title}"]..' - '.. args["{Artist}"]
+        end
+    end, 0.5)
+
+mpdicon:buttons(awful.util.table.join(
+    awful.button({ }, 1, function () awful.util.spawn("urxvtc -e ncmpcpp", false) end)
+))
+
 
 
 -- Spacers
@@ -431,6 +516,16 @@ for s = 1, screen.count() do
 	bottom_left_layout:add(rbracket)
 	bottom_left_layout:add(space)
 	bottom_left_layout:add(lbracket)
+	bottom_left_layout:add(baticon)
+	bottom_left_layout:add(space)
+	bottom_left_layout:add(batbar_with_margin)
+	bottom_left_layout:add(space)
+	bottom_left_layout:add(space)
+	bottom_left_layout:add(batwidget)
+	bottom_left_layout:add(space)
+	bottom_left_layout:add(rbracket)
+	bottom_left_layout:add(space)
+	bottom_left_layout:add(lbracket)
 	bottom_left_layout:add(cpuicon)
 	bottom_left_layout:add(space)
 	bottom_left_layout:add(cpubar_with_margin)
@@ -441,27 +536,60 @@ for s = 1, screen.count() do
 	bottom_left_layout:add(rbracket)
 	bottom_left_layout:add(space)
 	bottom_left_layout:add(lbracket)
-	bottom_left_layout:add(baticon)
+	bottom_left_layout:add(memicon)
 	bottom_left_layout:add(space)
-	bottom_left_layout:add(batbar_with_margin)
+	bottom_left_layout:add(membar_with_margin)
 	bottom_left_layout:add(space)
 	bottom_left_layout:add(space)
-	bottom_left_layout:add(batwidget)
+	bottom_left_layout:add(memwidget)
 	bottom_left_layout:add(space)
 	bottom_left_layout:add(rbracket)
-
+	bottom_left_layout:add(space)
+	bottom_left_layout:add(lbracket)
+	bottom_left_layout:add(netupicon)
+	bottom_left_layout:add(space)
+	bottom_left_layout:add(netupinfo)
+	bottom_left_layout:add(space)
+	bottom_left_layout:add(netdownicon)
+	bottom_left_layout:add(space)
+	bottom_left_layout:add(netdowninfo)
+	bottom_left_layout:add(space)
+	bottom_left_layout:add(rbracket)
+	
     -- Widgets that are aligned to the right
     local bottom_right_layout = wibox.layout.fixed.horizontal()
 	bottom_right_layout:add(space)
+	bottom_right_layout:add(lbracket)
+	bottom_right_layout:add(space)
+	bottom_right_layout:add(mpdicon)
+	bottom_right_layout:add(space)
+	bottom_right_layout:add(mpdwidget)
+	bottom_right_layout:add(space)
+	bottom_right_layout:add(rbracket)
+	bottom_right_layout:add(space)
+	bottom_right_layout:add(lbracket)
+	bottom_right_layout:add(space)
 	bottom_right_layout:add(mygmailimg)
+	bottom_right_layout:add(space)
 	bottom_right_layout:add(mygmail)
 	bottom_right_layout:add(space)
+	bottom_right_layout:add(rbracket)
+	bottom_right_layout:add(space)
+	bottom_right_layout:add(lbracket)
+	bottom_right_layout:add(space)
 	bottom_right_layout:add(pacicon)
+	bottom_right_layout:add(space)
 	bottom_right_layout:add(pacwidget)
 	bottom_right_layout:add(space)
+	bottom_right_layout:add(rbracket)
+	bottom_right_layout:add(space)
+	bottom_right_layout:add(lbracket)
+	bottom_right_layout:add(space)
 	bottom_right_layout:add(uptimeicon)
+	bottom_right_layout:add(space)
 	bottom_right_layout:add(uptimewidget)
 	bottom_right_layout:add(space)
+	bottom_right_layout:add(rbracket)
 
     -- Now bring it all together (with the tasklist in the middle)
     local bottom_layout = wibox.layout.align.horizontal()
