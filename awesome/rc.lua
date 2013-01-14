@@ -254,7 +254,7 @@ batbar_with_margin = wibox.layout.margin()
 batbar_with_margin:set_widget(batbar)
 batbar_with_margin:set_top(5)
 batbar_with_margin:set_bottom(5)
-vicious.register( batbar_with_margin, vicious.widgets.bat, "$2", 1, "BAT0" )
+vicious.register( batbar, vicious.widgets.bat, "$2", 1, "BAT0" )
 
 batwidget = wibox.widget.textbox()
 vicious.register( batwidget, vicious.widgets.bat, "$2", 1, "BAT0" )
@@ -265,6 +265,44 @@ baticon:buttons(awful.util.table.join(
 batwidget:buttons(awful.util.table.join(
 					 awful.button({ }, 1, function () powermenu:toggle() end )
 				   ))
+
+-- Vol Icon
+volicon = wibox.widget.imagebox()
+volicon:set_image(beautiful.widget_vol)
+-- Vol bar Widget
+volbar = awful.widget.progressbar()
+volbar:set_width(50)
+volbar:set_height(6)
+volbar:set_vertical(false)
+volbar:set_background_color("#434343")
+volbar:set_border_color(nil)
+--volbar:set_gradient_colors({ beautiful.fg_normal, beautiful.fg_normal, beautiful.fg_normal, beautiful.bar })
+local volume_grad = { type = "linear", from = { 0, 0 }, to = { 100, 0 }, stops = { { 0, beautiful.fg_normal }, { 0.5, beautiful.fg_normal }, { 1, beautiful.fg_normal }}}
+volbar:set_color(volume_grad)
+volbar_with_margin = wibox.layout.margin()
+volbar_with_margin:set_widget(volbar)
+volbar_with_margin:set_top(5)
+volbar_with_margin:set_bottom(5)
+vicious.register(volbar, vicious.widgets.volume,  "$1",  1, "Master")
+
+
+-- Sound volume
+volumewidget = wibox.widget.textbox()
+vicious.register( volumewidget, vicious.widgets.volume, "$1", 1, "Master" )
+
+volicon:buttons(awful.util.table.join(
+    awful.button({ }, 1, function () awful.util.spawn("amixer -q sset Master toggle", false) end),
+    awful.button({ }, 3, function () awful.util.spawn("urxvtc -e alsamixer", true) end),
+    awful.button({ }, 4, function () awful.util.spawn("amixer -q sset Master 1dB+", false) end),
+    awful.button({ }, 5, function () awful.util.spawn("amixer -q sset Master 1dB-", false) end)
+))
+
+volumewidget:buttons(awful.util.table.join(
+    awful.button({ }, 1, function () awful.util.spawn("amixer -q sset Master toggle", false) end),
+    awful.button({ }, 3, function () awful.util.spawn("urxvtc -e alsamixer", true) end),
+    awful.button({ }, 4, function () awful.util.spawn("amixer -q sset Master 1dB+", false) end),
+    awful.button({ }, 5, function () awful.util.spawn("amixer -q sset Master 1dB-", false) end)
+))
 
 
 
@@ -382,6 +420,16 @@ for s = 1, screen.count() do
 
     -- Widgets that are aligned to the left
     local bottom_left_layout = wibox.layout.fixed.horizontal()
+	bottom_left_layout:add(lbracket)
+	bottom_left_layout:add(volicon)
+	bottom_left_layout:add(space)
+	bottom_left_layout:add(volbar_with_margin)
+	bottom_left_layout:add(space)
+	bottom_left_layout:add(space)
+	bottom_left_layout:add(volumewidget)
+	bottom_left_layout:add(space)
+	bottom_left_layout:add(rbracket)
+	bottom_left_layout:add(space)
 	bottom_left_layout:add(lbracket)
 	bottom_left_layout:add(cpuicon)
 	bottom_left_layout:add(space)
