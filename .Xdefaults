@@ -1,7 +1,11 @@
+!-- colors --!
+#include "/home/awarnecke/.colors/dc2"
+
+Xft.hinting: 1
 ## urxvt config
-URxvt*termName: rxvt
-#URxvt*background:  #000000
-URxvt*foreground:  #A8A8A8
+URxvt*termName: rxvt-256color
+URxvt*background:  #000000
+URxvt*foreground:  #F2F2F2
 URxvt*scrollBar_right:	false
 URxvt*scrollstyle:	plain
 URxvt*scrollBar:	true
@@ -9,6 +13,9 @@ URxvt*borderLess:	false
 #URxvt*inheritPixmap:	true
 URxvt*geometry:		128x36
 URxvt*transparent:	true
-URxvt*shading:		40
+URxvt*shading:		10
 URxvt*font: xft:terminus-font:size=8x14
+#URxvt*font: xft:Droid Sans Mono for Powerline:pixelsize=8
+#URxvt*font:     xft:Envy Code R:pixelsize=10
 
+URxvt*saveLines:   10000
