@@ -609,7 +609,10 @@ root.buttons(awful.util.table.join(
 
 -- {{{ Key bindings
 globalkeys = awful.util.table.join(
-    awful.key({ modkey,           }, "Left",   awful.tag.viewprev       ),
+    awful.key({ modkey,           }, "a", function () awful.util.spawn("slimlock " ) end),
+	awful.key({ modkey,           }, "+", function () awful.util.spawn("amixer -q sset Master 5%+ " ) end),
+	awful.key({ modkey,           }, "-", function () awful.util.spawn("amixer -q sset Master 5%- " ) end),
+	awful.key({ modkey,           }, "Left",   awful.tag.viewprev       ),
     awful.key({ modkey,           }, "Right",  awful.tag.viewnext       ),
     awful.key({ modkey,           }, "Escape", awful.tag.history.restore),
 
@@ -746,15 +749,28 @@ awful.rules.rules = {
                      focus = awful.client.focus.filter,
                      keys = clientkeys,
                      buttons = clientbuttons } },
-    { rule = { class = "MPlayer" },
-      properties = { floating = true } },
     { rule = { class = "pinentry" },
       properties = { floating = true } },
-    { rule = { class = "gimp" },
+	{ rule = { class = "Vlc" },
+      properties = { tag = tags[1][6], switchtotag = true } },
+    { rule = { class = "Gimp" },
+      properties = { tag = tags[1][7] } },
+    { rule = { instance = "plugin-container" },
       properties = { floating = true } },
-    -- Set Firefox to always map on tags number 2 of screen 1.
-    -- { rule = { class = "Firefox" },
-    --   properties = { tag = tags[1][2] } },
+    { rule = { class = "Google Chrome" },
+      properties = { tag = tags[2][4], switchtotag = true } },
+    { rule = { class = "Skype" },
+      properties = { tag = tags[1][5], floating = true, switchtotag = true } },
+    { rule = { class = "Gpicview" },
+      properties = { tag = tags[1][7], switchtotag = true } },
+    { rule = { class = "Qalculate-gtk" },
+      properties = { tag = tags[1][6], switchtotag = true } },
+    { rule = { class = "Thunar" },
+      properties = { tag = tags[1][3], switchtotag = true } },
+    { rule = { class = "Gnome-mplayer" },
+      properties = { tag = tags[1][6], switchtotag = true, floating = true } },
+    { rule = { class = "MPlayer" },
+      properties = { tag = tags[1][6], switchtotag = true, floating = true } },
 }
 -- }}}
 
