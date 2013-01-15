@@ -1,0 +1,39 @@
+[user]
+	email = madhatter@nostalgix.org
+	name = Arvid Warnecke
+
+[color]
+    branch = auto
+    diff = auto
+    status = auto
+
+[color "branch"]
+    current = red reverse
+    local = blue
+    remote = green
+
+[color "diff"]
+    meta = yellow bold
+    frag = magenta bold
+    old = red bold
+    new = green bold
+
+[color "status"]
+    added = yellow
+    changed = green
+    untracked = cyan
+
+[alias]
+    st = status -s
+
+    cl = clone
+
+    ci = commit
+    cm = commit -m
+
+[push]
+    default = tracking
+[pull]
+    default = current
+[diff]
+  memonicprefix = true
