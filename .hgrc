@@ -1,8 +1,25 @@
 [ui]
-username = Arvid Warnecke <warnecke@etracker.com>
+username = awarnecke
 ignore = ~/.hgignore
+#merge = vimdiff
+
+[extdiff]
+cmd.kdiff3 = 
+
+[merge-tools]
+#vimdiff.executable = vim
+#vimdiff.args = -d -c "wincmd J" "$output" "$local" "$other" "$base"
+kdiff3.args = $base $local $other -o $output --auto
 
 [extensions]
 hgshelve=/home/awarnecke/src/bitbuckets/hgshelve/hgshelve.py
 hgext.purge=
+hgext.extdiff = 
+transplant=
 color=
+pager =
+graphlog =
+mq=
+
+[pager]
+pager = LESS='FSRX' less
