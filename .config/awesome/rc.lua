@@ -179,7 +179,7 @@ pacwidget_t = awful.tooltip({ objects = { pacwidget},})
 vicious.register(pacwidget, vicious.widgets.pkg,
                 function(widget,args)
                     local io = { popen = io.popen }
-                    local s = io.popen("pacman -Qu --dbpath /home/awarnecke/pacman")
+                    local s = io.popen("pacman -Qu --dbpath /home/madhatter/pacman")
                     local str = ''
                     for line in s:lines() do
                         str = str .. line .. "\n"
