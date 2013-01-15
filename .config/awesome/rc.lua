@@ -39,8 +39,7 @@ end
 
 -- {{{ Variable definitions
 -- Themes define colours, icons, and wallpapers
---beautiful.init("/usr/share/awesome/themes/default/theme.lua")
-beautiful.init("/home/awarnecke/.config/awesome/themes/blue/theme.lua")
+beautiful.init("/home/madhatter/.config/awesome/themes/blue/theme.lua")
 
 -- This is used later as the default terminal and editor to run.
 terminal = "urxvt"
@@ -84,15 +83,11 @@ end
 -- {{{ Tags
 -- Define a tag table which hold all screen tags.
 tags = {}
-tags[1] = awful.tag({ "chat", "mail", "term", "web", "term", "media", "grfx", "vm" }, 1,
-  		       { layouts[2], layouts[6], layouts[6],
- 			  layouts[6], layouts[6], layouts[1], layouts[1], layouts[1]
- 		       })
-tags[2] = awful.tag({ "term", "term", "ide", "web", "irc", "ncmpcpp", "term", "term" }, 2,
-  		       { layouts[2], layouts[6], layouts[6],
- 			  layouts[6], layouts[6], layouts[1], layouts[1], layouts[1]
-		  })
- -- }}}
+for s = 1, screen.count() do
+    -- Each screen has its own tag table.
+    tags[s] = awful.tag({ "term", "code", "mail", "web", "irc", "media", "grfx", "vm" }, s, layouts[1])
+end
+-- }}}
 
 -- {{{ Menu
 -- Create a laucher widget and a main menu
@@ -154,7 +149,6 @@ vicious.register(tempwidget, vicious.widgets.thermal, "$1°C", 9, "thermal_zone0
 tempicon:buttons(awful.util.table.join(
     awful.button({ }, 1, function () awful.util.spawn("urxvtc -e sudo powertop", false) end)
 ))
-
 
 -- GMail widget and tooltip
 mygmail = wibox.widget.textbox()
@@ -221,8 +215,7 @@ cpubar_with_margin:set_bottom(5)
 
 -- Cpu usage
 cpuwidget = wibox.widget.textbox()
-vicious.register( cpuwidget, vicious.widgets.cpu, "$2% $3% $4% $5%", 3)
---vicious.register( cpuwidget, vicious.widgets.cpu, "$2% $3%", 3)
+vicious.register( cpuwidget, vicious.widgets.cpu, "$2% $3%", 3)
 
 cpuicon:buttons(awful.util.table.join(
     awful.button({ }, 1, function () awful.util.spawn("urxvtc -e htop", false) end)
@@ -285,7 +278,6 @@ volbar_with_margin:set_top(5)
 volbar_with_margin:set_bottom(5)
 vicious.register(volbar, vicious.widgets.volume,  "$1",  1, "Master")
 
-
 -- Sound volume
 volumewidget = wibox.widget.textbox()
 vicious.register( volumewidget, vicious.widgets.volume, "$1", 1, "Master" )
@@ -307,14 +299,12 @@ volumewidget:buttons(awful.util.table.join(
 -- Net Widget
 netdownicon = wibox.widget.imagebox()
 netdownicon:set_image(beautiful.widget_netdown)
-netdownicon.align = "middle"
 
 netdowninfo = wibox.widget.textbox()
 vicious.register(netdowninfo, vicious.widgets.net, "${eth0 down_kb}", 1)
 
 netupicon = wibox.widget.imagebox()
 netupicon:set_image(beautiful.widget_netup)
-netupicon.align = "middle"
 
 netupinfo = wibox.widget.textbox()
 vicious.register(netupinfo, vicious.widgets.net, "${eth0 up_kb}", 1)
@@ -340,7 +330,6 @@ netupicon:buttons(awful.util.table.join(
 netupinfo:buttons(awful.util.table.join(
 					 awful.button({ }, 1, function () netmenu:toggle() end )
 				   ))
-
 
 -- MEM icon
 memicon = wibox.widget.imagebox()
@@ -368,6 +357,7 @@ vicious.register(memwidget, vicious.widgets.mem, "$2M", 1)
 memicon:buttons(awful.util.table.join(
     awful.button({ }, 1, function () awful.util.spawn("urxvtc -e saidar -c", false) end)
 ))
+
 
 -- MPD Icon
 mpdicon = wibox.widget.imagebox()
@@ -402,6 +392,7 @@ line:set_text("|")
 -- Space
 space = wibox.widget.textbox()
 space:set_text(" ")
+
 
 
 -- Create a wibox for each screen and add it
@@ -612,7 +603,7 @@ globalkeys = awful.util.table.join(
     awful.key({ modkey,           }, "a", function () awful.util.spawn("slimlock " ) end),
 	awful.key({ modkey,           }, "+", function () awful.util.spawn("amixer -q sset Master 5%+ " ) end),
 	awful.key({ modkey,           }, "-", function () awful.util.spawn("amixer -q sset Master 5%- " ) end),
-	awful.key({ modkey,           }, "Left",   awful.tag.viewprev       ),
+    awful.key({ modkey,           }, "Left",   awful.tag.viewprev       ),
     awful.key({ modkey,           }, "Right",  awful.tag.viewnext       ),
     awful.key({ modkey,           }, "Escape", awful.tag.history.restore),
 
@@ -749,28 +740,15 @@ awful.rules.rules = {
                      focus = awful.client.focus.filter,
                      keys = clientkeys,
                      buttons = clientbuttons } },
+    { rule = { class = "MPlayer" },
+      properties = { floating = true } },
     { rule = { class = "pinentry" },
       properties = { floating = true } },
-	{ rule = { class = "Vlc" },
-      properties = { tag = tags[1][6], switchtotag = true } },
-    { rule = { class = "Gimp" },
-      properties = { tag = tags[1][7] } },
-    { rule = { instance = "plugin-container" },
+    { rule = { class = "gimp" },
       properties = { floating = true } },
-    { rule = { class = "Google Chrome" },
-      properties = { tag = tags[2][4], switchtotag = true } },
-    { rule = { class = "Skype" },
-      properties = { tag = tags[1][5], floating = true, switchtotag = true } },
-    { rule = { class = "Gpicview" },
-      properties = { tag = tags[1][7], switchtotag = true } },
-    { rule = { class = "Qalculate-gtk" },
-      properties = { tag = tags[1][6], switchtotag = true } },
-    { rule = { class = "Thunar" },
-      properties = { tag = tags[1][3], switchtotag = true } },
-    { rule = { class = "Gnome-mplayer" },
-      properties = { tag = tags[1][6], switchtotag = true, floating = true } },
-    { rule = { class = "MPlayer" },
-      properties = { tag = tags[1][6], switchtotag = true, floating = true } },
+    -- Set Firefox to always map on tags number 2 of screen 1.
+    -- { rule = { class = "Firefox" },
+    --   properties = { tag = tags[1][2] } },
 }
 -- }}}
 
