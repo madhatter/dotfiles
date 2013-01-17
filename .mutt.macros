@@ -5,7 +5,7 @@ macro index A "!cd $HOME;vim .mutt.aliases\n:source $HOME/.mutt.aliases\n" "Edit
 
 # Macros to change mailboxes
 #
-macro index 2 "c =INBOX\n" "Inbox"
+macro index 2 "c =work/INBOX\n" "Inbox"
 macro index 3 "c =Rechnungen\n" "Rechnungen"
 macro index 4 "c =freebsd-mobile\n" "FreeBSD-Mobile"
 macro index 5 "c +IN.deichkind\n" "The Sleepwalker"

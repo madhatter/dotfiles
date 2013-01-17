@@ -10,14 +10,14 @@ source ~/.mutt.header
 source ~/.mutt.colors
 
 ## Include stuff for mailinglists
-source ~/.mutt.subscribe
+#source ~/.mutt.subscribe
 
 ## Include GPG-Stuff
-source ~/.gpgrc
+#source ~/.gpgrc
 
 ## Include my Alias-File
 ## deactivated because of lbdb http://www.spinnaker.de/lbdb/
-source ~/.mutt.aliases
+#source ~/.mutt.aliases
 
 ## Include my Hooks (folder-hook, send-hook)
 source ~/.mutt.hooks
@@ -30,7 +30,7 @@ source ~/.mutt.macros
 #set query_command="/sw/bin/lbdbq '%s'"
 
 ## Location of the mailcap file
-set mailcap_path="/home/madhatter/.mailcap"
+set mailcap_path="/home/awarnecke/.mailcap"
 
 #set meta_key=yes
 
@@ -46,7 +46,7 @@ set mailcap_path="/home/madhatter/.mailcap"
 ## General settings
 #
 set realname="Arvid Warnecke"
-set hostname="hogwarts.local"
+set hostname="archlinux.etracker.local"
 #set use_from
 set followup_to 		# add Mail-Followup-To field to header.
 
@@ -63,33 +63,24 @@ set alias_file="~/.mutt.aliases"
 #set record="~/mail/send"	# save send messages there
 #set spoolfile='/var/mail/warnearv' # where new mails are
 
-set imap_user="arvid.warnecke"
-set imap_pass="********"
-
-#set smtp_url="smtp://arvid.warnecke@smtp.gmail.com:587/"
-#set smtp_pass="********"
-set from="arvid.warnecke@gmail.com"
+## SMTP Configuration
+set from="warnecke@etracker.com"
 set use_from = yes
 set envelope_from ="yes"
-set sendmail="/usr/local/bin/msmtp"
+set sendmail="/usr/bin/msmtp"
 
-set folder = "imaps://imap.gmail.com:993/"
-set spoolfile = "+INBOX"
-set postponed="+[Gmail]/Drafts"
-set mbox="+[Gmail]/All Mail"
-set record="+[Gmail]/Sent Mail"
+set mbox_type=Maildir
+set folder="~/Maildir"
+ mailboxes `echo -n "+ "; for file in ~/Maildir/*; do box=$(basename "$file"); echo -n "\"+$box\" "; done`
+set spoolfile="~/Maildir/work/INBOX"
+set postponed="+Drafts"
+set record="+work/Sent"
 
 set header_cache=~/.mutt/cache/headers
 set message_cachedir=~/.mutt/cache/bodies
 set certificate_file=~/.mutt/certificates
 
 set move = no
-
-## Tell me about new mail
-## let's try this syntax
-#mailboxes `find ~/mail -type f -print | grep -v "procmail.log\|received\|send\|posted\|spam\|virus.warning\|spamprobe" | xargs`
-## greping for all boxes excluded those ones above, coz those are unimportant 
-mailboxes +FreeBSD\ Mobile
 
 ## More Settings 
 #
@@ -156,7 +147,7 @@ set alias_format="%3n %t %-12a  %r"
 ## set alternates=(address1|address2|address3)
 #set alternates="(madhatter@nostalgix.org|madhatter@geekpr0n.org|madhatter@geekshell.net|arvid.warnecke@nostalgix.org|arvid.warnecke@heim2.tu-clausthal.de|arvid@nostalgix.org|arvid@mad-hatter.de|the.sleepwalker@gmx.net)"
 unalternates ``*''
-alternates madhatter@magnesium.net
+alternates awarnecke@etracker.com
 
 ## reply as the user to whom the mail was sent to
 ## Example:  I often get emails addressed "To: arvid@mad-hatter.de".
@@ -188,16 +179,3 @@ bind index <right>      display-message
 bind index <backspace>	previous-line
 bind index +            imap-fetch-mail
 
-## GPG-Configuration was sourced above
-set pgp_autosign			
-set pgp_replysign
-# set pgp_encryptself		#does nothing, why?
-set pgp_replyencrypt
-set pgp_timeout=7200
-set pgp_verify_sig=yes
-set pgp_show_unusable=yes	#mutt will display non-usable keys
-set pgp_sign_as="0x7E0895CC"    #sign with arvid at nostalgix org
-
-## SMTP Configuration
-#set smtp_url="smtp://arvid.warnecke@gutzmann.com:hUstensAft@mail.gutzmann.com"
-#set smtp_authenticators="cram-md5"

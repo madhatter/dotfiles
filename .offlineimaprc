@@ -1,0 +1,37 @@
+[general]
+# Controls how many accounts may be synced simultaneously
+maxsyncaccounts = 1
+accounts = Work
+ 
+[Account Work]
+localrepository = Local
+remoterepository = Remote
+# Minutes between syncs
+autorefresh = 5
+# Number of quick-syncs between autorefreshes. Quick-syncs do not update if the
+# only changes were to IMAP flags
+quick = 10
+ 
+[Repository Local]
+type = Maildir
+localfolders = ~/Maildir/work
+ 
+[Repository Remote]
+type = IMAP
+remotehost = cas.etracker.local 
+ssl = no
+remoteuser = awarnecke
+remotepass = **********
+# Folders to skip during sync.
+folderfilter = lambda foldername: foldername not in ['Deleted Items', 'Kalender', 'Contacts', 'Calendar', 'Trash', 'MyFolderOfReallyOldMail']
+# Instead of closing the connection once a sync is complete, offlineimap will
+# send empty data to the server to hold the connection open. A value of 60
+# attempts to hold the connection for a minute between syncs (both quick and
+# autorefresh).This setting has no effect if autorefresh and holdconnectionopen
+# are not both set.
+keepalive = 60
+# OfflineIMAP normally closes IMAP server connections between refreshes if
+# the global option autorefresh is specified.  If you wish it to keep the
+# connection open, set this to true. This setting has no effect if autorefresh
+# is not set.
+holdconnectionopen = yes

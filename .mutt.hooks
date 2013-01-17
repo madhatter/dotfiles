@@ -1,3 +1,1 @@
-folder-hook '[Gmail]/freebsd-mobile' set from="arvid@nostalgix.org"
-folder-hook . set from="arvid.warnecke@gmail.com"
 
