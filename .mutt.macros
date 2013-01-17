@@ -31,3 +31,8 @@ macro index \ck	"|mailkill.sh\nd" "Adds author to a kill list to be processed by
 macro index \Cr \
   "<tag-pattern>~N\n<tag-prefix><clear-flag>N<untag-pattern>.\n" \
   "Mark all new messages as read"
+
+macro index U "v/calendar<enter>|ical2pal /dev/stdin UU Urlaube | grep -v UU >> ~/.pal/holidays.pal<enter>q" "Add Holiday to calendar"
+macro pager U "v/calendar<enter>|ical2pal /dev/stdin UU Urlaube | grep -v UU >> ~/.pal/holidays.pal<enter>q" "Add Holiday to calendar"
+macro index M "v/calendar<enter>|ical2pal /dev/stdin MM Meetings | grep -v MM >> ~/.pal/meetings.pal<enter>q" "Add Meeting to calendar"
+macro pager M "v/calendar<enter>|ical2pal /dev/stdin MM Meetings | grep -v MM >> ~/.pal/meetings.pal<enter>q" "Add Meeting to calendar"
