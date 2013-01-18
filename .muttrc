@@ -2,8 +2,8 @@
 # 
 # first some includes for
 # color
-source ~/.mutt.colors
-source ~/.mutt/colors/darkcourses
+source ~/.mutt/colors/darkcourses_
+#source ~/.mutt.colors
 
 # mailinglist subscriptions
 source ~/.mutt.subscribe
@@ -53,13 +53,14 @@ set mbox="+archive"			 # Where mutt will store read messages
 mailboxes ! +list.vim +list.ruby-talk +fetchmail +mutt +list.hbase-user +list.arch-general +list.arch-dev-public
 set sort_browser=alpha    # Sort mailboxes by alpha(bet)
 set sort=threads
+set sort_aux=date-received
 
 # What to show and order of headers
 ignore *
 unignore Date: From: User-Agent: X-Mailer X-Operating-System To: \
          Cc: Reply-To: Subject: Mail-Followup-To:
-         hdr_order Date: From: User-Agent: X-Mailer X-Operating-System To: \
-                 Cc: Reply-To: Subject: Mail-Followup-To:
+hdr_order Date: From: User-Agent: X-Mailer X-Operating-System To: \
+         Cc: Reply-To: Subject: Mail-Followup-To:
 
 # Editor of choice
 #set editor="vim -c 'set tw=70 et' '+/^$' " 
@@ -69,12 +70,24 @@ set edit_headers=no      # See the headers when editing
 # set date_format
 set date_format="!%a, %b %d, %Y at %I:%M:%S%p %Z"
 
-#set index_format="%4C %Z %{%b %d} %-15.15L (%4c) %s"
-set index_format="%4C %4Z  %[%h %d %g %H:%M]  %-25.25F(%4c) %s"
+# layout of the index
+set index_format="%Z ◦ %{%d %b %y}, %{%H:%M} │ %-32.32F ◦ (%4c) │ %s"
+
+# fancy status line
+set status_format="-%r- %v ---[ Folder: %f, Msgs: %m%?n? New: %n?%?d? Del: %d?%?t? Tag: %t?%?l? (%l)? ]%?p?---- .: %p waiting to send :. ?--%>- (%P) ---"
+
+# put the status bar on top
+set status_on_top
+# and hide the help
+unset help
 
 # UTF-8
 set charset="UTF-8"
 set send_charset="us-ascii:iso-8859-15:utf-8"
+
+charset-hook ^us-ascii$ "windows-1252"
+charset-hook ^iso-8859-1$ "windows-1252"
+set assumed_charset="windows-1252"
 
 set pager_stop=yes	# not move to the next message when you are at the end 
 			# of a message and invoke the next-page function
@@ -82,8 +95,7 @@ set pager_context=2	# controls the number of lines of context that are given
 			# when displaying the next or previous page in the internal pager
 set pager_index_lines=10 # number of lines to display in a mini-pager above the message
 
-set status_on_top
-unset help
+set markers=no # don't put '+' at the beginning of wrapped lines
 
 # Google contacts
 set query_command="goobook query '%s'"
