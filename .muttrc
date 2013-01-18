@@ -53,7 +53,6 @@ set mbox="+archive"			 # Where mutt will store read messages
 mailboxes ! +list.vim +list.ruby-talk +fetchmail +mutt +list.hbase-user +list.arch-general +list.arch-dev-public
 set sort_browser=alpha    # Sort mailboxes by alpha(bet)
 set sort=threads
-set sort_aux=date-received
 
 # What to show and order of headers
 ignore *
