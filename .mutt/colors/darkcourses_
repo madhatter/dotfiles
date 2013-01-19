@@ -29,7 +29,7 @@
   color index      blue          default "~N ~u"  # new ML mail
   color index      blue          default "~N !~u" # new non-ML mail
   color index      brightblue    default "~T"
-  color index      white         red     "~D"
+  color index      brightred     default "~D"
 
 # set up the headers
   color header     blue          default "^from:"
