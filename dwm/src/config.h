@@ -1,0 +1,1 @@
+/home/madhatter/dwm/config.h
