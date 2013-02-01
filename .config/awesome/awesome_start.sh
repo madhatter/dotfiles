@@ -9,4 +9,5 @@ mpd &
 mpdscribble &
 #urxvt -e "ssh-add" &
 #exec ck-launch-session dbus-launch awesome
+#exec dbus-launch dwm
 exec dbus-launch awesome
