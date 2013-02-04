@@ -5,7 +5,7 @@ ZSH=$HOME/.oh-my-zsh
 # Look in ~/.oh-my-zsh/themes/
 # Optionally, if you set this to "random", it'll load a random theme each
 # time that oh-my-zsh is loaded.
-ZSH_THEME="madhatter"
+#ZSH_THEME="madhatter"
 
 # Set to this to use case-sensitive completion
 # CASE_SENSITIVE="true"
@@ -24,6 +24,7 @@ DISABLE_LS_COLORS="true"
 plugins=(git mercurial history-substring-search) 
 
 source $ZSH/oh-my-zsh.sh
+. ~/.zsh/prompt
 
 # Customize to your needs...
 #
@@ -102,6 +103,9 @@ alias hadoop="noglob hadoop"
 # use an alias to set TERM to xterm
 alias ssh='TERM=xterm ssh'
 
+# show my calendar events
+alias t='pal -c 0 -d today -r 0-3'
+
 [ ! "$UID" = "0" ] && archey3 -c blue
 [  "$UID" = "0" ] && archey3 -c red
 
@@ -109,3 +113,9 @@ alias ssh='TERM=xterm ssh'
 [[ -s $HOME/.rvm/scripts/rvm ]] && source $HOME/.rvm/scripts/rvm
 
 PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
+
+export PERL_LOCAL_LIB_ROOT="/home/awarnecke/perl5";
+export PERL_MB_OPT="--install_base /home/awarnecke/perl5";
+export PERL_MM_OPT="INSTALL_BASE=/home/awarnecke/perl5";
+export PERL5LIB="/home/awarnecke/perl5/lib/perl5/x86_64-linux-thread-multi:/home/awarnecke/perl5/lib/perl5";
+export PATH="/home/awarnecke/perl5/bin:$PATH";
