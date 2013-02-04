@@ -1,0 +1,16 @@
+# VM writeback timeout
+# Initially had the value 60000
+echo 1500 > /proc/sys/vm/dirty_writeback_centisecs &
+
+# Enable Audio HD powersave
+echo 2 > /sys/module/snd_hda_intel/parameters/power_save &
+
+# Turn of NMI watchdog
+echo 0 > /proc/sys/kernel/nmi_watchdog &
+
+# Enable multi core power savings
+echo 1 > /sys/devices/system/cpu/sched_smt_power_savings &
+
+# Enable SATA link power management for /dev/sda
+echo min_power > /sys/class/scsi_host/host0/link_power_management_policy
+# Disable it by replacing min_power with max_performance
