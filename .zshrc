@@ -5,7 +5,7 @@ ZSH=$HOME/.oh-my-zsh
 # Look in ~/.oh-my-zsh/themes/
 # Optionally, if you set this to "random", it'll load a random theme each
 # time that oh-my-zsh is loaded.
-ZSH_THEME="madhatter"
+#ZSH_THEME="madhatter"
 
 # Set to this to use case-sensitive completion
 # CASE_SENSITIVE="true"
@@ -24,6 +24,7 @@ DISABLE_LS_COLORS="true"
 plugins=(git mercurial history-substring-search rvm archlinux)
 
 source $ZSH/oh-my-zsh.sh
+source ~/.zsh/prompt 
 
 # Customize to your needs...
 #
@@ -103,8 +104,8 @@ alias ll='ls -la'
 # don't correct me when I am talking about hdfs
 alias hadoop="noglob hadoop"
 
-PS1="%{%B$fg[blue]%}┌─[ %{$fg[green]%}%n%{$fg[white]%}(%{$fg[cyan]%}%m%{$fg[white]%}):%{$fg[yellow]%}%~ %{$fg[blue]%}]
-└──╼ %{$reset_color%}"
+#PS1="%{%B$fg[blue]%}┌─[ %{$fg[green]%}%n%{$fg[white]%}(%{$fg[cyan]%}%m%{$fg[white]%}):%{$fg[yellow]%}%~ %{$fg[blue]%}]
+#└──╼ %{$reset_color%}"
 
 [ ! "$UID" = "0" ] && archey -c blue
 [  "$UID" = "0" ] && archey -c red
