@@ -7,7 +7,7 @@ background yes
 use_xft yes
 
 TEXT
-${if_mpd_playing}${execi 10000 echo -e "\x01"}${mpd_artist}${execi 10000 echo -e "\x02"}${mpd_title} ${endif}\
+${if_mpd_playing}${execi 10000 echo -e "\x01"}${mpd_artist}${execi 10000 echo -e "\x01"}${mpd_title} ${endif}\
 ${execi 10000 echo -e "\x01"}Cpu${execi 10000 echo -e "\x01"}${if_match ${cpu} < 10}0.0${cpu}${else}${if_match ${cpu} < 99}0.${cpu}${else}${if_match ${cpu} = 100}1.00${endif}${endif}${endif} \
 ${execi 10000 echo -e "\x01"}Mem${execi 10000 echo -e "\x01"}${if_match ${memperc} < 10}0.0${memperc}${else}${if_match ${memperc} < 99}0.${memperc}${else}${if_match ${memperc} = 100}1.00${endif}${endif}${endif} \
 ${execi 10000 echo -e "\x01"}Bat${execi 10000 echo -e "\x01"}${battery_percent} \
