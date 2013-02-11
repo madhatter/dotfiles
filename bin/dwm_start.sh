@@ -7,6 +7,7 @@ dropboxd &
 xmodmap ~/.Xmodmap &
 mpd &
 mpdscribble &
+dunst &
 feh --bg-fill .config/awesome/1440x900.png &
 conky | while read -r; do xsetroot -name "$REPLY"; done &
 exec dbus-launch dwm
