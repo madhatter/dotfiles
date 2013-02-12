@@ -1,10 +1,11 @@
 #!/bin/bash
-#export BROWSER=firefox
-#export DE=openbox
-#exec ck-launch-session dbus-launch openbox-session
-#exec ck-launch-session dbus-launch wmfs
+# ssh forward agent
 eval `ssh-agent`
+
+# refresh fonts for windowmanager
+xset +fp /usr/share/fonts/local
+xset +fp /home/madhatter/.fonts
 xset fp rehash
-#exec dbus-launch awesome
+
+# start the windowmanager
 /home/madhatter/bin/dwm_start.sh
-#/home/madhatter/.config/awesome/awesome_start.sh
