@@ -134,7 +134,8 @@ hg_user() {
 
 hg_prompt_info() {
 	if [[ ! -d .hg ]]; then return; fi
-	info="$(hg_user)$(hg_branch)$(hg_remote_difference)"
+	#info="$(hg_user)$(hg_branch)$(hg_remote_difference)"
+	info="$(hg_user)$(hg_branch)"
 	if [ $(hg_status_count) -gt 0 ]; then
 		info="$info$(hg_untracked_count)$(hg_modified_count)$(hg_staged_count)"
 	fi
