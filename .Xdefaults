@@ -13,6 +13,7 @@ URxvt*borderLess:	false
 URxvt*geometry:		128x36
 URxvt*transparent:	true
 URxvt*shading:		40
+URxvt*fading:		35
 URxvt*font: xft:terminus-font:size=8x14
 
 ## nethack
