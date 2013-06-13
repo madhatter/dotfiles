@@ -9,5 +9,7 @@ mpd &
 mpdscribble &
 dunst &
 feh --bg-fill .config/awesome/1440x900.png &
-conky | while read -r; do xsetroot -name "$REPLY"; done &
+#trayer --edge top --align right --widthtype percent --width 10 --transparent true --alpha 0 --tint 0x000000 --expand true --heighttype pixel --height 14& 
+#conky | while read -r; do xsetroot -name "$REPLY" "$(trayer --edge top --align right --widthtype request --transparent true --alpha 0 --tint 0x000000 --expand true --heighttype pixel --height 14)"; done &
+conky | while read -r; do xsetroot -name "$REPLY" ; done &
 exec dbus-launch dwm
