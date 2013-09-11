@@ -49,6 +49,10 @@ export PAGER="less "
 export TERM="rxvt-256color"
 export JAVA_HOME="/opt/java"
 
+# for bspwm 
+export XDG_CONFIG_HOME="$HOME/.config"
+export BSPWM_SOCKET="/tmp/bspwm-socket"
+
 # history settings
 export HISTFILE=$HOME/.zsh_history
 HISTSIZE=100000
