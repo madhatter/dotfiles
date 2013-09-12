@@ -3,7 +3,7 @@
 feh --bg-scale /home/madhatter/Dropbox/wallpappen/wallpaper-677043.jpg &
 urxvtd -q -f -o &
 nm-applet --sm-disable &
-dropboxd &
+dropbox start&
 #xcompmgr -C -l -O -D1 &
 #volumeicon &
 #wicd-client -t &
@@ -13,4 +13,4 @@ conky -c ~/.config/wmfs/scripts/conkyrc_bottom | while true; read line; do wmfs 
 xmodmap ~/.Xmodmap &
 mpd &
 mpdscribble &
-exec ck-launch-session dbus-launch wmfs
+exec dbus-launch wmfs
