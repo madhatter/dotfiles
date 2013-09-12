@@ -2,8 +2,8 @@
 
 #feh --bg-scale /home/madhatter/Dropbox/wallpappen/wallpaper-677043.jpg &
 urxvtd -q -f -o &
-#nm-applet --sm-disable &
-dropboxd &
+nm-applet --sm-disable &
+dropbox start &
 xmodmap ~/.Xmodmap &
 mpd &
 mpdscribble &
