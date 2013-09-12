@@ -7,10 +7,11 @@ background yes
 use_xft yes
 
 TEXT
-${if_mpd_playing}${execi 10000 echo -e "\x01"}${mpd_artist} ->${execi 10000 echo -e "\x01"}${mpd_title} :${endif}\
-${if_running spotify}${execi 10000 echo -e "\x01"}${execi 10 ruby ~/code/ruby/now_playing_spotify.rb}${endif}\
-${execi 10000 echo -e "\x01"}Bat${execi 10000 echo -e "\x01"}${battery_percent}% \
-${execi 10000 echo -e "\x01"}Net${execi 10000 echo -e "\x01"}${if_up eth1}${wireless_link_qual_perc eth1}${else}${if_up eth0}On${else}No${endif}${endif} \
-${execi 10000 echo -e "\x01"}Pac${execi 10000 echo -e "\x01"}${execi 1 pacman -Qu --dbpath /home/madhatter/pacman | wc -l} \
-${execi 10000 echo -e "\x01"}Vol${execi 10000 echo -e "\x01"}${execi 1 /home/madhatter/bin/volume.sh} \
-${execi 10000 echo -e "\x01"}${time %H:%M} \
+${if_mpd_playing}${execi 10000 echo -e "\x01"}${mpd_artist} -${execi 10000 echo -e "\x01"}${mpd_title}${endif} |\
+${execi 10000 echo -e "\x01"}cpu${execi 10000 echo -e "\x01"}${cpu}% .\
+${execi 10000 echo -e "\x01"}ram${execi 10000 echo -e "\x01"}${memperc}% .\
+${execi 10000 echo -e "\x01"}bat${execi 10000 echo -e "\x01"}${battery_percent}% .\
+${execi 10000 echo -e "\x01"}net${execi 10000 echo -e "\x01"}${if_up eth1}${wireless_link_qual_perc eth1}${else}${if_up eth0}On${else}No${endif}${endif} .\
+${execi 10000 echo -e "\x01"}pac${execi 10000 echo -e "\x01"}${execi 1 pacman -Qu --dbpath /home/madhatter/pacman | wc -l} .\
+${execi 10000 echo -e "\x01"}vol${execi 10000 echo -e "\x01"}${execi 1 /home/madhatter/bin/volume.sh} .\
+${execi 10000 echo -e "\x01"}${time %H:%M}\
