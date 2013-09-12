@@ -5,8 +5,8 @@ urxvtd -q -f -o &
 nm-applet --sm-disable &
 dropbox start &
 xmodmap ~/.Xmodmap &
-mpd &
-mpdscribble &
+pgrep -u "$EUID" -x mpd || mpd &
+pgrep -u "$EUID" -x mpdscribble || mpdscribble &
 feh --bg-fill .config/awesome/1440x900.png &
 conky | while read -r; do xsetroot -name "$REPLY"; done &
 exec dbus-launch dwm
