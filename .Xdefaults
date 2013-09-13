@@ -1,21 +1,37 @@
 !-- colors --!
-#include "/home/awarnecke/.colors/dc2"
-!#include "/home/awarnecke/.colors/phoenix"
+#include "/home/madhatter/.colors/dc2"
 
-Xft.hinting: 1
 ## urxvt config
-URxvt*termName: rxvt-256color
-URxvt*background:  #000000
-URxvt*foreground:  #F2F2F2
-URxvt*scrollBar:	false
+URxvt*termName: rxvt
+#URxvt*background:  #000000
+URxvt*foreground:  #A8A8A8
+URxvt*scrollBar_right:	false
 URxvt*scrollstyle:	plain
+URxvt*scrollBar:	false
 URxvt*borderLess:	false
 #URxvt*inheritPixmap:	true
 URxvt*geometry:		128x36
 URxvt*transparent:	true
-URxvt*shading:		10
+URxvt*shading:		40
 URxvt*font: xft:terminus-font:size=8x14
-#URxvt*font: xft:Droid Sans Mono for Powerline:pixelsize=8
-#URxvt*font:     xft:Envy Code R:pixelsize=10
-URxvt*saveLines:   10000
-URxvt*fading: 35
+
+## nethack
+#NetHack*font:                   vga
+NetHack*background:             black
+NetHack*foreground:             grey
+NetHack*map*background:         black
+NetHack*map*black:              grey25
+NetHack*map*red:                red3
+NetHack*map*green:              green3
+NetHack*map*brown:              DarkOrange3
+NetHack*map*blue:               blue3
+NetHack*map*magenta:            magenta3
+NetHack*map*cyan:               cyan3
+NetHack*map*gray:               gray70
+NetHack*map*orange:             yellow
+NetHack*map*bright_green:       green
+NetHack*map*yellow:             yellow
+NetHack*map*bright_blue:        blue
+NetHack*map*bright_magenta:     magenta
+NetHack*map*bright_cyan:        cyan
+NetHack*map*white:              white
