@@ -28,7 +28,7 @@ export PATH="$HOME/bin:$HOME/bin/eclipse:/usr/bin:/usr/local/bin:/usr/local/sbin
 #export PATH="$HOME/bin:$HOME/bin/eclipse:$HADOOP_HOME/bin:$HBASE_HOME/bin:$ZOOKEEPER_HOME/bin:$SQOOP_HOME/bin:/usr/local/bin:/usr/local/sbin:/Library/MySQL/bin:/usr/local/git/bin:/usr/X11R6/bin:$PATH"
 
 # where is my editor
-export VIM="/usr/local/share/vim/vim73"
+export VIM="/usr/local/share/vim/vim74"
 
 # what is the best editor one can wish for
 export EDITOR="vim"
