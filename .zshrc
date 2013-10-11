@@ -32,7 +32,7 @@ export PATH="$HOME/bin:$HADOOP_HOME/bin:$HBASE_HOME/bin:$ZOOKEEPER_HOME/bin:$SQO
 export VIM="/usr/local/share/vim/vim74"
 
 # where does mail go?
-export MAIL=/var/spool/mail/madhatter
+export MAIL=/var/spool/mail/$USER
 
 # what is the best editor one can wish for
 export EDITOR="vim"
@@ -50,7 +50,7 @@ export TZ="CET"
 
 export CVSROOT=":pserver:awarnecke@astra.etracker.local:/home/cvsroot"
 export PARSTREAM_HOME="/opt/parstream"
-export WORKSPACE="/home/awarnecke/workspace"
+export WORKSPACE="$HOME/workspace"
 export PAGER="less "
 export TERM="rxvt-256color"
 export JAVA_HOME="/opt/java"
