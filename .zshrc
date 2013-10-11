@@ -55,6 +55,13 @@ export PAGER="less "
 export TERM="rxvt-256color"
 export JAVA_HOME="/opt/java"
 
+# Ruby DBGp
+export RUBYDB_LIB=~/src/rubylib
+export RUBYDB_OPTS="HOST=localhost PORT=9000"
+alias druby='ruby -I$RUBYDB_LIB -r $RUBYDB_LIB/rdbgp.rb'
+
+# Alias for debugging php cli
+alias dphp='php -d xdebug.remote_autostart=1'
 
 # history settings
 export HISTFILE=$HOME/.zsh_history
