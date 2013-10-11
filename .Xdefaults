@@ -15,6 +15,7 @@ URxvt*transparent:	true
 URxvt*shading:		40
 #URxvt*font: xft:terminus-font:size=8x14
 URxvt*font: xft:Terminess Powerline:regular:size=8
+#URxvt*font: xft:DejaVu Sans Mono for Powerline:mono:size=8:antialias=off
 #URxvt*font: xft:DejaVu Sans Mono for Powerline:regular:size=8
 
 ## nethack

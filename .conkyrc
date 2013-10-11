@@ -10,7 +10,6 @@ TEXT
 ${if_mpd_playing}${execi 10000 echo -e "\x01"}${mpd_artist} -${execi 10000 echo -e "\x01"}${mpd_title}${endif} |\
 ${execi 10000 echo -e "\x01"}CPU${execi 10000 echo -e "\x01"}${cpu}% .\
 ${execi 10000 echo -e "\x01"}RAM${execi 10000 echo -e "\x01"}${memperc}% .\
-${execi 10000 echo -e "\x01"}BAT${execi 10000 echo -e "\x01"}${battery_percent}% .\
 ${execi 10000 echo -e "\x01"}NET${execi 10000 echo -e "\x01"}${if_up eth1}${wireless_link_qual_perc eth1}${else}${if_up eth0}On${else}No${endif}${endif} .\
 ${execi 10000 echo -e "\x01"}PAC${execi 10000 echo -e "\x01"}${execi 1 pacman -Qu --dbpath /home/awarnecke/pacman | wc -l} .\
 ${execi 10000 echo -e "\x01"}VOL${execi 10000 echo -e "\x01"}${execi 1 /home/awarnecke/bin/volume.sh} .\
