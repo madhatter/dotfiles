@@ -56,7 +56,7 @@ export TERM="rxvt-256color"
 export JAVA_HOME="/opt/java"
 
 # Ruby DBGp
-export RUBYDB_LIB=~/src/rubylib
+export RUBYDB_LIB=~/lib/rubylib
 export RUBYDB_OPTS="HOST=localhost PORT=9000"
 alias druby='ruby -I$RUBYDB_LIB -r $RUBYDB_LIB/rdbgp.rb'
 
