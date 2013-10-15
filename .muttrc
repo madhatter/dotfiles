@@ -109,8 +109,12 @@ set pgp_autosign
 set pgp_replysign
 # set pgp_encryptself           #does nothing, why?
 set pgp_replyencrypt
+set crypt_autosign = yes
+set crypt_replyencrypt = yes
 set pgp_timeout=7200
 set pgp_verify_sig=yes
 set pgp_show_unusable=yes       #mutt will display non-usable keys
 set pgp_sign_as="0x12942E7E"    #sign with arvid at nostalgix org
 
+# small message hook to call pgp when content-type is alternative
+message-hook "~h multipart/alternative" "exec check-traditional-pgp"

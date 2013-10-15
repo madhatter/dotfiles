@@ -8,7 +8,7 @@
   color error      brightred     default
   color message    brightblue    default
   color status     blue          black
-  color indicator  brightblue       black
+  color indicator  brightblue    black
   
 # color all ML mails
   #color index      blue          default "~u"
@@ -31,10 +31,13 @@
   color index      brightblue    default "~T"
   color index      brightred     default "~D"
 
+# colorize people I like to read from
+  color index      cyan          default "~f *guckes.net"
+
 # set up the headers
   color header     blue          default "^from:"
   color header     brightblue    default "^to:"
-  color header     brightwhite   default "^cc:"
+  color header     brightblue    default "^cc:"
   color header     brightblue    default "^date:"
   color header     cyan          default "^subject:"
 

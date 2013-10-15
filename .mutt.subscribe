@@ -1,4 +1,5 @@
 subscribe user@hbase.apache.org
 subscribe ruby-talk@ruby-lang.org
 subscribe arch-general@archlinux.org
-	subscribe vim_use@googlegroups.com
+subscribe arch-dev-public@archlinux.org
+subscribe vim_use@googlegroups.com

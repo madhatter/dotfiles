@@ -1,150 +1,104 @@
-# Color definitions
-#
-# vim:ft=muttrc
-#
-# Colours for items in the header
-color hdrdefault brightgreen default
-color header brightwhite default "^(From):"
-color header red         default "^X-Junked-Because:"
-color header brightyellow      default "^(To|Reply-To):"
- color header brightmagenta  default "^(X-Mailer|User-Agent):"
-# there are special color-definitions sourced
-color header brightcyan   default "^(In-Reply-To|X-UIDL):"
-color header brightblue	default "^(Subject):"
-color header brightmagenta		default    "organi[sz]ation: "
-color header green	default	"(Lines):"
+# -[ DEFAULT COLOR DEFINITIONS ]-----------------------------------------------
 
-# Colours for the whole index
-#
-#	object	foreground		background
+#color hdrdefault yellow         default
+color quoted     cyan           default
+color quoted1    magenta        default
+color quoted2    yellow         default
+color quoted3    red            default
+color quoted4    cyan           default
+color signature  red            default
+color indicator  default        black
+color attachment black          default
+color error      yellow         default
+color message    white          default
+color search     white          default
+color status     yellow         default
+#color tree       yellow         default
+color normal     white          default
+color tilde      black          default
+color bold       brightwhite    default
+color markers    red            default
+color underline	 cyan			default		# hiliting underlines patterns "
 
-color normal 	 white			default		# normal text
-color indicator	 white			default		# actual message
-color error	 brightred		default		# errors
-color status	 white			default		# statusline
-color tree	 red			default		# thread-arrows
-color message	 brightblue		default		# info-message
-color signature	 red			default		# signature
-color attachment brightyellow		default		# MIME attachments
-color search	 brightyellow		red		# search matches
-color tilde	 blue			default		# ~ at end of message
-color markers	 red			default		# + at wrapped lines
-color bold	 red			default		# hiliting bold patterns in body
-color underline	 green			default		# hiliting underlines patterns "
+# -[ COLOUR DEFINITIONS WHEN ON A MONO SCREEN ]--------------------------------
 
+mono bold        bold
+mono underline   underline
+mono indicator   reverse
 
-# Colours for items in the index
+# -[ COLOURS FOR ITEMS IN THE READER ]-----------------------------------------
 
-color index green	default	~Q	#replied yet
+color header     red            default         "^X-Junked-Because:"
+mono  header     bold                           "^(From|Subject|X-Junked-Because):"
+color header     white          default         '^(status|lines|date|received|sender|references):'
+color header     magenta        default         '^from:'
+color header     white          default         '^(to|cc|bcc):'
+color header     magenta        default         '^(subject):.*$'
 
-# Some special persons first ;-)
+# -[ COLOURS FOR ITEMS IN THE INDEX ]------------------------------------------
 
-color index brightgreen  default "~f Michael.Baro*"
-color index brightblue   default "~f mimas.rz.fht.stuttgart"
-color index brightblue	 default "~f Nicole-Hauke*"
-color index brightblue	 default "~f jergus@web.de"
-color index brightblue	 default "~f caya*"
-color index blue	 default "~f tanja.eineder*"
-color index brightblue	 default "~f georg.litti*"
-color index yellow	 default "~f o.gilbert@*"
-color index brightyellow default "~f arvid.warnecke*"
+# Regular new messages
+color index cyan          default   "~N !~T !~F !~p !~P"
 
-color index white 	 red   ~N	# New Mail 
-color index black   	 green ~T	# Tagged
-color index red		 default ~D	# Deleted
-color index magenta	 default ~F	# Flagged
+# Regular tagged messages
+color index red           default    "~T !~F !~p !~P"
 
-color quoted     green     default # quoted text
-color quoted1    magenta   default
-color quoted2    cyan      default
-color quoted3    red       default 
-color quoted4    blue      default
-color quoted5    brightyellow default
-color quoted6    brightblue   default
-#color quoted7    red       black
-#color quoted8    green     black
-#color quoted9    cyan      black
+# Regular flagged messages
+color index magenta       default     "~F !~p !~P"
 
-# Highlights inside the body of a message.
+# Messages to me
+color index white         default "~p !~N !~T !~F !~P"
+color index brightcyan    default "~p ~N !~T !~F !~P"
+color index white         default "~p ~T !~F !~P"
+color index white         default "~p ~F !~P"
 
-#  Show  attachments:
-color attachment  green  default
+# Messages from me
+color index white         default "~P !~N !~T !~F"
+color index white         default "~P ~N !~T !~F"
+color index white         default "~P ~T !~F"
+color index white         default "~P ~F"
 
-#  *Emphasized*, /emphasized/, and _emphasized_ words:
-#color body brightred      black   "[*/_]+ *[- &[:alnum:]]+ *[*/_]+"
-color body brightmagenta default "[_]+ *[- &[:alnum:]]+ *[_]+"
-color body brightcyan	default "[/]+ *[- &[:alnum:]]+ *[/]+"
-color body brightyellow	default "[*]+ *[- &[:alnum:]]+ *[*]+"
+# Messages which are in reference to my mails
+color index magenta       default "~x \"(madhatter|arvid)\\.nostalgix\\.org|thorin\\.hillmgt\\.com\" !~N !~T !~F !~p !~P"
+color index magenta       default "~x \"(madhatter|arvid)\\.nostalgix\\.org|thorin\\.hillmgt\\.com\" ~N !~T !~F !~p !~P"
+color index magenta       default "~x \"(madhatter|arvid)\\.nostalgix\\.org|thorin\\.hillmgt\\.com\" ~T !~F !~p !~P"
+color index magenta       default "~x \"(madhatter|arvid)\\.nostalgix\\.org|thorin\\.hillmgt\\.com\" ~F !~p !~P"
 
-# URLs
-color body brightblue  	default "(http|ftp|news|telnet|finger)://[^ \"\t\r\n]*"
-color body brightgreen  default "mailto:[-a-z_0-9.]+@[-a-z_0-9.]+"
-# email addresses
-color body brightgreen 	default "[-a-z_0-9.]+@[-a-z_0-9.]+" #\\.[-a-z][-a-z]+"
-# URLs again
-# color body magenta default '(((ftp|http|https)|mailto)[.:][^>"]*|www.[-a-z .?  =&,:]+)[^ .,;>">():]'
+# Messages to root, etc.
+color index cyan          default "~C \"(root|postmaster|abuse|mailer-daemon)@\" !~N !~P !~p"
+color index cyan          default "~C \"(root|postmaster|abuse|mailer-daemon)@\" ~N !~P !~p"
 
-# Various smilies and the like
-color body brightgreen 	default "<[Gg]>"               # <g>
-color body brightgreen 	default "<[Bb][Gg]>"           # <bg>
-color body brightgreen 	default " [;:]-*[)>(<|]"       # :-) etc...
+# Big messages
+color index cyan          default "!~N ~z 102400-"
+color index cyan          default "~T !~F !~p !~P ~z 102400-"
+color index cyan          default "~N ~z 102400-"
 
-#  Border Lines of length three or more.
-#  (Several Newsletters use border lines..)
-color body green	default    "[-_=~/\*]{3,}"
-#
-#  Border lines with spaces in between charcaters:
-#  Allowing for arbitrary space runs in between,
-#  with a minimum length of four:
-color body green  	default    "\( *[-+=#*~_]\){4,}"
-#  Examples:
-#  "- - -"  "#####"   "~~~~~~~"  "+-+-+-+-+-+"  "* * * *"
-#  "+ - ~ + === * ~~~" etc
+# Deleted messages
+color index red           default "!~N ~D"
+color index red           default "~N ~D"
 
-#  Alternatives ("either/or"):
-#  color body brightwhite    black   "\\w+/\\w+"
-#  color body brightwhite    black   "[-._a-zA-Z0-9]+/[-._a-zA-Z0-9]+"
-#  color body brightwhite    black   "([-._a-zA-Z0-9]+/)+[-._a-zA-Z0-9]+"
-#
-#  Kraut Version - with umlauts:
-color body brightwhite	default   "([-._a-zA-Zdv|DV\0-9]+/)+[-._a-zA-Zdv|DV\0+-9]+"
+# Replied messages
+color index green         default "~Q"
 
-#  Acronyms, Abbreviations, and "SCREAMING IN CAPS"
-#  color body brightyellow  black    "[A-Z]+\([ ,]*[A-Z]+\)+"
-#  color body brightyellow  black    "[A-Z]{3,}"
-#  color body brightyellow  black    "\([A-Z]{3,} *\)+"
-#  color body brightyellow  black    "\([-A-Z']{2,}[ ,]*\)+"
-#  The spaces at start and end are used for use with "-USE_GNU_REGEX":
-#
-#  WARNING!  The following RegEx crashes mutt-1.2.x!
-#  color body brightyellow  black    " \([-A-Z']{2,}[ ,]*\)+ "
-#  color body brightyellow  black    " ([-A-Z]{2,}[ ,]*)+ "
-#
-#  This works ok:
-#color body brightyellow black	"[A-ZÄÖÜ][-A-ZÄÖÜ]+[A-ZÄÖÜ][ !?]"
-#  No, it doesn't work. A lot of words are yellow then, which
-#  makes no sense
+# -[ HIGHLIGHTS INSIDE THE BODY OF A MESSAGE. ]--------------------------------
 
-#  Extensive use of exclamation and question marks:
-#  "!!!"  "???"
-color body brightred	default	"[!?]{2,}"
+color body      brightmagenta   default         "(http|https|ftp|news|telnet|finger)://[^ \">\t\n]*"
+color body      brightgreen     default         "mailto:[-a-z_0-9.]+@[-a-z_0-9.]+"
+color body      brightyellow    default         "news:[^ \">\t\n]*"
+mono  body      bold                            "(http|https|ftp|news|telnet|finger)://[^ \">\t\n]*"
+mono  body      bold                            "mailto:[-a-z_0-9.]+@[-a-z_0-9.]+"
+mono  body      bold                            "news:[^ \">\t\n]*"
 
-## ===========================================================
-## COLOR for the BODY  - Directories, Filenames, and Variables
-## ===========================================================
+# -[ EMAIL ADDRESSES ]---------------------------------------------------------
 
-#  File names ("/path/file")
-#  color body brightgreen black "\\~?\(/[-_.,a-zA-Z0-9{}]+\)+"
-color body brightgreen default "\\~?\(/[-_.,a-zA-Z0-9{}]+\)+"
-#  Example:  /usr/src/linux/include/{asm,linux}
+color body      brightblue      default         "[-a-z_0-9.%$]+@[-a-z_0-9.]+\\.[-a-z][-a-z]+"
+mono  body      bold                            "[-a-z_0-9.%$]+@[-a-z_0-9.]+\\.[-a-z][-a-z]+"
 
-#  DOS/Windows file names
-#  c:\vim\vim60e\runtime\syntax\vim.vim
-color body brightgreen default "[a-z]:[-_.a-zA-Z0-9\]+"
+# -[ VARIOUS SMILIES AND THE LIKE ]--------------------------------------------
 
-#  Path names ("/path/")
-color body brightred   default "\(/[-_.a-zA-Z0-9]+\)+/"
-
-#  Variables  ("$HOME")
-color body brightmagenta default "\\$[a-zA-Z][-_a-zA-Z]+"
-
+color body      brightgreen     default         "<[Gg]>"                                                # <g>
+color body      brightgreen     default         "<[Bb][Gg]>"                                            # <bg>
+color body      brightgreen     default         " [;:]-*[)>(<|]"                                        # :-) etc...
+color body      brightgreen     default         "(^|[[:space:]])\\*[^[:space:]]+\\*([[:space:]]|$)"     # *Bold* text.
+color body      brightgreen     default         "(^|[[:space:]])_[^[:space:]]+_([[:space:]]|$)"         # _Underlined_ text.
+color body      brightgreen     default         "(^|[[:space:]])/[^[:space:]]+/([[:space:]]|$)"         # /Italic/ text.
