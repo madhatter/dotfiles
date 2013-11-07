@@ -63,6 +63,8 @@ alias druby='ruby -I$RUBYDB_LIB -r $RUBYDB_LIB/rdbgp.rb'
 # Alias for debugging php cli
 alias dphp='php -d xdebug.remote_autostart=1'
 
+alias phpunit='phpunit.phar'
+
 # history settings
 export HISTFILE=$HOME/.zsh_history
 HISTSIZE=100000
@@ -103,8 +105,8 @@ alias hadoop="noglob hadoop"
 #PS1="%{%B$fg[blue]%}┌─[ %{$fg[green]%}%n%{$fg[white]%}(%{$fg[cyan]%}%m%{$fg[white]%}):%{$fg[yellow]%}%~ %{$fg[blue]%}]
 #└──╼ %{$reset_color%}"
 
-[ ! "$UID" = "0" ] && archey -c blue
-[  "$UID" = "0" ] && archey -c red
+[ ! "$UID" = "0" ] && archey3 -c blue
+[  "$UID" = "0" ] && archey3 -c red
 
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm"
 PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
