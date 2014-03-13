@@ -24,9 +24,10 @@ export ZOOKEEPER_HOME="$HOME/CDH/zookeeper"
 #export HADOOP_CLASSPATH=$HBASE_HOME/lib/zookeeper-3.3.3-cdh3u4.jar::$HADOOP_CLASSPATH
 export HADOOP_CLASSPATH=$(for i in $HBASE_HOME/lib/*.jar ; do echo -n $i: ; done)
 
+export CHEF_HOME="/opt/chef"
 
 # enhance the path (ordered by priority to make manual installation work)
-export PATH="$HOME/bin:$HADOOP_HOME/bin:$HBASE_HOME/bin:$ZOOKEEPER_HOME/bin:$SQOOP_HOME/bin:/usr/local/bin:/usr/local/sbin:/usr/X11R6/bin:$PATH"
+export PATH="$HOME/bin:$HADOOP_HOME/bin:$HBASE_HOME/bin:$ZOOKEEPER_HOME/bin:$SQOOP_HOME/bin:$CHEF_HOME/embedded/bin:/usr/local/bin:/usr/local/sbin:/usr/X11R6/bin:$PATH"
 
 # where is my editor
 export VIM="/usr/local/share/vim/vim74"
