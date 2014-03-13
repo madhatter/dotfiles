@@ -53,7 +53,7 @@ export PARSTREAM_HOME="/opt/parstream"
 export WORKSPACE="$HOME/workspace"
 export PAGER="less "
 export TERM="rxvt-256color"
-export JAVA_HOME="/opt/java"
+export JAVA_HOME="/opt/java/jre"
 
 # Ruby DBGp
 export RUBYDB_LIB=~/lib/rubylib
