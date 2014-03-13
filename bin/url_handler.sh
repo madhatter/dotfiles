@@ -28,8 +28,8 @@
 # VT: Launch in the same terminal
 
 # The lists of programs to be executed are
-https_prgs="/usr/bin/google-chrome:XW /usr/bin/lynx:XT"
-http_prgs="/usr/bin/lynx:XT /usr/bin/google-chrome:XW"
+https_prgs="/bin/firefox:XW /usr/bin/lynx:XT"
+http_prgs="/usr/bin/lynx:XT /bin/firefox:XW"
 mailto_prgs="/usr/bin/mutt:VT /usr/bin/elm:VT /usr/bin/pine:VT /usr/bin/mail:VT"
 gopher_prgs="/usr/bin/lynx:XT /usr/bin/gopher:XT"
 ftp_prgs="/usr/bin/lynx:XT /usr/bin/ncftp:XT"

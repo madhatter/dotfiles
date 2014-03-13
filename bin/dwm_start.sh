@@ -8,5 +8,7 @@ xmodmap ~/.Xmodmap &
 pgrep -u "$EUID" -x mpd || mpd &
 pgrep -u "$EUID" -x mpdscribble || mpdscribble &
 feh --bg-fill .config/awesome/1440x900.png &
-conky | while read -r; do xsetroot -name "$REPLY"; done &
+#conky | while read -r; do xsetroot -name "$REPLY"; done &
+dwmbar &
+wmname LG3D &
 exec dbus-launch dwm
