@@ -4,6 +4,7 @@
 
 source ~/.zsh/history-substring-search/history-substring-search.zsh
 source ~/.zsh/prompt 
+source ~/.zsh/title.zsh 
 
 # Customize to your needs...
 #
@@ -61,6 +62,8 @@ export RUBYDB_LIB=~/lib/rubylib
 export RUBYDB_OPTS="HOST=localhost PORT=9000"
 alias druby='ruby -I$RUBYDB_LIB -r $RUBYDB_LIB/rdbgp.rb'
 
+#export RUBY_VERSION=$(cat $HOME/.ruby-version)
+
 # Alias for debugging php cli
 alias dphp='php -d xdebug.remote_autostart=1'
 
@@ -109,5 +112,7 @@ alias hadoop="noglob hadoop"
 [ ! "$UID" = "0" ] && archey3 -c blue
 [  "$UID" = "0" ] && archey3 -c red
 
+# stuff for rvm
+export rvmsudo_secure_path=0
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm"
-PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
+#PATH=$HOME/.rvm/gems/$RUBY_VERSION/bin:$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
