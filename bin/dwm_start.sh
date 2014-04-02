@@ -1,15 +1,12 @@
 #!/bin/bash
 
 #feh --bg-scale /home/madhatter/Dropbox/wallpappen/wallpaper-677043.jpg &
-feh --bg-scale ~/Dropbox/wallpappen/archlinux_wallpaper_by_nknwn-d4legxh.png &
 urxvtd -q -f -o &
-#nm-applet --sm-disable &
+nm-applet --sm-disable &
+dropbox start &
 xmodmap ~/.Xmodmap &
-mpd &
-mpdscribble &
-dunst &
+pgrep -u "$EUID" -x mpd || mpd &
+pgrep -u "$EUID" -x mpdscribble || mpdscribble &
 feh --bg-fill .config/awesome/1440x900.png &
-#trayer --edge top --align right --widthtype percent --width 10 --transparent true --alpha 0 --tint 0x000000 --expand true --heighttype pixel --height 14& 
-#conky | while read -r; do xsetroot -name "$REPLY" "$(trayer --edge top --align right --widthtype request --transparent true --alpha 0 --tint 0x000000 --expand true --heighttype pixel --height 14)"; done &
-conky | while read -r; do xsetroot -name "$REPLY" ; done &
+conky | while read -r; do xsetroot -name "$REPLY"; done &
 exec dbus-launch dwm
