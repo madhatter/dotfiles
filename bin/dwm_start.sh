@@ -4,7 +4,6 @@
 feh --bg-scale ~/Dropbox/wallpappen/archlinux_wallpaper_by_nknwn-d4legxh.png &
 urxvtd -q -f -o &
 #nm-applet --sm-disable &
-dropboxd &
 xmodmap ~/.Xmodmap &
 mpd &
 mpdscribble &
