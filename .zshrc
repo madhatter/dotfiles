@@ -3,7 +3,7 @@
 #plugins=(git mercurial history-substring-search rvm archlinux)
 
 source ~/.zsh/history-substring-search/history-substring-search.zsh
-source ~/.zsh/prompt 
+source ~/.zsh/prompt.zsh
 source ~/.zsh/title.zsh 
 
 # Customize to your needs...
