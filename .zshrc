@@ -9,7 +9,7 @@ source ~/.zsh/title.zsh
 # Customize to your needs...
 #
 # Usenet News
-export NNTPSERVER=news.eternal-september.org
+export NNTPSERVER=news.individual.de
 
 # local hadoop installation
 export HADOOP_HOME="$HOME/CDH/hadoop"
