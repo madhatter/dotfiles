@@ -39,7 +39,7 @@ end
 
 -- {{{ Variable definitions
 -- Themes define colours, icons, and wallpapers
-beautiful.init("/home/madhatter/.config/awesome/themes/blue/theme.lua")
+beautiful.init("$HOME/.config/awesome/themes/blue/theme.lua")
 
 -- This is used later as the default terminal and editor to run.
 terminal = "urxvt"
@@ -179,7 +179,7 @@ pacwidget_t = awful.tooltip({ objects = { pacwidget},})
 vicious.register(pacwidget, vicious.widgets.pkg,
                 function(widget,args)
                     local io = { popen = io.popen }
-                    local s = io.popen("pacman -Qu --dbpath /home/madhatter/pacman")
+                    local s = io.popen("pacman -Qu --dbpath $HOME/pacman")
                     local str = ''
                     for line in s:lines() do
                         str = str .. line .. "\n"
