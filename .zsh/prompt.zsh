@@ -24,7 +24,7 @@ git_modified_count() {
 }
 
 git_staged_count() {
-  count=$(git_status_count "[A|M|R|C]\s")
+  count=$(git_status_count "[A|M|D|C]\s")
   if [ $count -eq 0 ]; then return; fi
   echo " %{$fg_bold[green]%}S%{$fg_no_bold[black]%}:%{$reset_color$fg[green]%}$count%{$reset_color%}"
 }
