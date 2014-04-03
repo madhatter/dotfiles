@@ -1,6 +1,6 @@
 PATH=/bin:/usr/bin:/usr/local/bin 
 VERBOSE=on  
-DEFAULT=/var/spool/mail/madhatter
+DEFAULT=/var/spool/mail/$USER
 MAILDIR=$HOME/mail            
 LOGFILE=$HOME/.procmaillog  
 # Recipes below this comment:
@@ -15,9 +15,9 @@ LOGFILE=$HOME/.procmaillog
 #
 
 #Spamassassin start
-:0fw: spamassassin.lock
-| /usr/bin/vendor_perl/spamassassin
-
+#:0fw: spamassassin.lock
+#| /usr/bin/vendor_perl/spamassassin
+#
 :0:
 * ^X-Spam-Level: \*\*\*\*\*\*\*\*\*\*
 spam10
