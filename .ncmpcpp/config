@@ -3,7 +3,7 @@
 ## Largely Inspire By crshd and Him .
 ####################################################
 
-mpd_music_dir = "/home/madhatter/music"
+mpd_music_dir = "$HOME/music"
 
 # Playlist
 song_columns_list_format = "(3f)[blue]{n} (20)[red]{a} (40)[green]{t|f} (25)[yellow]{b} (4)[blue]{y} (6f)[white]{l} "
