@@ -1,5 +1,5 @@
-# tin configuration file V1.3.11
-# This file was automatically saved by rtin 2.0.1 20111224 ("Achenvoir")
+# tin configuration file V1.3.12
+# This file was automatically saved by tin 2.2.0 20131224 ("Lochindaal")
 #
 # Do not edit while tin is running, since all your changes to this file
 # will be overwritten when you leave tin.
@@ -7,7 +7,7 @@
 ############################################################################
 
 # Directory where articles/threads are saved
-savedir=/home/madhatter/news
+savedir=$HOME/news
 
 # If ON articles/threads with Archive-name: in mail header will
 # be automatically saved with the Archive-name & part/patch no.
@@ -54,7 +54,7 @@ pos_first_unread=ON
 show_only_unread_arts=ON
 
 # If ON show only subscribed to groups that contain unread articles.
-show_only_unread_groups=OFF
+show_only_unread_groups=ON
 
 # Filter which articles
 # Possible values are (the default is marked with *):
@@ -101,7 +101,7 @@ thread_articles=3
 # the percentage of characters in the subject of an article that must match
 # a base article for both those articles to be considered to belong to the
 # same thread. This option is an integer percentage, eg. 80, no decimals may
-# follow. If 80 is used here, then 80%% of the characters must match exactly,
+# follow. If 80 is used here, then 80% of the characters must match exactly,
 # no insertion of a character, for the two articles to be put in the same
 # thread. eg. 'happy' and 'harpy' would match, but 'harpie', 'happie' and
 # 'harppy' would be threaded separately from 'happy'
@@ -163,7 +163,7 @@ sort_article_type=6
 sort_threads_type=1
 
 # (-m) directory where articles/threads are saved in mailbox format
-maildir=/home/madhatter/mail
+maildir=$HOME/mail
 
 # Format of the mailbox.
 mailbox_format=MBOXO
@@ -183,14 +183,13 @@ batch_save=ON
 start_editor_offset=ON
 
 # Format of editor line including parameters
-# %%E Editor  %%F Filename  %%N Linenumber
+# %E Editor  %F Filename  %N Linenumber
 editor_format=%E +%N %F
 
 # Format of mailer line including parameters
-# %%M Mailer  %%S Subject  %%T To  %%F Filename
-# ie. to use elm as your mailer:    elm -s "%%S" "%%T" < %%F
-# ie. elm interactive          :    elm -i %%F -s "%%S" "%%T"
-#mailer_format=%M -oi -t < %F
+# %M Mailer  %S Subject  %T To  %F Filename
+# ie. to use elm as your mailer:    elm -s "%S" "%T" < %F
+# ie. elm interactive          :    elm -i %F -s "%S" "%T"
 mailer_format=mutt -i %F -s "%S" "%T"
 
 # Interactive mailreader
@@ -198,16 +197,7 @@ mailer_format=mutt -i %F -s "%S" "%T"
 # * 0 = no interactive mailreader
 #   1 = use interactive mailreader with headers in file
 #   2 = use interactive mailreader without headers in file
-#interactive_mailer=0
 interactive_mailer=2
-
-# What information should be displayed in article/thread listing
-# Possible values are (the default is marked with *):
-#   0 = nothing
-# * 1 = lines
-#   2 = score
-#   3 = lines & score
-show_info=3
 
 # Thread score
 # Possible values are (the default is marked with *):
@@ -234,7 +224,7 @@ add_posted_to_filter=ON
 # sigfile=file       appends file as signature
 # sigfile=!command   executes external command to generate a signature
 # sigfile=--none     don't append a signature
-sigfile=/home/madhatter/.signature
+sigfile=$HOME/.signature
 
 # If ON prepend the signature with dashes '\n-- \n'
 sigdashes=ON
@@ -247,7 +237,7 @@ signature_repost=ON
 spamtrap_warning_addresses=
 
 # The program used to open URLs. The actual URL will be appended
-url_handler=url_handler.pl
+url_handler=url_handler.sh
 
 # If ON include advertising User-Agent: header
 advertising=ON
@@ -255,8 +245,11 @@ advertising=ON
 # Time interval in seconds between rereading the active file (0=never)
 reread_active_file_secs=1200
 
+# Time in seconds to wait for a response from the server (0=no timeout)
+nntp_read_timeout_secs=120
+
 # Characters used in quoting to followups and replies.
-# '_' is replaced by ' ', %%s, %%S are replaced by author's initials.
+# '_' is replaced by ' ', %s, %S are replaced by author's initials.
 quote_chars=>_
 
 # How quoting should be handled when following up or replying.
@@ -339,8 +332,8 @@ tex2iso_conv=OFF
 hide_uue=0
 
 # Format of quote line when mailing/posting/following-up an article
-# %%A Address    %%D Date   %%F Addr+Name   %%G Groupname   %%M Message-ID
-# %%N Full Name  %%C First Name   %%I Initials
+# %A Address    %D Date   %F Addr+Name   %G Groupname   %M Message-ID
+# %N Full Name  %C First Name   %I Initials
 news_quote_format=%F wrote:
 mail_quote_format=In article %M you wrote:
 xpost_quote_format=In %G %F wrote:
@@ -421,13 +414,13 @@ abbreviate_groupname=OFF
 
 # If ON show a mini menu of useful commands at each level
 # and posting etiquette after composing an article
-beginner_level=ON
+beginner_level=OFF
 
 # Number of days a short term filter will be active
 default_filter_days=28
 
 # If ON, create local copies of NNTP overview files.
-cache_overview_files=OFF
+cache_overview_files=ON
 
 # Number of articles to get (0=no limit), if negative sets maximum number
 # of already read articles to be read before first unread one
@@ -685,6 +678,51 @@ strip_newsrc=OFF
 #   2 = highlight with D on selection screen
 strip_bogus=2
 
+# Format string for selection level representation
+# Default: %f %n %U  %G  %d
+# Possible values are:
+#   %%              '%'
+#   %d              Description
+#   %f              Newsgroup flag: 'D' bogus, 'X' not postable,
+#                   'M' moderated, '=' renamed, 'N' new, 'u' unsubscribed
+#   %G              Group name
+#   %n              Number, linenumber on screen
+#   %U              Unread count
+select_format=%f %n %U  %G  %d
+
+# Format string for group level representation
+# Default: %n %m %R %L  %s  %F
+# Possible values are:
+#   %%              '%'
+#   %D              Date, like date_format
+#   %(formatstr)D   Date, formatstr gets passed to my_strftime()
+#   %F              From, name and/or address according to show_author
+#   %I              Initials
+#   %L              Line count
+#   %M              Message-ID
+#   %m              Article marks
+#   %n              Number, linenumber on screen
+#   %R              Count, number of responses in thread
+#   %s              Subject (only group level)
+#   %S              Score
+group_format=%n %m %R %L %S  %s  %F
+
+# Format string for thread level representation
+# Default: %n %m  [%L]  %T  %F
+# Possible values are:
+#   %%              '%'
+#   %D              Date, like date_format
+#   %(formatstr)D   Date, formatstr gets passed to my_strftime()
+#   %F              From, name and/or address according to show_author
+#   %I              Initials
+#   %L              Line count
+#   %M              Message-ID
+#   %m              Article marks
+#   %n              Number, linenumber on screen
+#   %S              Score
+#   %T              Thread tree (only thread level)
+thread_format=%n %m  [%L,%S]  %T  %F
+
 # Format string for date representation
 date_format=%a, %d %b %Y %H:%M:%S
 
@@ -695,9 +733,9 @@ date_format=%a, %d %b %Y %H:%M:%S
 wildcard=0
 
 # Unicode normalization form
-# Possible values are (the default is marked with *):
+# Possible values are:
 #   0 = None
-# * 1 = NFKC
+#   1 = NFKC
 #   2 = NFKD
 #   3 = NFC
 #   4 = NFD
@@ -727,15 +765,15 @@ default_save_mode=a
 default_author_search=
 default_goto_group=
 default_config_search=mail
-default_group_search=luebeck
+default_group_search=sysadmin
 default_subject_search=
-default_art_search=
+default_art_search=mark
 default_repost_group=
-default_mail_address=
+default_mail_address=arvid@nostalgix.org
 default_move_group=10
 default_pipe_command=
-default_post_newsgroups=luebeck.talk
-default_post_subject=Re: Anwohnerparken in ganz Lübeck?
+default_post_newsgroups=de.etc.sprache.deutsch
+default_post_subject=Re: Japsen
 default_range_group=1-.
 default_range_select=1-.
 default_range_thread=1-.
