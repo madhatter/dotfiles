@@ -18,7 +18,7 @@ git_untracked_count() {
 }
 
 git_modified_count() {
-  count=$(git_status_count "[\s|M]M")
+  count=$(git_status_count "^.M")
   if [ $count -eq 0 ]; then return; fi
   echo " %{$fg_bold[red]%}M%{$fg_no_bold[black]%}:%{$reset_color$fg[red]%}$count%{$reset_color%}"
 }
