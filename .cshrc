@@ -23,9 +23,9 @@ setenv  EDITOR  vim
 setenv  NNTPSERVER	News.Individual.DE 
 setenv  VIM    /usr/local/share/vim/vim73
 # I set SYSSCREENRC to some non-existing file, because the defaults here are buggy
-setenv  SYSSCREENRC	/home/madhatter/.screen_default
+setenv  SYSSCREENRC	$HOME/.screen_default
 
-setenv LD_LIBRARY_PATH /data/home/madhatter/lib
+setenv LD_LIBRARY_PATH $HOME/lib
 
 setenv LESS		"-c"
 
