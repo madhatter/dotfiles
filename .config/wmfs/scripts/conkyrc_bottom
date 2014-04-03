@@ -24,25 +24,25 @@ color8 FF95D1 #rose
  
 TEXT
 ^s[left;\#BBBBBB;  ]\
-^i[left;0;0;/home/madhatter/.config/wmfs/icons/stat/spkr_01.png]\
+^i[left;0;0;$HOME/.config/wmfs/icons/stat/spkr_01.png]\
 ^s[left;\#BBBBBB; +](1;spawn; amixer -c 0 set PCM 5+ unmute)^s[left;\#BBBBBB; -](1;spawn; amixer -c 0 set PCM 5- unmute) ^s[left;\#D8ADFF; ${exec amixer get PCM | grep "Left: P" | awk '{print $5}' | grep -oE "[[:digit:]]{1,}"%} ](1;spawn; amixer sset PCM toggle) ^p[left;70;10;2;${exec amixer get PCM | grep "Left: P" | awk '{print $5}' | grep -oE "[[:digit:]]{1,}"};100;\#333333;\#D8ADFF;vol](1;spawn; urxvt -e alsamixer)\
 ^s[left;\#555555;  ·  ]\
-^i[left;0;0;/home/madhatter/.config/wmfs/icons/stat/mem.png]^s[left;\#666666; $memmax]^s[left;\#BDE077; $memperc% ]^p[left;80;10;2;$memperc;100;\#333333;\#BDE077;ckymem](1;spawn;urxvt -e htop)\
+^i[left;0;0;$HOME/.config/wmfs/icons/stat/mem.png]^s[left;\#666666; $memmax]^s[left;\#BDE077; $memperc% ]^p[left;80;10;2;$memperc;100;\#333333;\#BDE077;ckymem](1;spawn;urxvt -e htop)\
 ^s[left;\#555555;  ·  ]\
-^i[left;0;0;/home/madhatter/.config/wmfs/icons/stat/cpu.png]^s[left;\#A6D4E0; ${cpu}% ] ^p[left;80;10;2;${cpu};100;\#333333;\#A6D4E0;ckycpu]\
+^i[left;0;0;$HOME/.config/wmfs/icons/stat/cpu.png]^s[left;\#A6D4E0; ${cpu}% ] ^p[left;80;10;2;${cpu};100;\#333333;\#A6D4E0;ckycpu]\
 ^s[left;\#555555;  ·  ]\
-^i[left;0;0;/home/madhatter/.config/wmfs/icons/stat/fs_01.png]^s[left;\#666666; /HOME ${fs_size /home}]^s[left;\#FDA53C; ${fs_used_perc /home}% ]^p[left;80;10;2;${fs_used_perc /home};100;\#333333;\#FDA53C;fshome] ^s[left;\#666666;  / ${fs_size /}]^s[left;\#FDA53C; ${fs_used_perc /}% ]^p[left;80;10;2;${fs_used_perc /};100;\#333333;\#FDA53C;fsroot]\
+^i[left;0;0;$HOME/.config/wmfs/icons/stat/fs_01.png]^s[left;\#666666; /HOME ${fs_size /home}]^s[left;\#FDA53C; ${fs_used_perc /home}% ]^p[left;80;10;2;${fs_used_perc /home};100;\#333333;\#FDA53C;fshome] ^s[left;\#666666;  / ${fs_size /}]^s[left;\#FDA53C; ${fs_used_perc /}% ]^p[left;80;10;2;${fs_used_perc /};100;\#333333;\#FDA53C;fsroot]\
 ^s[left;\#555555;  ·  ]\
-^i[left;0;0;/home/madhatter/.config/wmfs/icons/stat/netup.png]^s[left;\#E8DD9E; ${upspeedf wlan0}Kb](1;spawn;urxvt -e wicd-curses)\
+^i[left;0;0;$HOME/.config/wmfs/icons/stat/netup.png]^s[left;\#E8DD9E; ${upspeedf wlan0}Kb](1;spawn;urxvt -e wicd-curses)\
 ^s[left;\#555555;  ]\
-^i[left;0;0;/home/madhatter/.config/wmfs/icons/stat/netdown.png]^s[left;\#E8DD9E; ${downspeedf wlan0}Kb](1;spawn;urxvt -e wicd-curses)\
+^i[left;0;0;$HOME/.config/wmfs/icons/stat/netdown.png]^s[left;\#E8DD9E; ${downspeedf wlan0}Kb](1;spawn;urxvt -e wicd-curses)\
 ^s[left;\#555555;  ]\
-^i[left;0;0;/home/madhatter/.config/wmfs/icons/status/pacman.png]^s[left;\#FDA53C; ${top name 1}]\
-#^i[left;0;0;/home/madhatter/.config/wmfs/icons/stat/invader1_1_11x8.png]^s[left;\#FDA53C; $battery_percent]\
-^i[left;0;0;/home/madhatter/.config/wmfs/icons/stat/bat_full_02.png]^s[left;\#FDA53C; $battery_percent]\
+^i[left;0;0;$HOME/.config/wmfs/icons/status/pacman.png]^s[left;\#FDA53C; ${top name 1}]\
+#^i[left;0;0;$HOME/.config/wmfs/icons/stat/invader1_1_11x8.png]^s[left;\#FDA53C; $battery_percent]\
+^i[left;0;0;$HOME/.config/wmfs/icons/stat/bat_full_02.png]^s[left;\#FDA53C; $battery_percent]\
 \
 \
-^i[right;0;0;/home/madhatter/.config/wmfs/icons/stat/note.png](1;spawn;urxvt -e ncmpcpp)^s[right;\#BBBBBB;  ](1;spawn;urxvt -e ncmpcpp)\
+^i[right;0;0;$HOME/.config/wmfs/icons/stat/note.png](1;spawn;urxvt -e ncmpcpp)^s[right;\#BBBBBB;  ](1;spawn;urxvt -e ncmpcpp)\
 \
 ${if_mpd_playing}\
 ^s[right;\#D8ADFF; ${mpd_artist}]\
@@ -66,12 +66,12 @@ ${endif}\
 #${if_match "${exec mocp -Q %state}" == "STOP"}\
 #^s[right;\#D8ADFF;Arrêt  ]\
 #$endif\
-#^i[right;0;0;/home/madhatter/.config/wmfs/icons/stat/previous.png](1;spawn;mocp -r)^s[right;\#BBBBBB;  ]\
+#^i[right;0;0;$HOME/.config/wmfs/icons/stat/previous.png](1;spawn;mocp -r)^s[right;\#BBBBBB;  ]\
 #${if_match "${exec mocp -Q %state}" == "PLAY"}\
-#^i[right;0;0;/home/madhatter/.config/wmfs/icons/stat/pause.png](1;spawn;mocp -G)^s[right;\#BBBBBB;  ]\
+#^i[right;0;0;$HOME/.config/wmfs/icons/stat/pause.png](1;spawn;mocp -G)^s[right;\#BBBBBB;  ]\
 #$else\
-#^i[right;0;0;/home/madhatter/.config/wmfs/icons/stat/play.png](1;spawn;mocp -p)^s[right;\#BBBBBB;  ]\
+#^i[right;0;0;$HOME/.config/wmfs/icons/stat/play.png](1;spawn;mocp -p)^s[right;\#BBBBBB;  ]\
 #$endif\
-#^i[right;0;0;/home/madhatter/.config/wmfs/icons/stat/next.png](1;spawn;mocp -f)^s[right;\#BBBBBB;  ]\
-#^i[right;0;0;/home/madhatter/.config/wmfs/icons/stat/stop.png](1;spawn;mocp -s)^s[right;\#BBBBBB;  ]\
+#^i[right;0;0;$HOME/.config/wmfs/icons/stat/next.png](1;spawn;mocp -f)^s[right;\#BBBBBB;  ]\
+#^i[right;0;0;$HOME/.config/wmfs/icons/stat/stop.png](1;spawn;mocp -s)^s[right;\#BBBBBB;  ]\
 #$endif\

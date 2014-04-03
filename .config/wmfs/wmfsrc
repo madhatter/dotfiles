@@ -262,7 +262,7 @@
   [key] mod = {"Super", "Alt"}   key = "m"                func = "spawn" cmd = "sh ./.scripts/stop-motion"            [/key]
   [key] mod = {"Super", "Alt"}   key = "c"                func = "spawn" cmd = "urxvtc -e weechat-curses"             [/key]
   [key] mod = {"Super"}          key = "Print"            func = "spawn" cmd = "scrot -c"                             [/key]
-  [key] mod = {"Super"}          key = "0"                func = "spawn" cmd = "sh /home/madhatter/.scripts/restartwifi"   [/key]
+  [key] mod = {"Super"}          key = "0"                func = "spawn" cmd = "sh $HOME/.scripts/restartwifi"   [/key]
   [key] mod = {"Super"}          key = "u"                func = "spawn" cmd = "mplayer tv:// -tv driver=v4l2:width=640:height=480:device=/dev/video0 -title Webcam -fps 25 -vf screenshot" [/key]
    
   # Shutdown / Reboot / Lock / Kill / Close / Reload / Quit
