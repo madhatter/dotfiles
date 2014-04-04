@@ -1,6 +1,6 @@
 PATH=/bin:/usr/bin:/usr/local/bin 
 VERBOSE=on  
-DEFAULT=/var/spool/mail/$USER
+DEFAULT=/var/spool/mail/madhatter
 MAILDIR=$HOME/mail            
 LOGFILE=$HOME/.procmaillog  
 # Recipes below this comment:
