@@ -63,12 +63,15 @@ git_user() {
 }
 
 git_prompt_info() {
-  if [[ ! -d .git ]]; then return; fi
-  info="$(git_user)$(git_branch)$(git_remote_difference)"
-  if [ $(git_status_count) -gt 0 ]; then
-    info="$info$(git_staged_count)$(git_modified_count)$(git_untracked_count)"
+  if git rev-parse --is-inside-work-tree >& /dev/null; then
+	  info="$(git_user)$(git_branch)$(git_remote_difference)"
+	  if [ $(git_status_count) -gt 0 ]; then
+	    info="$info$(git_staged_count)$(git_modified_count)$(git_untracked_count)"
+	  fi
+	  print "$info "
+  else
+	return
   fi
-  print "$info "
 }
 
 # for mercurial information in the prompt
@@ -88,11 +91,11 @@ hg_untracked_count() {
 
 # the differentiation between modified and staged changes might be
 # not too useful as mercurial stages everything but new files by default.
-hg_modified_count() {
-  count=$(hg_status_count "^M\s")
-  if [ $count -eq 0 ]; then return; fi
-  echo " %{$fg_bold[red]%}M%{$fg_no_bold[black]%}:%{$reset_color$fg[red]%}$count%{$reset_color%}"
-}
+#hg_modified_count() {
+#  count=$(hg_status_count "^M\s")
+#  if [ $count -eq 0 ]; then return; fi
+#  echo " %{$fg_bold[red]%}M%{$fg_no_bold[black]%}:%{$reset_color$fg[red]%}$count%{$reset_color%}"
+#}
 
 hg_staged_count() {
   count=$(hg_status_count "[A|M|R|C]\s")
@@ -133,11 +136,13 @@ hg_user() {
 }
 
 hg_prompt_info() {
-	if [[ ! -d .hg ]]; then return; fi
+	#if [[ ! -d .hg ]]; then return; fi
+	if ! HG_ROOT=$(hg root) 2> /dev/null; then return; fi
 	#info="$(hg_user)$(hg_branch)$(hg_remote_difference)"
 	info="$(hg_user)$(hg_branch)"
 	if [ $(hg_status_count) -gt 0 ]; then
-		info="$info$(hg_untracked_count)$(hg_modified_count)$(hg_staged_count)"
+		#info="$info$(hg_untracked_count)$(hg_modified_count)$(hg_staged_count)"
+		info="$info$(hg_untracked_count)$(hg_staged_count)"
 	fi
 	print "$info "
 }
