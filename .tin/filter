@@ -23,23 +23,47 @@
 #   time=NUM          Optional. time_t value when rule expires
 #
 
-comment=Rule created by: add_posted_to_filter=ON.
-group=de.alt.test
+group=*
 case=0
-score=hot
-msgid=*<jsidf7$a3d$1@dont-email.me>*
-time=1343333262 (2012-07-26 20:07:42 UTC)
+score=kill
+subj=*ASSASSINI E BANCHIERI DELLA MAFIA, MASSIMO DORIS MEDIOLANUM, ENNIO DORIS MEDIOLANUM, GIOVANNI PIROVANO MEDIOLANUM VOGLIONO LA MORTE DI RE MIDA ED EROE CIVILE MICHELE NISTA http://michelenista.blogspot.co.uk/. CON IL PREGIUDICATO OMICIDA PAOLO BARRAI!*
+from=*blogdiriferimento@yahoo.com*
+
+group=*
+case=0
+score=kill
+subj=*Frauen der Woche !*
+from=*angebot31@googlemail.com*
+
+group=*
+case=0
+score=kill
+from=*zaltorlin@yahoo.com*
+
+group=*
+case=0
+score=kill
+subj=*Detlef Bosau mit Linux \?rgern*
+from=*alf.diehlrot@freenet.de*
 
 comment=Rule created by: add_posted_to_filter=ON.
 group=de.alt.test
 case=0
 score=hot
-msgid=*<jsvlrt$lk2$2@arch.eternal-september.org>*
-time=1343767853 (2012-07-31 20:50:53 UTC)
+msgid=*<bq03k9Ft2t2U1@mid.individual.net>*
+time=1398784797 (2014-04-29 15:19:57 UTC)
 
-comment=Rule created by: add_posted_to_filter=ON.
-group=eternal-september.support
-case=0
+group=de.comm.software.mailreader.misc
+case=1
 score=hot
-msgid=*<jt2593$297$2@arch.eternal-september.org>*
-time=1343849173 (2012-08-01 19:26:13 UTC)
+subj=*mutt*
+
+group=de.comm.software.newsreader
+case=1
+score=hot
+subj=*tin*
+
+group=de.comp.editoren
+case=1
+score=hot
+subj=*vim*

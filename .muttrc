@@ -33,7 +33,7 @@ alternates madhatter@nostalgix.org
 set sendmail="/usr/bin/msmtp"   
 
 # Incoming mail
-set spoolfile = /var/spool/mail/madhatter
+set spoolfile = /var/spool/mail/$USER
 
 # Folders
 set folder="$HOME/mail"      # Local mailboxes stored here

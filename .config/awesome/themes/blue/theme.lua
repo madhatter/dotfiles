@@ -10,9 +10,9 @@
 -- {{{ Main
 
 theme = {}
-theme.confdir = "/home/madhatter/.config/awesome/themes/blue"
--- theme.wallpaper_cmd = { "awsetbg /home/madhatter/Bilder/wallpaper-1721891.jpg" }
-theme.wallpaper = "/home/madhatter/.config/awesome/1440x900.png"
+theme.confdir = "$HOME/.config/awesome/themes/blue"
+-- theme.wallpaper_cmd = { "awsetbg $HOME/Bilder/wallpaper-1721891.jpg" }
+theme.wallpaper = "$HOME/.config/awesome/1440x900.png"
 
 -- }}}
 
@@ -135,34 +135,34 @@ theme.widget_pandora = theme.confdir .. "/widgets/phones.png"
 
 -- {{{ Taglist
 
-theme.taglist_squares_sel   = "/home/madhatter/.config/awesome/themes/blue/taglist/squaref_b.png"
-theme.taglist_squares_unsel = "/home/madhatter/.config/awesome/themes/blue/taglist/square_b.png"
+theme.taglist_squares_sel   = "$HOME/.config/awesome/themes/blue/taglist/squaref_b.png"
+theme.taglist_squares_unsel = "$HOME/.config/awesome/themes/blue/taglist/square_b.png"
 --theme.taglist_squares_resize = "false"
 
 -- }}}
 
 -- {{{ Misc
 
-theme.awesome_icon           = "/home/madhatter/.config/awesome/themes/blue/widgets/arch_10x10.png"
-theme.menu_submenu_icon      = "/home/madhatter/.config/awesome/themes/blue/submenu.png"
-theme.tasklist_floating_icon = "/home/madhatter/.config/awesome/themes/blue/floating.png"
+theme.awesome_icon           = "$HOME/.config/awesome/themes/blue/widgets/arch_10x10.png"
+theme.menu_submenu_icon      = "$HOME/.config/awesome/themes/blue/submenu.png"
+theme.tasklist_floating_icon = "$HOME/.config/awesome/themes/blue/floating.png"
 
 -- }}}
 
 -- {{{ Layout
 
-theme.layout_tile       = "/home/madhatter/.config/awesome/themes/blue/layouts/tile.png"
-theme.layout_tileleft   = "/home/madhatter/.config/awesome/themes/blue/layouts/tileleft.png"
-theme.layout_tilebottom = "/home/madhatter/.config/awesome/themes/blue/layouts/tilebottom.png"
-theme.layout_tiletop    = "/home/madhatter/.config/awesome/themes/blue/layouts/tiletop.png"
-theme.layout_fairv      = "/home/madhatter/.config/awesome/themes/blue/layouts/fairv.png"
-theme.layout_fairh      = "/home/madhatter/.config/awesome/themes/blue/layouts/fairh.png"
-theme.layout_spiral     = "/home/madhatter/.config/awesome/themes/blue/layouts/spiral.png"
-theme.layout_dwindle    = "/home/madhatter/.config/awesome/themes/blue/layouts/dwindle.png"
-theme.layout_max        = "/home/madhatter/.config/awesome/themes/blue/layouts/max.png"
-theme.layout_fullscreen = "/home/madhatter/.config/awesome/themes/blue/layouts/fullscreen.png"
-theme.layout_magnifier  = "/home/madhatter/.config/awesome/themes/blue/layouts/magnifier.png"
-theme.layout_floating   = "/home/madhatter/.config/awesome/themes/blue/layouts/floating.png"
+theme.layout_tile       = "$HOME/.config/awesome/themes/blue/layouts/tile.png"
+theme.layout_tileleft   = "$HOME/.config/awesome/themes/blue/layouts/tileleft.png"
+theme.layout_tilebottom = "$HOME/.config/awesome/themes/blue/layouts/tilebottom.png"
+theme.layout_tiletop    = "$HOME/.config/awesome/themes/blue/layouts/tiletop.png"
+theme.layout_fairv      = "$HOME/.config/awesome/themes/blue/layouts/fairv.png"
+theme.layout_fairh      = "$HOME/.config/awesome/themes/blue/layouts/fairh.png"
+theme.layout_spiral     = "$HOME/.config/awesome/themes/blue/layouts/spiral.png"
+theme.layout_dwindle    = "$HOME/.config/awesome/themes/blue/layouts/dwindle.png"
+theme.layout_max        = "$HOME/.config/awesome/themes/blue/layouts/max.png"
+theme.layout_fullscreen = "$HOME/.config/awesome/themes/blue/layouts/fullscreen.png"
+theme.layout_magnifier  = "$HOME/.config/awesome/themes/blue/layouts/magnifier.png"
+theme.layout_floating   = "$HOME/.config/awesome/themes/blue/layouts/floating.png"
 
 -- }}}
 

@@ -1,4 +1,4 @@
-# Group attributes file V1.0.7 for the TIN newsreader
+# Group attributes file V1.0.8 for the TIN newsreader
 # Do not edit this comment block
 #
 #  scope=STRING (eg. alt.*,!alt.bin*) [mandatory]
@@ -19,6 +19,7 @@
 #  followup_to=STRING
 #  from=STRING (just append wanted From:-line, don't use quotes)
 #  group_catchup_on_exit=ON/OFF
+#  group_format=STRING (eg. %n %m %R %L  %s  %F)
 #  mail_8bit_header=ON/OFF
 #  mail_mime_encoding=supported_encoding
 #    8bit, base64, quoted-printable, 7bit, 
@@ -75,8 +76,6 @@
 #  sigfile=STRING (eg. $var/sig)
 #  show_author=NUM
 #    0=None, 1=Address, 2=Full Name, 3=Address and Name
-#  show_info=NUM
-#    0=None, 1=Lines, 2=Score, 3=Lines & Score
 #  show_signatures=ON/OFF
 #  show_only_unread_arts=ON/OFF
 #  sigdashes=ON/OFF
@@ -99,6 +98,7 @@
 #    0=None, 1=Subject, 
 #    2=References, 3=Both Subject and References, 
 #    4=Multipart Subject, 5=Percentage Match, 
+#  thread_format=STRING (eg. %n %m [%L]  %T  %F)
 #  thread_perc=NUM
 #  trim_article_body=NUM
 #    0 = Don't trim article body

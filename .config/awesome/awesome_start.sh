@@ -1,6 +1,6 @@
 #!/bin/bash
 
-#feh --bg-scale /home/madhatter/Dropbox/wallpappen/wallpaper-677043.jpg &
+#feh --bg-scale $HOME/Dropbox/wallpappen/wallpaper-677043.jpg &
 urxvtd -q -f -o &
 nm-applet --sm-disable &
 dropboxd &

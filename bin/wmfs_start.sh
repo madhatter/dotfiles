@@ -1,6 +1,6 @@
 #!/bin/bash
 
-feh --bg-scale /home/madhatter/Dropbox/wallpappen/wallpaper-677043.jpg &
+feh --bg-scale $HOME/Dropbox/wallpappen/wallpaper-677043.jpg &
 urxvtd -q -f -o &
 nm-applet --sm-disable &
 dropbox start&
@@ -11,6 +11,6 @@ dropbox start&
 conky -c ~/.config/wmfs/scripts/conkyrc_top | while true; read line; do wmfs -c status "testbar $line"; done &
 conky -c ~/.config/wmfs/scripts/conkyrc_bottom | while true; read line; do wmfs -c status "bottom $line"; done &
 xmodmap ~/.Xmodmap &
-mpd &
-mpdscribble &
+pgrep -u "$EUID" -x mpd || mpd &
+pgrep -u "$EUID" -x mpdscribble || mpdscribble &
 exec dbus-launch wmfs

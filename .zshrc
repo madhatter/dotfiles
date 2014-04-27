@@ -3,12 +3,13 @@
 #plugins=(git mercurial history-substring-search rvm archlinux)
 
 source ~/.zsh/history-substring-search/history-substring-search.zsh
-source ~/.zsh/prompt 
+source ~/.zsh/prompt.zsh
+source ~/.zsh/title.zsh 
 
 # Customize to your needs...
 #
 # Usenet News
-export NNTPSERVER=news.eternal-september.org
+export NNTPSERVER=news.individual.de
 
 # local hadoop installation
 export HADOOP_HOME="$HOME/CDH/hadoop"
@@ -24,9 +25,10 @@ export ZOOKEEPER_HOME="$HOME/CDH/zookeeper"
 #export HADOOP_CLASSPATH=$HBASE_HOME/lib/zookeeper-3.3.3-cdh3u4.jar::$HADOOP_CLASSPATH
 export HADOOP_CLASSPATH=$(for i in $HBASE_HOME/lib/*.jar ; do echo -n $i: ; done)
 
+export CHEF_HOME="/opt/chef"
 
 # enhance the path (ordered by priority to make manual installation work)
-export PATH="$HOME/bin:$HADOOP_HOME/bin:$HBASE_HOME/bin:$ZOOKEEPER_HOME/bin:$SQOOP_HOME/bin:/usr/local/bin:/usr/local/sbin:/usr/X11R6/bin:$PATH"
+export PATH="$HOME/bin:$HADOOP_HOME/bin:$HBASE_HOME/bin:$ZOOKEEPER_HOME/bin:$SQOOP_HOME/bin:$CHEF_HOME/embedded/bin:/usr/local/bin:/usr/local/sbin:/usr/X11R6/bin:$PATH"
 
 # where is my editor
 export VIM="/usr/local/share/vim/vim74"
@@ -53,12 +55,14 @@ export PARSTREAM_HOME="/opt/parstream"
 export WORKSPACE="$HOME/workspace"
 export PAGER="less "
 export TERM="rxvt-256color"
-export JAVA_HOME="/opt/java"
+export JAVA_HOME="/opt/java/jre"
 
 # Ruby DBGp
 export RUBYDB_LIB=~/lib/rubylib
 export RUBYDB_OPTS="HOST=localhost PORT=9000"
 alias druby='ruby -I$RUBYDB_LIB -r $RUBYDB_LIB/rdbgp.rb'
+
+#export RUBY_VERSION=$(cat $HOME/.ruby-version)
 
 # Alias for debugging php cli
 alias dphp='php -d xdebug.remote_autostart=1'
@@ -102,11 +106,16 @@ alias ll='ls -la'
 # don't correct me when I am talking about hdfs
 alias hadoop="noglob hadoop"
 
+# tin
+alias rtin="tin -r"
+
 #PS1="%{%B$fg[blue]%}┌─[ %{$fg[green]%}%n%{$fg[white]%}(%{$fg[cyan]%}%m%{$fg[white]%}):%{$fg[yellow]%}%~ %{$fg[blue]%}]
 #└──╼ %{$reset_color%}"
 
 [ ! "$UID" = "0" ] && archey3 -c blue
 [  "$UID" = "0" ] && archey3 -c red
 
+# stuff for rvm
+export rvmsudo_secure_path=0
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm"
-PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
+#PATH=$HOME/.rvm/gems/$RUBY_VERSION/bin:$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting

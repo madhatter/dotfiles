@@ -192,7 +192,7 @@ aliases = {
   SBAR = "STATUSBAR";
   INVITELIST = "mode $C +I";
   Q = "QUERY";
-  URLCLEAR = "exec rm /home/madhatter/.irssi/urlplot/a_cache";
+  URLCLEAR = "exec rm $HOME/.irssi/urlplot/a_cache";
   PATSCH = "exec -o figlet PATSCH!";
 };
 
