@@ -10,7 +10,7 @@ TEXT
 $mpd_smart :: \
 ${cpu cpu1}%/${cpu cpu2}%  ${loadavg 1} :: \
 $memperc% ($mem) :: \
-${if_up eth0}${wireless_essid eth0}${else}${if_up eth1}On${else}No${endif}${endif} :: \
+${if_up eth0}${wireless_essid eth0}${else}${if_up eth1}${wireless_essid eth1}${else}No${endif}${endif} :: \
 ${execi 1 pacman -Qu --dbpath $HOME/pacman | wc -l} :: \
 ${battery_percent}% :: \
 ${time %a %d. %b %k:%M}

@@ -1,4 +1,5 @@
 *.swp
+.mutt/cache
 .tin/.news-news.individual.de/
 .tin/news.individual.de/
 .tin/newsrctable
