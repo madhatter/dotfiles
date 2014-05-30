@@ -147,5 +147,10 @@ hg_prompt_info() {
 	print "$info "
 }
 
+date_info() {
+	info="$(date +%H:%M.%S)"
+	echo "%{$fg[grey]%}$info "
+}
+
 # build my prompt
-export PROMPT='%{$fg[blue]%}%~%{$reset_color%} $(hg_prompt_info)$(git_prompt_info)%{$fg[magenta]%}$%{$reset_color%} '
+export PROMPT='$(date_info)%{$fg[blue]%}%~%{$reset_color%} $(hg_prompt_info)$(git_prompt_info)%{$fg[magenta]%}$%{$reset_color%} '
