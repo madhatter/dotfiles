@@ -8,7 +8,7 @@ TOTAL=$(($LOAD / $FULL_P))
 if [[ "x$STATUS" == "xDischarging" && $TOTAL -lt 10 ]]; then
 	$(notify-send -u critical -t 60000 -a battery "Very low battery warning" "Forcing hibernation now.")
 	$(sleep 20)
-	$(sudo pm-hibernate)
+	$(sudo systemctl hibernate)
 elif [[ "x$STATUS" == "xDischarging" && $TOTAL -lt 20 ]]; then
 	$(notify-send -u critical -t 60000 -a battery "Low battery warning" "Connect to a charger near you.")
 fi
