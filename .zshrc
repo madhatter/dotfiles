@@ -109,6 +109,9 @@ alias hadoop="noglob hadoop"
 # tin
 alias rtin="tin -r"
 
+# use different terminal font in vim
+#alias vim="printf '\33]50;%s\007' \"xft:Sauce Code Powerline:pixelsize=12\"; vim $2; printf '\33]50;%s\007' \"xft:Terminess Powerline:regular:size=8\""
+
 #PS1="%{%B$fg[blue]%}┌─[ %{$fg[green]%}%n%{$fg[white]%}(%{$fg[cyan]%}%m%{$fg[white]%}):%{$fg[yellow]%}%~ %{$fg[blue]%}]
 #└──╼ %{$reset_color%}"
 
@@ -119,3 +122,7 @@ alias rtin="tin -r"
 export rvmsudo_secure_path=0
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm"
 #PATH=$HOME/.rvm/gems/$RUBY_VERSION/bin:$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
+
+# ... support zsh in tmux in URxvt too
+bindkey '^[[A' history-substring-search-up
+bindkey '^[[B' history-substring-search-down
