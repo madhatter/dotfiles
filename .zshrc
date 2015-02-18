@@ -120,9 +120,13 @@ alias rtin="tin -r"
 
 # stuff for rvm
 export rvmsudo_secure_path=0
+export rvm_ignore_gemrc_issues=1
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm"
 #PATH=$HOME/.rvm/gems/$RUBY_VERSION/bin:$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
 
 # ... support zsh in tmux in URxvt too
 bindkey '^[[A' history-substring-search-up
 bindkey '^[[B' history-substring-search-down
+
+# if there is a zprofile, use it
+[[ -e ~/.zprofile ]] && emulate sh -c 'source ~/.zprofile'
