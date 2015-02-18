@@ -5,3 +5,5 @@
 .tin/newsrctable
 .tin/posted
 
+./bin/python
+./bin/python-config
