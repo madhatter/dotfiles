@@ -4,6 +4,5 @@
 .tin/news.individual.de/
 .tin/newsrctable
 .tin/posted
-
-./bin/python
-./bin/python-config
+bin/python
+bin/python-config
