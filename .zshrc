@@ -23,7 +23,7 @@ export HBASE_CONF_DIR="$HBASE_HOME/conf"
 export ZOOKEEPER_HOME="$HOME/CDH/zookeeper"
 
 #export HADOOP_CLASSPATH=$HBASE_HOME/lib/zookeeper-3.3.3-cdh3u4.jar::$HADOOP_CLASSPATH
-export HADOOP_CLASSPATH=$(for i in $HBASE_HOME/lib/*.jar ; do echo -n $i: ; done)
+#export HADOOP_CLASSPATH=$(for i in $HBASE_HOME/lib/*.jar ; do echo -n $i: ; done)
 
 export CHEF_HOME="/opt/chef"
 
@@ -32,6 +32,7 @@ export PATH="$HOME/bin:$HADOOP_HOME/bin:$HBASE_HOME/bin:$ZOOKEEPER_HOME/bin:$SQO
 
 # where is my editor
 export VIM="/usr/local/share/vim/vim74"
+#export VIM="/usr/share/vim/vim74"
 
 # where does mail go?
 export MAIL=/var/spool/mail/$USER
@@ -55,7 +56,7 @@ export PARSTREAM_HOME="/opt/parstream"
 export WORKSPACE="$HOME/workspace"
 export PAGER="less "
 export TERM="rxvt-256color"
-export JAVA_HOME="/opt/java/jre"
+export JAVA_HOME="/usr/lib/jvm/java-7-jdk/"
 
 # Ruby DBGp
 export RUBYDB_LIB=~/lib/rubylib

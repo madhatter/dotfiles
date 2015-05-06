@@ -1,5 +1,5 @@
 ## mutt configuration
-# 
+#
 # first some includes for
 # color
 source ~/.mutt/colors/darkcourses_
@@ -15,12 +15,12 @@ source ~/.mutt.macros
 source ~/.gpgrc
 
 # personal information
-set realname="Arvid Warnecke"
-set from="arvid@nostalgix.org"
+#set realname="Arvid Warnecke"
+#set from="arvid@nostalgix.org"
 set use_from=yes
 set envelope_from=yes
 set followup_to
-set reverse_name 
+set reverse_name
 
 # set from automatically
 unalternates ``*''
@@ -28,27 +28,35 @@ alternates arvid.warnecke@gmail.com
 alternates arvid.warnecke@nostalgix.org
 alternates madhatter@nostalgix.org
 
-# Use msmtp rather than sendmail. Check that 
+# Use msmtp rather than sendmail. Check that
 # the path is correct for your system:
-set sendmail="/usr/bin/msmtp"   
-
-# Incoming mail
-set spoolfile = /var/spool/mail/$USER
+set sendmail="/bin/msmtp"
 
 # Folders
-set folder="$HOME/mail"      # Local mailboxes stored here
-set record="+sent"           # Where to store sent messages
-set postponed="+postponed"   # Where to store draft messages
-set mbox_type=mbox           # Mailbox type
-set move=ask-no				 # Don't move mail from spool by default
+#set folder="$HOME/mail"      # Local mailboxes stored here
+#set record="+sent"           # Where to store sent messages
+#set postponed="+postponed"   # Where to store draft messages
+#set mbox_type=mbox           # Mailbox type
+set mbox_type=Maildir        # Mailbox type
+set move=no					 # Don't move mail from spool by default
 set include=yes				 # Quote message when replying
 set mark_old=no				 # Don't mark new messages as old, when changing
 							 # the mailbox
 set auto_tag=yes			 # Functions in the index which affect a message
 							 # will applied to all tagged messages if there are
-set mbox="+archive"			 # Where mutt will store read messages
+#set mbox="+archive"			 # Where mutt will store read messages
 
-# Watch these mailboxes for new mail, useful only if 
+# arvid.warnecke@nostalgix.org
+source "~/.mutt.nostalgix_aw"
+# Here we use the $folder variable that has just been set in the sourced file.
+# We must set it right now otherwise the 'folder' variable will change in the next sourced file.
+folder-hook $folder 'source ~/.mutt.nostalgix_aw'
+
+## madhatter@nostalgix.org
+source "~/.mutt.nostalgix_m"
+folder-hook *madhatter@nostalgix.org/ 'source ~/.mutt.nostalgix_m'
+
+# Watch these mailboxes for new mail, useful only if
 # Procmail or Maildrop is used to sort mail.
 mailboxes ! +list.vim +list.ruby-talk +fetchmail +mutt +list.hbase-user +list.arch-general +list.arch-dev-public
 set sort_browser=alpha    # Sort mailboxes by alpha(bet)
@@ -62,8 +70,8 @@ hdr_order Date: From: User-Agent: X-Mailer X-Operating-System To: \
          Cc: Reply-To: Subject: Mail-Followup-To:
 
 # Editor of choice
-#set editor="vim -c 'set tw=70 et' '+/^$' " 
-set editor="vim" 
+#set editor="vim -c 'set tw=70 et' '+/^$' "
+set editor="vim"
 set edit_headers=no      # See the headers when editing
 
 # set date_format
@@ -88,7 +96,7 @@ charset-hook ^us-ascii$ "windows-1252"
 charset-hook ^iso-8859-1$ "windows-1252"
 set assumed_charset="windows-1252"
 
-set pager_stop=yes	# not move to the next message when you are at the end 
+set pager_stop=yes	# not move to the next message when you are at the end
 			# of a message and invoke the next-page function
 set pager_context=2	# controls the number of lines of context that are given
 			# when displaying the next or previous page in the internal pager
@@ -105,7 +113,7 @@ auto_view text/html
 alternative_order text/plain text/enriched text/html     # save html for last
 
 ## GPG-Configuration was sourced above
-set pgp_autosign     
+set pgp_autosign
 set pgp_replysign
 # set pgp_encryptself           #does nothing, why?
 set pgp_replyencrypt
