@@ -3,6 +3,7 @@
 ## Largely Inspire By crshd and Him .
 ####################################################
 
+mpd_host = "127.0.0.1"
 mpd_music_dir = "$HOME/music"
 
 # Playlist
