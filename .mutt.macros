@@ -10,6 +10,7 @@ macro generic "<esc>2" ":set from=arvid.warnecke@gmail.com realname='Arvid Warne
 #
 macro index,pager <f2> '<sync-mailbox><enter-command>source ~/.mutt.nostalgix_aw<enter><change-folder>!<enter>'
 macro index,pager <f3> '<sync-mailbox><enter-command>source ~/.mutt.nostalgix_m<enter><change-folder>!<enter>'
+macro index,pager <f4> '<sync-mailbox><enter-command>source ~/.mutt.nostalgix_a<enter><change-folder>!<enter>'
 
 # macro to start fetchmail manualy
 #
