@@ -12,7 +12,7 @@ source ~/.zsh/title.zsh
 export NNTPSERVER=news.individual.de
 
 # local hadoop installation
-export HADOOP_HOME="$HOME/CDH/hadoop"
+export HADOOP_HOME="/usr/lib/hadoop-2.7.1"
 export HADOOP_INSTALL=$HADOOP_HOME
  
 # local hbase installation
@@ -27,8 +27,11 @@ export ZOOKEEPER_HOME="$HOME/CDH/zookeeper"
 
 export CHEF_HOME="/opt/chef"
 
+# Go workspace. Go, go, go.
+export GOPATH="$HOME/code/go"
+
 # enhance the path (ordered by priority to make manual installation work)
-export PATH="$HOME/bin:$HADOOP_HOME/bin:$HBASE_HOME/bin:$ZOOKEEPER_HOME/bin:$SQOOP_HOME/bin:$CHEF_HOME/embedded/bin:/usr/local/bin:/usr/local/sbin:/usr/sbin:/sbin:/usr/X11R6/bin:$PATH"
+export PATH="$HOME/bin:$GOPATH/bin:$HADOOP_HOME/bin:$HBASE_HOME/bin:$ZOOKEEPER_HOME/bin:$CHEF_HOME/embedded/bin:/usr/local/bin:/usr/local/sbin:/usr/sbin:/bin:/sbin:/usr/X11R6/bin:$PATH"
 
 # where is my editor
 export VIM="/usr/local/share/vim/vim74"
@@ -85,6 +88,7 @@ set -o emacs
 setopt LOCAL_OPTIONS # allow functions to have local options
 setopt LOCAL_TRAPS # allow functions to have local traps
 setopt PROMPT_SUBST
+setopt NO_NOMATCH # stop bailing on the command when it fails to match a glob pattern
 
 autoload -U compinit
 compinit
@@ -104,11 +108,14 @@ zstyle -e ':completion::*:*:*:hosts' hosts 'reply=(${=${${(f)"$(cat {/etc/ssh_,~
 alias ls='ls --color=auto'
 alias ll='ls -la'
 
-# don't correct me when I am talking about hdfs
-alias hadoop="noglob hadoop"
-
 # tin
 alias rtin="tin -r"
+
+# general aliases
+alias glp="cd ~/dev/lhotse-puppet"
+alias gp="git pull"
+alias vcenter_ctrl="/home/awarnecke/dev/lhotse-puppet/modules/epe_client/files/vcenter_ctrl.py -u arvid.warnecke@easy.otto -H http://epe.otto.easynet.de:8080 "
+#alias python=/usr/bin/python3.4
 
 # use different terminal font in vim
 #alias vim="printf '\33]50;%s\007' \"xft:Sauce Code Powerline:pixelsize=12\"; vim $2; printf '\33]50;%s\007' \"xft:Terminess Powerline:regular:size=8\""
@@ -131,3 +138,5 @@ bindkey '^[[B' history-substring-search-down
 
 # if there is a zprofile, use it
 [[ -e ~/.zprofile ]] && emulate sh -c 'source ~/.zprofile'
+
+#. /usr/share/zsh/site-contrib/powerline.zsh

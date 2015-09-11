@@ -11,4 +11,5 @@ feh --bg-fill $HOME/wallpaper &
 #conky | while read -r; do xsetroot -name "$REPLY"; done &
 dwmbar &
 wmname LG3D &
+dbus-update-activation-environment --systemd DISPLAY &
 exec dbus-launch dwm
