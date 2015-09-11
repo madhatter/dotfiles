@@ -56,6 +56,10 @@ folder-hook $folder 'source ~/.mutt.nostalgix_aw'
 source "~/.mutt.nostalgix_m"
 folder-hook *madhatter@nostalgix.org/ 'source ~/.mutt.nostalgix_m'
 
+## arvid@nostalgix.org
+source "~/.mutt.nostalgix_a"
+folder-hook *arvid@nostalgix.org/ 'source ~/.mutt.nostalgix_a'
+
 # Watch these mailboxes for new mail, useful only if
 # Procmail or Maildrop is used to sort mail.
 mailboxes ! +list.vim +list.ruby-talk +fetchmail +mutt +list.hbase-user +list.arch-general +list.arch-dev-public
