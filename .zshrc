@@ -12,7 +12,7 @@ source ~/.zsh/title.zsh
 export NNTPSERVER=news.individual.de
 
 # local hadoop installation
-export HADOOP_HOME="$HOME/CDH/hadoop"
+export HADOOP_HOME="/usr/lib/hadoop-2.7.1"
 export HADOOP_INSTALL=$HADOOP_HOME
  
 # local hbase installation
@@ -28,7 +28,7 @@ export ZOOKEEPER_HOME="$HOME/CDH/zookeeper"
 export CHEF_HOME="/opt/chef"
 
 # enhance the path (ordered by priority to make manual installation work)
-export PATH="$HOME/bin:$HADOOP_HOME/bin:$HBASE_HOME/bin:$ZOOKEEPER_HOME/bin:$SQOOP_HOME/bin:$CHEF_HOME/embedded/bin:/usr/local/bin:/usr/local/sbin:/usr/sbin:/sbin:/usr/X11R6/bin:$PATH"
+export PATH="$HOME/bin:$HADOOP_HOME/bin:$HBASE_HOME/bin:$ZOOKEEPER_HOME/bin:$CHEF_HOME/embedded/bin:/usr/local/bin:/usr/local/sbin:/usr/sbin:/bin:/sbin:/usr/X11R6/bin:$PATH"
 
 # where is my editor
 export VIM="/usr/local/share/vim/vim74"
@@ -109,6 +109,12 @@ alias hadoop="noglob hadoop"
 
 # tin
 alias rtin="tin -r"
+
+# general aliases
+alias glp="cd ~/dev/lhotse-puppet"
+alias gp="git pull"
+alias vcenter_ctrl="/home/awarnecke/dev/lhotse-puppet/modules/epe_client/files/vcenter_ctrl.py -u arvid.warnecke@easy.otto -H http://epe.otto.easynet.de:8080 "
+alias cpfw="~/src/cpfw-login/cpfw-login --url https://fwauth.ov.otto.de --user awarneck --password N3v3r2l8 --insecure"
 
 # use different terminal font in vim
 #alias vim="printf '\33]50;%s\007' \"xft:Sauce Code Powerline:pixelsize=12\"; vim $2; printf '\33]50;%s\007' \"xft:Terminess Powerline:regular:size=8\""
