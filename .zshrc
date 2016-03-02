@@ -12,7 +12,8 @@ source ~/.zsh/title.zsh
 export NNTPSERVER=news.individual.de
 
 # local hadoop installation
-export HADOOP_HOME="/usr/lib/hadoop-2.7.1"
+#export HADOOP_HOME="/usr/lib/hadoop-2.7.2"
+export HADOOP_HOME="$(pacaur -Ql hadoop|grep /usr/lib|head -n3|tail -n 1|cut -d' ' -f 2)"
 export HADOOP_INSTALL=$HADOOP_HOME
  
 # local hbase installation
