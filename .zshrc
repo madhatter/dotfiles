@@ -118,8 +118,7 @@ alias gp="git pull"
 alias vcenter_ctrl="/home/awarnecke/dev/lhotse-puppet/modules/epe_client/files/vcenter_ctrl.py -u arvid.warnecke@easy.otto -H http://epe.otto.easynet.de:8080 "
 #alias python=/usr/bin/python3.4
 
-# use different terminal font in vim
-#alias vim="printf '\33]50;%s\007' \"xft:Sauce Code Powerline:pixelsize=12\"; vim $2; printf '\33]50;%s\007' \"xft:Terminess Powerline:regular:size=8\""
+alias rubymine="jetbrains-rubymine"
 
 #PS1="%{%B$fg[blue]%}┌─[ %{$fg[green]%}%n%{$fg[white]%}(%{$fg[cyan]%}%m%{$fg[white]%}):%{$fg[yellow]%}%~ %{$fg[blue]%}]
 #└──╼ %{$reset_color%}"
