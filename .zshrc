@@ -94,6 +94,13 @@ setopt NO_NOMATCH # stop bailing on the command when it fails to match a glob pa
 autoload -U compinit
 compinit
 
+my-backward-delete-word() {
+    local WORDCHARS=${WORDCHARS/\//}
+    zle backward-delete-word
+}
+zle -N my-backward-delete-word
+bindkey '^W' my-backward-delete-word
+
 # everything colorful
 [ -f $HOME/.LS_COLORS ] && eval $(dircolors -b $HOME/.LS_COLORS)
 eval $( dircolors -b $HOME/.LS_COLORS )
