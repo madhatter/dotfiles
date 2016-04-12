@@ -56,9 +56,9 @@ git_remote_difference() {
 git_user() {
   user=$(git config user.name)
   if [ -z $user ]; then
-    echo "%{$fg_bold[red]%}no user%{$fg[black]%}@%{$reset_color%}"
+    echo "%{$fg_bold[red]%}no user%{$fg[bright-black]%}@%{$reset_color%}"
   else
-    echo "$user%{$fg[black]%}@%{$reset_color%}"
+    echo "$user%{$fg[bright-black]%}@%{$reset_color%}"
   fi
 }
 
