@@ -12,7 +12,7 @@ URxvt*scrollBar:	false
 URxvt*borderLess:	false
 #URxvt*inheritPixmap:	true
 URxvt*geometry:		128x36
-URxvt*transparent:	false
+URxvt*transparent:	true
 URxvt*shading:		40
 URxvt*fading:		35
 URxvt*saveLines: 12000
