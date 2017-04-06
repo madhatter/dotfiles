@@ -1,8 +1,8 @@
 #!/bin/bash
 
-#feh --bg-scale $HOME/Dropbox/wallpappen/wallpaper-677043.jpg &
+#feh --bg-scale $HOME/Downloads/Portal_Wallpaper_RdQbP0U.jpg &
 urxvtd -q -f -o &
-nm-applet --sm-disable &
+pgrep -u "$EUID" -x nm-applet || nm-applet --sm-disable &
 dropbox start &
 xmodmap ~/.Xmodmap &
 pgrep -u "$EUID" -x mpd || mpd &
@@ -12,4 +12,5 @@ feh --bg-fill $HOME/wallpaper &
 dwmbar &
 wmname LG3D &
 dbus-update-activation-environment --systemd DISPLAY &
+echo $PATH > /tmp/path
 exec dbus-launch dwm
