@@ -204,3 +204,7 @@
     summary = *says*
     urgency = critical
 
+[Spotify]
+    appname = Spotify
+    summary = *says*
+	urgency = low
