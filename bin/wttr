@@ -1,0 +1,4 @@
+#!/bin/bash
+
+#printf '\33]50;%s\007' "xft:DejaVu Sans Mono for Powerline:regular:size=$1"
+curl http://wttr.in/${1}?lang=de
