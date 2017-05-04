@@ -7,6 +7,7 @@ dropbox start &
 xmodmap ~/.Xmodmap &
 pgrep -u "$EUID" -x mpd || mpd &
 pgrep -u "$EUID" -x mpdscribble || mpdscribble &
+pgrep -u "$EUID" -x redshift || redshift &
 feh --bg-fill $HOME/wallpaper &
 #conky | while read -r; do xsetroot -name "$REPLY"; done &
 dwmbar &
