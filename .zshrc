@@ -35,8 +35,8 @@ export GOPATH="$HOME/code/go"
 export PATH="$HOME/bin:$GOPATH/bin:$HADOOP_HOME/bin:$HBASE_HOME/bin:$ZOOKEEPER_HOME/bin:$CHEF_HOME/embedded/bin:/usr/local/bin:/usr/local/sbin:/usr/sbin:/bin:/sbin:/usr/X11R6/bin:$PATH"
 
 # where is my editor
-export VIM="/usr/local/share/vim/vim74"
-#export VIM="/usr/share/vim/vim74"
+export VIM="/usr/local/share/vim/vim80"
+#export VIM="/usr/share/vim/vim80"
 
 # where does mail go?
 export MAIL=/var/spool/mail/$USER
@@ -143,6 +143,7 @@ export rvmsudo_secure_path=0
 export rvm_ignore_gemrc_issues=1
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm"
 #PATH=$HOME/.rvm/gems/$RUBY_VERSION/bin:$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
+export SSL_CERT_FILE=/etc/ssl/cert.pem
 
 # ... support zsh in tmux in URxvt too
 bindkey '^[[A' history-substring-search-up
@@ -152,3 +153,4 @@ bindkey '^[[B' history-substring-search-down
 [[ -e ~/.zprofile ]] && emulate sh -c 'source ~/.zprofile'
 
 #. /usr/share/zsh/site-contrib/powerline.zsh
+source /usr/sbin/aws_zsh_completer.sh
