@@ -45,7 +45,7 @@ color1 = "default"
 color2 = "green"
 main_window_highlight_color = "red"
 progressbar_color = "yellow"
-statusbar_color = "black"
+statusbar_color = "white"
 active_column_color = "red"
 visualizer_color = "yellow"
 
