@@ -134,12 +134,13 @@ alias vcenter_ctrl="/home/awarnecke/dev/lhotse-puppet/modules/epe_client/files/v
 #alias python=/usr/bin/python3.4
 
 alias rubymine="jetbrains-rubymine"
+alias firefox-work="firefox -p Work -no-remote"
 
 #PS1="%{%B$fg[blue]%}┌─[ %{$fg[green]%}%n%{$fg[white]%}(%{$fg[cyan]%}%m%{$fg[white]%}):%{$fg[yellow]%}%~ %{$fg[blue]%}]
 #└──╼ %{$reset_color%}"
 
-[ ! "$UID" = "0" ] && archey3 -c blue
-[  "$UID" = "0" ] && archey3 -c red
+[ ! "$UID" = "0" ] && archey4 -c blue
+[  "$UID" = "0" ] && archey4 -c red
 
 # stuff for rvm
 export rvmsudo_secure_path=0
