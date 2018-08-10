@@ -8,6 +8,8 @@ source ~/.zsh/title.zsh
 
 # Customize to your needs...
 #
+export GPG_TTY=$(tty)
+
 # Usenet News
 export NNTPSERVER=news.individual.de
 
@@ -45,7 +47,7 @@ export MAIL=/var/spool/mail/$USER
 export EDITOR="vim"
 
 # default browser for urlscan
-export BROWSER=/bin/chromium
+export BROWSER=/bin/firefox
 
 # encoding
 export LC_CTYPE="de_DE.UTF-8"
@@ -79,6 +81,7 @@ alias dphp='php -d xdebug.remote_autostart=1'
 alias steam-wine32='WINEARCH=win32 WINEPREFIX=$HOME/.wine32/ wine $HOME/.wine32/drive_c/Program\ Files/Steam/Steam.exe >/dev/null 2>&1 &'
 alias steam-wine='WINEPREFIX=$HOME/.wine wine $HOME/.wine/drive_c/Program\ Files\ \(x86\)/Steam/Steam.exe >/dev/null 2>&1 &'
 alias fallout='WINEARCH=win32 WINEPREFIX=$HOME/.wine32_fallout wine .wine32_fallout/drive_c/Program\ Files/Interplay/Fallout/falloutw.exe > /dev/null 2>&1 &'
+
 # history settings
 export HISTFILE=$HOME/.zsh_history
 HISTSIZE=100000
