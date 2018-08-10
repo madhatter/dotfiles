@@ -3,25 +3,15 @@
 xrandr -q &> /dev/null
 rm /home/awarnecke/.config/nitrogen
 if $(xrandr -d :0.0 --prop |grep -q "DP-2-2 connected");then
-	xrandr --auto --output DP-2-2
-	xrandr --auto --output DP-2-2 --mode 1920x1080
-	xrandr --auto --output DP-2-2 --primary
-	xrandr --auto --output DP-2-3
-	xrandr --auto --output DP-2-3 --mode 1680x1050
-	xrandr --auto --output DP-2-3 --left-of DP2-2
-	xrandr --auto --output DP-1
-	xrandr --auto --output DP-1 --mode 1680x1050
-	xrandr --auto --output DP-1 --right-of DP-2-2
-
 	#xrandr --output eDP1 --mode 2560x1440 --pos 3600x0 --rotate normal --output DP1 --off --output DP2-1 --off --output DP2-2 --mode 1920x1080 --pos 1680x0 --rotate normal --output DP2-3 --mode 1680x1050 --pos 0x0 --rotate normal --output HDMI2 --off --output HDMI1 --off --output DP2 --off
-	xrandr --output eDP-1 --off --output DP-1 --mode 1680x1050 --pos 3600x0 --rotate normal --output DP-2-1 --off --output DP-2-2 --primary --mode 1920x1080 --pos 1680x0 --rotate normal --output DP-2-3 --mode 1680x1050 --pos 0x0 --rotate normal --output HDMI-2 --off --output HDMI-1 --off --output DP-2 --off
-
+	xrandr --output eDP-1 --auto
+	xrandr --output DP-2-1 --off --output DP-2-2 --primary --mode 2560x1440 --pos 0x0 --rotate normal --output DP-2-3 --off --output eDP-1 --mode 2560x1440 --pos 2616x848 --rotate normal --output HDMI-2 --off --output HDMI-1 --off --output DP-2 --off --output DP-1 --off
+	xrandr --output DP-2-2 --auto --left-of eDP-1
 
 	ln -s /home/awarnecke/.config/nitrogen_multi /home/awarnecke/.config/nitrogen
 	nitrogen --restore #apply wallpaper (doesn't work otherwise)
 else #if it's not connected
 	xrandr --auto --output eDP-1 --primary
-	xrandr --auto --output DP-2-2 --mode 1920x1080
 	xrandr --output eDP-1 --mode 2560x1440 --pos 0x0 --rotate normal --output DP-1 --off --output DP-2-1 --off --output DP-2-2 --off --output DP-2-3 --off --output HDMI-2 --off --output HDMI-1 --off --output DP-2 --off
 
 	ln -s /home/awarnecke/.config/nitrogen_single /home/awarnecke/.config/nitrogen
