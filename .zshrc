@@ -157,3 +157,6 @@ bindkey '^[[B' history-substring-search-down
 
 #. /usr/share/zsh/site-contrib/powerline.zsh
 source /usr/sbin/aws_zsh_completer.sh
+
+# direnv integration to set GIT_AUTHOR_EMAIL
+eval "$(direnv hook zsh)"
