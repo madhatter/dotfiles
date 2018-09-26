@@ -70,7 +70,7 @@
   color body       brightcyan    default "(^| )/[^ ]+/( |$)"
 
 # quote blocks
-  color quoted     magenta       default
+  color quoted     blue			 default
   color quoted1    cyan          default
   color quoted2    green         default
   color quoted3    yellow        default
