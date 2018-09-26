@@ -1,0 +1,2 @@
+#!/bin/sh
+firefox -p Work -no-remote > /dev/null 2>/dev/null &
