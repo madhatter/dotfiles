@@ -1,7 +1,7 @@
 # -[ DEFAULT COLOR DEFINITIONS ]-----------------------------------------------
 
 #color hdrdefault yellow         default
-color quoted     cyan           default
+color quoted     brightblue     default
 color quoted1    magenta        default
 color quoted2    yellow         default
 color quoted3    red            default
