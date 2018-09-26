@@ -32,13 +32,14 @@ export CHEF_HOME="/opt/chef"
 
 # Go workspace. Go, go, go.
 export GOPATH="$HOME/code/go"
+export GOROOT="/usr/lib/go"
 
 # enhance the path (ordered by priority to make manual installation work)
 export PATH="$HOME/bin:$GOPATH/bin:$HADOOP_HOME/bin:$HBASE_HOME/bin:$ZOOKEEPER_HOME/bin:$CHEF_HOME/embedded/bin:/usr/local/bin:/usr/local/sbin:/usr/sbin:/bin:/sbin:/usr/X11R6/bin:$PATH"
 
 # where is my editor
-export VIM="/usr/local/share/vim/vim80"
-#export VIM="/usr/share/vim/vim80"
+export VIM="/usr/local/share/vim/vim81"
+#export VIM="/usr/share/vim/vim81"
 
 # where does mail go?
 export MAIL=/var/spool/mail/$USER
