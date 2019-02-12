@@ -34,9 +34,6 @@ export CHEF_HOME="/opt/chef"
 export GOPATH="$HOME/code/go"
 export GOROOT="/usr/lib/go"
 
-# enhance the path (ordered by priority to make manual installation work)
-export PATH="$HOME/bin:$GOPATH/bin:$HADOOP_HOME/bin:$HBASE_HOME/bin:$ZOOKEEPER_HOME/bin:$CHEF_HOME/embedded/bin:/usr/local/bin:/usr/local/sbin:/usr/sbin:/bin:/sbin:/usr/X11R6/bin:$PATH"
-
 # where is my editor
 export VIM="/usr/local/share/vim/vim81"
 #export VIM="/usr/share/vim/vim81"
@@ -65,8 +62,11 @@ export CVSROOT=":pserver:awarnecke@astra.etracker.local:/home/cvsroot"
 export PARSTREAM_HOME="/opt/parstream"
 export WORKSPACE="$HOME/workspace"
 export PAGER="less "
-export TERM="rxvt-256color"
-export JAVA_HOME="/usr/lib/jvm/java-8-jdk/"
+#export TERM="rxvt-256color"
+export TERM="xterm-256color"
+
+#export JAVA_HOME="/usr/lib/jvm/java-8-jdk/"
+export JAVA_HOME="/usr/lib/jvm/java-8-openjdk"
 
 # Ruby DBGp
 export RUBYDB_LIB=~/lib/rubylib
@@ -75,13 +75,14 @@ alias druby='ruby -I$RUBYDB_LIB -r $RUBYDB_LIB/rdbgp.rb'
 
 #export RUBY_VERSION=$(cat $HOME/.ruby-version)
 
+# enhance the path (ordered by priority to make manual installation work)
+export PATH="$HOME/bin:$GOPATH/bin:$JAVA_HOME/bin:$HADOOP_HOME/bin:$HBASE_HOME/bin:$ZOOKEEPER_HOME/bin:$CHEF_HOME/embedded/bin:/usr/local/bin:/usr/local/sbin:/usr/sbin:/bin:/sbin:/usr/X11R6/bin:$PATH"
+
 # Alias for debugging php cli
 alias dphp='php -d xdebug.remote_autostart=1'
 
-# Steam and other games
-alias steam-wine32='WINEARCH=win32 WINEPREFIX=$HOME/.wine32/ wine $HOME/.wine32/drive_c/Program\ Files/Steam/Steam.exe >/dev/null 2>&1 &'
-alias steam-wine='WINEPREFIX=$HOME/.wine wine $HOME/.wine/drive_c/Program\ Files\ \(x86\)/Steam/Steam.exe >/dev/null 2>&1 &'
-alias fallout='WINEARCH=win32 WINEPREFIX=$HOME/.wine32_fallout wine .wine32_fallout/drive_c/Program\ Files/Interplay/Fallout/falloutw.exe > /dev/null 2>&1 &'
+# cd into my sources folder in $GOPATH
+alias cdg="cd $GOPATH/src/github.com/madhatter"
 
 # history settings
 export HISTFILE=$HOME/.zsh_history
@@ -162,5 +163,6 @@ source /usr/sbin/aws_zsh_completer.sh
 
 # direnv integration to set GIT_AUTHOR_EMAIL
 eval "$(direnv hook zsh)"
+
 BASE16_SHELL=$HOME/.config/base16-shell/
 [ -n "$PS1" ] && [ -s $BASE16_SHELL/profile_helper.sh ] && eval "$($BASE16_SHELL/profile_helper.sh)"
