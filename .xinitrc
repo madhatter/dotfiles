@@ -16,5 +16,11 @@ export SSH_AUTH_SOCK
 # reset alsa mixer
 sudo alsactl restore
 
+(compton -CGb) &
+# xcompmgr seems to cause weird distortions on moving text or images
+#(xcompmgr -c) &
+
+export _JAVA_AWT_WM_NONREPARENTING=1
+
 # start the windowmanager
 $HOME/bin/dwm_start.sh
