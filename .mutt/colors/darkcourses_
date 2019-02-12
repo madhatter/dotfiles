@@ -30,9 +30,10 @@
   color index      blue          default "~N !~u" # new non-ML mail
   color index      brightblue    default "~T"
   color index      brightred     default "~D"
+  color index	   cyan          default "~F !~p !~P"
 
 # colorize people I like to read from
-  color index      cyan          default "~f *guckes.net"
+  color index      cyan          default "~f guckes.net"
 
 # set up the headers
   color header     blue          default "^from:"
