@@ -55,3 +55,5 @@ visualizer_sync_interval = "30"
 visualizer_in_stereo = "yes"
 #visualizer_type = "wave" (spectrum/wave)
 visualizer_type = "spectrum" (spectrum/wave)
+
+execute_on_song_change = "/home/awarnecke/bin/ncmp_notify.sh"
