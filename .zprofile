@@ -5,7 +5,7 @@ for a in p2:459940072735:465543055212 \
 	ft1:054395779405:634353253303 \
 	codelab:699194762178:0 \
 	dv:316186851731:948404762416 \
-	opal-dr:146430384206:093753516799; do
+	dv-dr:146430384206:093753516799; do
   profile_name=$(echo ${a} | cut -d: -f1)
   nl_account=$(echo ${a} | cut -d: -f2)
   l_account=$(echo ${a} | cut -d: -f3)
