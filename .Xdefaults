@@ -1,9 +1,8 @@
-!-- colors --!
 ##include ".colors/dc2"
 #include ".colors/dc1"
 
 ## urxvt config
-URxvt*termName: rxvt
+#URxvt*termName: rxvt
 #URxvt*background:  #000000
 URxvt*foreground:  #A8A8A8
 URxvt*scrollBar_right:	false
@@ -18,12 +17,14 @@ URxvt*fading:		35
 URxvt*saveLines: 12000
 #URxvt*font: xft:terminus-font:size=8x14
 #URxvt*font: xft:Terminess for Powerline:regular:size=12
-URxvt*font: xft:DejaVu Sans Mono for Powerline:regular:size=11
+##URxvt*font: xft:DejaVu Sans Mono for Powerline:regular:size=11
 #URxvt*font: xft:Roboto Mono for Powerline:regular:size=8
 #URxvt*font: xft:Anonymous Pro for Powerline:regular:size=10
 #URxvt*font: xft:Inconsolata for Powerline:regular:size=10
 #URxvt*font: xft:Liberation Mono for Powerline:regular:size=10
-#URxvt*font: xft:SourceCodePro for Powerline:regular:size=10
+#URxvt*font: xft:SourceCodePro for Powerline:regular:size=11
+URxvt*font: xft:FantasqueSansMono Nerd Font Mono:size=14
+URxvt*font: xft:DejaVuSansMono Nerd Font Mono:size=11
 
 ## nethack
 #NetHack*font:                   vga
