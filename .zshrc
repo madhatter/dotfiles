@@ -15,8 +15,8 @@ export NNTPSERVER=news.individual.de
 
 # local hadoop installation
 #export HADOOP_HOME="/usr/lib/hadoop-2.7.2"
-export HADOOP_HOME="$(pacaur -Ql hadoop|grep /usr/lib|head -n3|tail -n 1|cut -d' ' -f 2)"
-export HADOOP_INSTALL=$HADOOP_HOME
+#export HADOOP_HOME="$(pacaur -Ql hadoop|grep /usr/lib|head -n3|tail -n 1|cut -d' ' -f 2)"
+#export HADOOP_INSTALL=$HADOOP_HOME
  
 # local hbase installation
 export HBASE_HOME="$HOME/CDH/hbase"
@@ -48,12 +48,12 @@ export EDITOR="vim"
 export BROWSER=/bin/firefox
 
 # encoding
-export LC_CTYPE="de_DE.UTF-8"
-export LC_ALL="de_DE.UTF-8"
+#export LC_CTYPE="de_DE.UTF-8"
+#export LC_ALL="de_DE.UTF-8"
 
 # don't talk german to me
-export LANG="en_EN.UTF-8"
-export LANGUAGE="en_EN.UTF-8"
+#export LANG="en_EN.UTF-8"
+#export LANGUAGE="en_EN.UTF-8"
 
 # I needed the timezone sometimes when on other hosts
 export TZ="CET"
@@ -76,7 +76,7 @@ alias druby='ruby -I$RUBYDB_LIB -r $RUBYDB_LIB/rdbgp.rb'
 #export RUBY_VERSION=$(cat $HOME/.ruby-version)
 
 # enhance the path (ordered by priority to make manual installation work)
-export PATH="$HOME/bin:$GOPATH/bin:$JAVA_HOME/bin:$HADOOP_HOME/bin:$HBASE_HOME/bin:$ZOOKEEPER_HOME/bin:$CHEF_HOME/embedded/bin:/usr/local/bin:/usr/local/sbin:/usr/sbin:/bin:/sbin:/usr/X11R6/bin:$PATH"
+export PATH="$HOME/bin:$GOPATH/bin:$HOME/.local/bin:$JAVA_HOME/bin:$HADOOP_HOME/bin:$HBASE_HOME/bin:$ZOOKEEPER_HOME/bin:$CHEF_HOME/embedded/bin:/usr/local/bin:/usr/local/sbin:/usr/sbin:/bin:/sbin:/usr/X11R6/bin:$PATH"
 
 # Alias for debugging php cli
 alias dphp='php -d xdebug.remote_autostart=1'
@@ -159,7 +159,7 @@ bindkey '^[[B' history-substring-search-down
 [[ -e ~/.zprofile ]] && emulate sh -c 'source ~/.zprofile'
 
 #. /usr/share/zsh/site-contrib/powerline.zsh
-source /usr/sbin/aws_zsh_completer.sh
+source $HOME/.local/bin/aws_zsh_completer.sh
 
 # direnv integration to set GIT_AUTHOR_EMAIL
 eval "$(direnv hook zsh)"
