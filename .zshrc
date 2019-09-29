@@ -33,6 +33,7 @@ export CHEF_HOME="/opt/chef"
 # Go workspace. Go, go, go.
 export GOPATH="$HOME/code/go"
 export GOROOT="/usr/lib/go"
+export GOPROXY="https://proxy.golang.org"
 
 # where is my editor
 export VIM="/usr/local/share/vim/vim81"
