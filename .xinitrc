@@ -9,6 +9,9 @@ xset +fp /usr/share/fonts/local
 xset +fp $HOME/.fonts
 xset fp rehash
 
+# no beep
+xset -b
+
 #eval $(/usr/bin/gnome-keyring-daemon --start --components=pkcs11,secrets,ssh)
 #eval $(/usr/bin/gnome-keyring-daemon --daemonize --replace --components=pkcs11,secrets,ssh)
 export SSH_AUTH_SOCK
