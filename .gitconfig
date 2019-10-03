@@ -1,6 +1,7 @@
 [user]
 	email = madhatter@nostalgix.org
 	name = Arvid Warnecke
+	signingkey = 12942E7E
 
 [color]
     branch = auto

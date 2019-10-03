@@ -64,7 +64,7 @@ export PARSTREAM_HOME="/opt/parstream"
 export WORKSPACE="$HOME/workspace"
 export PAGER="less "
 #export TERM="rxvt-256color"
-export TERM="xterm-256color"
+#export TERM="xterm-256color"
 
 #export JAVA_HOME="/usr/lib/jvm/java-8-jdk/"
 export JAVA_HOME="/usr/lib/jvm/java-8-openjdk"
@@ -77,7 +77,7 @@ alias druby='ruby -I$RUBYDB_LIB -r $RUBYDB_LIB/rdbgp.rb'
 #export RUBY_VERSION=$(cat $HOME/.ruby-version)
 
 # enhance the path (ordered by priority to make manual installation work)
-export PATH="$HOME/bin:$GOPATH/bin:$HOME/.local/bin:$JAVA_HOME/bin:$HADOOP_HOME/bin:$HBASE_HOME/bin:$ZOOKEEPER_HOME/bin:$CHEF_HOME/embedded/bin:/usr/local/bin:/usr/local/sbin:/usr/sbin:/bin:/sbin:/usr/X11R6/bin:$PATH"
+export PATH="$HOME/bin:$GOPATH/bin:$HOME/.local/bin:$JAVA_HOME/bin:$HADOOP_HOME/bin:$HBASE_HOME/bin:$ZOOKEEPER_HOME/bin:$CHEF_HOME/embedded/bin:/usr/local/bin:/usr/local/sbin:/usr/sbin:/bin:/sbin:/usr/X11R6/bin:$HOME/.gem/ruby/2.6.0/bin:$PATH"
 
 # Alias for debugging php cli
 alias dphp='php -d xdebug.remote_autostart=1'
