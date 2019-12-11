@@ -67,7 +67,7 @@ export PAGER="less "
 #export TERM="xterm-256color"
 
 #export JAVA_HOME="/usr/lib/jvm/java-8-jdk/"
-export JAVA_HOME="/usr/lib/jvm/java-8-openjdk"
+export JAVA_HOME="/usr/lib/jvm/java-11-openjdk"
 
 # Ruby DBGp
 export RUBYDB_LIB=~/lib/rubylib
@@ -78,6 +78,7 @@ alias druby='ruby -I$RUBYDB_LIB -r $RUBYDB_LIB/rdbgp.rb'
 
 # enhance the path (ordered by priority to make manual installation work)
 export PATH="$HOME/bin:$GOPATH/bin:$HOME/.local/bin:$JAVA_HOME/bin:$HADOOP_HOME/bin:$HBASE_HOME/bin:$ZOOKEEPER_HOME/bin:$CHEF_HOME/embedded/bin:/usr/local/bin:/usr/local/sbin:/usr/sbin:/bin:/sbin:/usr/X11R6/bin:$HOME/.gem/ruby/2.6.0/bin:$PATH"
+export PATH="$PATH:$HOME/.cargo/bin"
 
 # Alias for debugging php cli
 alias dphp='php -d xdebug.remote_autostart=1'
@@ -131,13 +132,13 @@ alias ll='ls -la'
 alias rtin="tin -r"
 
 # general aliases
-alias glp="cd ~/dev/lhotse-puppet"
 alias gp="git pull"
-alias vcenter_ctrl="/home/awarnecke/dev/lhotse-puppet/modules/epe_client/files/vcenter_ctrl.py -u arvid.warnecke@easy.otto -H http://epe.otto.easynet.de:8080 "
-#alias python=/usr/bin/python3.4
 
 alias rubymine="jetbrains-rubymine"
 alias firefox-work="firefox -p Work -no-remote"
+
+epub() { pandoc -f epub -t html "$@" | w3m -T text/html }
+mfa() { oathtool --base32 --totp "$(cat ~/.mfa/$1.mfa)" | tee >(xclip -in -selection c) }
 
 #PS1="%{%B$fg[blue]%}┌─[ %{$fg[green]%}%n%{$fg[white]%}(%{$fg[cyan]%}%m%{$fg[white]%}):%{$fg[yellow]%}%~ %{$fg[blue]%}]
 #└──╼ %{$reset_color%}"
@@ -164,6 +165,9 @@ source $HOME/.local/bin/aws_zsh_completer.sh
 
 # direnv integration to set GIT_AUTHOR_EMAIL
 eval "$(direnv hook zsh)"
+
+precmd () { print -Pn "\e]0;${PWD/$HOME/\~}\a" }
+title() { export TITLE="$*" }
 
 BASE16_SHELL=$HOME/.config/base16-shell/
 [ -n "$PS1" ] && [ -s $BASE16_SHELL/profile_helper.sh ] && eval "$($BASE16_SHELL/profile_helper.sh)"
