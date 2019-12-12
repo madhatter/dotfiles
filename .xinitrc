@@ -19,9 +19,8 @@ export SSH_AUTH_SOCK
 # reset alsa mixer
 sudo alsactl restore
 
-(compton -CGb) &
-# xcompmgr seems to cause weird distortions on moving text or images
-#(xcompmgr -c) &
+# compton may be the cause for blank screen after screen turned of because of inactivity...
+(picom -cCGb) &
 
 export _JAVA_AWT_WM_NONREPARENTING=1
 
