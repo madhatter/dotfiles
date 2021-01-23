@@ -36,8 +36,7 @@ export GOROOT="/usr/lib/go"
 export GOPROXY="https://proxy.golang.org"
 
 # where is my editor
-export VIM="/usr/local/share/vim/vim81"
-#export VIM="/usr/share/vim/vim81"
+#export VIM="/usr/local/share/vim/vim81"
 
 # where does mail go?
 export MAIL=/var/spool/mail/$USER
@@ -46,7 +45,7 @@ export MAIL=/var/spool/mail/$USER
 export EDITOR="vim"
 
 # default browser for urlscan
-export BROWSER=/bin/firefox
+export BROWSER=/bin/chromium
 
 # encoding
 #export LC_CTYPE="de_DE.UTF-8"
@@ -77,7 +76,7 @@ alias druby='ruby -I$RUBYDB_LIB -r $RUBYDB_LIB/rdbgp.rb'
 #export RUBY_VERSION=$(cat $HOME/.ruby-version)
 
 # enhance the path (ordered by priority to make manual installation work)
-export PATH="$HOME/bin:$GOPATH/bin:$HOME/.local/bin:$JAVA_HOME/bin:$HADOOP_HOME/bin:$HBASE_HOME/bin:$ZOOKEEPER_HOME/bin:$CHEF_HOME/embedded/bin:/usr/local/bin:/usr/local/sbin:/usr/sbin:/bin:/sbin:/usr/X11R6/bin:$HOME/.gem/ruby/2.6.0/bin:$PATH"
+export PATH="$HOME/bin:$GOPATH/bin:$HOME/.local/bin:$JAVA_HOME/bin:$HADOOP_HOME/bin:$HBASE_HOME/bin:$ZOOKEEPER_HOME/bin:$CHEF_HOME/embedded/bin:/usr/local/bin:/usr/local/sbin:/usr/sbin:/bin:/sbin:/usr/X11R6/bin:$HOME/.gem/ruby/2.7.0/bin:$PATH"
 export PATH="$PATH:$HOME/.cargo/bin"
 
 # Alias for debugging php cli
@@ -143,8 +142,8 @@ mfa() { oathtool --base32 --totp "$(cat ~/.mfa/$1.mfa)" | tee >(xclip -in -selec
 #PS1="%{%B$fg[blue]%}┌─[ %{$fg[green]%}%n%{$fg[white]%}(%{$fg[cyan]%}%m%{$fg[white]%}):%{$fg[yellow]%}%~ %{$fg[blue]%}]
 #└──╼ %{$reset_color%}"
 
-[ ! "$UID" = "0" ] && archey4 -c blue
-[  "$UID" = "0" ] && archey4 -c red
+[ ! "$UID" = "0" ] && archey4 -c /etc/archey4/config.json
+[  "$UID" = "0" ] && archey4 -c /etc/archey4/config.json
 
 # stuff for rvm
 export rvmsudo_secure_path=0
@@ -162,6 +161,10 @@ bindkey '^[[B' history-substring-search-down
 
 #. /usr/share/zsh/site-contrib/powerline.zsh
 source $HOME/.local/bin/aws_zsh_completer.sh
+
+# fzf
+source /usr/share/fzf/key-bindings.zsh
+source /usr/share/fzf/completion.zsh
 
 # direnv integration to set GIT_AUTHOR_EMAIL
 eval "$(direnv hook zsh)"

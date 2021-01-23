@@ -33,11 +33,12 @@ git_branch() {
   branch=$(git symbolic-ref HEAD --short --quiet 2> /dev/null)
   if [ -z $branch ]; then
     echo "%{$fg[yellow]%}$(git rev-parse --short HEAD)%{$reset_color%}"
-  fi
-  if [ $branch == "master" ]; then
-    echo "%{$fg[green]%}$branch%{$reset_color%}"
   else
-    echo "%{$fg[red]%}$branch%{$reset_color%}"
+    if [ $branch == "master" ]; then
+      echo "%{$fg[green]%}$branch%{$reset_color%}"
+    else
+      echo "%{$fg[red]%}$branch%{$reset_color%}"
+    fi
   fi
 }
 
@@ -152,7 +153,7 @@ hg_prompt_info() {
 
 date_info() {
 	info="$(date +%H:%M.%S)"
-	echo "%{$fg[grey]%}$info "
+	echo "[%{$fg[white]%}$info] "
 }
 
 # build my prompt
