@@ -1,5 +1,7 @@
 [global]
-    font = Monospace-10
+    #font = Monospace-10
+    #font = ProggyCleanTTSZ Nerd Font 22px
+    font = Input Mono Narrow 14px
 
     # The format of the message. Possible variables are:
     #   %a  appname
@@ -52,7 +54,7 @@
 
     # The transparency of the window. range: [0; 100]
     # This option will only work if a compositing windowmanager is present (e.g. xcompmgr, compiz, etc..)
-    transparency = 0
+    transparency = 20
 
     # Don't remove messages, if the user is idle (no mouse or keyboard input)
     # for longer than idle_threshold seconds.
@@ -111,6 +113,10 @@
 
     # browser for opening urls in context menu
     browser = /usr/bin/firefox -new-tab
+
+    icon_position = left
+    max_icon_size = 32
+    icon_path = /usr/share/icons/Arc/status/32/:/usr/share/icons/Arc/devices/32/
 
 [frame]
     width = 2
