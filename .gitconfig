@@ -50,3 +50,9 @@
 [includeIf "gitdir:~/work/"]
     path = ~/work/.gitconfig
 
+[init]
+	defaultBranch = main
+[url "git@github.com:"]
+	insteadOf = https://github.com/
+[url "git@github-work.com:"]
+	insteadOf = https://github-work.com/
