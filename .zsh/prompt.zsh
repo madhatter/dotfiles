@@ -34,7 +34,7 @@ git_branch() {
   if [ -z $branch ]; then
     echo "%{$fg[yellow]%}$(git rev-parse --short HEAD)%{$reset_color%}"
   else
-    if [ $branch == "master" ]; then
+    if [[ $branch == "master" || $branch == "main" ]]; then
       echo "%{$fg[green]%}$branch%{$reset_color%}"
     else
       echo "%{$fg[red]%}$branch%{$reset_color%}"
