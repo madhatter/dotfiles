@@ -1,0 +1,26 @@
+#!/bin/sh
+
+xrandr -q &> /dev/null
+
+if $(xrandr -d :0.0 --prop |grep -q "DP2-3 connected");then
+    echo "Two monitors."
+    xrandr -d :0.0 --output DP1 --off 
+    xrandr -d :0.0 --output HDMI1 --off 
+    xrandr -d :0.0 --output DP2 --off 
+    xrandr -d :0.0 --output HDMI2 --off 
+    xrandr -d :0.0 --output DP2-1 --off 
+    xrandr -d :0.0 --output DP2-2 --off 
+    xrandr -d :0.0 --output VIRTUAL1 --off 
+    xrandr -d :0.0 --output DP2-3 --primary --mode 2560x1440 --pos 0x0 --rotate normal
+    xrandr -d :0.0 --output eDP1 --mode 2560x1440 --pos 2560x0 --rotate normal 
+else #if it's not connected
+    xrandr -d :0.0 --output DP1 --off 
+    xrandr -d :0.0 --output HDMI1 --off 
+    xrandr -d :0.0 --output DP2 --off 
+    xrandr -d :0.0 --output HDMI2 --off 
+    xrandr -d :0.0 --output DP2-1 --off 
+    xrandr -d :0.0 --output DP2-2 --off 
+    xrandr -d :0.0 --output DP2-3 --off
+    xrandr -d :0.0 --output VIRTUAL1 --off 
+    xrandr -d :0.0 --output eDP1 --primary --mode 2560x1440 --auto --rotate normal 
+fi
