@@ -4,7 +4,7 @@
 ####################################################
 
 mpd_host = "127.0.0.1"
-mpd_music_dir = "$HOME/music"
+mpd_music_dir = "/home/awarnecke/music"
 
 # Interface (classic/alternative)
 user_interface = alternative
@@ -52,9 +52,9 @@ progressbar_color = "blue"
 statusbar_color = "white"
 #active_column_color = "red"
 
-visualizer_fifo_path = "~/.ncmpcpp/mpd.fifo"
+visualizer_data_source = "~/.ncmpcpp/mpd.fifo"
 visualizer_output_name = "my_fifo"
-visualizer_sync_interval = "30"
+#visualizer_sync_interval = "30"
 visualizer_in_stereo = "yes"
 visualizer_type = "wave" (spectrum/wave)
 #visualizer_type = "spectrum" (spectrum/wave)
