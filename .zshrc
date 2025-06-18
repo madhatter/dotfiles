@@ -160,7 +160,7 @@ source $HOME/.zsh/plugins/aws.plugin.zsh
 #source /usr/share/fzf/key-bindings.zsh
 #source /usr/share/fzf/completion.zsh
 
-export GIT_SSH_COMMAND="ssh -i $HOME/.ssh/id_ed25519.pub -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no"
+export GIT_SSH_COMMAND="ssh -i $HOME/.ssh/id_ed25519 -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no"
 
 # direnv integration to set GIT_AUTHOR_EMAIL
 eval "$(direnv hook zsh)"
