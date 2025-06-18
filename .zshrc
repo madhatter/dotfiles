@@ -1,18 +1,21 @@
-# Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
-# Example format: plugins=(rails git textmate ruby lighthouse)
-#plugins=(git mercurial history-substring-search rvm archlinux)
+# This is my zsh configuration file.
 
 source ~/.zsh/history-substring-search/history-substring-search.zsh
 source ~/.zsh/prompt.zsh
 source ~/.zsh/title.zsh
+# Load operation system specific settings
+if [[ $(uname -s) == "Darwin" ]]; then
+  source ~/.zsh/osx.zsh
+elif [[ $(uname -s) == "Linux" ]]; then
+  source ~/.zsh/linux.zsh
+fi
 
 # Pyenv initialization
 if command -v pyenv 1>/dev/null 2>&1; then
   eval "$(pyenv init -)"
 fi
 
-# Customize to your needs...
-#
+# GPG agent initialization
 export GPG_TTY=$(tty)
 
 # Usenet News
@@ -22,9 +25,6 @@ export NNTPSERVER=news.individual.de
 export GOPATH="$HOME/code/go"
 #export GOROOT="/usr/lib/go"
 export GOPROXY="https://proxy.golang.org"
-
-# where is my editor
-#export VIM="/usr/local/share/vim/vim81"
 
 # where does mail go?
 export MAIL=/var/spool/mail/$USER
@@ -51,22 +51,12 @@ export PAGER="less "
 #export TERM="rxvt-256color"
 #export TERM="xterm-256color"
 
-#export JAVA_HOME="/usr/lib/jvm/java-8-jdk/"
-export JAVA_HOME="/opt/homebrew/opt/java"
-
-export LDFLAGS="-L/opt/homebrew/opt/ruby/lib"
-export CPPFLAGS="-I/opt/homebrew/opt/ruby/include"
-
 # Ruby DBGp
 export RUBYDB_LIB=~/lib/rubylib
 export RUBYDB_OPTS="HOST=localhost PORT=9000"
 alias druby='ruby -I$RUBYDB_LIB -r $RUBYDB_LIB/rdbgp.rb'
 
 #export RUBY_VERSION=$(cat $HOME/.ruby-version)
-#necessary to build on M1 for the real world
-export DOCKER_DEFAULT_PLATFORM=linux/amd64
-
-#export DOCKER_HOST="unix://$(podman machine inspect --format '{{.ConnectionInfo.PodmanSocket.Path}}')"
 
 # enhance the path (ordered by priority to make manual installation work)
 export PATH="/usr/local/go/bin:$HOME/bin:$GOPATH/bin:$HOME/.local/bin:$JAVA_HOME/bin:/opt/homebrew/opt/gnu-sed/libexec/gnubin:/usr/local/bin:/usr/local/sbin:/usr/sbin:/bin:/sbin:/usr/X11R6/bin:/opt/homebrew/opt/ruby/bin:$PATH"
@@ -95,8 +85,6 @@ setopt LOCAL_TRAPS # allow functions to have local traps
 setopt PROMPT_SUBST
 setopt NO_NOMATCH # stop bailing on the command when it fails to match a glob pattern
 
-#fpath=(~/.zsh/site-functions $(brew --prefix)/share/zsh/site-functions:$fpath)
-FPATH=$(brew --prefix)/share/zsh-completions:$(brew --prefix)/share/zsh/site-functions:~/.zsh/site-functions:$FPATH
 autoload -Uz compinit
 compinit
 
@@ -141,8 +129,11 @@ mfa() { oathtool --base32 --totp "$(cat ~/.mfa/$1.mfa)" | tee >(tr -d \\n | pbco
 #PS1="%{%B$fg[blue]%}┌─[ %{$fg[green]%}%n%{$fg[white]%}(%{$fg[cyan]%}%m%{$fg[white]%}):%{$fg[yellow]%}%~ %{$fg[blue]%}]
 #└──╼ %{$reset_color%}"
 
-[ ! "$UID" = "0" ] && archey -o
-[  "$UID" = "0" ] && archey -o
+if [[ $(uname -s) == "Darwin" ]]; then
+  archey -o
+elif [[ $(uname -s) == "Linux" ]]; then
+  archey
+fi
 
 # stuff for rvm
 export rvmsudo_secure_path=0
@@ -169,6 +160,8 @@ source $HOME/.zsh/plugins/aws.plugin.zsh
 #source /usr/share/fzf/key-bindings.zsh
 #source /usr/share/fzf/completion.zsh
 
+export GIT_SSH_COMMAND="ssh -i $HOME/.ssh/id_ed25519.pub -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no"
+
 # direnv integration to set GIT_AUTHOR_EMAIL
 eval "$(direnv hook zsh)"
 
@@ -181,4 +174,3 @@ BASE16_SHELL=$HOME/.config/base16-shell/
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 autoload -U +X bashcompinit && bashcompinit
-complete -o nospace -C /opt/homebrew/bin/terraform terraform
