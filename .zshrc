@@ -3,12 +3,15 @@
 source ~/.zsh/history-substring-search/history-substring-search.zsh
 source ~/.zsh/prompt.zsh
 source ~/.zsh/title.zsh
+
 # Load operation system specific settings
 if [[ $(uname -s) == "Darwin" ]]; then
   source ~/.zsh/osx.zsh
 elif [[ $(uname -s) == "Linux" ]]; then
   source ~/.zsh/linux.zsh
 fi
+
+eval "$(mise activate zsh)"
 
 # Pyenv initialization
 if command -v pyenv 1>/dev/null 2>&1; then
@@ -50,6 +53,12 @@ export WORKSPACE="$HOME/workspace"
 export PAGER="less "
 #export TERM="rxvt-256color"
 #export TERM="xterm-256color"
+
+#export JAVA_HOME="/usr/lib/jvm/java-8-jdk/"
+#export JAVA_HOME="/opt/homebrew/opt/java"
+
+export LDFLAGS="-L/opt/homebrew/opt/ruby/lib"
+export CPPFLAGS="-I/opt/homebrew/opt/ruby/include"
 
 # Ruby DBGp
 export RUBYDB_LIB=~/lib/rubylib
@@ -94,6 +103,38 @@ my-backward-delete-word() {
 }
 zle -N my-backward-delete-word
 bindkey '^W' my-backward-delete-word
+
+vault-login() {
+  # Prüfen ob VAULT_TOKEN gesetzt ist
+  if [[ -n "$VAULT_TOKEN" ]]; then
+    echo "Trying to renew existing token..."
+    _renew_existing_token
+    if [[ $? -eq 0 ]]; then
+      echo "Renewed existing token"
+      return 0
+    fi
+  fi
+
+  echo "Creating new token..."
+  new_token=$(_create_new_token)
+  if [[ $? -eq 0 ]]; then
+    echo "Created new token"
+    export VAULT_TOKEN="$new_token"
+  fi
+  return $?
+}
+
+_create_new_token() {
+  vault login -method=oidc role='pdh-da' &>/dev/null
+  local vault_status=$?
+  cat ~/.vault-token
+  return $vault_status
+}
+
+_renew_existing_token() {
+  vault token renew &>/dev/null
+  return $?
+}
 
 # everything colorful
 #[ -f $HOME/.LS_COLORS ] && eval $(dircolors -b $HOME/.LS_COLORS)
