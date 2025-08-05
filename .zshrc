@@ -136,6 +136,34 @@ _renew_existing_token() {
   return $?
 }
 
+aws-login() {
+  for arg in "$@"; do
+    case "$arg" in
+      live)
+        output_profiles=(default dv-live-admin dv-live-developer)
+        ;;
+      nonlive)
+        output_profiles=(default dv-nonlive-admin dv-nonlive-developer)
+        ;;
+      live-dr)
+        output_profiles=(default dv-drlive-admin dv-drlive-developer)
+        ;;
+      nonlive-dr)
+        output_profiles=(default dv-drnonlive-admin dv-drnonlive-developer)
+        ;;
+      *)
+        echo "Unknown profile: $arg"
+        echo "Available profiles: live, nonlive, live-dr, nonlive-dr"
+        return 1
+        ;;
+    esac
+
+    for profile in "${output_profiles[@]}"; do
+      awsume -o "$profile" "$arg"
+    done
+  done
+}
+ 
 # everything colorful
 #[ -f $HOME/.LS_COLORS ] && eval $(dircolors -b $HOME/.LS_COLORS)
 #eval $( dircolors -b $HOME/.LS_COLORS )
