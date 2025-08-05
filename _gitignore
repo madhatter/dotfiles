@@ -1,5 +1,6 @@
 *.swp
 *.swo
+*.swn
 .mutt/cache
 .tin/.news-news.individual.de/
 .tin/news.individual.de/
@@ -9,4 +10,7 @@ bin/python
 bin/python-config
 bin/cpfw
 tags
-
+tags.tmp
+tags.lock
+vendor
+kls_database.db
