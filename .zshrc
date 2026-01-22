@@ -1,7 +1,6 @@
 # This is my zsh configuration file.
 
 source ~/.zsh/history-substring-search/history-substring-search.zsh
-source ~/.zsh/prompt.zsh
 source ~/.zsh/title.zsh
 
 # Load operation system specific settings
@@ -241,5 +240,7 @@ BASE16_SHELL=$HOME/.config/base16-shell/
 [ -n "$PS1" ] && [ -s $BASE16_SHELL/profile_helper.sh ] && eval "$($BASE16_SHELL/profile_helper.sh)"
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+source ~/.zsh/prompt.zsh
 
 autoload -U +X bashcompinit && bashcompinit
