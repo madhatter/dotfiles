@@ -157,12 +157,16 @@ aws-login() {
         ;;
     esac
 
+    #for profile in "${output_profiles[@]}"; do
+    #  awsume -o "$profile" "$arg"
+    #done
+    aws-sso-util login
     for profile in "${output_profiles[@]}"; do
       awsume -o "$profile" "$arg"
     done
-  done
+done
 }
- 
+
 # everything colorful
 #[ -f $HOME/.LS_COLORS ] && eval $(dircolors -b $HOME/.LS_COLORS)
 #eval $( dircolors -b $HOME/.LS_COLORS )
@@ -198,7 +202,9 @@ mfa() { oathtool --base32 --totp "$(cat ~/.mfa/$1.mfa)" | tee >(tr -d \\n | pbco
 #└──╼ %{$reset_color%}"
 
 if [[ $(uname -s) == "Darwin" ]]; then
-  archey -o
+  #archey -o
+  # above does not work with latest archey from brew
+  neofetch --disable wm --disable de
 elif [[ $(uname -s) == "Linux" ]]; then
   archey
 fi
