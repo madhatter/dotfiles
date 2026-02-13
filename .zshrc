@@ -167,6 +167,14 @@ aws-login() {
 done
 }
 
+aws-clear() {
+    for profile in default dv-live-admin dv-live-developer dv-nonlive-admin dv-nonlive-developer dv-drlive-admin dv-drlive-developer dv-drnonlive-admin dv-drnonlive-developer
+    do
+        awsume -k "$profile" 
+    done
+    echo "All AWS profiles cleared"
+}
+
 # everything colorful
 #[ -f $HOME/.LS_COLORS ] && eval $(dircolors -b $HOME/.LS_COLORS)
 #eval $( dircolors -b $HOME/.LS_COLORS )
