@@ -1,0 +1,87 @@
+[colors.bright]
+black = "#353539"
+blue = "#b9aeda"
+cyan = "#f591b2"
+green = "#9dc6ac"
+magenta = "#ecaad6"
+red = "#ffae9f"
+white = "#cac9dd"
+yellow = "#f0c5a9"
+
+[colors.cursor]
+cursor = "#757581"
+text = "#c9c7cd"
+
+[cursor]
+style = { shape = "Block", blinking = "Never" }
+
+[colors.normal]
+black = "#27272a"
+blue = "#aca1cf"
+cyan = "#ea83a5"
+green = "#90b99f"
+magenta = "#e29eca"
+red = "#f5a191"
+white = "#c1c0d4"
+yellow = "#e6b99d"
+
+[colors.primary]
+background = "#161617"
+foreground = "#c9c7cd"
+
+[env]
+#TERM = "xterm-256color"
+TERM = "alacritty"
+
+[font]
+size = 16
+
+[font.bold]
+style = "Bold"
+
+[font.bold_italic]
+style = "Bold Italic"
+
+[font.italic]
+# on OS X
+style = "Oblique"
+# on Linux
+#style = "Italic"
+
+[font.normal]
+#family = "AnonymicePro Nerd Font Mono"
+family = "BerkeleyMono Nerd Font Mono"
+#family = "Blex Mono Nerd"
+#family = "Maple Mono NF"
+style = "Regular"
+
+[window]
+decorations = "full"
+dynamic_padding = false
+dynamic_title = true
+opacity = 1
+option_as_alt = "OnlyLeft"
+startup_mode = "Fullscreen"
+
+[window.dimensions]
+columns = 135
+lines = 50
+
+[window.padding]
+x = 7
+y = 5
+
+[window.position]
+x = 290
+y = 800
+
+[keyboard]
+bindings = [
+{ key = "N", mods = "Control|Shift", action = "CreateNewWindow" },
+{ key = "L", mods = "Control|Shift", chars = "l" },
+# Map Ctrl + ; to a specific escape sequence (CSI u format)
+#{ key = "Semicolon", mods = "Control", chars = "\u001b[59;5u"},
+# Map Ctrl + ; to send F1 key
+{ key = "Semicolon", mods = "Control", chars = "\u001bOP" },
+]
+
