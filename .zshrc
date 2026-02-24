@@ -252,6 +252,11 @@ source $HOME/.zsh/plugins/aws.plugin.zsh
 
 export GIT_SSH_COMMAND="ssh -i $HOME/.ssh/id_ed25519 -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no"
 
+# for node to use the system CA certificates instead of its own
+# necessary for office network with SSL interception
+export NODE_OPTIONS="--use-openssl-ca"
+export NODE_EXTRA_CA_CERTS="$HOME/Ottogroup-Root-CA-v01.pem"
+
 # direnv integration to set GIT_AUTHOR_EMAIL
 eval "$(direnv hook zsh)"
 
