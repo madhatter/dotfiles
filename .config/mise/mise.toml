@@ -1,0 +1,16 @@
+[tools]
+java = "corretto-21"
+python = "3.11.14"
+jj = "latest"
+rust = "latest"
+
+[settings]
+# Enable automatic .tool-versions creation for tools     
+# empty = let mise manage versions automatically         
+#idiomatic_version_file_enable_tools = ["python", "java"]
+idiomatic_version_file_enable_tools = [] 
+
+[env]
+# Environment variables to set when using tools managed by mise
+#.MISE_DIFF = "true" 
+#.MISE_TRUSTED_CONFIG = "true"
