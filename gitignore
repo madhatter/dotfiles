@@ -10,3 +10,9 @@ bin/python
 bin/python-config
 bin/cpfw
 tags
+tags.tmp
+tags.lock
+vendor
+kls_database.db
+GEMINI.md
+CLAUDE.md
