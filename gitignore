@@ -1,4 +1,6 @@
 *.swp
+.config/fish/fish_variables
+.config/fish/conf.d/private_exports.fish
 .mutt/cache
 .tin/.news-news.individual.de/
 .tin/news.individual.de/

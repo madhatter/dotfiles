@@ -34,7 +34,7 @@ foreground = "#c9c7cd"
 TERM = "alacritty"
 
 [font]
-size = 16
+size = 14
 
 [font.bold]
 style = "Bold"
