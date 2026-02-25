@@ -1,4 +1,7 @@
 *.swp
+*.swo
+*.swn
+.DS_Store
 .config/fish/fish_variables
 .config/fish/conf.d/private_exports.fish
 .mutt/cache
