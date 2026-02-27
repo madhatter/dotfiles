@@ -271,3 +271,7 @@ BASE16_SHELL=$HOME/.config/base16-shell/
 source ~/.zsh/prompt.zsh
 
 autoload -U +X bashcompinit && bashcompinit
+
+complete -o nospace -C /opt/homebrew/bin/terraform terraform
+
+complete -o nospace -C /opt/homebrew/bin/vault vault
