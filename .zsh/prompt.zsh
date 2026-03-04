@@ -51,12 +51,24 @@ get_git_user() {
     [[ -n "$guser" ]] && echo "${guser}%F{242}@%f" || echo "%F{red}no user%f%F{242}@%f"
 }
 
+get_active_github_account() {
+    local default_handle="madhatter"
+    
+    # Check if direnv has set the custom handle, otherwise use the default
+    if [[ -n "$GITHUB_ACTIVE_HANDLE" ]]; then
+        echo "$GITHUB_ACTIVE_HANDLE%F{242}@%f"
+    else
+        echo "$default_handle%F{242}@%f"
+    fi
+}
+
 build_vcs_string() {
     vcs_info
     if [[ -n "$vcs_info_msg_0_" ]]; then
         # vcs_info_msg_0_ ist nur der Branch
         # get_git_details liefert den Rest
-        echo "$(get_git_user)${vcs_info_msg_0_}$(get_git_details) "
+        #echo "$(get_git_user)${vcs_info_msg_0_}$(get_git_details) "
+        echo "$(get_active_github_account)${vcs_info_msg_0_}$(get_git_details) "
     fi
 }
 
