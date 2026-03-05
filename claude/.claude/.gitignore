@@ -1,0 +1,12 @@
+history.jsonl
+cache/
+debug/
+session-env/
+paste-cache/
+shell-snapshots/
+projects/
+plugins/
+todos/
+tasks/
+plans/
+backups/
