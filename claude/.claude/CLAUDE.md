@@ -13,5 +13,6 @@
 
 ## Code Style
 - All code, comments, and variable names must be in English.
+- Documentation like READMEs and similar also in English, unless the user explicitly requests otherwise.
 - Keep comments short and to the point.
 - No decorative elements in comments (no divider lines, ASCII art, excessive symbols, etc.).
