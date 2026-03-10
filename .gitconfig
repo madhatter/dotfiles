@@ -2,7 +2,7 @@
   email = madhatter@nostalgix.org
 	name = Arvid Warnecke
   # Set the default public key for ddour private account
-  signingkey = /Users/arvid.warnecke/.ssh/id_ed25519.pub
+  signingkey = ~/.ssh/id_ed25519.pub
 
 [color]
     branch = auto
