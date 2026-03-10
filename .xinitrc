@@ -5,7 +5,7 @@ eval `ssh-agent`
 eval "$(gpg-agent --daemon)"
 
 # refresh fonts for windowmanager
-xset +fp /usr/share/fonts/local
+xset +fp /usr/share/fonts/TTF
 xset +fp $HOME/.fonts
 xset fp rehash
 
@@ -17,10 +17,10 @@ xset -b
 export SSH_AUTH_SOCK
 
 # reset alsa mixer
-sudo alsactl restore
+#sudo alsactl restore
 
 # compton may be the cause for blank screen after screen turned of because of inactivity...
-(picom -cCGb) &
+#(picom -cCGb) &
 
 export _JAVA_AWT_WM_NONREPARENTING=1
 
