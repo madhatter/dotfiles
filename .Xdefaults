@@ -41,3 +41,19 @@ NetHack*map*bright_magenta:     magenta
 NetHack*map*bright_cyan:        cyan
 NetHack*map*white:              white
 
+! Set global DPI for Xft (fonts in dwm, dmenu, st, standard toolkits)
+! 144 is a good baseline for a 32-inch 4K display (1.5x scaling)
+Xft.dpi: 144
+
+! Enable anti-aliasing
+Xft.antialias: 1
+
+! Set hinting style (slight is usually best for high density displays)
+Xft.hinting: 1
+Xft.hintstyle: hintslight
+
+! Subpixel rendering geometry
+Xft.rgba: rgb
+
+! Set cursor size (if supported by the cursor theme)
+Xcursor.size: 24
