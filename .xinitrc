@@ -24,5 +24,9 @@ export SSH_AUTH_SOCK
 
 export _JAVA_AWT_WM_NONREPARENTING=1
 
+# Apply US Macintosh keyboard layout to replicate macOS dead keys behavior
+# Right Alt + u, followed by u/o/a will produce ü/ö/ä
+setxkbmap -layout us -variant mac
+
 # start the windowmanager
 $HOME/bin/dwm_start.sh
