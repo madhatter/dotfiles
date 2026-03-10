@@ -7,7 +7,7 @@ dropbox start &
 pgrep -u "$EUID" -x mpd || mpd &
 pgrep -u "$EUID" -x mpdas || mpdas -d &
 pgrep -u "$EUID" -x redshift || redshift -l 53.35:10.459 &
-feh --bg-scale $HOME/wallpaper/wallhaven-doom.png &
+feh --bg-scale $HOME/wallpaper/wallhaven-o5rkwl.png &
 #conky | while read -r; do xsetroot -name "$REPLY"; done &
 xmodmap $HOME/.Xmodmap &
 dwmbar &
