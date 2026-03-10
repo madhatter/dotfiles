@@ -3,7 +3,7 @@
 
 # Define constants for display configuration
 # Run 'xrandr' in your terminal to find your exact output name
-readonly DISPLAY_OUTPUT="DP-1"
+readonly DISPLAY_OUTPUT="DP-4"
 readonly DISPLAY_MODE="3840x2160"
 readonly DISPLAY_RATE="144"
 
@@ -18,7 +18,7 @@ dbus-update-activation-environment --systemd DISPLAY XAUTHORITY
 xrandr --output "$DISPLAY_OUTPUT" --mode "$DISPLAY_MODE" --rate "$DISPLAY_RATE"
 
 # Apply custom keybindings
-xmodmap "$HOME/.Xmodmap"
+#xmodmap "$HOME/.Xmodmap"
 
 # Trick old Java GUI apps into thinking we use a reparenting WM
 wmname LG3D
