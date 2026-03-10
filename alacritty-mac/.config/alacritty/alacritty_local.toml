@@ -1,0 +1,21 @@
+[font]
+size = 14
+
+[font.italic]
+# on OS X
+style = "Oblique"
+# on Linux
+#style = "Italic"
+
+[window]
+startup_mode = "Fullscreen"
+
+[keyboard]
+bindings = [
+{ key = "N", mods = "Control|Shift", action = "CreateNewWindow" },
+{ key = "L", mods = "Control|Shift", chars = "l" },
+# Map Ctrl + ; to a specific escape sequence (CSI u format)
+#{ key = "Semicolon", mods = "Control", chars = "\u001b[59;5u"},
+# Map Ctrl + ; to send F1 key
+{ key = "Semicolon", mods = "Control", chars = "\u001bOP" },
+]

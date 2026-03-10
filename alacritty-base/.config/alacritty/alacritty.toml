@@ -1,3 +1,10 @@
+# Main Alacritty configuration
+# Import OS-specific overrides. Alacritty will silently ignore missing files.
+[general]
+import = [
+    "~/.config/alacritty/alacritty_local.toml"
+]
+
 [colors.bright]
 black = "#353539"
 blue = "#b9aeda"
@@ -33,20 +40,11 @@ foreground = "#c9c7cd"
 #TERM = "xterm-256color"
 TERM = "alacritty"
 
-[font]
-size = 14
-
 [font.bold]
 style = "Bold"
 
 [font.bold_italic]
 style = "Bold Italic"
-
-[font.italic]
-# on OS X
-style = "Oblique"
-# on Linux
-#style = "Italic"
 
 [font.normal]
 #family = "AnonymicePro Nerd Font Mono"
@@ -61,7 +59,6 @@ dynamic_padding = false
 dynamic_title = true
 opacity = 1
 option_as_alt = "OnlyLeft"
-startup_mode = "Fullscreen"
 
 [window.dimensions]
 columns = 135
@@ -74,14 +71,3 @@ y = 5
 [window.position]
 x = 290
 y = 800
-
-[keyboard]
-bindings = [
-{ key = "N", mods = "Control|Shift", action = "CreateNewWindow" },
-{ key = "L", mods = "Control|Shift", chars = "l" },
-# Map Ctrl + ; to a specific escape sequence (CSI u format)
-#{ key = "Semicolon", mods = "Control", chars = "\u001b[59;5u"},
-# Map Ctrl + ; to send F1 key
-{ key = "Semicolon", mods = "Control", chars = "\u001bOP" },
-]
-
