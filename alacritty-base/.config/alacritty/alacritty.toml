@@ -4,6 +4,7 @@
 import = [
     "~/.config/alacritty/alacritty_local.toml"
 ]
+live_config_reload = true
 
 [colors.bright]
 black = "#353539"
