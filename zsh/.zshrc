@@ -252,10 +252,17 @@ source $HOME/.zsh/plugins/aws.plugin.zsh
 
 export GIT_SSH_COMMAND="ssh -i $HOME/.ssh/id_ed25519 -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no"
 
-# for node to use the system CA certificates instead of its own
-# necessary for office network with SSL interception
+# custom CA bundle containing the office root certificates and the ones from the system
+export CUSTOM_CA_BUNDLE="$HOME/.config/certs/combined_ca_bundle.pem"
+
+export REQUESTS_CA_BUNDLE="$CUSTOM_CA_BUNDLE"
+export CURL_CA_BUNDLE="$CUSTOM_CA_BUNDLE"
+export SSL_CERT_FILE="$CUSTOM_CA_BUNDLE"
+export NODE_EXTRA_CA_CERTS="$CUSTOM_CA_BUNDLE"
+export AWS_CA_BUNDLE="$CUSTOM_CA_BUNDLE"
+
+# for node to use the custom CA bundle
 export NODE_OPTIONS="--use-openssl-ca"
-export NODE_EXTRA_CA_CERTS="$HOME/Ottogroup-Root-CA-v01.pem"
 
 # direnv integration to set GIT_AUTHOR_EMAIL
 eval "$(direnv hook zsh)"
