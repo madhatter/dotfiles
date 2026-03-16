@@ -2,7 +2,7 @@
 os_name := `uname -s`
 
 # Define the list of packages to manage with stow
-packages := "claude zsh"
+packages := "certs claude zsh"
 
 # General recipes for managing dotfiles with stow
 install: deploy-alacritty
