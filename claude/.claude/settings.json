@@ -18,8 +18,13 @@
       "Read(./secrets/**)"
     ]
   },
+  "statusLine": {
+    "type": "command",
+    "command": "~/.claude/statusline.sh"
+  },
   "enabledPlugins": {
-    "lua-lsp@claude-plugins-official": true
+    "lua-lsp@claude-plugins-official": true,
+    "pyright-lsp@claude-plugins-official": true
   },
   "companyAnnouncements": [
     "Welcome to Acme Corp! Review our code guidelines at docs.acme.com",
