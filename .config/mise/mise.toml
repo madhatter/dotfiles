@@ -3,6 +3,9 @@ java = "corretto-21"
 python = "3.11.14"
 jj = "latest"
 rust = "latest"
+kotlin = "2"
+"npm:cdktf" = "latest"
+"npm:cdktf-cli" = { version = "latest", node = "22" }
 
 [settings]
 # Enable automatic .tool-versions creation for tools     
