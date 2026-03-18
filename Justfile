@@ -2,7 +2,7 @@
 os_name := `uname -s`
 
 # Define the list of packages to manage with stow
-packages := "certs claude zsh"
+packages := "certs claude mise zsh"
 
 # General recipes for managing dotfiles with stow
 install: deploy-alacritty
@@ -23,10 +23,10 @@ deploy-alacritty:
 	stow -R -d {{justfile_directory()}} -t "{{env_var('HOME')}}" alacritty-base
 	
 	@if [ "{{os_name}}" = "Darwin" ]; then \
-		echo "Detected macOS. Deploying Mac overrides..."; \
+		echo "Detected macOS. Deploying Mac Alacritty overrides..."; \
 		stow -R -d {{justfile_directory()}} -t "{{env_var('HOME')}}" alacritty-mac; \
 	else \
-		echo "Detected Linux. Deploying Linux overrides..."; \
+		echo "Detected Linux. Deploying Linux Alacritty overrides..."; \
 		stow -R -d {{justfile_directory()}} -t "{{env_var('HOME')}}" alacritty-linux; \
 	fi
 
