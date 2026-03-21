@@ -459,12 +459,12 @@
                     "label": "U"
                 },
                 "1": {
-                    "key": "HOME",
-                    "label": "HOME"
+                    "key": "PAGEDOWN",
+                    "label": "PGDN"
                 },
                 "3": {
-                    "key": "HOME",
-                    "label": "HOME"
+                    "key": "PAGEDOWN",
+                    "label": "PGDN"
                 }
             }
         },
@@ -501,12 +501,12 @@
                     "label": "O"
                 },
                 "1": {
-                    "key": "PAGEDOWN",
-                    "label": "PGDN"
+                    "key": "HOME",
+                    "label": "HOME"
                 },
                 "3": {
-                    "key": "PAGEDOWN",
-                    "label": "PGDN"
+                    "key": "HOME",
+                    "label": "HOME"
                 }
             }
         },

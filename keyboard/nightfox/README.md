@@ -101,6 +101,6 @@ mode and flash it automatically.
 ### Fn layer (layer 1) navigation
 
 ```
-Y=BS   U=Home  I=PgUp  O=PgDn  P=End
+Y=BS   U=PgDn  I=PgUp  O=Home  P=End
        H=Left  J=Down  K=Up    L=Right
 ```
