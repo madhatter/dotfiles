@@ -125,10 +125,10 @@ aws-login () {
     
     # Set AWS_ENV for prompt display
     case "$1" in
-        (live-dr*) export AWS_ENV="🔴 DRLIVE-${role}" ;;
-        (nonlive-dr*) export AWS_ENV="🟢 DRNONLIVE-${role}" ;;
-        (live*) export AWS_ENV="🔴 LIVE-${role}" ;;
-        (nonlive*) export AWS_ENV="🟢 NONLIVE-${role}" ;;
+        (live-dr*) export AWS_ENV="DRLIVE-${role}" ;;
+        (nonlive-dr*) export AWS_ENV="DRNONLIVE-${role}" ;;
+        (live*) export AWS_ENV="LIVE-${role}" ;;
+        (nonlive*) export AWS_ENV="NONLIVE-${role}" ;;
     esac
 }
 
@@ -144,10 +144,10 @@ aws-clear() {
 # Prompt function to show AWS environment
 aws_prompt() {
     if [[ -n "$AWS_ENV" ]]; then
-        if [[ "$AWS_ENV" == *"LIVE"* ]]; then
-            echo "%F{red}[$AWS_ENV]%f "
-        else
+        if [[ "$AWS_ENV" == *"NONLIVE"* ]]; then
             echo "%F{green}[$AWS_ENV]%f "
+        else
+            echo "%F{red}[$AWS_ENV]%f "
         fi
     fi
 }
