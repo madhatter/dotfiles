@@ -219,3 +219,10 @@ complete -o nospace -C /opt/homebrew/bin/terraform terraform
 complete -o nospace -C /opt/homebrew/bin/vault vault
 
 complete -C aws_completer aws
+
+# bun completions
+[ -s "/Users/arvid.warnecke/.bun/_bun" ] && source "/Users/arvid.warnecke/.bun/_bun"
+
+# bun
+export BUN_INSTALL="$HOME/.bun"
+export PATH="$BUN_INSTALL/bin:$PATH"
