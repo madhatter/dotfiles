@@ -125,10 +125,10 @@ aws-login () {
     
     # Set AWS_ENV for prompt display
     case "$1" in
-        (live-dr*) export AWS_ENV="🔴 DRLIVE-${role}" ;;
-        (nonlive-dr*) export AWS_ENV="🟢 DRNONLIVE-${role}" ;;
-        (live*) export AWS_ENV="🔴 LIVE-${role}" ;;
-        (nonlive*) export AWS_ENV="🟢 NONLIVE-${role}" ;;
+        (live-dr*) export AWS_ENV="DRLIVE-${role}" ;;
+        (nonlive-dr*) export AWS_ENV="DRNONLIVE-${role}" ;;
+        (live*) export AWS_ENV="LIVE-${role}" ;;
+        (nonlive*) export AWS_ENV="NONLIVE-${role}" ;;
     esac
 }
 
@@ -144,10 +144,10 @@ aws-clear() {
 # Prompt function to show AWS environment
 aws_prompt() {
     if [[ -n "$AWS_ENV" ]]; then
-        if [[ "$AWS_ENV" == *"LIVE"* ]]; then
-            echo "%F{red}[$AWS_ENV]%f "
-        else
+        if [[ "$AWS_ENV" == *"NONLIVE"* ]]; then
             echo "%F{green}[$AWS_ENV]%f "
+        else
+            echo "%F{red}[$AWS_ENV]%f "
         fi
     fi
 }
@@ -219,3 +219,10 @@ complete -o nospace -C /opt/homebrew/bin/terraform terraform
 complete -o nospace -C /opt/homebrew/bin/vault vault
 
 complete -C aws_completer aws
+
+# bun completions
+[ -s "/Users/arvid.warnecke/.bun/_bun" ] && source "/Users/arvid.warnecke/.bun/_bun"
+
+# bun
+export BUN_INSTALL="$HOME/.bun"
+export PATH="$BUN_INSTALL/bin:$PATH"

@@ -459,12 +459,12 @@
                     "label": "U"
                 },
                 "1": {
-                    "key": "PAGEUP",
-                    "label": "PGUP"
+                    "key": "PAGEDOWN",
+                    "label": "PGDN"
                 },
                 "3": {
-                    "key": "PAGEUP",
-                    "label": "PGUP"
+                    "key": "PAGEDOWN",
+                    "label": "PGDN"
                 }
             }
         },
@@ -480,12 +480,12 @@
                     "label": "I"
                 },
                 "1": {
-                    "key": "UP",
-                    "label": "↑"
+                    "key": "PAGEUP",
+                    "label": "PGUP"
                 },
                 "3": {
-                    "key": "UP",
-                    "label": "↑"
+                    "key": "PAGEUP",
+                    "label": "PGUP"
                 }
             }
         },
@@ -501,12 +501,12 @@
                     "label": "O"
                 },
                 "1": {
-                    "key": "PAGEDOWN",
-                    "label": "PGDN"
+                    "key": "HOME",
+                    "label": "HOME"
                 },
                 "3": {
-                    "key": "PAGEDOWN",
-                    "label": "PGDN"
+                    "key": "HOME",
+                    "label": "HOME"
                 }
             }
         },
@@ -522,12 +522,12 @@
                     "label": "P"
                 },
                 "1": {
-                    "key": "PRINTSCREEN",
-                    "label": "PRSC"
+                    "key": "END",
+                    "label": "END"
                 },
                 "3": {
-                    "key": "PRINTSCREEN",
-                    "label": "PRSC"
+                    "key": "END",
+                    "label": "END"
                 }
             }
         },
@@ -737,12 +737,12 @@
                     "label": "H"
                 },
                 "1": {
-                    "key": "HOME",
-                    "label": "HOME"
+                    "key": "LEFT",
+                    "label": "←"
                 },
                 "3": {
-                    "key": "HOME",
-                    "label": "HOME"
+                    "key": "LEFT",
+                    "label": "←"
                 }
             }
         },
@@ -758,12 +758,12 @@
                     "label": "J"
                 },
                 "1": {
-                    "key": "LEFT",
-                    "label": "←"
+                    "key": "DOWN",
+                    "label": "↓"
                 },
                 "3": {
-                    "key": "LEFT",
-                    "label": "←"
+                    "key": "DOWN",
+                    "label": "↓"
                 }
             }
         },
@@ -779,12 +779,12 @@
                     "label": "K"
                 },
                 "1": {
-                    "key": "DOWN",
-                    "label": "↓"
+                    "key": "UP",
+                    "label": "↑"
                 },
                 "3": {
-                    "key": "DOWN",
-                    "label": "↓"
+                    "key": "UP",
+                    "label": "↑"
                 }
             }
         },
@@ -965,14 +965,6 @@
                 "0": {
                     "key": "N",
                     "label": "N"
-                },
-                "1": {
-                    "key": "END",
-                    "label": "END"
-                },
-                "3": {
-                    "key": "END",
-                    "label": "END"
                 }
             }
         },
