@@ -20,6 +20,10 @@ xrandr --output "$DISPLAY_OUTPUT" --mode "$DISPLAY_MODE" --rate "$DISPLAY_RATE"
 # Apply custom keybindings
 #xmodmap "$HOME/.Xmodmap"
 
+# Apply US Macintosh keyboard layout to replicate macOS dead keys behavior
+# Right Alt + u, followed by u/o/a will produce ü/ö/ä
+setxkbmap -layout us -variant mac
+
 # Trick old Java GUI apps into thinking we use a reparenting WM
 wmname LG3D
 
