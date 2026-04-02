@@ -1,7 +1,9 @@
+.credentials.json
 history.jsonl
 cache/
 debug/
 session-env/
+sessions/
 paste-cache/
 shell-snapshots/
 projects/
