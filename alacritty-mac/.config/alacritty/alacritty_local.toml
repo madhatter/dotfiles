@@ -1,5 +1,6 @@
 [font]
-size = 16
+size = 15
+builtin_box_drawing = true
 
 [font.italic]
 # on OS X
