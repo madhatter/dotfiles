@@ -2,7 +2,7 @@
 os_name := `uname -s`
 
 # Define the list of packages to manage with stow
-packages := "certs claude mise zsh"
+packages := "certs claude mise tmux zsh"
 
 # General recipes for managing dotfiles with stow
 install: deploy-alacritty
@@ -16,6 +16,13 @@ restow: deploy-alacritty
 
 test:
     stow -nv -R -d {{justfile_directory()}} -t "{{env_var('HOME')}}" {{packages}}
+
+# Install tpm and tmux plugins
+install-tmux-plugins:
+    @if [ ! -d "{{env_var('HOME')}}/.config/tmux/plugins/tpm" ]; then \
+        git clone https://github.com/tmux-plugins/tpm ~/.config/tmux/plugins/tpm; \
+    fi
+    ~/.config/tmux/plugins/tpm/bin/install_plugins
 
 # Recipe to deploy Alacritty configurations
 deploy-alacritty:
