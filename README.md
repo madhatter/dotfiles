@@ -1,13 +1,101 @@
-These are my config files I use everyday.
-If you find something useful feel free to copy it. The main purpose is to
-backup the files and track changes made when transfered to different clients.
+# dotfiles
 
-The master branch contains everything that might be usefull for everybody.
-The other branches are used for keeping track of changes made in different
-environments.
+My personal configuration files for macOS and Arch Linux. Feel free to use anything you find useful as a starting point for your own setup.
 
-Questions or ideas are welcome.
+## Structure
 
-(c) Arvid Warnecke 
+Configuration is managed with [GNU Stow](https://www.gnu.org/software/stow/) — each directory is a stow package that mirrors the target directory structure relative to `$HOME`. [just](https://just.systems/) is used as a task runner for installation and setup.
+
+```
+dotfiles/
+  alacritty-base/     # Alacritty terminal (shared config)
+  alacritty-linux/    # Alacritty overrides for Linux
+  alacritty-mac/      # Alacritty overrides for macOS
+  certs/              # Custom CA certificate bundle
+  claude/             # Claude Code config and statusline
+  git/                # Git config
+  hooks/              # Pacman hooks (Arch only, deployed via just)
+  mise/               # mise runtime manager config
+  pacman/             # yay AUR helper config (Arch only)
+  fastfetch/          # fastfetch system info config
+  tmux/               # tmux config with catppuccin theme
+  zsh/                # zsh config, prompt (powerlevel10k), plugins
+```
+
+> **Note:** The migration to just and stow is a work in progress. The repository contains additional loose files and legacy configs that have not yet been reviewed or migrated — mostly because they are not actively used at this time.
+
+## Prerequisites
+
+Install these manually before running anything else:
+
+| Tool | macOS | Arch Linux |
+|------|-------|------------|
+| [git](https://git-scm.com/) | `brew install git` | `pacman -S git` |
+| [just](https://just.systems/) | `brew install just` | `pacman -S just` |
+| [stow](https://www.gnu.org/software/stow/) | `brew install stow` | `pacman -S stow` |
+
+## Installation
+
+### 1. Clone the repository
+
+```sh
+git clone https://github.com/madhatter/dotfiles.git ~/dotfiles
+cd ~/dotfiles
+```
+
+### 2. Install dependencies
+
+Installs shell tools, prompt framework, and utilities (brew on macOS, pacman on Arch):
+
+```sh
+just install-deps
+```
+
+### 3. Deploy dotfiles
+
+Symlinks all stow packages into `$HOME`:
+
+```sh
+just install
+```
+
+### 4. Install tmux plugins
+
+```sh
+just install-tmux-plugins
+```
+
+### 5. Arch Linux only: yay and pacman setup
+
+Installs yay from AUR, deploys the pacdiff hook to `/etc/pacman.d/hooks/`, and stows the yay config:
+
+```sh
+just install-arch-setup
+```
+
+---
+
+## Available recipes
+
+```sh
+just install              # deploy all stow packages
+just uninstall            # remove all stow symlinks
+just restow               # re-deploy (useful after adding new files)
+just test                 # dry-run to preview what stow would do
+just install-deps         # install base tools (OS-aware)
+just install-work-deps    # install AWS/cloud tools (macOS only)
+just install-tmux-plugins
+just install-arch-setup   # Arch Linux only
+```
+
+## Notes
+
+- The zsh prompt uses [powerlevel10k](https://github.com/romkatv/powerlevel10k). Config is in `zsh/.zsh/p10k_prompt.zsh`.
+- tmux uses [catppuccin](https://github.com/catppuccin/tmux) (macchiato flavour) with custom purple accents to match the prompt.
+- The pacdiff hook opens `nvim -d` after upgrades when `.pacnew` files are present. Change `DIFFPROG` in `hooks/pacdiff.hook` if you prefer a different diff tool.
+- fastfetch replaces neofetch/archey and runs on shell login.
+- Work dependencies (`awscli`, `vault`, `terraform`) are macOS-only in the Justfile — on Arch these are expected to be managed separately.
+
+## Questions or ideas
+
 madhatter@nostalgix.org
-

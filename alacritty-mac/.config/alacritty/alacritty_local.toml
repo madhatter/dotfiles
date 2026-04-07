@@ -2,12 +2,6 @@
 size = 15
 builtin_box_drawing = true
 
-[font.italic]
-# on OS X
-style = "Oblique"
-# on Linux
-#style = "Italic"
-
 [window]
 startup_mode = "Fullscreen"
 

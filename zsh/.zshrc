@@ -177,11 +177,7 @@ alias python=python3
 
 epub() { pandoc -f epub -t html "$@" | w3m -T text/html }
 
-#if [[ $(uname -s) == "Darwin" ]]; then
-#  neofetch --disable wm --disable de
-#elif [[ $(uname -s) == "Linux" ]]; then
-#  archey
-#fi
+alias ff="fastfetch"
 
 # history search with arrow keys
 bindkey '^[[A' history-substring-search-up

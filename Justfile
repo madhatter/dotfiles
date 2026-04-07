@@ -2,7 +2,7 @@
 os_name := `uname -s`
 
 # Define the list of packages to manage with stow
-packages := "certs claude git mise tmux zsh"
+packages := "certs claude fastfetch git mise tmux zsh"
 
 # General recipes for managing dotfiles with stow
 install: deploy-alacritty
