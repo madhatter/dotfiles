@@ -1,5 +1,10 @@
 # This is my zsh configuration file.
 
+# p10k instant prompt — must be at the very top
+if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
+  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+fi
+
 source ~/.zsh/history-substring-search/history-substring-search.zsh
 
 # Load operation system specific settings
@@ -172,11 +177,11 @@ alias python=python3
 
 epub() { pandoc -f epub -t html "$@" | w3m -T text/html }
 
-if [[ $(uname -s) == "Darwin" ]]; then
-  neofetch --disable wm --disable de
-elif [[ $(uname -s) == "Linux" ]]; then
-  archey
-fi
+#if [[ $(uname -s) == "Darwin" ]]; then
+#  neofetch --disable wm --disable de
+#elif [[ $(uname -s) == "Linux" ]]; then
+#  archey
+#fi
 
 # history search with arrow keys
 bindkey '^[[A' history-substring-search-up
@@ -210,7 +215,16 @@ title() { export TITLE="$*" }
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
-source ~/.zsh/prompt.zsh
+# load p10k framework — works on macOS (brew) and Arch (yay)
+for _p10k in \
+  "$(brew --prefix 2>/dev/null)/share/powerlevel10k/powerlevel10k.zsh-theme" \
+  "/usr/share/zsh-theme-powerlevel10k/powerlevel10k.zsh-theme" \
+  "$HOME/powerlevel10k/powerlevel10k.zsh-theme"; do
+  [[ -f "$_p10k" ]] && { source "$_p10k"; break }
+done
+unset _p10k
+
+source ~/.zsh/p10k_prompt.zsh
 
 autoload -U +X bashcompinit && bashcompinit
 
