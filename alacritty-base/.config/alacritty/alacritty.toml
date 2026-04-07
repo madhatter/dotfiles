@@ -41,18 +41,11 @@ foreground = "#c9c7cd"
 #TERM = "xterm-256color"
 TERM = "alacritty"
 
-[font.bold]
-style = "Bold"
-
-[font.bold_italic]
-style = "Bold Italic"
-
-[font.normal]
-#family = "AnonymicePro Nerd Font Mono"
-family = "BerkeleyMono Nerd Font Mono"
-#family = "Blex Mono Nerd"
-#family = "Maple Mono NF"
-style = "Regular"
+[font]
+normal      = { family = "BerkeleyMono Nerd Font Mono", style = "Regular" }
+bold        = { family = "BerkeleyMono Nerd Font Mono", style = "Bold" }
+italic      = { family = "BerkeleyMono Nerd Font Mono", style = "Oblique" }
+bold_italic = { family = "BerkeleyMono Nerd Font Mono", style = "Bold Oblique" }
 
 [window]
 decorations = "full"
