@@ -1,11 +1,11 @@
 #!/bin/bash
-#!/bin/bash
 
 # Define constants for display configuration
 # Run 'xrandr' in your terminal to find your exact output name
 readonly DISPLAY_OUTPUT="DP-4"
 readonly DISPLAY_MODE="3840x2160"
 readonly DISPLAY_RATE="144"
+readonly DISPLAY_DISABLE="HDMI-0"
 
 # Export variables before starting background processes
 # Fix blank windows in Java applications on non-reparenting WMs (removed the trailing '&')
@@ -15,10 +15,8 @@ export _JAVA_AWT_WM_NONREPARENTING=1
 dbus-update-activation-environment --systemd DISPLAY XAUTHORITY
 
 # Enforce 4K resolution and refresh rate
-xrandr --output "$DISPLAY_OUTPUT" --mode "$DISPLAY_MODE" --rate "$DISPLAY_RATE"
-
-# Apply custom keybindings
-#xmodmap "$HOME/.Xmodmap"
+xrandr --output "$DISPLAY_OUTPUT" --mode "$DISPLAY_MODE" --rate "$DISPLAY_RATE" --primary \
+         --output "$DISPLAY_DISABLE" --off
 
 # Apply US Macintosh keyboard layout to replicate macOS dead keys behavior
 # Right Alt + u, followed by u/o/a will produce ü/ö/ä
@@ -30,24 +28,18 @@ wmname LG3D
 # Set wallpaper
 feh --bg-scale "$HOME/wallpaper/wallhaven-o5rkwl.png" &
 
-# Start network manager applet
-pgrep -u "$EUID" -x nm-applet || nm-applet --sm-disable &
-
 # Start cloud sync
-dropbox start &
+#dropbox start &
 
 # Start music player daemon and scrobbler
-pgrep -u "$EUID" -x mpd || mpd &
-pgrep -u "$EUID" -x mpdas || mpdas -d &
+#pgrep -u "$EUID" -x mpd || mpd &
+#pgrep -u "$EUID" -x mpdas || mpdas -d &
 
 # Start redshift for eye care (Coordinates set to your current location area)
-pgrep -u "$EUID" -x redshift || redshift -l 53.35:10.459 &
+#pgrep -u "$EUID" -x redshift || redshift -l 53.35:10.459 &
 
 # Start custom status bar
-dwmbar &
-
-# Debugging path (optional, keep if needed)
-echo "$PATH" > /tmp/path
+#dwmbar &
 
 # Replace the shell with the window manager
 exec dwm
