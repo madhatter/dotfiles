@@ -1,3 +1,36 @@
+function _p10k_git_status() {
+  git rev-parse --is-inside-work-tree &>/dev/null || return
+
+  local branch
+  branch=$(git rev-parse --abbrev-ref HEAD 2>/dev/null)
+  [[ -z "$branch" ]] && return
+
+  local staged=0 unstaged=0 untracked=0
+  while IFS= read -r line; do
+    local s="${line:0:1}" u="${line:1:1}"
+    if [[ "$s" == "?" ]]; then
+      ((untracked++))
+    else
+      [[ "$s" != " " ]] && ((staged++))
+      [[ "$u" != " " ]] && ((unstaged++))
+    fi
+  done < <(git status --porcelain 2>/dev/null)
+
+  local -a rev
+  rev=( $(git rev-list --left-right --count HEAD...@{u} 2>/dev/null) )
+
+  local out=$'\ue0a0'" ${branch}"
+  (( ${#rev} >= 2 )) && {
+    (( rev[1] > 0 )) && out+=" ↑${rev[1]}"
+    (( rev[2] > 0 )) && out+=" ↓${rev[2]}"
+  }
+  (( staged > 0 ))    && out+=" S:${staged}"
+  (( unstaged > 0 ))  && out+=" M:${unstaged}"
+  (( untracked > 0 )) && out+=" ?:${untracked}"
+
+  echo "$out"
+}
+
 () {
   emulate -L zsh -o extended_glob
   unset -m '(POWERLEVEL9K_*|DEFAULT_USER)~POWERLEVEL9K_GITSTATUS_DIR'
@@ -11,8 +44,8 @@
   )
 
   typeset -g POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(
-    status
-    time
+    custom_github_user
+    custom_git_status
     newline
   )
 
@@ -47,23 +80,15 @@
   typeset -g POWERLEVEL9K_DIR_BACKGROUND=0
   typeset -g POWERLEVEL9K_DIR_FOREGROUND=7
 
-  # status: ✔ green, ✘ red
-  typeset -g POWERLEVEL9K_STATUS_EXTENDED_STATES=true
-  typeset -g POWERLEVEL9K_STATUS_OK=true
-  typeset -g POWERLEVEL9K_STATUS_OK_VISUAL_IDENTIFIER_EXPANSION='✔'
-  typeset -g POWERLEVEL9K_STATUS_OK_FOREGROUND=2
-  typeset -g POWERLEVEL9K_STATUS_OK_BACKGROUND=0
-  typeset -g POWERLEVEL9K_STATUS_ERROR=true
-  typeset -g POWERLEVEL9K_STATUS_ERROR_VISUAL_IDENTIFIER_EXPANSION='✘'
-  typeset -g POWERLEVEL9K_STATUS_ERROR_FOREGROUND=1
-  typeset -g POWERLEVEL9K_STATUS_ERROR_BACKGROUND=0
+  # GitHub user: dark pill (inner), hidden outside git repos
+  typeset -g POWERLEVEL9K_CUSTOM_GITHUB_USER='git rev-parse --is-inside-work-tree &>/dev/null && echo "${GITHUB_ACTIVE_HANDLE:-madhatter}"'
+  typeset -g POWERLEVEL9K_CUSTOM_GITHUB_USER_FOREGROUND=7
+  typeset -g POWERLEVEL9K_CUSTOM_GITHUB_USER_BACKGROUND=0
 
-  # time: purple pill with "at HH:MM:SS"
-  typeset -g POWERLEVEL9K_TIME_FOREGROUND=0
-  typeset -g POWERLEVEL9K_TIME_BACKGROUND=141
-  typeset -g POWERLEVEL9K_TIME_FORMAT='%D{%H:%M:%S}'
-  typeset -g POWERLEVEL9K_TIME_PREFIX='at '
-  typeset -g POWERLEVEL9K_TIME_UPDATE_ON_COMMAND=false
+  # git status: purple pill (outer/right), custom-built for readability
+  typeset -g POWERLEVEL9K_CUSTOM_GIT_STATUS='_p10k_git_status'
+  typeset -g POWERLEVEL9K_CUSTOM_GIT_STATUS_BACKGROUND=141
+  typeset -g POWERLEVEL9K_CUSTOM_GIT_STATUS_FOREGROUND=0
 
   # prompt_char: ❯ in purple on success, ✘ in dark gray on error
   typeset -g POWERLEVEL9K_PROMPT_CHAR_BACKGROUND=
