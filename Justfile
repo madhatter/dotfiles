@@ -17,6 +17,28 @@ restow: deploy-alacritty
 test:
     stow -nv -R -d {{justfile_directory()}} -t "{{env_var('HOME')}}" {{packages}}
 
+# Install base dependencies (shell tools, prompt, utilities)
+install-deps:
+    @if [ "{{os_name}}" = "Darwin" ]; then \
+        echo "Installing dependencies via Homebrew..."; \
+        brew install powerlevel10k fzf direnv mise jq oathtool fastfetch pandoc w3m; \
+    else \
+        echo "Installing dependencies via pacman..."; \
+        sudo pacman -S --needed zsh-theme-powerlevel10k fzf direnv mise jq oath-toolkit fastfetch pandoc w3m xclip; \
+    fi
+
+# Install work-related dependencies (AWS, cloud, infra tools)
+install-work-deps:
+    @if [ "{{os_name}}" = "Darwin" ]; then \
+        echo "Installing work dependencies via Homebrew..."; \
+        brew install awscli terraform vault; \
+        pip3 install aws-sso-util awsume; \
+    else \
+        echo "Installing work dependencies via pacman/pip..."; \
+        sudo pacman -S --needed aws-cli terraform vault; \
+        pip3 install aws-sso-util awsume; \
+    fi
+
 # Install tpm and tmux plugins
 install-tmux-plugins:
     @if [ ! -d "{{env_var('HOME')}}/.config/tmux/plugins/tpm" ]; then \
