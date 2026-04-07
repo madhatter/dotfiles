@@ -24,7 +24,7 @@ install-deps:
         brew install powerlevel10k fzf direnv mise jq oathtool fastfetch pandoc w3m; \
     else \
         echo "Installing dependencies via pacman..."; \
-        sudo pacman -S --needed zsh-theme-powerlevel10k fzf direnv mise jq oath-toolkit fastfetch pandoc w3m xclip; \
+        yay -S --needed zsh-theme-powerlevel10k fzf direnv mise jq oath-toolkit fastfetch pandoc w3m xclip; \
     fi
 
 # Install work-related dependencies (AWS, cloud, infra tools)
@@ -54,7 +54,22 @@ install-arch-setup:
     fi
     sudo install -Dm644 {{justfile_directory()}}/hooks/pacdiff.hook \
         /etc/pacman.d/hooks/pacdiff.hook
+    sudo install -Dm644 {{justfile_directory()}}/xorg/00-keyboard.conf \
+        /etc/X11/xorg.conf.d/00-keyboard.conf
     stow -d {{justfile_directory()}} -t "{{env_var('HOME')}}" pacman
+
+# Also Arch Linux only: install NVIDIA Xorg configuration and modprobe settings
+install-nvidia-setup:
+    @if [ "{{os_name}}" != "Linux" ]; then \
+        echo "This recipe is only for Linux."; \
+        exit 1; \
+    fi
+    sudo install -Dm644 {{justfile_directory()}}/xorg/10-nvidia-drm-outputclass.conf \
+        /etc/X11/xorg.conf.d/10-nvidia-drm-outputclass.conf
+    sudo install -Dm644 {{justfile_directory()}}/xorg/xorg.conf \
+        /etc/X11/xorg.conf
+    sudo install -Dm644 {{justfile_directory()}}/modprobe/nvidia-drm-nomodeset.conf \
+        /etc/modprobe.d/nvidia-drm-nomodeset.conf
 
 # Install tpm and tmux plugins
 install-tmux-plugins:
