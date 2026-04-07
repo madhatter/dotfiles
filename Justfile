@@ -39,6 +39,23 @@ install-work-deps:
         pip3 install aws-sso-util awsume; \
     fi
 
+# Arch Linux only: install yay, deploy pacman hook and yay config
+install-arch-setup:
+    @if [ "{{os_name}}" != "Linux" ]; then \
+        echo "This recipe is only for Arch Linux."; \
+        exit 1; \
+    fi
+    @if ! command -v yay >/dev/null 2>&1; then \
+        git clone https://aur.archlinux.org/yay-bin.git /tmp/yay-bin && \
+        cd /tmp/yay-bin && makepkg -si --noconfirm && \
+        rm -rf /tmp/yay-bin; \
+    else \
+        echo "yay already installed"; \
+    fi
+    sudo install -Dm644 {{justfile_directory()}}/hooks/pacdiff.hook \
+        /etc/pacman.d/hooks/pacdiff.hook
+    stow -d {{justfile_directory()}} -t "{{env_var('HOME')}}" pacman
+
 # Install tpm and tmux plugins
 install-tmux-plugins:
     @if [ ! -d "{{env_var('HOME')}}/.config/tmux/plugins/tpm" ]; then \
