@@ -11,6 +11,15 @@
 ## Git
 - Never commit changes without explicit user instruction.
 
+## Environment
+- Primary machine: macOS (MacBook)
+- Private/home server: Arch Linux
+    - dual-boot with Windows 11 for gaming
+    - Nvidia Geforce RTX 5070 Ti
+- Secondary laptop: T460S running Arch Linux
+- Shell: zsh
+- Editor: Neovim
+
 ## Code Style
 - All code, comments, and variable names must be in English.
 - Documentation like READMEs and similar also in English, unless the user explicitly requests otherwise.
