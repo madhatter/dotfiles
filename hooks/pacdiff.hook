@@ -1,0 +1,9 @@
+[Trigger]
+Operation = Upgrade
+Type = Package
+Target = *
+
+[Action]
+Description = Running pacdiff to handle .pacnew files...
+When = PostTransaction
+Exec = /usr/bin/env DIFFPROG="nvim -d" /usr/bin/pacdiff
