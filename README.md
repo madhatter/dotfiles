@@ -43,15 +43,23 @@ git clone https://github.com/madhatter/dotfiles.git ~/dotfiles
 cd ~/dotfiles
 ```
 
-### 2. Install dependencies
+### 2. Arch Linux only: yay and pacman setup
 
-Installs shell tools, prompt framework, and utilities (brew on macOS, pacman on Arch):
+Installs yay from AUR, deploys the pacdiff hook to `/etc/pacman.d/hooks/`, and stows the yay config:
+
+```sh
+just install-arch-setup
+```
+
+### 3. Install dependencies
+
+Installs shell tools, prompt framework, and utilities (brew on macOS, yay on Arch):
 
 ```sh
 just install-deps
 ```
 
-### 3. Deploy dotfiles
+### 4. Deploy dotfiles
 
 Symlinks all stow packages into `$HOME`:
 
@@ -59,18 +67,10 @@ Symlinks all stow packages into `$HOME`:
 just install
 ```
 
-### 4. Install tmux plugins
+### 5. Install tmux plugins
 
 ```sh
 just install-tmux-plugins
-```
-
-### 5. Arch Linux only: yay and pacman setup
-
-Installs yay from AUR, deploys the pacdiff hook to `/etc/pacman.d/hooks/`, and stows the yay config:
-
-```sh
-just install-arch-setup
 ```
 
 ---
@@ -85,8 +85,11 @@ just test                 # dry-run to preview what stow would do
 just install-deps         # install base tools (OS-aware)
 just install-work-deps    # install AWS/cloud tools (macOS only)
 just install-tmux-plugins
-just install-arch-setup   # Arch Linux only
+just install-arch-setup   # Arch Linux only: yay, pacman hook, keyboard layout
+just install-nvidia-setup # deploy NVIDIA Xorg and modprobe config (machine-specific, see note below)
 ```
+
+> **Note on `install-nvidia-setup`:** This recipe deploys hardware-specific configuration files for NVIDIA GPUs and will not be appropriate for every machine. If you are managing multiple systems with different hardware, consider using a proper configuration management tool (Ansible, etc.) instead of applying this blindly.
 
 ## Notes
 

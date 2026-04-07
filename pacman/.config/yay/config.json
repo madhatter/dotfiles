@@ -1,6 +1,6 @@
 {
     "answerdiff": "None",
     "answerclean": "None",
-    "removemake": true,
+    "removemake": "yes",
     "combinedupgrade": true
 }
