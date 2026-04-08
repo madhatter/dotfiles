@@ -188,26 +188,36 @@ bindkey '^[[B' history-substring-search-down
 
 export GIT_SSH_COMMAND="ssh -i $HOME/.ssh/id_ed25519 -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no"
 
-# custom CA bundle containing the office root certificates and the ones from the system
-export CUSTOM_CA_BUNDLE="$HOME/.config/certs/combined_ca_bundle.pem"
+# Set CA bundle overrides only on macOS (Darwin).
+# Linux handles root CAs natively via the system trust store.
+if [[ -f "$HOME/.config/certs/combined_ca_bundle.pem" ]]; then
+  # custom CA bundle containing the office root certificates and the ones from the system
+  export CUSTOM_CA_BUNDLE="$HOME/.config/certs/combined_ca_bundle.pem"
 
-export REQUESTS_CA_BUNDLE="$CUSTOM_CA_BUNDLE"
-export CURL_CA_BUNDLE="$CUSTOM_CA_BUNDLE"
-export SSL_CERT_FILE="$CUSTOM_CA_BUNDLE"
-export NODE_EXTRA_CA_CERTS="$CUSTOM_CA_BUNDLE"
-export AWS_CA_BUNDLE="$CUSTOM_CA_BUNDLE"
+  export REQUESTS_CA_BUNDLE="$CUSTOM_CA_BUNDLE"
+  export CURL_CA_BUNDLE="$CUSTOM_CA_BUNDLE"
+  export SSL_CERT_FILE="$CUSTOM_CA_BUNDLE"
+  export NODE_EXTRA_CA_CERTS="$CUSTOM_CA_BUNDLE"
+  export AWS_CA_BUNDLE="$CUSTOM_CA_BUNDLE"
 
-# for node to use the custom CA bundle
-export NODE_OPTIONS="--use-openssl-ca"
+  # for node to use the custom CA bundle
+  export NODE_OPTIONS="--use-openssl-ca"
+fi
 
-# allow more memory usage for node, e.g. for cdktf
-export NODE_OPTIONS="$NODE_OPTIONS --max-old-space-size=16384"
+# Allow more memory usage for node, e.g. for cdktf (OS independent)
+if [[ -z "$NODE_OPTIONS" ]]; then
+    export NODE_OPTIONS="--max-old-space-size=16384"
+else
+    export NODE_OPTIONS="$NODE_OPTIONS --max-old-space-size=16384"
+fi
 
 # direnv integration to set GIT_AUTHOR_EMAIL
 eval "$(direnv hook zsh)"
 
 precmd () { print -Pn "\e]0;${PWD/$HOME/\~}\a" }
 title() { export TITLE="$*" }
+
+yays() { yay -Ss "$@" --color always | awk '/\(Orphaned\)/{getline; next} 1'; }
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
