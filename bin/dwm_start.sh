@@ -38,8 +38,11 @@ feh --bg-scale "$HOME/wallpaper/wallhaven-o5rkwl.png" &
 # Start redshift for eye care (Coordinates set to your current location area)
 #pgrep -u "$EUID" -x redshift || redshift -l 53.35:10.459 &
 
+# Start listening for usb devices
+udiskie --no-notify &
+
 # Start custom status bar
-#dwmbar &
+dwmbar &
 
 # Replace the shell with the window manager
 exec dwm
