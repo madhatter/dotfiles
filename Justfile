@@ -2,7 +2,7 @@
 os_name := `uname -s`
 
 # Define the list of packages to manage with stow
-packages := "certs claude fastfetch git mise tmux zsh"
+packages := if os_name == "Darwin" { "certs claude fastfetch git mise tmux zsh" } else { "claude fastfetch git mise tmux zsh" }
 
 # General recipes for managing dotfiles with stow
 install: deploy-alacritty
@@ -21,10 +21,10 @@ test:
 install-deps:
     @if [ "{{os_name}}" = "Darwin" ]; then \
         echo "Installing dependencies via Homebrew..."; \
-        brew install powerlevel10k fzf direnv mise jq oathtool fastfetch pandoc w3m; \
+        brew install powerlevel10k fzf direnv mise jq oathtool fastfetch pandoc w3m alacritty; \
     else \
         echo "Installing dependencies via pacman..."; \
-        yay -S --needed zsh-theme-powerlevel10k fzf direnv mise jq oath-toolkit fastfetch pandoc w3m xclip; \
+        yay -S --needed zsh-theme-powerlevel10k fzf direnv mise jq oath-toolkit fastfetch pandoc w3m xclip alacritty; \
     fi
 
 # Install work-related dependencies (AWS, cloud, infra tools)
@@ -52,6 +52,7 @@ install-arch-setup:
     else \
         echo "yay already installed"; \
     fi
+    sudo pacman -S --needed pacman-contrib
     sudo install -Dm644 {{justfile_directory()}}/hooks/pacdiff.hook \
         /etc/pacman.d/hooks/pacdiff.hook
     sudo install -Dm644 {{justfile_directory()}}/xorg/00-keyboard.conf \
