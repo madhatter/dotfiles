@@ -25,8 +25,8 @@ setxkbmap -layout us -variant mac
 # Trick old Java GUI apps into thinking we use a reparenting WM
 wmname LG3D
 
-# Set wallpaper
-feh --bg-scale "$HOME/wallpaper/wallhaven-o5rkwl.png" &
+# Set wallpaper (current is a symlink to the actual wallpaper file, allowing for easy updates without changing this script)
+feh --bg-scale "$HOME/wallpaper/current" &
 
 # Start cloud sync
 #dropbox start &
