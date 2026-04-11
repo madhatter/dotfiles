@@ -1,0 +1,62 @@
+#compdef claude
+
+_claude() {
+    local context state state_descr line
+    typeset -A opt_args
+
+    _arguments -C \
+        '(-h --help)'{-h,--help}'[display help]' \
+        '(-v --version)'{-v,--version}'[output version number]' \
+        '(-p --print)'{-p,--print}'[print response and exit]' \
+        '(-c --continue)'{-c,--continue}'[continue most recent conversation]' \
+        '(-r --resume)'{-r,--resume}'[resume a conversation by session ID or open picker]: :' \
+        '(-d --debug)'{-d,--debug}'[enable debug mode]: :' \
+        '--verbose[override verbose mode setting]' \
+        '(-n --name)'{-n,--name}'[set display name for this session]:name:' \
+        '(-w --worktree)'{-w,--worktree}'[create a git worktree for this session]: :' \
+        '--model[model to use]:model:(sonnet opus haiku claude-sonnet-4-6 claude-opus-4-6 claude-haiku-4-5-20251001)' \
+        '--effort[effort level]:level:(low medium high max)' \
+        '--output-format[output format (with --print)]:format:(text json stream-json)' \
+        '--input-format[input format (with --print)]:format:(text stream-json)' \
+        '--permission-mode[permission mode]:mode:(default acceptEdits dontAsk plan auto bypassPermissions)' \
+        '--system-prompt[system prompt for the session]:prompt:' \
+        '--append-system-prompt[append to default system prompt]:prompt:' \
+        '--allowed-tools[tools to allow]:tools:' \
+        '--disallowed-tools[tools to deny]:tools:' \
+        '--mcp-config[load MCP servers from JSON file or string]:file:_files' \
+        '--add-dir[additional directories to allow tool access to]:dir:_files -/' \
+        '--dangerously-skip-permissions[bypass all permission checks]' \
+        '--no-session-persistence[disable session persistence]' \
+        '--fork-session[create new session ID when resuming]' \
+        '--from-pr[resume session linked to a PR]:pr:' \
+        '--bare[minimal mode, skip hooks and plugins]' \
+        '1: :_claude_commands' \
+        '*::args:->args'
+
+    case $state in
+        args)
+            case $line[1] in
+                auth)    _arguments 'login' 'logout' 'status' ;;
+                mcp)     _arguments 'add' 'remove' 'list' 'get' ;;
+                plugin|plugins) _arguments 'add' 'remove' 'list' ;;
+                install) _arguments ':target:(stable latest)' ;;
+            esac
+            ;;
+    esac
+}
+
+_claude_commands() {
+    local commands
+    commands=(
+        'agents:list configured agents'
+        'auth:manage authentication'
+        'doctor:check health of auto-updater'
+        'install:install Claude Code native build'
+        'mcp:configure and manage MCP servers'
+        'plugin:manage Claude Code plugins'
+        'update:check for updates and install'
+    )
+    _describe 'command' commands
+}
+
+_claude

@@ -67,6 +67,7 @@ setopt LOCAL_TRAPS # allow functions to have local traps
 setopt PROMPT_SUBST
 setopt NO_NOMATCH # stop bailing on the command when it fails to match a glob pattern
 
+fpath=(~/.zsh/completions $fpath)
 autoload -Uz compinit
 compinit
 

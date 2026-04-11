@@ -9,7 +9,7 @@ export CPPFLAGS="-I/opt/homebrew/opt/ruby/include"
 export DOCKER_DEFAULT_PLATFORM=linux/amd64
 
 # fpath for completions
-FPATH=$(brew --prefix)/share/zsh-completions:$(brew --prefix)/share/zsh/site-functions:~/.zsh/site-functions:$FPATH
+FPATH=$(brew --prefix)/share/zsh-completions:$(brew --prefix)/share/zsh/site-functions:$FPATH
 
 # MFA token generator. It reads the base32 secret from ~/.mfa/NAME.mfa and
 # copies the generated token to the clipboard.
