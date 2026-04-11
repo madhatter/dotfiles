@@ -175,8 +175,6 @@ alias gp="git pull"
 alias pip=pip3
 alias python=python3
 
-epub() { pandoc -f epub -t html "$@" | w3m -T text/html }
-
 alias ff="fastfetch"
 
 # history search with arrow keys

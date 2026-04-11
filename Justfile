@@ -21,10 +21,10 @@ test:
 install-deps:
     @if [ "{{os_name}}" = "Darwin" ]; then \
         echo "Installing dependencies via Homebrew..."; \
-        brew install powerlevel10k fzf direnv mise jq oathtool fastfetch pandoc w3m alacritty; \
+        brew install powerlevel10k fzf direnv mise jq oathtool fastfetch alacritty; \
     else \
         echo "Installing dependencies via pacman..."; \
-        yay -S --needed zsh-theme-powerlevel10k fzf direnv mise jq oath-toolkit fastfetch pandoc w3m xclip alacritty; \
+        yay -S --needed zsh-theme-powerlevel10k fzf direnv mise jq oath-toolkit fastfetch xclip alacritty; \
     fi
 
 # Install work-related dependencies (AWS, cloud, infra tools)
