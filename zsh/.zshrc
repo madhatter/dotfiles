@@ -188,7 +188,11 @@ alias gp="git pull"
 alias pip=pip3
 alias python=python3
 
-alias ff="fastfetch"
+if [[ $(uname -s) == "Linux" ]]; then
+  alias ff="fastfetch --config ~/.config/fastfetch/config-arch.jsonc"
+else
+  alias ff="fastfetch"
+fi
 
 # history search with arrow keys
 bindkey '^[[A' history-substring-search-up
