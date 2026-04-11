@@ -7,10 +7,17 @@ startup_mode = "Fullscreen"
 
 [keyboard]
 bindings = [
-{ key = "N", mods = "Control|Shift", action = "CreateNewWindow" },
-{ key = "L", mods = "Control|Shift", chars = "l" },
-# Map Ctrl + ; to a specific escape sequence (CSI u format)
-#{ key = "Semicolon", mods = "Control", chars = "\u001b[59;5u"},
-# Map Ctrl + ; to send F1 key
-{ key = "Semicolon", mods = "Control", chars = "\u001bOP" },
+  { key = "N", mods = "Control|Shift", action = "CreateNewWindow" },                                      
+  { key = "L", mods = "Control|Shift", chars = "l" },                                                     
+  { key = "Semicolon", mods = "Control", chars = "\u001bOP" },                                            
+  # tmux window switching
+  { key = "Key1", mods = "Command", chars = "\u001b1" },
+  { key = "Key2", mods = "Command", chars = "\u001b2" },
+  { key = "Key3", mods = "Command", chars = "\u001b3" },
+  { key = "Key4", mods = "Command", chars = "\u001b4" },
+  { key = "Key5", mods = "Command", chars = "\u001b5" },
+  { key = "Key6", mods = "Command", chars = "\u001b6" },
+  { key = "Key7", mods = "Command", chars = "\u001b7" },
+  { key = "Key8", mods = "Command", chars = "\u001b8" },
+  { key = "Key9", mods = "Command", chars = "\u001b9" },
 ]
