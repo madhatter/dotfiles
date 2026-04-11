@@ -158,6 +158,13 @@ aws_prompt() {
 }
 
 # everything colorful
+if command -v vivid &>/dev/null; then
+    export LS_COLORS=$(vivid generate jellybeans)
+elif command -v gdircolors &>/dev/null; then
+    eval $(gdircolors ~/.LS_COLORS)
+elif command -v dircolors &>/dev/null; then
+    eval $(dircolors ~/.LS_COLORS)
+fi
 zmodload  zsh/complist
 zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
 zstyle ':completion:*:*:kill:*:processes' list-colors '=(#b) #([0-9]#)*=0=01;31'
@@ -166,8 +173,13 @@ zstyle ':completion:*:*:kill:*:processes' list-colors '=(#b) #([0-9]#)*=0=01;31'
 zstyle -e ':completion::*:*:*:hosts' hosts 'reply=(${=${${(f)"$(cat {/etc/ssh_,~/.ssh/known_,$HOME/.r}hosts(|2)(N) /dev/null)"}%%[# ]*}//,/ })'
 
 # use LS_COLORS with ls
-alias ls='ls --color=auto'
-alias ll='ls -la'
+if command -v gls &>/dev/null; then
+    alias ls='gls --color=auto'
+    alias ll='gls -la'
+else
+    alias ls='ls --color=auto'
+    alias ll='ls -la'
+fi
 
 # general aliases
 alias gp="git pull"
