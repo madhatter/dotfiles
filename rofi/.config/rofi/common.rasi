@@ -1,0 +1,77 @@
+* {
+		/* gruvbox based background tones */
+    bg:       #282828; /* main background */
+    bg-alt:   #3c3836; /* inputbar, slightly lighter */
+    fg:       #d5c4a1; /* warm cream text */
+    fg-dim:   #665c54; /* muted text, comments */
+		
+		/* purple accent from p10k/tmux color palette */
+    accent:   #af87ff; /* xterm-256: 141 - main highlight */
+    accent-dim: #8b7fd4; /* dimmed, inactive elements */
+    border:   #af87ff; /* window border */
+
+    background-color: transparent;
+    text-color:       @fg;
+
+		/* override rofi's built-in solarized defaults */
+    normal-background:           @bg;
+    normal-foreground:           @fg;                                                                        
+    alternate-normal-background: @bg-alt;
+    alternate-normal-foreground: @fg;                                                                        
+    selected-normal-background:  @accent;                                                                    
+    selected-normal-foreground:  @bg;
+}
+
+window {
+    background-color: @bg;
+    border:           2px solid;
+    border-color:     @border;
+    border-radius:    8px;
+    width:            600px;
+    padding:          12px;
+		height:						400px;
+    width:            800px;
+}
+
+inputbar {
+    background-color: @bg-alt;
+    border-radius:    6px;
+    padding:          8px 12px;
+    margin:           0 0 8px 0;
+    children:         [prompt, entry];
+}
+
+prompt {
+    text-color: @accent;
+    padding:    0 8px 0 0;
+}
+
+entry {
+    text-color:   @fg;
+    placeholder:  "Search...";
+    placeholder-color: @fg-dim;
+}
+
+listview {
+    background-color: transparent;
+    lines:            12;
+    scrollbar:        false;
+    spacing:          2px;
+}
+
+element {
+    background-color: transparent;
+    padding:          6px 10px;
+    border-radius:    4px;
+}
+
+element.selected {
+    background-color: @accent;
+    text-color:       @bg;
+}
+
+element-text {
+    background-color: transparent;
+    text-color:       inherit;
+}
+

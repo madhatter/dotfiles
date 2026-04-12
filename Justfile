@@ -62,7 +62,7 @@ install-arch-setup:
 # Also Arch Linux only: install NVIDIA Xorg configuration and modprobe settings
 install-nvidia-setup:
     @if [ "{{os_name}}" != "Linux" ]; then \
-        echo "This recipe is only for Linux."; \
+        echo "This recipe is only for Arch Linux."; \
         exit 1; \
     fi
     sudo install -Dm644 {{justfile_directory()}}/xorg/10-nvidia-drm-outputclass.conf \
@@ -71,6 +71,15 @@ install-nvidia-setup:
         /etc/X11/xorg.conf
     sudo install -Dm644 {{justfile_directory()}}/modprobe/nvidia-drm-nomodeset.conf \
         /etc/modprobe.d/nvidia-drm-nomodeset.conf
+
+# More Arch Linux-only parts: Rofi launcher/picker
+install-rofi:
+      @if [ "{{os_name}}" != "Linux" ]; then \
+          echo "This recipe is only for Arch Linux."; \
+          exit 1; \
+      fi
+      yay -S --needed rofi rofi-calc papirus-icon-theme
+      stow -d {{justfile_directory()}} -t "{{env_var('HOME')}}" rofi
 
 # Install tpm and tmux plugins
 install-tmux-plugins:

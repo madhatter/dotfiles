@@ -1,0 +1,13 @@
+@import "common.rasi"
+
+configuration {
+	modi: "drun,run,calc";
+	font: "BerkeleyMono Nerd Font Mono 14";
+	lines: 12;
+	columns: 1;
+	show-icons: true;
+	icon-theme: "Papirus-Dark";
+	terminal: "alacritty";
+	matching: "fuzzy";
+	sidebar-mode: false;
+}
