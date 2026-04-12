@@ -1,7 +1,7 @@
 # Linux specific shell settings
 #
 # default browser for urlscan
-export BROWSER=/bin/firefox
+export BROWSER=/usr/bin/firefox
 
 # fpath for completions
 FPATH=/usr/share/zsh/site-functions:$FPATH                                        
