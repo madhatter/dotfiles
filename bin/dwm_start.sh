@@ -38,6 +38,9 @@ feh --bg-scale "$HOME/wallpaper/current" &
 # Start redshift for eye care (Coordinates set to your current location area)
 #pgrep -u "$EUID" -x redshift || redshift -l 53.35:10.459 &
 
+# Start picom compositor
+picom &
+
 # Start listening for usb devices
 udiskie --no-notify &
 
