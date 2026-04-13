@@ -4,6 +4,13 @@ size = 12
 [window]
 startup_mode = "Maximized"
 
+[colors.primary]
+background = "#282828"  # gruvbox bg — matches nvim and dwm bar
+foreground = "#d5c4a1"  # gruvbox fg — warm cream, matches nvim text
+
+[colors.normal]
+black = "#1d2021"  # darker than bg so p10k dir/github segments stay visible
+
 [keyboard]
 bindings = [
   # Map Super+V to Paste
@@ -11,10 +18,3 @@ bindings = [
   # Map Super+C to Copy
   { key = "C", mods = "Super", action = "Copy" }
 ]
-
-[colors.primary]
-background = "#282828"  # gruvbox bg — matches nvim and dwm bar
-foreground = "#d5c4a1"  # gruvbox fg — warm cream, matches nvim text
-
-[colors.normal]
-black = "#1d2021"  # darker than bg so p10k dir/github segments stay visible
