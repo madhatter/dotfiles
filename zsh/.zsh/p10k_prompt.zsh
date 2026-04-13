@@ -54,14 +54,14 @@ function _p10k_git_status() {
   typeset -g POWERLEVEL9K_PROMPT_ADD_NEWLINE=true
 
   # Box-Drawing around the prompt
-  typeset -g POWERLEVEL9K_MULTILINE_FIRST_PROMPT_PREFIX='%F{8}╭─'
-  typeset -g POWERLEVEL9K_MULTILINE_LAST_PROMPT_PREFIX='%F{8}╰─'
-  typeset -g POWERLEVEL9K_MULTILINE_FIRST_PROMPT_SUFFIX='%F{8}─╮'
-  typeset -g POWERLEVEL9K_MULTILINE_LAST_PROMPT_SUFFIX='%F{8}─╯'
+  typeset -g POWERLEVEL9K_MULTILINE_FIRST_PROMPT_PREFIX='%F{#665c54}╭─'
+  typeset -g POWERLEVEL9K_MULTILINE_LAST_PROMPT_PREFIX='%F{#665c54}╰─'
+  typeset -g POWERLEVEL9K_MULTILINE_FIRST_PROMPT_SUFFIX='%F{#665c54}─╮'
+  typeset -g POWERLEVEL9K_MULTILINE_LAST_PROMPT_SUFFIX='%F{#665c54}─╯'
 
   # Dots filling the gap between left and right
   typeset -g POWERLEVEL9K_MULTILINE_FIRST_PROMPT_GAP_CHAR='·'
-  typeset -g POWERLEVEL9K_MULTILINE_FIRST_PROMPT_GAP_FOREGROUND=8
+  typeset -g POWERLEVEL9K_MULTILINE_FIRST_PROMPT_GAP_FOREGROUND='#665c54'
   typeset -g POWERLEVEL9K_EMPTY_LINE_LEFT_PROMPT_FIRST_SEGMENT_END_SYMBOL='%{%}'
   typeset -g POWERLEVEL9K_EMPTY_LINE_RIGHT_PROMPT_FIRST_SEGMENT_START_SYMBOL='%{%}'
 
@@ -77,13 +77,13 @@ function _p10k_git_status() {
   typeset -g POWERLEVEL9K_OS_ICON_BACKGROUND=141
 
   # dir: dark background, light text
-  typeset -g POWERLEVEL9K_DIR_BACKGROUND=0
+  typeset -g POWERLEVEL9K_DIR_BACKGROUND='#3c3836'
   typeset -g POWERLEVEL9K_DIR_FOREGROUND=7
 
   # GitHub user: dark pill (inner), hidden outside git repos
   typeset -g POWERLEVEL9K_CUSTOM_GITHUB_USER='git rev-parse --is-inside-work-tree &>/dev/null && echo "${GITHUB_ACTIVE_HANDLE:-madhatter}"'
   typeset -g POWERLEVEL9K_CUSTOM_GITHUB_USER_FOREGROUND=7
-  typeset -g POWERLEVEL9K_CUSTOM_GITHUB_USER_BACKGROUND=0
+  typeset -g POWERLEVEL9K_CUSTOM_GITHUB_USER_BACKGROUND='#3c3836'
 
   # git status: purple pill (outer/right), custom-built for readability
   typeset -g POWERLEVEL9K_CUSTOM_GIT_STATUS='_p10k_git_status'

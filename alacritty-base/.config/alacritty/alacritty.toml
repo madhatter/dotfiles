@@ -24,7 +24,6 @@ text = "#c9c7cd"
 style = { shape = "Block", blinking = "Never" }
 
 [colors.normal]
-black = "#27272a"
 blue = "#aca1cf"
 cyan = "#ea83a5"
 green = "#90b99f"
@@ -32,10 +31,6 @@ magenta = "#e29eca"
 red = "#f5a191"
 white = "#c1c0d4"
 yellow = "#e6b99d"
-
-[colors.primary]
-background = "#161617"
-foreground = "#c9c7cd"
 
 [env]
 #TERM = "xterm-256color"
