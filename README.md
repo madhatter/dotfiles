@@ -13,11 +13,14 @@ dotfiles/
   alacritty-mac/      # Alacritty overrides for macOS
   certs/              # Custom CA certificate bundle
   claude/             # Claude Code config and statusline
+  dwm/                # dwm config.h (copied into ~/code/dwm at build time)
+  fastfetch/          # fastfetch system info config
   git/                # Git config
   hooks/              # Pacman hooks (Arch only, deployed via just)
   mise/               # mise runtime manager config
   pacman/             # yay AUR helper config (Arch only)
-  fastfetch/          # fastfetch system info config
+  picom/              # picom compositor config (Arch only)
+  rofi/               # rofi launcher config (Arch only)
   tmux/               # tmux config with catppuccin theme
   zsh/                # zsh config, prompt (powerlevel10k), plugins
 ```
@@ -67,7 +70,15 @@ Symlinks all stow packages into `$HOME`:
 just install
 ```
 
-### 5. Install tmux plugins
+### 5. Arch Linux only: dwm setup
+
+Builds and installs dwm from `~/code/dwm` using the `config.h` from dotfiles. Requires the dwm repository to be present at `~/code/dwm`:
+
+```sh
+just install-dwm-setup
+```
+
+### 6. Install tmux plugins
 
 ```sh
 just install-tmux-plugins
@@ -84,9 +95,12 @@ just restow               # re-deploy (useful after adding new files)
 just test                 # dry-run to preview what stow would do
 just install-deps         # install base tools (OS-aware)
 just install-work-deps    # install AWS/cloud tools (macOS only)
-just install-tmux-plugins
+just install-tmux-plugins # install tpm and tmux plugins
 just install-arch-setup   # Arch Linux only: yay, pacman hook, keyboard layout
+just install-dwm-setup    # Arch only: build and install dwm, deploy rofi/picom configs
 just install-nvidia-setup # deploy NVIDIA Xorg and modprobe config (machine-specific, see note below)
+just deploy-pipewire      # Arch only: PipeWire config (host-aware: archbook vs. PC)
+just deploy-alacritty     # deploy Alacritty base + OS-specific overrides
 ```
 
 > **Note on `install-nvidia-setup`:** This recipe deploys hardware-specific configuration files for NVIDIA GPUs and will not be appropriate for every machine. If you are managing multiple systems with different hardware, consider using a proper configuration management tool (Ansible, etc.) instead of applying this blindly.
@@ -97,6 +111,7 @@ just install-nvidia-setup # deploy NVIDIA Xorg and modprobe config (machine-spec
 - tmux uses [catppuccin](https://github.com/catppuccin/tmux) (macchiato flavour) with custom purple accents to match the prompt.
 - The pacdiff hook opens `nvim -d` after upgrades when `.pacnew` files are present. Change `DIFFPROG` in `hooks/pacdiff.hook` if you prefer a different diff tool.
 - fastfetch replaces neofetch/archey and runs on shell login.
+- dwm is built from source at `~/code/dwm`. The `config.h` lives in `dotfiles/dwm/` and is copied in at build time, then removed — edit it there, not in the build directory.
 - Work dependencies (`awscli`, `vault`, `terraform`) are macOS-only in the Justfile — on Arch these are expected to be managed separately.
 
 ## Questions or ideas
