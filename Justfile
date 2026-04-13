@@ -1,5 +1,6 @@
-# Determine the operating system using a shell command
+# Determine the operating system and hostname
 os_name := `uname -s`
+hostname := `hostnamectl hostname`
 
 # Define the list of packages to manage with stow
 packages := if os_name == "Darwin" { "certs claude fastfetch git mise tmux zsh" } else { "claude fastfetch git mise tmux zsh" }
@@ -24,7 +25,7 @@ install-deps:
         brew install powerlevel10k fzf direnv mise jq oathtool fastfetch alacritty vivid; \
     else \
         echo "Installing dependencies via pacman..."; \
-        yay -S --needed zsh-theme-powerlevel10k fzf direnv mise jq oath-toolkit fastfetch xclip alacritty vivid; \
+        yay -S --needed zsh-theme-powerlevel10k fzf direnv mise jq oath-toolkit fastfetch xclip alacritty vivid pipewire-pulse wireplumber; \
     fi
 
 # Install work-related dependencies (AWS, cloud, infra tools)
@@ -88,11 +89,22 @@ install-tmux-plugins:
     fi
     ~/.config/tmux/plugins/tpm/bin/install_plugins
 
+# Deploy PipeWire configuration for different hosts
+deploy-pipewire:
+    @if [ "{{hostname}}" = "archbook" ]; then \
+        echo "T460s detected. Deploying T460s PipeWire config...."; \
+        stow -R -d {{justfile_directory()}} -t "{{env_var('HOME')}}" pipewire-t460s; \
+    else \
+        echo "T460s detected. Deploying T460s PipeWire config...."; \
+        stow -R -d {{justfile_directory()}} -t "{{env_var('HOME')}}" pipewire-pc; \
+    fi
+    systemctl --user restart pipewire
+
 # Recipe to deploy Alacritty configurations
 deploy-alacritty:
 	@echo "Deploying base Alacritty configuration..."
 	stow -R -d {{justfile_directory()}} -t "{{env_var('HOME')}}" alacritty-base
-	
+
 	@if [ "{{os_name}}" = "Darwin" ]; then \
 		echo "Detected macOS. Deploying Mac Alacritty overrides..."; \
 		stow -R -d {{justfile_directory()}} -t "{{env_var('HOME')}}" alacritty-mac; \
@@ -105,7 +117,7 @@ deploy-alacritty:
 remove-alacritty:
 	@echo "Removing Alacritty configurations..."
 	stow -D -d {{justfile_directory()}} -t "{{env_var('HOME')}}" alacritty-base
-	
+
 	@if [ "{{os_name}}" = "Darwin" ]; then \
 		stow -D -d {{justfile_directory()}} -t "{{env_var('HOME')}}" alacritty-mac; \
 	else \
