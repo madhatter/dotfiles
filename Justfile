@@ -3,7 +3,7 @@ os_name := `uname -s`
 hostname := `hostnamectl hostname`
 
 # Define the list of packages to manage with stow
-packages := if os_name == "Darwin" { "certs claude fastfetch git mise tmux zsh" } else { "claude fastfetch git mise tmux zsh" }
+packages := if os_name == "Darwin" { "certs claude fastfetch git mise tmux zsh" } else { "claude fastfetch git mise picom rofi tmux zsh" }
 
 # General recipes for managing dotfiles with stow
 install: deploy-alacritty
@@ -25,19 +25,18 @@ install-deps:
         brew install powerlevel10k fzf direnv mise jq oathtool fastfetch alacritty vivid; \
     else \
         echo "Installing dependencies via pacman..."; \
-        yay -S --needed zsh-theme-powerlevel10k fzf direnv mise jq oath-toolkit fastfetch xclip alacritty vivid pipewire-pulse wireplumber; \
+        yay -S --needed zsh-theme-powerlevel10k fzf direnv mise jq oath-toolkit fastfetch xclip alacritty vivid rofi rofi-calc papirus-icon-theme picom; \
     fi
 
-# Install work-related dependencies (AWS, cloud, infra tools)
+# Install work-related dependencies (AWS, cloud, infra tools) — macOS only
 install-work-deps:
     @if [ "{{os_name}}" = "Darwin" ]; then \
         echo "Installing work dependencies via Homebrew..."; \
         brew install awscli terraform vault; \
         pip3 install aws-sso-util awsume; \
     else \
-        echo "Installing work dependencies via pacman/pip..."; \
-        sudo pacman -S --needed aws-cli terraform vault; \
-        pip3 install aws-sso-util awsume; \
+        echo "This recipe is only for macOS."; \
+        exit 1; \
     fi
 
 # Arch Linux only: install yay, deploy pacman hook and yay config
@@ -73,14 +72,19 @@ install-nvidia-setup:
     sudo install -Dm644 {{justfile_directory()}}/modprobe/nvidia-drm-nomodeset.conf \
         /etc/modprobe.d/nvidia-drm-nomodeset.conf
 
-# More Arch Linux-only parts: Rofi launcher/picker
-install-rofi:
+# More Arch Linux-only parts: dwm windowmanager setup
+install-dwm-setup:
       @if [ "{{os_name}}" != "Linux" ]; then \
           echo "This recipe is only for Arch Linux."; \
           exit 1; \
       fi
-      yay -S --needed rofi rofi-calc papirus-icon-theme
-      stow -d {{justfile_directory()}} -t "{{env_var('HOME')}}" rofi
+      @if [ ! -d "{{env_var('HOME')}}/code/dwm" ]; then \
+          echo "~/code/dwm not found, skipping dwm build."; \
+          exit 1; \
+      fi
+      cp {{justfile_directory()}}/dwm/config.h {{env_var('HOME')}}/code/dwm/config.h
+      cd {{env_var('HOME')}}/code/dwm && makepkg -sfi
+      rm {{env_var('HOME')}}/code/dwm/config.h
 
 # Install tpm and tmux plugins
 install-tmux-plugins:
@@ -93,9 +97,11 @@ install-tmux-plugins:
 deploy-pipewire:
     @if [ "{{hostname}}" = "archbook" ]; then \
         echo "T460s detected. Deploying T460s PipeWire config...."; \
+        yay -S --needed pipewire-pulse wireplumber
         stow -R -d {{justfile_directory()}} -t "{{env_var('HOME')}}" pipewire-t460s; \
     else \
-        echo "T460s detected. Deploying T460s PipeWire config...."; \
+        echo "Deploying PC PipeWire config...."; \
+        yay -S --needed pipewire-pulse wireplumber
         stow -R -d {{justfile_directory()}} -t "{{env_var('HOME')}}" pipewire-pc; \
     fi
     systemctl --user restart pipewire
