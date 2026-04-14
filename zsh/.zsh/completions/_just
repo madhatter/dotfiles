@@ -1,0 +1,17 @@
+#compdef just
+
+_just() {
+    # Flag completion: delegate to built-in clap completer
+    if [[ ${words[CURRENT]} == -* ]]; then
+        source <(JUST_COMPLETE=zsh just)
+        _clap_dynamic_completer_just "$@"
+        return
+    fi
+
+    # Recipe completion via just --summary
+    local -a recipes
+    recipes=(${(f)"$(just --summary 2>/dev/null | tr ' ' '\n')"})
+    _describe 'recipes' recipes
+}
+
+_just "$@"
