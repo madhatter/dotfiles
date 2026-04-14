@@ -47,5 +47,8 @@ udiskie --no-notify &
 # Start custom status bar
 dwmbar &
 
+# Lock screen on suspend and lid close
+xss-lock -- slock &
+
 # Replace the shell with the window manager
 exec dwm
