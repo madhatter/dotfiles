@@ -74,17 +74,17 @@ install-nvidia-setup:
 
 # More Arch Linux-only parts: dwm windowmanager setup
 install-dwm-setup:
-      @if [ "{{os_name}}" != "Linux" ]; then \
-          echo "This recipe is only for Arch Linux."; \
-          exit 1; \
-      fi
-      @if [ ! -d "{{env_var('HOME')}}/code/dwm" ]; then \
-          echo "~/code/dwm not found, skipping dwm build."; \
-          exit 1; \
-      fi
-      cp {{justfile_directory()}}/dwm/config.h {{env_var('HOME')}}/code/dwm/config.h
-      cd {{env_var('HOME')}}/code/dwm && makepkg -sfi
-      rm {{env_var('HOME')}}/code/dwm/config.h
+    @if [ "{{os_name}}" != "Linux" ]; then \
+        echo "This recipe is only for Arch Linux."; \
+        exit 1; \
+    fi
+    @if [ ! -d "{{env_var('HOME')}}/code/dwm" ]; then \
+        echo "~/code/dwm not found, skipping dwm build."; \
+        exit 1; \
+    fi
+    cp {{justfile_directory()}}/dwm/config.h {{env_var('HOME')}}/code/dwm/config.h
+    cd {{env_var('HOME')}}/code/dwm && makepkg -sfi
+    rm {{env_var('HOME')}}/code/dwm/config.h
 
 # Install tpm and tmux plugins
 install-tmux-plugins:
@@ -97,35 +97,35 @@ install-tmux-plugins:
 deploy-pipewire:
     @if [ "{{hostname}}" = "archbook" ]; then \
         echo "T460s detected. Deploying T460s PipeWire config...."; \
-        yay -S --needed pipewire-pulse wireplumber
+        yay -S --needed pipewire-pulse wireplumber; \
         stow -R -d {{justfile_directory()}} -t "{{env_var('HOME')}}" pipewire-t460s; \
     else \
         echo "Deploying PC PipeWire config...."; \
-        yay -S --needed pipewire-pulse wireplumber
+        yay -S --needed pipewire-pulse wireplumber; \
         stow -R -d {{justfile_directory()}} -t "{{env_var('HOME')}}" pipewire-pc; \
     fi
     systemctl --user restart pipewire
 
 # Recipe to deploy Alacritty configurations
 deploy-alacritty:
-	@echo "Deploying base Alacritty configuration..."
-	stow -R -d {{justfile_directory()}} -t "{{env_var('HOME')}}" alacritty-base
+    @echo "Deploying base Alacritty configuration..."
+    stow -R -d {{justfile_directory()}} -t "{{env_var('HOME')}}" alacritty-base
 
-	@if [ "{{os_name}}" = "Darwin" ]; then \
-		echo "Detected macOS. Deploying Mac Alacritty overrides..."; \
-		stow -R -d {{justfile_directory()}} -t "{{env_var('HOME')}}" alacritty-mac; \
-	else \
-		echo "Detected Linux. Deploying Linux Alacritty overrides..."; \
-		stow -R -d {{justfile_directory()}} -t "{{env_var('HOME')}}" alacritty-linux; \
-	fi
+    @if [ "{{os_name}}" = "Darwin" ]; then \
+        echo "Detected macOS. Deploying Mac Alacritty overrides..."; \
+        stow -R -d {{justfile_directory()}} -t "{{env_var('HOME')}}" alacritty-mac; \
+    else \
+        echo "Detected Linux. Deploying Linux Alacritty overrides..."; \
+        stow -R -d {{justfile_directory()}} -t "{{env_var('HOME')}}" alacritty-linux; \
+    fi
 
 # Remove Alacritty configuration using stow
 remove-alacritty:
-	@echo "Removing Alacritty configurations..."
-	stow -D -d {{justfile_directory()}} -t "{{env_var('HOME')}}" alacritty-base
+    @echo "Removing Alacritty configurations..."
+    stow -D -d {{justfile_directory()}} -t "{{env_var('HOME')}}" alacritty-base
 
-	@if [ "{{os_name}}" = "Darwin" ]; then \
-		stow -D -d {{justfile_directory()}} -t "{{env_var('HOME')}}" alacritty-mac; \
-	else \
-		stow -D -d {{justfile_directory()}} -t "{{env_var('HOME')}}" alacritty-linux; \
-	fi
+    @if [ "{{os_name}}" = "Darwin" ]; then \
+        stow -D -d {{justfile_directory()}} -t "{{env_var('HOME')}}" alacritty-mac; \
+    else \
+        stow -D -d {{justfile_directory()}} -t "{{env_var('HOME')}}" alacritty-linux; \
+    fi
