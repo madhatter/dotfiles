@@ -57,6 +57,8 @@ install-arch-setup:
         /etc/pacman.d/hooks/pacdiff.hook
     sudo install -Dm644 {{justfile_directory()}}/xorg/00-keyboard.conf \
         /etc/X11/xorg.conf.d/00-keyboard.conf
+    sudo install -Dm644 {{justfile_directory()}}/xorg/30-touchpad.conf \
+        /etc/X11/xorg.conf.d/30-touchpad.conf
     stow -d {{justfile_directory()}} -t "{{env_var('HOME')}}" pacman
 
 # Also Arch Linux only: install NVIDIA Xorg configuration and modprobe settings
