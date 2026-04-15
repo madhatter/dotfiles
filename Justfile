@@ -3,7 +3,7 @@ os_name := `uname -s`
 hostname := `command -v hostnamectl > /dev/null 2>&1 && hostnamectl hostname || hostname`
 
 # Define the list of packages to manage with stow
-packages := if os_name == "Darwin" { "certs claude fastfetch git mise tmux zsh" } else { "claude fastfetch git mise picom rofi tmux zsh" }
+packages := if os_name == "Darwin" { "certs claude fastfetch git mise tmux zsh" } else { "claude fastfetch git mise picom rofi tmux zsh redshift" }
 
 # General recipes for managing dotfiles with stow
 install: deploy-alacritty deploy-gnupg
@@ -25,7 +25,7 @@ install-deps:
         brew install powerlevel10k fzf direnv mise jq oath-toolkit fastfetch alacritty vivid gnupg pinentry-mac; \
     else \
         echo "Installing dependencies via pacman..."; \
-        yay -S --needed zsh-theme-powerlevel10k fzf direnv mise jq oath-toolkit fastfetch xclip alacritty vivid rofi rofi-calc papirus-icon-theme picom slock xss-lock gnupg pinentry; \
+        yay -S --needed zsh-theme-powerlevel10k fzf direnv mise jq oath-toolkit fastfetch xclip alacritty vivid rofi rofi-calc papirus-icon-theme picom slock xss-lock gnupg pinentry redshift; \
     fi
 
 # Install work-related dependencies (AWS, cloud, infra tools) — macOS only
