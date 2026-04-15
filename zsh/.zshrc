@@ -21,9 +21,6 @@ if command -v pyenv 1>/dev/null 2>&1; then
   eval "$(pyenv init -)"
 fi
 
-# GPG agent initialization
-export GPG_TTY=$(tty)
-
 # Go workspace. Go, go, go.
 export GOPATH="$HOME/code/go"
 
@@ -261,3 +258,7 @@ complete -C aws_completer aws
 # bun
 export BUN_INSTALL="$HOME/.bun"
 export PATH="$BUN_INSTALL/bin:$PATH"
+
+# GPG agent initialization ($TTY instead of $(tty) because of p10k interference)
+export GPG_TTY=$TTY
+gpg-connect-agent updatestartuptty /bye >/dev/null 2>&1
