@@ -15,19 +15,28 @@ static const char col_bg_alt[] 			= "#3c3836";
 static const char col_fg[]     			= "#d5c4a1";
 static const char col_fg_dim[] 			= "#665c54";
 static const char col_accent[] 			= "#af87ff";
+static const char col_black[]       = "#000000";
+static const char col_red[]         = "#ff0000";
+static const char col_yellow[]      = "#ffff00";
+static const char col_white[]       = "#ffffff";
+
 static const unsigned int baralpha = 0x99u;
 static const unsigned int borderalpha = OPAQUE;
 
 static const char *colors[][3] = {
     /*               fg          bg          border     */
-    [SchemeNorm] = { col_fg,     col_bg,     col_bg_alt },
-    [SchemeSel]  = { col_bg,     col_accent, col_accent },
+    [SchemeNorm]   = { col_fg,     col_bg,     col_bg_alt },
+    [SchemeSel]    = { col_bg,     col_accent, col_accent },
+    [SchemeWarn]   = { col_bg,     col_fg,     col_bg_alt },
+    [SchemeUrgent] = { col_bg,     col_accent, col_bg_alt },
 };
 
-static const unsigned int alphas[][3]      = {
-        /*               fg      bg        border     */
-        [SchemeNorm] = { OPAQUE, baralpha, borderalpha },
-        [SchemeSel]  = { OPAQUE, baralpha, borderalpha },
+static const unsigned int alphas[][3] = {
+    /*               fg      bg        border     */
+    [SchemeNorm]   = { OPAQUE, baralpha, borderalpha },
+    [SchemeSel]    = { OPAQUE, baralpha, borderalpha },
+    [SchemeWarn]   = { OPAQUE, baralpha, borderalpha },
+    [SchemeUrgent] = { OPAQUE, baralpha, borderalpha },
 };
 
 /* tagging */
