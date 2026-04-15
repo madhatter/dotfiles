@@ -44,6 +44,9 @@ picom &
 # Start listening for usb devices
 udiskie --no-notify &
 
+# Start redshift for eye care
+redshift &
+
 # Start custom status bar
 dwmbar &
 
