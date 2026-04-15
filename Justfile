@@ -6,10 +6,10 @@ hostname := `hostnamectl hostname`
 packages := if os_name == "Darwin" { "certs claude fastfetch git mise tmux zsh" } else { "claude fastfetch git mise picom rofi tmux zsh" }
 
 # General recipes for managing dotfiles with stow
-install: deploy-alacritty
+install: deploy-alacritty deploy-gnupg
     stow -d {{justfile_directory()}} -t "{{env_var('HOME')}}" {{packages}}
 
-uninstall: remove-alacritty
+uninstall: remove-alacritty remove-gnupg
     stow -d {{justfile_directory()}} -t "{{env_var('HOME')}}" -D {{packages}}
 
 restow: deploy-alacritty
@@ -22,10 +22,10 @@ test:
 install-deps:
     @if [ "{{os_name}}" = "Darwin" ]; then \
         echo "Installing dependencies via Homebrew..."; \
-        brew install powerlevel10k fzf direnv mise jq oathtool fastfetch alacritty vivid; \
+        brew install powerlevel10k fzf direnv mise jq oathtool fastfetch alacritty vivid gnupg pinentry-mac; \
     else \
         echo "Installing dependencies via pacman..."; \
-        yay -S --needed zsh-theme-powerlevel10k fzf direnv mise jq oath-toolkit fastfetch xclip alacritty vivid rofi rofi-calc papirus-icon-theme picom slock xss-lock; \
+        yay -S --needed zsh-theme-powerlevel10k fzf direnv mise jq oath-toolkit fastfetch xclip alacritty vivid rofi rofi-calc papirus-icon-theme picom slock xss-lock gnupg pinentry; \
     fi
 
 # Install work-related dependencies (AWS, cloud, infra tools) — macOS only
@@ -128,4 +128,26 @@ remove-alacritty:
         stow -D -d {{justfile_directory()}} -t "{{env_var('HOME')}}" alacritty-mac; \
     else \
         stow -D -d {{justfile_directory()}} -t "{{env_var('HOME')}}" alacritty-linux; \
+    fi
+
+deploy-gnupg:
+    @echo "Deploying base gnupg config file..."
+    stow -R -d {{justfile_directory()}} -t "{{env_var('HOME')}}" gnupg-base
+
+    @if [ "{{os_name}}" = "Darwin" ]; then \
+        echo "Detected macOS. Deploying Mac gnupg overrides..."; \
+        stow -R -d {{justfile_directory()}} -t "{{env_var('HOME')}}" gnupg-mac; \
+    else \
+        echo "Detected Linux. Deploying Linux gnupg overrides..."; \
+        stow -R -d {{justfile_directory()}} -t "{{env_var('HOME')}}" gnupg-linux; \
+    fi
+
+remove-gnupg:
+    @echo "Removing gnupg configurations..."
+    stow -D -d {{justfile_directory()}} -t "{{env_var('HOME')}}" gnupg-base
+
+    @if [ "{{os_name}}" = "Darwin" ]; then \
+        stow -D -d {{justfile_directory()}} -t "{{env_var('HOME')}}" gnupg-mac; \
+    else \
+        stow -D -d {{justfile_directory()}} -t "{{env_var('HOME')}}" gnupg-linux; \
     fi
