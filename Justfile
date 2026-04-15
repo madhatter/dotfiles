@@ -1,6 +1,6 @@
 # Determine the operating system and hostname
 os_name := `uname -s`
-hostname := `hostnamectl hostname`
+hostname := `command -v hostnamectl > /dev/null 2>&1 && hostnamectl hostname || hostname`
 
 # Define the list of packages to manage with stow
 packages := if os_name == "Darwin" { "certs claude fastfetch git mise tmux zsh" } else { "claude fastfetch git mise picom rofi tmux zsh" }
