@@ -1,7 +1,5 @@
 font-size = 12
 
-window-maximize = true
-
 # gruvbox — matches nvim and dwm bar
 background = #282828
 foreground = #d5c4a1
