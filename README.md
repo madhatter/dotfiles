@@ -15,6 +15,9 @@ dotfiles/
   claude/             # Claude Code config and statusline
   dwm/                # dwm config.h (copied into ~/code/dwm at build time)
   fastfetch/          # fastfetch system info config
+  ghostty-base/       # Ghostty terminal (shared config)
+  ghostty-linux/      # Ghostty overrides for Linux
+  ghostty-mac/        # Ghostty overrides for macOS
   git/                # Git config
   hooks/              # Pacman hooks (Arch only, deployed via just)
   mise/               # mise runtime manager config
@@ -106,6 +109,8 @@ just install-nvidia-setup # Arch only: NVIDIA Xorg and modprobe config (machine-
 just deploy-pipewire      # Arch only: PipeWire config (host-aware: archbook vs. PC)
 just deploy-alacritty     # deploy Alacritty base + OS-specific overrides
 just remove-alacritty     # remove Alacritty symlinks
+just deploy-ghostty       # deploy Ghostty base + OS-specific overrides
+just remove-ghostty       # remove Ghostty symlinks
 just deploy-gnupg         # deploy GnuPG base + OS-specific overrides, set permissions
 just remove-gnupg         # remove GnuPG symlinks
 ```
