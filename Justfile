@@ -113,6 +113,22 @@ deploy-pipewire:
     fi
     systemctl --user restart pipewire
 
+# Deploy keyd and configuration for T460S (archbook) to remap CapsLock+h/j/k/l to arrow keys
+deploy-keyd:
+    @if [ "{{os_name}}" != "Linux" ]; then \
+        echo "This recipe is only for Arch Linux."; \
+        exit 1; \
+    fi
+    @if [ "{{hostname}}" != "archbook" ]; then \
+        echo "keyd is only for the T460S (archbook)."; \
+        exit 1; \
+    fi
+    sudo pacman -S --needed keyd
+    sudo systemctl enable --now keyd
+    sudo install -Dm644 {{justfile_directory()}}/keyd/default.conf \
+        /etc/keyd/default.conf
+    sudo systemctl restart keyd
+
 # Recipe to deploy Ghostty configurations
 deploy-ghostty:
     @echo "Deploying base Ghostty configuration..."
