@@ -3,7 +3,8 @@ os_name := `uname -s`
 hostname := `command -v hostnamectl > /dev/null 2>&1 && hostnamectl hostname || hostname`
 
 # Define the list of packages to manage with stow
-packages := if os_name == "Darwin" { "certs claude fastfetch git mise tmux zsh" } else { "claude fastfetch git mise picom rofi tmux zsh redshift" }
+packages := if os_name == "Darwin" { "certs claude fastfetch git mise tmux zsh"
+} else { "claude fastfetch git mise picom redshift rofi tmux yazi zsh" }
 
 # General recipes for managing dotfiles with stow
 install: deploy-alacritty deploy-ghostty deploy-gnupg
@@ -97,6 +98,10 @@ install-tmux-plugins:
 
 # Deploy PipeWire configuration for different hosts
 deploy-pipewire:
+    @if [ "{{os_name}}" != "Linux" ]; then \
+        echo "This recipe is only for Arch Linux."; \
+        exit 1; \
+    fi
     @if [ "{{hostname}}" = "archbook" ]; then \
         echo "T460s detected. Deploying T460s PipeWire config...."; \
         yay -S --needed pipewire-pulse wireplumber; \

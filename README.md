@@ -19,7 +19,11 @@ dotfiles/
   hooks/              # Pacman hooks (Arch only, deployed via just)
   mise/               # mise runtime manager config
   pacman/             # yay AUR helper config (Arch only)
+  gnupg-base/         # GnuPG config (shared)
+  gnupg-linux/        # GnuPG overrides for Linux
+  gnupg-mac/          # GnuPG overrides for macOS
   picom/              # picom compositor config (Arch only)
+  redshift/           # redshift color temperature config (Arch only)
   rofi/               # rofi launcher config (Arch only)
   tmux/               # tmux config with catppuccin theme
   zsh/                # zsh config, prompt (powerlevel10k), plugins
@@ -48,7 +52,7 @@ cd ~/dotfiles
 
 ### 2. Arch Linux only: yay and pacman setup
 
-Installs yay from AUR, deploys the pacdiff hook to `/etc/pacman.d/hooks/`, and stows the yay config:
+Installs yay from AUR, deploys the pacdiff hook to `/etc/pacman.d/hooks/`, keyboard and touchpad Xorg config to `/etc/X11/xorg.conf.d/`, and stows the yay config:
 
 ```sh
 just install-arch-setup
@@ -96,11 +100,14 @@ just test                 # dry-run to preview what stow would do
 just install-deps         # install base tools (OS-aware)
 just install-work-deps    # install AWS/cloud tools (macOS only)
 just install-tmux-plugins # install tpm and tmux plugins
-just install-arch-setup   # Arch Linux only: yay, pacman hook, keyboard layout
-just install-dwm-setup    # Arch only: build and install dwm, deploy rofi/picom configs
-just install-nvidia-setup # deploy NVIDIA Xorg and modprobe config (machine-specific, see note below)
+just install-arch-setup   # Arch only: yay, pacman hook, keyboard and touchpad Xorg config
+just install-dwm-setup    # Arch only: build and install dwm from ~/code/dwm
+just install-nvidia-setup # Arch only: NVIDIA Xorg and modprobe config (machine-specific, see note below)
 just deploy-pipewire      # Arch only: PipeWire config (host-aware: archbook vs. PC)
 just deploy-alacritty     # deploy Alacritty base + OS-specific overrides
+just remove-alacritty     # remove Alacritty symlinks
+just deploy-gnupg         # deploy GnuPG base + OS-specific overrides, set permissions
+just remove-gnupg         # remove GnuPG symlinks
 ```
 
 > **Note on `install-nvidia-setup`:** This recipe deploys hardware-specific configuration files for NVIDIA GPUs and will not be appropriate for every machine. If you are managing multiple systems with different hardware, consider using a proper configuration management tool (Ansible, etc.) instead of applying this blindly.
