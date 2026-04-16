@@ -9,8 +9,9 @@ font-style-bold-italic = Bold Oblique
 cursor-style = block
 cursor-style-blink = false
 cursor-color = #757581
+shell-integration-features = no-cursor
 
-window-decoration = auto
+window-decoration = none
 window-padding-x = 7
 window-padding-y = 5
 
