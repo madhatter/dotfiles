@@ -6,13 +6,13 @@ hostname := `command -v hostnamectl > /dev/null 2>&1 && hostnamectl hostname || 
 packages := if os_name == "Darwin" { "certs claude fastfetch git mise tmux zsh" } else { "claude fastfetch git mise picom rofi tmux zsh redshift" }
 
 # General recipes for managing dotfiles with stow
-install: deploy-alacritty deploy-gnupg
+install: deploy-alacritty deploy-ghostty deploy-gnupg
     stow -d {{justfile_directory()}} -t "{{env_var('HOME')}}" {{packages}}
 
-uninstall: remove-alacritty remove-gnupg
+uninstall: remove-alacritty remove-ghostty remove-gnupg
     stow -d {{justfile_directory()}} -t "{{env_var('HOME')}}" -D {{packages}}
 
-restow: deploy-alacritty
+restow: deploy-alacritty deploy-ghostty
     stow -d {{justfile_directory()}} -t "{{env_var('HOME')}}" -R {{packages}}
 
 test:
@@ -107,6 +107,30 @@ deploy-pipewire:
         stow -R -d {{justfile_directory()}} -t "{{env_var('HOME')}}" pipewire-pc; \
     fi
     systemctl --user restart pipewire
+
+# Recipe to deploy Ghostty configurations
+deploy-ghostty:
+    @echo "Deploying base Ghostty configuration..."
+    stow -R -d {{justfile_directory()}} -t "{{env_var('HOME')}}" ghostty-base
+
+    @if [ "{{os_name}}" = "Darwin" ]; then \
+        echo "Detected macOS. Deploying Mac Ghostty overrides..."; \
+        stow -R -d {{justfile_directory()}} -t "{{env_var('HOME')}}" ghostty-mac; \
+    else \
+        echo "Detected Linux. Deploying Linux Ghostty overrides..."; \
+        stow -R -d {{justfile_directory()}} -t "{{env_var('HOME')}}" ghostty-linux; \
+    fi
+
+# Remove Ghostty configuration using stow
+remove-ghostty:
+    @echo "Removing Ghostty configurations..."
+    stow -D -d {{justfile_directory()}} -t "{{env_var('HOME')}}" ghostty-base
+
+    @if [ "{{os_name}}" = "Darwin" ]; then \
+        stow -D -d {{justfile_directory()}} -t "{{env_var('HOME')}}" ghostty-mac; \
+    else \
+        stow -D -d {{justfile_directory()}} -t "{{env_var('HOME')}}" ghostty-linux; \
+    fi
 
 # Recipe to deploy Alacritty configurations
 deploy-alacritty:
