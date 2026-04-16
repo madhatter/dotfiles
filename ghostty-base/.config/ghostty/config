@@ -1,0 +1,39 @@
+# Ghostty base configuration file
+
+font-family = BerkeleyMono Nerd Font Mono
+font-style = Regular
+font-style-bold = Bold
+font-style-italic = Oblique
+font-style-bold-italic = Bold Oblique
+
+cursor-style = block
+cursor-style-blink = false
+cursor-color = #757581
+
+window-decoration = auto
+window-padding-x = 7
+window-padding-y = 5
+
+# Normal colors (0 = black, set per platform)
+palette = 1=#f5a191
+palette = 2=#90b99f
+palette = 3=#e6b99d
+palette = 4=#aca1cf
+palette = 5=#e29eca
+palette = 6=#ea83a5
+palette = 7=#c1c0d4
+
+# Bright colors
+palette = 8=#353539
+palette = 9=#ffae9f
+palette = 10=#9dc6ac
+palette = 11=#f0c5a9
+palette = 12=#b9aeda
+palette = 13=#ecaad6
+palette = 14=#f591b2
+palette = 15=#cac9dd
+
+keybind = shift+enter=text:\x1b\r
+#
+# Import OS-specific overrides (silently ignored if missing)
+config-file = ~/.config/ghostty/config_local
