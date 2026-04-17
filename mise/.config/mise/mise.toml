@@ -1,6 +1,5 @@
 [tools]
 java = "corretto-21"
-python = "3.11.14"
 jj = "latest"
 rust = "latest"
 kotlin = "2"
