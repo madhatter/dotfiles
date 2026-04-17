@@ -4,7 +4,7 @@
 ####################################################
 
 mpd_host = "127.0.0.1"
-mpd_music_dir = "/home/awarnecke/music"
+mpd_music_dir = "/run/media/madhatter/SDCard/music"
 
 # Interface (classic/alternative)
 user_interface = alternative
@@ -52,8 +52,8 @@ progressbar_color = "blue"
 statusbar_color = "white"
 #active_column_color = "red"
 
-visualizer_data_source = "~/.ncmpcpp/mpd.fifo"
-visualizer_output_name = "my_fifo"
+visualizer_data_source = "/tmp/mpd.fifo"
+visualizer_output_name = "Visualizer"
 #visualizer_sync_interval = "30"
 visualizer_in_stereo = "yes"
 visualizer_type = "wave" (spectrum/wave)
@@ -61,4 +61,4 @@ visualizer_type = "wave" (spectrum/wave)
 visualizer_look = ▒▒
 visualizer_color = "blue"
 
-execute_on_song_change = "/home/awarnecke/bin/ncmp_notify.sh"
+execute_on_song_change = "~/bin/ncmp_notify.sh"
