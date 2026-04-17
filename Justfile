@@ -113,6 +113,22 @@ deploy-pipewire:
     fi
     systemctl --user restart pipewire
 
+# Install mpd and ncmpcpp for T460S (archbook) with music on SD card
+install-mpd:
+    @if [ "{{os_name}}" != "Linux" ]; then \
+        echo "This recipe is only for Arch Linux."; \
+        exit 1; \
+    fi
+    @if [ "{{hostname}}" != "archbook" ]; then \
+        echo "install-mpd is only for the T460S (archbook)."; \
+        exit 1; \
+    fi
+    sudo pacman -S --needed mpd mpc ncmpcpp
+    stow -R -d {{justfile_directory()}} -t "{{env_var('HOME')}}" mpd
+    systemctl --user enable --now mpd
+    mpc update
+    stow -R -d {{justfile_directory()}} -t "{{env_var('HOME')}}" ncmpcpp
+
 # Deploy keyd and configuration for T460S (archbook) to remap CapsLock+h/j/k/l to arrow keys
 deploy-keyd:
     @if [ "{{os_name}}" != "Linux" ]; then \
