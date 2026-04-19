@@ -6,16 +6,32 @@
 mpd_host = "127.0.0.1"
 mpd_music_dir = "/run/media/madhatter/SDCard/music"
 
-# Interface (classic/alternative)
-user_interface = alternative
+# --- UI & Appearance ---
+user_interface = "alternative"
+search_engine_display_mode = "columns"
+playlist_display_mode = "columns"
+browser_display_mode = "columns"
+playlist_editor_display_mode = "classic"
+
+# Header formatting for the alternative UI
+# Use direct UTF-8 box drawing characters instead of ACS mapping
+alternative_header_first_line_format = "$b$5━━┫$9 {%t}|{%f} $5┣━━$9$/b"
+alternative_header_second_line_format = "{{$5$b%a$/b$9}{ - $7%b$9}{ $2($4%y$2)}}|{%D}"
+
+# General
+enable_window_title = "yes"
 
 # Playlist
-song_columns_list_format = "(3f)[blue]{n} (20)[red]{a} (40)[green]{t} (25)[yellow]{b} (6f)[blue]{l} "
+song_columns_list_format = "(3f)[250]{n} (20)[141]{a} (40)[183]{t} (25)[blue]{b} (6f)[147]{l} "
 now_playing_prefix = "$b$5»$7»$1» "
 now_playing_suffix = "$/b"
-playlist_display_mode = "columns" (classic/columns)
+playlist_disable_highlight_delay = 5
 autocenter_mode = "yes"
 centered_cursor = "yes"
+display_bitrate = "yes"
+playlist_show_mpd_host = "no"
+playlist_show_remaining_time = "yes"
+playlist_separate_albums = "no"
 
 # Bars
 #song_status_format = "$2%a $1• $3%t $1• $4%b {(Disc %d) }$1• $5%y$1"
@@ -26,29 +42,25 @@ titles_visibility = "yes"
 
 # Browser
 browser_playlist_prefix = "$2plist »$9 "
-browser_display_mode = "columns" (classic/columns)
+ignore_leading_the = "yes"
 
 # Othersl
 song_window_title_format = "MPD: {%a > }{%t}{ [%b{ Disc %d}]}|{%f}"
-search_engine_display_mode = "columns" (classic/columns)
-follow_now_playing_lyrics = "yes"
-#display_screens_numbers_on_start = "no"
-
 
 ##### colors definitions #####
 colors_enabled = "yes"
 
 # Colors
 discard_colors_if_item_is_selected = "yes"
-header_window_color = "default"
+header_window_color = "141"
 volume_color = "default"
 state_line_color = "black"
-state_flags_color = "yellow"
-main_window_color = "white"
+state_flags_color = "183"
+main_window_color = "250"
 color1 = "default"
-color2 = "green"
+color2 = "141"
 #main_window_highlight_color = "red"
-progressbar_color = "blue"
+progressbar_color = "141"
 statusbar_color = "white"
 #active_column_color = "red"
 
@@ -56,11 +68,18 @@ statusbar_color = "white"
 visualizer_data_source = "/tmp/mpd.fifo"
 visualizer_output_name = "Visualizer"
 visualizer_type = "wave_filled"
-visualizer_look = ▮▮
-#visualizer_look = ◆◆
-visualizer_color = "blue"
-#visualizer_color = 47, 83, 119, 155, 191, 227, 221, 215, 209, 203, 197, 161
-visualizer_autoscale = no
+#visualizer_look = ▮▮
+visualizer_look = ▮●
+visualizer_color = 41, 83, 119, 155, 185, 215, 209, 203, 197, 161
+#visualizer_color = "141"
+visualizer_autoscale = "yes"
 visualizer_fps = "60"
+
+# Lyrics
+lyrics_directory = ~/.lyrics
+lyrics_fetchers = internet, genius
+follow_now_playing_lyrics  = "yes"
+store_lyrics_in_song_dir   = "no"
+fetch_lyrics_for_current_song_in_background = "yes"
 
 execute_on_song_change = "~/bin/ncmp_notify.sh"
