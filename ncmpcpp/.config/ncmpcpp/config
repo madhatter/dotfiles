@@ -20,6 +20,7 @@ alternative_header_second_line_format = "{{$5$b%a$/b$9}{ - $7%b$9}{ $2($4%y$2)}}
 
 # General
 enable_window_title = "yes"
+seek_time = 10
 
 # Playlist
 song_columns_list_format = "(3f)[250]{n} (20)[141]{a} (40)[183]{t} (25)[blue]{b} (6f)[147]{l} "

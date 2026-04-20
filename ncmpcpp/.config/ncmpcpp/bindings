@@ -19,3 +19,9 @@ def_key "N"
 # --- Views ---
 def_key "L"
   show_lyrics
+
+# --- Seeking ---
+def_key "right"
+  seek_forward
+def_key "left"
+  seek_backward
