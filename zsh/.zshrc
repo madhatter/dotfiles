@@ -173,11 +173,10 @@ zstyle -e ':completion::*:*:*:hosts' hosts 'reply=(${=${${(f)"$(cat {/etc/ssh_,~
 # use LS_COLORS with ls
 if command -v gls &>/dev/null; then
     alias ls='gls --color=auto'
-    alias ll='gls -la'
 else
     alias ls='ls --color=auto'
-    alias ll='ls -la'
 fi
+alias ll='ls -la'
 
 # general aliases
 alias gp="git pull"
