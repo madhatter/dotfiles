@@ -118,6 +118,54 @@
           "from": { "key_code": "l" },
           "to": [{ "key_code": "right_arrow" }],
           "type": "basic"
+        },
+        {
+          "conditions": [
+            {
+              "name": "caps_layer",
+              "type": "variable_if",
+              "value": 1
+            }
+          ],
+          "from": { "key_code": "u" },
+          "to": [{ "key_code": "page_down" }],
+          "type": "basic"
+        },
+        {
+          "conditions": [
+            {
+              "name": "caps_layer",
+              "type": "variable_if",
+              "value": 1
+            }
+          ],
+          "from": { "key_code": "i" },
+          "to": [{ "key_code": "page_up" }],
+          "type": "basic"
+        },
+        {
+          "conditions": [
+            {
+              "name": "caps_layer",
+              "type": "variable_if",
+              "value": 1
+            }
+          ],
+          "from": { "key_code": "o" },
+          "to": [{ "key_code": "home" }],
+          "type": "basic"
+        },
+        {
+          "conditions": [
+            {
+              "name": "caps_layer",
+              "type": "variable_if",
+              "value": 1
+            }
+          ],
+          "from": { "key_code": "p" },
+          "to": [{ "key_code": "end" }],
+          "type": "basic"
         }
       ]
     }
