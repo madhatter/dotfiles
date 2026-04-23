@@ -1,0 +1,114 @@
+# madhatter.v2.theme
+# Purple/lavender accent theme for gruvbox-dark terminal
+#
+# Color reference (st/alacritty palette):
+#   %b  = #aca1cf  muted lavender
+#   %B  = #b9aeda  bright lavender  (main accent)
+#   %m  = #e29eca  muted pink
+#   %M  = #ecaad6  bright lilac     (mentions/highlights)
+#   %w  = #c1c0d4  light gray-lavender
+#   %W  = #cac9dd  bright gray-lavender
+#   %R  = #ffae9f  salmon/red       (errors/alerts)
+#   %n  = #d5c4a1  default fg (warm cream)
+#   %K  not used  (#353539 nearly invisible on dark bg)
+
+replaces = { };
+
+abstracts = {
+  line_start = "";
+  timestamp = " %w[%w$0-%w]%n";
+  hilight = "%M$0-%n";
+  error = "%R$0-%n";
+  channel = "%B$0-%n";
+  nick = "%b$0-%n";
+  nickhost = "%B[%n$0-%B]%n";
+  server = "%B$0-%n";
+  comment = "%B[%b$0-%B]%n";
+  reason = "{comment $0-}";
+  mode = "{comment $0-}";
+
+  channick_hilight = "%M$0-%n";
+  chanhost_hilight = "%B{nickhost $0-%B}%n";
+  channick = "%b$0-%n";
+  chanhost = "%B{nickhost $0-%b}%n";
+  channelhilight = "%B$0-%n";
+  ban = "%b$0-";
+
+  msgnick = "<$0$1-> %|";
+  ownmsgnick = "%B{msgnick %b$0 %B$1-}%n";
+  ownnick = "%W$0-";
+  pubmsgnick = "%n{msgnick %b$0 $1-%n}%n";
+  pubnick = "%b$0-";
+  pubmsgmenick = "%M{msgnick %M$0 $1-%M}%n";
+  menick = "%M$0-";
+  pubmsghinick = "%M{msgnick $1 $0$2-}%n";
+  msgchannel = ":%b$0-%n";
+
+  privmsg = "%B[%b$0%B(%b$1-%B)]%n ";
+  ownprivmsg = "%B[%b$0%B(%b$1-%B)] ";
+  ownprivmsgnick = "%B{msgnick $0-}";
+  ownprivnick = "%W$0-";
+  privmsgnick = "%B{msgnick %b$0-%B}%n";
+
+  action_core = "* $0-";
+  action = "%m{action_core %m$0-} ";
+  ownaction = "%m{action %m$0-}";
+  ownaction_target = "%m{action_core %m$0}:$1 ";
+  pvtaction = " %m(*) %m$0- ";
+  pvtaction_query = "%m{action %m$0-}";
+  pubaction = "%m{action %m$0-}";
+
+  ownnotice = "%B[%b$0%B(%b$1-%B)] ";
+  notice = "%B-%b$0-%B-%n ";
+  pubnotice_channel = ":%b$0-%n";
+  pvtnotice_host = "%B(%b$0-%B)%n";
+  servernotice = "%B!%n$0-%n ";
+
+  ownctcp = "%B[%b$0%B(%b$1-%B)] ";
+  ctcp = "$0-";
+
+  wallop = "%BWALLOP%n $0-: ";
+  wallop_nick = "%B$0-%n";
+  wallop_action = "%BWALLOP%n * $0- ";
+
+  netsplit = "%b$0-";
+  netjoin = "%B$0-";
+
+  names_nick = "%B[%b$0%b$1-%B]%n ";
+  names_users = "%B[%b$0-%B]%n";
+  names_channel = "%b$0-%n";
+
+  dcc = "$0-";
+  dccfile = "$0-";
+  dccownmsg = "%B[%b$0%B(%b$1-%B)] ";
+  dccownnick = "%B$0-%n";
+  dccownaction = "{action $0-}";
+  dccownaction_target = "{action_core $0}:$1 ";
+  dccmsg = "%B[%b$1-%B(%b$0%B)]%n ";
+  dccquerynick = "%B$0-%n";
+  dccaction = " (*dcc*) $0- %|";
+
+  sb_background = "%0";
+  sb = "%B[%b$0-%B]";
+  sbmode = "%B(%b+$0-%B)";
+  sbaway = " %B(%baway%B)";
+  sbservertag = ":%B$0 %B(%bchange => ^X%B)";
+  sbmore = "%B[ %bmore %B]";
+  sblag = "%B{sb %blag: %b$0-%B}";
+  sbmail = "%B{sb %bmail: $0-%B}";
+  sbact = "{sb {sbact_act $0}{sbact_det $1}}";
+  sbact_act = "act: $0-%n";
+  sbact_det = " det: $0-";
+
+  sb_act_sep = "%n$*";
+  sb_act_none = "%n$*";
+  sb_act_text = "%w$*";
+  sb_act_msg = "%w$*";
+  sb_act_hilight = "%M$*";
+  sb_act_hilight_color = "%M$*";
+  sb_act_special = "%B$*";
+};
+
+formats = {
+  "fe-common/core" = { pubmsg = "{pubmsgnick $2 {pubnick \00311$0}}$1"; };
+};

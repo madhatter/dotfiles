@@ -1,0 +1,203 @@
+# -----------------------------------------------------------------------------
+# Core IRSSI configuration
+# Modernized static config - TLS enabled, Freenode migrated to Libera
+# -----------------------------------------------------------------------------
+
+servers = (
+  {
+    address = "irc.libera.chat";
+    chatnet = "libera";
+    port = "6697";
+    use_tls = "yes";
+    tls_verify = "yes";
+    tls_cert = "~/.irssi/certs/nick.pem";
+    tls_key = "~/.irssi/certs/nick.pem";
+    autoconnect = "no";
+  },
+  {
+    address = "irc.oftc.net";
+    chatnet = "oftc";
+    port = "6697";
+    use_tls = "yes";
+    tls_verify = "yes";
+    tls_cert = "~/.irssi/certs/nick.pem";
+    tls_key = "~/.irssi/certs/nick.pem";
+    autoconnect = "no";
+  }
+);
+
+chatnets = {
+  libera = {
+    type = "IRC";
+    sasl_mechanism = "EXTERNAL";
+    sasl_username = "madhatter";
+    max_kicks = "4";
+    max_modes = "4";
+    max_msgs = "1";
+    max_whois = "1";
+  };
+  oftc = {
+    type = "IRC";
+    max_kicks = "4";
+    max_modes = "4";
+    max_msgs = "1";
+    max_whois = "1";
+    autosendcmd = "/^msg NickServ identify trulla31337;wait -opn 2000";
+  };
+};
+
+#channels = (
+#  { name = "#heim2"; chatnet = "libera"; autojoin = "yes"; },
+#  { name = "#irssi"; chatnet = "libera"; autojoin = "yes"; },
+#  { name = "#neovim"; chatnet = "libera"; autojoin = "yes"; },
+#  { name = "#archlinux.de"; chatnet = "libera"; autojoin = "yes"; },
+#  { name = "#go-nuts"; chatnet = "libera"; autojoin = "yes"; }
+#);
+
+aliases = {
+  J = "join";
+  WJOIN = "join -window";
+  WQUERY = "query -window";
+  LEAVE = "part";
+  BYE = "quit";
+  EXIT = "quit";
+  SIGNOFF = "quit";
+  DESCRIBE = "action";
+  DATE = "time";
+  HOST = "userhost";
+  LAST = "lastlog";
+  SAY = "msg *";
+  WI = "whois";
+  WII = "whois $0 $0";
+  WW = "whowas";
+  W = "who";
+  N = "names";
+  M = "msg";
+  T = "topic";
+  C = "clear";
+  CL = "clear";
+  K = "kick";
+  KB = "kickban";
+  KN = "knockout";
+  BANS = "ban";
+  B = "ban";
+  MUB = "unban *";
+  UB = "unban";
+  IG = "ignore";
+  UNIG = "unignore";
+  SB = "scrollback";
+  UMODE = "mode $N";
+  WC = "window close";
+  WN = "window new hide";
+  SV = "say Irssi $J ($V) - http://irssi.org/";
+  GOTO = "sb goto";
+  CHAT = "dcc chat";
+  RUN = "SCRIPT LOAD";
+  UPTIME = "eval exec - expr `date +%s` - \\$F | awk '{print \"Irssi uptime: \"int(\\\\\\$1/3600/24)\"d \"int(\\\\\\$1/3600%24)\"h \"int(\\\\\\$1/60%60)\"m \"int(\\\\\\$1%60)\"s\" }'";
+  CALC = "exec - if which bc &>/dev/null\\; then echo '$*' | bc | awk '{print \"$*=\"$$1}'\\; else echo bc was not found\\; fi";
+  SBAR = "STATUSBAR";
+  INVITELIST = "mode $C +I";
+  Q = "QUERY";
+  URLCLEAR = "exec rm ~/.irssi/urlplot/a_cache";
+  PATSCH = "exec -o figlet PATSCH!";
+};
+
+logs = { };
+
+statusbar = {
+  default = {
+    window = {
+      items = {
+        barstart = { priority = "100"; };
+        time = { };
+        user = { };
+        window = { };
+        window_empty = { };
+        lag = { priority = "-1"; };
+        more = { priority = "-1"; alignment = "right"; };
+        barend = { priority = "100"; alignment = "right"; };
+      };
+    };
+    info = { disabled = "yes"; };
+    dccstat = { items = { dccstat = { }; }; disabled = "yes"; };
+    awl_0 = {
+      items = {
+        barstart = { priority = "100"; };
+        awl_0 = { };
+        barend = { priority = "100"; alignment = "right"; };
+      };
+    };
+  };
+};
+
+settings = {
+  core = {
+    real_name = "Arvid Warnecke";
+    user_name = "madhatter";
+    nick = "madhatter";
+  };
+  "irc/core" = {
+    alternate_nick = "raddazong";
+    # SASL Authentication for Libera
+    #sasl_username = "madhatter";
+    #sasl_password = "LIBERA_PASSWORD_HERE";
+    #sasl_network = "libera";
+  };
+  "fe-common/core" = {
+    theme = "madhatter.v2";
+    autocreate_own_query = "yes";
+    autocreate_query_level = "MSGS";
+    beep_msg_level = "msgs";
+    beep_when_window_active = "no";
+    use_status_window = "yes";
+    beep_when_away = "no";
+    hilight_level = "DCCMSGS MSGS PUBLIC DCC CLIENTNOTICES ACTIONS NOTICES";
+    activity_hilight_level = "DCCMSGS MSGS";
+    hilight_color = "%R";
+    hilight_act_color = "%r";
+    use_msgs_window = "no";
+    reuse_unused_windows = "yes";
+    autolog = "yes";
+    autolog_colors = "no";
+  };
+  "perl/core/scripts" = {
+    usercount_show_ircops = "yes";
+    awl_separator = "%w|%n";
+    awl_display_key = " %K$N $H$C$S%n ";
+    awl_display_key_active = "%Y$N $H$C$S%n";
+    awl_display_nokey_active = "%Y$N $H$C$S%n";
+    awl_display_nokey = " %K$N $H$C$S%n ";
+    awl_prefer_name = "no";
+    irssinotifier_api_token = "8fb384e5-72b7-4dc8-be93-9e4e26027583";
+    irssinotifier_ignore_active_window = "no";
+  };
+  "irc/dcc" = { dcc_autoget = "yes"; dcc_download_path = "/tmp"; };
+  "fe-text" = { actlist_sort = "refnum"; };
+};
+
+ignores = (
+  { mask = "Hatter"; level = "ALL"; },
+  {
+    level = "JOINS PARTS QUITS MODES";
+    channels = (
+      "#irssi",
+      "#neovim",
+      "#ruby",
+      "#freebsd",
+      "#archlinux.de",
+      "#git",
+      "#go-nuts",
+      "#tmux"
+    );
+  }
+);
+
+windows = {
+  1 = { name = "(status)"; level = "ALL"; };
+  2 = { name = "hilight"; sticky = "yes"; };
+};
+
+mainwindows = {
+  1 = { first_line = "8"; lines = "63"; };
+  2 = { first_line = "1"; lines = "7"; };
+};
