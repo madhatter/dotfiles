@@ -113,6 +113,19 @@ deploy-pipewire:
     fi
     systemctl --user restart pipewire
 
+# Install irssi (right now only on the server)
+install-irssi:
+    @if [ "{{os_name}}" != "Linux" ]; then \
+        echo "This recipe is only for Arch Linux."; \
+        exit 1; \
+    fi
+    @if [ "{{hostname}}" != "brutal" ]; then \
+        echo "install-mpd is only for the T460S (archbook)."; \
+        exit 1; \
+    fi
+    sudo pacman -S --needed irssi
+    stow -R -d {{justfile_directory()}} -t "{{env_var('HOME')}}" irssi
+ 
 # Install mpd and ncmpcpp for T460S (archbook) with music on SD card
 install-mpd:
     @if [ "{{os_name}}" != "Linux" ]; then \
