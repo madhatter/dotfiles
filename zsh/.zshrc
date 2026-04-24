@@ -108,31 +108,48 @@ _renew_existing_token() {
 }
 
 # AWS login function with aws-sso-util and awsume, supporting multiple profiles based on environment and role
-aws-login () {
-    local role="${2:-admin}"  # default: admin
-    
-    case "$1" in
-        (live) profile="dv-live-${role}" ;;
-        (nonlive) profile="dv-nonlive-${role}" ;;
-        (live-dr) profile="dv-drlive-${role}" ;;
-        (nonlive-dr) profile="dv-drnonlive-${role}" ;;
-        (*) echo "Unknown environment: $1"
-            echo "Usage: aws-login <env> [role]"
-            echo "  env: live, nonlive, live-dr, nonlive-dr"
-            echo "  role: admin, developer (default: admin)"
-            return 1 ;;
-    esac
-    
-    aws-sso-util login --profile "$profile"
-    source $(pyenv which awsume) "$profile"
-    
-    # Set AWS_ENV for prompt display
-    case "$1" in
-        (live-dr*) export AWS_ENV="DRLIVE-${role}" ;;
-        (nonlive-dr*) export AWS_ENV="DRNONLIVE-${role}" ;;
-        (live*) export AWS_ENV="LIVE-${role}" ;;
-        (nonlive*) export AWS_ENV="NONLIVE-${role}" ;;
-    esac
+aws-login() {
+    if [[ $# -eq 0 ]]; then
+        echo "Usage: aws-login <env> [env2 ...]"
+        echo "  env: live, nonlive, live-dr, nonlive-dr"
+        return 1
+    fi
+
+    local output_profiles aws_env
+
+    for arg in "$@"; do
+        case "$arg" in
+            live)
+                output_profiles=(default dv-live-admin dv-live-developer)
+                aws_env="LIVE"
+                ;;
+            nonlive)
+                output_profiles=(default dv-nonlive-admin dv-nonlive-developer)
+                aws_env="NONLIVE"
+                ;;
+            live-dr)
+                output_profiles=(default dv-drlive-admin dv-drlive-developer)
+                aws_env="DRLIVE"
+                ;;
+            nonlive-dr)
+                output_profiles=(default dv-drnonlive-admin dv-drnonlive-developer)
+                aws_env="DRNONLIVE"
+                ;;
+            *)
+                echo "Unknown profile: $arg"
+                echo "Available profiles: live, nonlive, live-dr, nonlive-dr"
+                return 1
+                ;;
+        esac
+
+        aws-sso-util login
+        for profile in "${output_profiles[@]}"; do
+            #awsume -o "$profile" "$arg"
+            source $(pyenv which awsume) -o "$profile" "$arg"
+        done
+    done
+
+    export AWS_ENV="$aws_env"
 }
 
 # Clear AWS environment variables for all profiles
@@ -142,17 +159,6 @@ aws-clear() {
         awsume -k "$profile" 
     done
     echo "All AWS profiles cleared"
-}
-
-# Prompt function to show AWS environment
-aws_prompt() {
-    if [[ -n "$AWS_ENV" ]]; then
-        if [[ "$AWS_ENV" == *"NONLIVE"* ]]; then
-            echo "%F{green}[$AWS_ENV]%f "
-        else
-            echo "%F{red}[$AWS_ENV]%f "
-        fi
-    fi
 }
 
 # everything colorful

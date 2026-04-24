@@ -72,4 +72,4 @@ build_vcs_string() {
     fi
 }
 
-PROMPT='$(aws_prompt)[%F{white}%D{%H:%M.%S}%f] %F{blue}%~%f $(build_vcs_string)%F{magenta}$%f '
+PROMPT='[%F{white}%D{%H:%M.%S}%f] %F{blue}%~%f $(build_vcs_string)%F{magenta}$%f '
