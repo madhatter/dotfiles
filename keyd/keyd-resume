@@ -1,0 +1,6 @@
+case "$1" in
+    post)
+      systemctl restart keyd
+      ;;
+esac
+
