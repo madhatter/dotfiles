@@ -157,6 +157,9 @@ deploy-keyd:
     sudo install -Dm644 {{justfile_directory()}}/keyd/default.conf \
         /etc/keyd/default.conf
     sudo systemctl restart keyd
+    sudo install -Dm644 {{justfile_directory()}}/keyd/keyd-resume.service \
+        /etc/systemd/system/keyd-resume.service
+    sudo systemctl enable --now keyd-resume.service
 
 # Recipe to deploy Ghostty configurations
 deploy-ghostty:
