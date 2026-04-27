@@ -159,6 +159,22 @@ deploy-keyd:
     sudo systemctl restart keyd
     sudo install -Dm755 {{justfile_directory()}}/keyd/keyd-resume /lib/systemd/system-sleep/keyd-resume
 
+# Recipe to install TLP for power management on the T460S (archbook)
+deploy-tlp:
+    @if [ "{{os_name}}" != "Linux" ]; then \
+        echo "This recipe is only for Arch Linux."; \
+        exit 1; \
+    fi
+    @if [ "{{hostname}}" != "archbook" ]; then \
+        echo "TLP is only for the T460S (archbook)."; \
+        exit 1; \
+    fi
+    sudo pacman -S --needed tlp
+    sudo install -Dm644 {{justfile_directory()}}/tlp/tlp.conf \
+        /etc/tlp.conf
+    sudo systemctl mask systemd-rfkill.service systemd-rfkill.socket power-profiles-daemon.service
+    sudo systemctl enable --now tlp
+
 # Recipe to deploy Ghostty configurations
 deploy-ghostty:
     @echo "Deploying base Ghostty configuration..."
