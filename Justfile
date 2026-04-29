@@ -26,7 +26,7 @@ install-deps:
         brew install powerlevel10k fzf direnv mise jq oath-toolkit fastfetch alacritty vivid gnupg pinentry-mac ghostty; \
     else \
         echo "Installing dependencies via pacman..."; \
-        yay -S --needed zsh-theme-powerlevel10k fzf direnv mise jq oath-toolkit fastfetch xclip alacritty vivid rofi rofi-calc papirus-icon-theme picom slock xss-lock gnupg pinentry redshift ghostty dunst; \
+        yay -S --needed zsh-theme-powerlevel10k fzf direnv mise jq oath-toolkit fastfetch xclip alacritty vivid rofi rofi-calc papirus-icon-theme picom slock xss-lock gnupg pinentry redshift ghostty dunst neomutt msmtp fetchmail procmail urlscan w3m; \
     fi
 
 # Install work-related dependencies (AWS, cloud, infra tools) — macOS only
@@ -248,3 +248,29 @@ remove-gnupg:
     else \
         stow -D -d {{justfile_directory()}} -t "{{env_var('HOME')}}" gnupg-linux; \
     fi
+
+# Install and configure mutt mail setup (archbook only)
+deploy-mail:
+    @if [ "{{os_name}}" != "Linux" ]; then \
+        echo "This recipe is only for Arch Linux."; \
+        exit 1; \
+    fi
+    @if [ "{{hostname}}" != "archbook" ]; then \
+        echo "deploy-mail is only for the T460S (archbook)."; \
+        exit 1; \
+    fi
+    yay -S --needed neomutt msmtp fetchmail procmail urlscan w3m
+    stow -R -d {{justfile_directory()}} -t "{{env_var('HOME')}}" mutt
+    @for dir in IN.madhatter IN.arvid IN.arvid.warnecke \
+                IN.madhatter/DRAFTS IN.madhatter/SENT \
+                IN.arvid/DRAFTS IN.arvid/SENT \
+                IN.arvid.warnecke/DRAFTS IN.arvid.warnecke/SENT \
+                list.vim list.ruby-talk list.hbase-user \
+                list.arch-general list.arch-dev-public \
+                spam ebay TV-Programm; do \
+        mkdir -p "{{env_var('HOME')}}/mail/$$dir"/{cur,new,tmp}; \
+    done
+    @echo ""
+    @echo "Done. Still needed:"
+    @echo "  ~/.fetchmailrc  — fill in password"
+    @echo "  ~/.msmtprc      — fill in password"
