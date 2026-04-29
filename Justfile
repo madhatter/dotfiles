@@ -175,6 +175,19 @@ deploy-tlp:
     sudo systemctl mask systemd-rfkill.service systemd-rfkill.socket power-profiles-daemon.service
     sudo systemctl enable --now tlp
 
+# deploy iwlwifi modprobe config to prevent issues from deep sleep on the T460S (archbook)
+deploy-iwlwifi:
+    @if [ "{{os_name}}" != "Linux" ]; then \
+        echo "This recipe is only for Arch Linux."; \
+        exit 1; \
+    fi
+    @if [ "{{hostname}}" != "archbook" ]; then \
+        echo "iwlwifi modprobe config is only for the T460S (archbook)."; \
+        exit 1; \
+    fi
+    sudo install -Dm644 {{justfile_directory()}}/modprobe/iwlwifi.conf \
+        /etc/modprobe.d/iwlwifi.conf
+
 # Recipe to deploy Ghostty configurations
 deploy-ghostty:
     @echo "Deploying base Ghostty configuration..."
