@@ -40,7 +40,7 @@
   color header     brightblue    default "^to:"
   color header     brightblue    default "^cc:"
   color header     brightblue    default "^date:"
-  color header     cyan          default "^subject:"
+  color header     white         default "^subject:"
 
 # message bodies
   color attachment brightblack   default
@@ -70,15 +70,15 @@
   color body       brightcyan    default "(^| )_[^ ]+_( |$)"
   color body       brightcyan    default "(^| )/[^ ]+/( |$)"
 
-# quote blocks
-  color quoted     blue			 default
-  color quoted1    cyan          default
-  color quoted2    green         default
-  color quoted3    yellow        default
-  color quoted4    brightmagenta default
-  color quoted5    brightgreen   default
-  color quoted6    brightyellow  default
-  color quoted7    brightcyan    default
+# quote blocks — descending intensity with depth
+  color quoted     color250      default
+  color quoted1    color246      default
+  color quoted2    color242      default
+  color quoted3    color238      default
+  color quoted4    color235      default
+  color quoted5    color235      default
+  color quoted6    color235      default
+  color quoted7    color235      default
      
 # PGP messages
   color body      brightgreen    default "^gpg signature OK.*"

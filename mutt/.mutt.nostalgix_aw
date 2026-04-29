@@ -1,0 +1,7 @@
+set folder="$HOME/mail"
+set spoolfile="+IN.arvid.warnecke"
+set postponed="+IN.arvid.warnecke/DRAFTS"
+set record="+IN.arvid.warnecke/SENT"
+
+set realname="Arvid Warnecke"
+set from="arvid.warnecke@nostalgix.org"

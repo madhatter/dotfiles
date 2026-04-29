@@ -1,0 +1,7 @@
+set folder="$HOME/mail"
+set spoolfile="+IN.madhatter"
+set postponed="+IN.madhatter/DRAFTS"
+set record="+IN.madhatter/SENT"
+
+set realname="Arvid Warnecke"
+set from="madhatter@nostalgix.org"

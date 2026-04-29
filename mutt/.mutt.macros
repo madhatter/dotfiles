@@ -1,0 +1,24 @@
+# switch accounts with F-keys
+macro index,pager <f2> '<sync-mailbox><enter-command>source ~/.mutt.nostalgix_aw<enter><change-folder>!<enter>' "Switch to arvid.warnecke@nostalgix.org"
+macro index,pager <f3> '<sync-mailbox><enter-command>source ~/.mutt.nostalgix_m<enter><change-folder>!<enter>'  "Switch to madhatter@nostalgix.org"
+macro index,pager <f4> '<sync-mailbox><enter-command>source ~/.mutt.nostalgix_a<enter><change-folder>!<enter>'  "Switch to arvid@nostalgix.org"
+
+# fetch mail manually
+macro index + "!fetchmail\n" "Invoke fetchmail"
+
+# open URLs
+macro index \cb "|urlscan\n"
+macro pager \cb "|urlscan\n"
+
+# mark all new messages as read
+macro index \Cr \
+  "<tag-pattern>~N\n<tag-prefix><clear-flag>N<untag-pattern>.\n" \
+  "Mark all new messages as read"
+
+# move to spam and delete
+macro index \Ck "s=spam\ry\rD" "Kill spam"
+macro pager \Ck "s=spam\ry\rD" "Kill spam"
+
+# scroll in pager with arrow keys
+macro pager <up>   <previous-line>
+macro pager <down> <next-line>

@@ -1,0 +1,85 @@
+source ~/.mutt/colors/darkcourses_
+source ~/.mutt.subscribe
+source ~/.mutt.macros
+
+# personal information
+set use_from=yes
+set envelope_from=yes
+set followup_to=yes
+set reverse_name=yes
+
+unalternates *
+alternates arvid.warnecke@nostalgix.org
+alternates madhatter@nostalgix.org
+alternates arvid@nostalgix.org
+
+set sendmail="/usr/bin/msmtp"
+
+# folders and mailbox type
+set mbox_type=Maildir
+set folder="$HOME/mail"
+set move=no
+set include=yes
+set mark_old=no
+set auto_tag=yes
+
+# accounts — sourced in order, last one is the startup default
+source ~/.mutt.nostalgix_aw
+folder-hook +IN.arvid.warnecke 'source ~/.mutt.nostalgix_aw'
+
+source ~/.mutt.nostalgix_a
+folder-hook +IN.arvid 'source ~/.mutt.nostalgix_a'
+
+source ~/.mutt.nostalgix_m
+folder-hook +IN.madhatter 'source ~/.mutt.nostalgix_m'
+
+# mailboxes to watch for new mail
+mailboxes +IN.madhatter +IN.arvid +IN.arvid.warnecke \
+          +list.vim +list.ruby-talk +list.hbase-user \
+          +list.arch-general +list.arch-dev-public \
+          +spam +ebay
+
+set sort_browser=alpha
+set sort=threads
+set sort_aux=reverse-last-date-received
+
+# headers to show
+ignore *
+unignore Date: From: User-Agent: X-Mailer X-Operating-System To: \
+         Cc: Reply-To: Subject: Mail-Followup-To:
+hdr_order Date: From: User-Agent: X-Mailer X-Operating-System To: \
+         Cc: Reply-To: Subject: Mail-Followup-To:
+
+set editor="nvim"
+set edit_headers=no
+
+set date_format="!%a, %b %d, %Y at %I:%M:%S%p %Z"
+set index_format="%Z ◦ %{%d %b %y}, %{%H:%M} │ %-32.32F ◦ (%4c) │ %s"
+set status_format="-%r- %v ---[ Folder: %f, Msgs: %m%?n? New: %n?%?d? Del: %d?%?t? Tag: %t?%?l? (%l)? ]%?p?---- .: %p waiting to send :. ?--%>- (%P) ---"
+
+set status_on_top
+unset help
+
+# UTF-8
+set charset="UTF-8"
+set send_charset="us-ascii:iso-8859-15:utf-8"
+set assumed_charset="windows-1252"
+charset-hook ^us-ascii$ "windows-1252"
+charset-hook ^iso-8859-1$ "windows-1252"
+
+set pager_stop=yes
+set pager_context=2
+set pager_index_lines=10
+set markers=no
+
+# view html inline as last resort
+auto_view text/html
+alternative_order text/plain text/enriched text/html
+
+# GPG via GPGME
+set crypt_use_gpgme=yes
+set crypt_autosign=yes
+set crypt_replysign=yes
+set pgp_sign_as="0x12942E7E"
+set pgp_timeout=7200
+set pgp_verify_sig=yes
