@@ -3,6 +3,11 @@ VERBOSE=on
 MAILDIR=$HOME/mail
 LOGFILE=$HOME/.procmaillog
 
+# Spam automatisch aussortieren (rspamd)
+:0:
+* ^X-Spam-Flag: Yes
+spam-filtered/
+
 # Nach Empfänger sortieren
 :0:
 * ^TO.*arvid\.warnecke@nostalgix\.org

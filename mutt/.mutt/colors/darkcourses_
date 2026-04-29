@@ -1,10 +1,10 @@
 # vim: filetype=muttrc 
 
 # set default
-  color normal     white         default
+  color index      white         default "~A"
 
 # main colors
-  color tree       brightblack   default
+  color tree       color244      default
   color error      brightred     default
   color message    brightblue    default
   color status     blue          black
@@ -24,7 +24,7 @@
 
 # and recolor them appropriately
   color index      brightred     default "~E"
-  color index      brightblack   default "~P"
+  color index      color244      default "~P"
   color index      green         default "~C @.com"
   color index      blue          default "~N ~u"  # new ML mail
   color index      blue          default "~N !~u" # new non-ML mail
@@ -43,11 +43,11 @@
   color header     white         default "^subject:"
 
 # message bodies
-  color attachment brightblack   default
+  color attachment yellow        default
   color search     red           brightblack
   color signature  cyan          default
   color tilde      brightblack   default
-  color hdrdefault brightblack   default
+  color hdrdefault color247      default
   color bold       brightyellow  default
 
 # urls

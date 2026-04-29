@@ -280,7 +280,7 @@ deploy-mail:
                 IN.arvid.warnecke/DRAFTS IN.arvid.warnecke/SENT \
                 list.vim list.ruby-talk list.hbase-user \
                 list.arch-general list.arch-dev-public \
-                spam ebay TV-Programm; do \
+                spam spam-filtered ebay TV-Programm; do \
         mkdir -p "{{env_var('HOME')}}/mail/$$dir"/{cur,new,tmp}; \
     done
     @echo ""
