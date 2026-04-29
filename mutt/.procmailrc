@@ -1,0 +1,21 @@
+PATH=/bin:/usr/bin:/usr/local/bin
+VERBOSE=on
+MAILDIR=$HOME/mail
+LOGFILE=$HOME/.procmaillog
+
+# Nach Empfänger sortieren
+:0:
+* ^TO.*arvid\.warnecke@nostalgix\.org
+IN.arvid.warnecke/
+
+:0:
+* ^TO.*arvid@nostalgix\.org
+IN.arvid/
+
+:0:
+* ^TO.*madhatter@nostalgix\.org
+IN.madhatter/
+
+# Alles andere
+:0:
+IN.madhatter/
