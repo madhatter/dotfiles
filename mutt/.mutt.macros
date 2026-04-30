@@ -19,6 +19,10 @@ macro index \Cr \
 macro index \Ck "s=spam\ry\rD" "Kill spam"
 macro pager \Ck "s=spam\ry\rD" "Kill spam"
 
+# rspamd learning
+macro index,pager S "<pipe-message>~/bin/rspamd-learn spam<enter><save-message>=spam<enter>" "Learn as spam"
+macro index,pager H "<pipe-message>~/bin/rspamd-learn ham<enter><save-message>=IN.madhatter<enter>" "Learn as ham"
+
 # scroll in pager with arrow keys
 macro pager <up>   <previous-line>
 macro pager <down> <next-line>

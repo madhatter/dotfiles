@@ -1,0 +1,2 @@
+#!/bin/bash
+ssh madhatter@brutal.nostalgix.org "rspamc learn_${1:-spam}"
