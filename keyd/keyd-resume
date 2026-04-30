@@ -1,6 +1,17 @@
-case "$1" in
-    post)
-      systemctl restart keyd
-      ;;
-esac
+#!/bin/bash
 
+case "$1" in
+    pre)
+        # Before suspend, stop keyd to prevent issues with input devices during suspend
+        exit 0
+        ;;
+    post)
+        # After resume, restart keyd to ensure it is running and can manage input devices properly
+        systemctl restart keyd
+        exit 0
+        ;;
+    *)
+        # Fallback for unrecognized actions, die cleanly with 0 to avoid issues
+        exit 0
+        ;;
+esac
