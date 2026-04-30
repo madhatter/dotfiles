@@ -45,7 +45,7 @@
 # message bodies
   color attachment yellow        default
   color search     red           brightblack
-  color signature  cyan          default
+  color signature  color130      default
   color tilde      brightblack   default
   color hdrdefault color247      default
   color bold       brightyellow  default
@@ -80,6 +80,14 @@
   color quoted6    color235      default
   color quoted7    color235      default
      
+# PGP signature info block
+  color body      color150       default "^Good signature from:.*"
+  color body      color174       default "^BAD signature from:.*"
+  color body      color179       default "^Problem signature from:.*"
+  color body      color179       default "^WARNING:.*"
+  color body      color248       default "^Fingerprint:.*"
+  color body      color248       default "^[[:space:]]*created:.*"
+
 # PGP messages
   color body      brightgreen    default "^gpg signature OK.*"
   color body      yellow         default "^gpg "

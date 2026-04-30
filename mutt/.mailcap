@@ -1,2 +1,2 @@
 # auto view using w3m
-text/html; w3m -I %{charset} -T text/html; copiousoutput;
+text/html; lynx -dump -force_html -assume_charset=%{charset} -display_charset=utf-8 %s; copiousoutput;

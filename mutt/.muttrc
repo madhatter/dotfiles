@@ -50,6 +50,7 @@ unignore Date: From: User-Agent: X-Mailer X-Operating-System To: \
 hdr_order Date: From: User-Agent: X-Mailer X-Operating-System To: \
          Cc: Reply-To: Subject: Mail-Followup-To:
 
+set signature="~/.signature"
 set editor="nvim"
 set edit_headers=no
 
