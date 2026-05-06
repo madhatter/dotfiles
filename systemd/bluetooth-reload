@@ -1,0 +1,20 @@
+#!/bin/sh
+
+# Hook to remove btusb module before suspend to prevent ACPI wake loops
+# and insert it upon resume.
+
+TARGET_MODULE="btusb"
+POWER_STATE_ACTION=$1
+
+case "$POWER_STATE_ACTION" in
+    "pre")
+        # Unload the kernel module before going to sleep
+        /usr/sbin/rmmod "$TARGET_MODULE"
+        ;;
+    "post")
+        # Reload the kernel module after waking up
+        /usr/sbin/modprobe "$TARGET_MODULE"
+        ;;
+esac
+
+exit 0

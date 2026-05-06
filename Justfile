@@ -61,6 +61,12 @@ install-arch-setup:
     sudo install -Dm644 {{justfile_directory()}}/xorg/30-touchpad.conf \
         /etc/X11/xorg.conf.d/30-touchpad.conf
     stow -d {{justfile_directory()}} -t "{{env_var('HOME')}}" pacman
+    @if [ "{{hostname}}" = "archbook" ]; then \
+        echo "T460s detected. Deploying T460s configurations..."; \
+        sudo install -Dm644 {{justfile_directory()}}/systemd/disable-usb-wakeup.service \
+            /etc/systemd/system/disable-usb-wakeup.service; \
+        sudo systemctl enable --now disable-usb-wakeup; \
+    fi
 
 # Also Arch Linux only: install NVIDIA Xorg configuration and modprobe settings
 install-nvidia-setup:
