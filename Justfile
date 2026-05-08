@@ -92,7 +92,7 @@ install-dwm-setup:
         exit 1; \
     fi
     cp {{justfile_directory()}}/dwm/config.h {{env_var('HOME')}}/code/dwm/config.h
-    cd {{env_var('HOME')}}/code/dwm && makepkg -sfi
+    cd {{env_var('HOME')}}/code/dwm && makepkg -sCfi
     rm {{env_var('HOME')}}/code/dwm/config.h
 
 # Install tpm and tmux plugins
@@ -293,3 +293,40 @@ deploy-mail:
     @echo "Done. Still needed:"
     @echo "  ~/.fetchmailrc  — fill in password"
     @echo "  ~/.msmtprc      — fill in password"
+
+# Deploy systemd-resolved and systemd-networkd DNS/network configuration for Linux
+deploy-network-setup:
+    @if [ "{{os_name}}" != "Linux" ]; then \
+        echo "This recipe is only for Linux."; \
+        exit 1; \
+    fi
+    sudo install -Dm644 {{justfile_directory()}}/network/resolved.conf \
+        /etc/systemd/resolved.conf
+    sudo install -Dm644 {{justfile_directory()}}/network/25-wireless.network \
+        /etc/systemd/network/25-wireless.network
+    sudo install -Dm644 {{justfile_directory()}}/network/20-wired.network \
+        /etc/systemd/network/20-wired.network
+    sudo install -Dm644 {{justfile_directory()}}/network/iwd-main.conf \
+        /etc/iwd/main.conf
+    sudo systemctl disable --now NetworkManager
+    sudo systemctl enable --now systemd-networkd
+    sudo systemctl restart systemd-resolved
+    sudo systemctl restart iwd
+
+# Full archbook setup - runs all relevant recipes for the T460S
+setup-archbook:
+  @if [ "{{os_name}}" != "Linux" ]; then \
+      echo "This recipe is only for Arch Linux."; \
+      exit 1; \
+  fi
+  just install-arch-setup
+  just install-deps
+  just install-tmux-plugins
+  just deploy-keyd
+  just deploy-tlp
+  just deploy-iwlwifi
+  just deploy-pipewire
+  just deploy-network-setup
+  just install-mail 
+  just install-mpd
+  @echo "archbook setup complete."

@@ -1,0 +1,17 @@
+[Match]
+Name=wlan*
+
+[Network]
+DHCP=yes
+
+[DHCP]
+UseDNS=no
+UseDomains=no
+
+[DHCPv6]
+UseDNS=no
+UseDomains=no
+
+[IPv6AcceptRA]
+UseDNS=no
+UseDomains=no
