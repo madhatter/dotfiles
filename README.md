@@ -11,24 +11,40 @@ dotfiles/
   alacritty-base/     # Alacritty terminal (shared config)
   alacritty-linux/    # Alacritty overrides for Linux
   alacritty-mac/      # Alacritty overrides for macOS
+  bin/                # Utility scripts
   certs/              # Custom CA certificate bundle
   claude/             # Claude Code config and statusline
+  dunst/              # dunst notification daemon (Arch only)
   dwm/                # dwm config.h (copied into ~/code/dwm at build time)
   fastfetch/          # fastfetch system info config
   ghostty-base/       # Ghostty terminal (shared config)
   ghostty-linux/      # Ghostty overrides for Linux
   ghostty-mac/        # Ghostty overrides for macOS
   git/                # Git config
-  hooks/              # Pacman hooks (Arch only, deployed via just)
-  mise/               # mise runtime manager config
-  pacman/             # yay AUR helper config (Arch only)
   gnupg-base/         # GnuPG config (shared)
   gnupg-linux/        # GnuPG overrides for Linux
   gnupg-mac/          # GnuPG overrides for macOS
+  hooks/              # Pacman hooks (Arch only, deployed via just)
+  irssi/              # irssi IRC client config (server only)
+  karabiner/          # Karabiner-Elements key remapping (macOS only)
+  keyboard/           # Keyboard layout configs
+  keyd/               # keyd key remapping daemon (archbook only)
+  mise/               # mise runtime manager config
+  modprobe/           # modprobe configs (NVIDIA, iwlwifi — Arch only)
+  mpd/                # MPD music player config (archbook only)
+  mutt/               # neomutt mail client config (archbook only)
+  ncmpcpp/            # ncmpcpp music player config (archbook only)
+  network/            # DNS config: systemd-resolved and NetworkManager (Linux only)
+  pacman/             # yay AUR helper config (Arch only)
   picom/              # picom compositor config (Arch only)
+  pipewire-pc/        # PipeWire config for desktop PC
+  pipewire-t460s/     # PipeWire config for T460s (archbook)
   redshift/           # redshift color temperature config (Arch only)
   rofi/               # rofi launcher config (Arch only)
+  tlp/                # TLP power management config (archbook only)
   tmux/               # tmux config with catppuccin theme
+  xorg/               # Xorg configs: keyboard, touchpad, NVIDIA
+  yazi/               # yazi file manager config
   zsh/                # zsh config, prompt (powerlevel10k), plugins
 ```
 
@@ -106,7 +122,15 @@ just install-tmux-plugins # install tpm and tmux plugins
 just install-arch-setup   # Arch only: yay, pacman hook, keyboard and touchpad Xorg config
 just install-dwm-setup    # Arch only: build and install dwm from ~/code/dwm
 just install-nvidia-setup # Arch only: NVIDIA Xorg and modprobe config (machine-specific, see note below)
+just install-irssi        # server only: irssi IRC client
+just install-mpd          # archbook only: MPD + ncmpcpp
 just deploy-pipewire      # Arch only: PipeWire config (host-aware: archbook vs. PC)
+just deploy-keyd          # archbook only: keyd key remapping daemon
+just deploy-tlp           # archbook only: TLP power management
+just deploy-iwlwifi       # archbook only: iwlwifi modprobe config
+just deploy-mail          # archbook only: neomutt mail setup
+just deploy-network-setup # Linux only: systemd-resolved and NetworkManager DNS config
+just setup-archbook       # full archbook setup: runs all relevant recipes in order
 just deploy-alacritty     # deploy Alacritty base + OS-specific overrides
 just remove-alacritty     # remove Alacritty symlinks
 just deploy-ghostty       # deploy Ghostty base + OS-specific overrides
@@ -125,6 +149,10 @@ just remove-gnupg         # remove GnuPG symlinks
 - fastfetch replaces neofetch/archey and runs on shell login.
 - dwm is built from source at `~/code/dwm`. The `config.h` lives in `dotfiles/dwm/` and is copied in at build time, then removed — edit it there, not in the build directory.
 - Work dependencies (`awscli`, `vault`, `terraform`) are macOS-only in the Justfile — on Arch these are expected to be managed separately.
+- keyd (archbook only) remaps CapsLock+h/j/k/l to arrow keys and is restarted on resume from sleep via a systemd-sleep hook.
+- TLP handles battery and power management on the T460s. `systemd-rfkill` and `power-profiles-daemon` are masked to avoid conflicts.
+- mutt uses neomutt with fetchmail, procmail, and msmtp. Credentials go in `~/.fetchmailrc` and `~/.msmtprc` — these are not in the repo.
+- DNS uses systemd-resolved with Quad9 over TLS (primary) and Mullvad (fallback). NetworkManager is configured to ignore DHCP-provided DNS servers.
 
 ## Questions or ideas
 
