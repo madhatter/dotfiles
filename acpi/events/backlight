@@ -1,0 +1,2 @@
+event=video/brightness.*
+action=/etc/acpi/handlers/backlight.sh %e
