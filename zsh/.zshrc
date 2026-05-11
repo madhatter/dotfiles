@@ -37,6 +37,9 @@ export TZ="CET"
 # set the pager for git and other tools to less, which is more powerful than the default more
 export PAGER="less"
 
+# set the default usenet server
+export NNTPSERVER=news.eternal-september.org
+
 # enhance the path (ordered by priority to make manual installation work)
 export PATH="$HOME/bin:$GOPATH/bin:$HOME/.local/bin:$JAVA_HOME/bin:/usr/local/bin:/usr/local/sbin:/usr/sbin:/bin:/sbin:$HOME/.cargo/bin:$PATH"
 
@@ -195,6 +198,9 @@ if [[ $(uname -s) == "Linux" ]]; then
 else
   alias ff="fastfetch"
 fi
+
+# I will always call it mutt
+alias mutt='neomutt'
 
 # history search with arrow keys
 bindkey '^[[A' history-substring-search-up

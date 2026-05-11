@@ -1,5 +1,5 @@
-# tin configuration file V1.3.12
-# This file was automatically saved by tin 2.2.0 20131224 ("Lochindaal")
+# tin configuration file V1.3.20
+# This file was automatically saved by rtin 2.6.5 20251224 ("Glenury")
 #
 # Do not edit while tin is running, since all your changes to this file
 # will be overwritten when you leave tin.
@@ -9,18 +9,14 @@
 # Directory where articles/threads are saved
 savedir=$HOME/news
 
-# If ON articles/threads with Archive-name: in mail header will
-# be automatically saved with the Archive-name & part/patch no.
-auto_save=OFF
-
 # If ON mark articles that are saved as read
 mark_saved_read=ON
 
 # Perform post processing (saving binary attachments) from saved articles.
 # Possible values are (the default is marked with *):
-# * 0 = no
+# * 0 = No
 #   1 = extract shell archives (shar) only
-#   2 = yes
+#   2 = Yes
 post_process_type=0
 
 # If set, post processed files will be opened in a viewer
@@ -33,7 +29,16 @@ process_only_unread=OFF
 prompt_followupto=OFF
 
 # What should we ask confirmation for.
-confirm_choice=commands & quit
+# Possible values are (the default is marked with *):
+#   0 = none
+#   1 = commands
+#   2 = select
+#   3 = quit
+# * 4 = commands & quit
+#   5 = commands & select
+#   6 = quit & select
+#   7 = commands & quit & select
+confirm_choice=4
 
 # If ON the 'Mark as (un)read' function marks only the current article.
 mark_ignore_tags=OFF
@@ -42,7 +47,7 @@ mark_ignore_tags=OFF
 auto_reconnect=OFF
 
 # If ON use -> otherwise highlighted bar for selection
-draw_arrow=ON
+draw_arrow=OFF
 
 # If ON use inverse video for page headers at different levels
 inverse_okay=ON
@@ -100,10 +105,10 @@ thread_articles=3
 # Thread percentage match...
 # the percentage of characters in the subject of an article that must match
 # a base article for both those articles to be considered to belong to the
-# same thread. This option is an integer percentage, eg. 80, no decimals may
+# same thread. This option is an integer percentage, e.g. 80, no decimals may
 # follow. If 80 is used here, then 80% of the characters must match exactly,
 # no insertion of a character, for the two articles to be put in the same
-# thread. eg. 'happy' and 'harpy' would match, but 'harpie', 'happie' and
+# thread. e.g. 'happy' and 'harpy' would match, but 'harpie', 'happie' and
 # 'harppy' would be threaded separately from 'happy'
 thread_perc=75
 
@@ -111,7 +116,7 @@ thread_perc=75
 # group selection level
 show_description=ON
 
-# Part of from field to display
+# Part of From field to display in group and thread level
 # Possible values are (the default is marked with *):
 #   0 = none
 #   1 = address
@@ -135,8 +140,8 @@ news_headers_to_display=Newsgroups Followup-To Summary Keywords X-Comment-To Mes
 # Not defining anything turns off this option.
 news_headers_to_not_display=
 
-# If ON use print current subject or newsgroup description in the last line
-info_in_last_line=OFF
+# If ON print current subject or newsgroup description in the last line
+info_in_last_line=ON
 
 # Sort articles by ...
 # Possible values are (the default is marked with *):
@@ -162,6 +167,12 @@ sort_article_type=6
 #   4 = Last posting date ascending
 sort_threads_type=1
 
+# Function for sorting articles
+# Possible values are (the default is marked with *):
+# * 0 = qsort
+#   1 = heapsort
+sort_function=0
+
 # (-m) directory where articles/threads are saved in mailbox format
 maildir=$HOME/mail
 
@@ -178,19 +189,14 @@ printer=/usr/bin/lpr
 # or mail (-M/-N) is specified on the command line
 batch_save=ON
 
-# If ON editor will be started with cursor offset into the file
-# otherwise the cursor will be positioned at the first line
-start_editor_offset=ON
-
 # Format of editor line including parameters
 # %E Editor  %F Filename  %N Linenumber
 editor_format=%E +%N %F
 
 # Format of mailer line including parameters
-# %M Mailer  %S Subject  %T To  %F Filename
-# ie. to use elm as your mailer:    elm -s "%S" "%T" < %F
-# ie. elm interactive          :    elm -i %F -s "%S" "%T"
-mailer_format=mutt -i %F -s "%S" "%T"
+# %M Mailer  %S Subject  %T To  %F Filename  %U Username
+# e.g. mutt interactive:  mutt -H %F
+mailer_format=neomutt -i %F -s "%S" "%T"
 
 # Interactive mailreader
 # Possible values are (the default is marked with *):
@@ -220,9 +226,13 @@ posted_articles_file=posted
 # highlighting follow-ups
 add_posted_to_filter=ON
 
+# If ON, expired filter rules are kept in the filter file
+keep_expired_filters=OFF
+
 # Signature path (random sigs)/file to be used when posting/replying
 # sigfile=file       appends file as signature
 # sigfile=!command   executes external command to generate a signature
+#                    (specify %G to pass name of current newsgroup)
 # sigfile=--none     don't append a signature
 sigfile=$HOME/.signature
 
@@ -249,7 +259,7 @@ reread_active_file_secs=1200
 nntp_read_timeout_secs=120
 
 # Characters used in quoting to followups and replies.
-# '_' is replaced by ' ', %s, %S are replaced by author's initials.
+# '_' is replaced by ' ', %I is replaced by author's initials.
 quote_chars=>_
 
 # How quoting should be handled when following up or replying.
@@ -278,6 +288,11 @@ quote_regex2=^\s{0,3}(?:(?:[\]{}>|:)]|\w{1,3}[>|])\s*){2}(?!-[})>])
 # quoted >=3 times. >=3 times quoted lines are shown in col_quote3.
 # If you leave this blank, tin will use a built in default.
 quote_regex3=^\s{0,3}(?:(?:[\]{}>|:)]|\w{1,3}[>|])\s*){3}
+
+# A regular expression that tin will use to decide which lines are
+# external quotes. Text from external quotes is shown in col_extquote.
+# If you leave this blank, tin will use a built in default.
+extquote_regex=^\|\s
 
 # A regular expression that tin will use to decide which words
 # bounded by '/' are to be shown in col_markslashes.
@@ -315,21 +330,34 @@ verbatim_begin_regex=#v\+\s$
 # a verbatim block.
 verbatim_end_regex=#v-\s$
 
+# A regular expression that to hide matching lines.
+# Could be used to hide excessive quoting, e.g. via "^>\s?>\s?>".
+# If you leave this blank, no lines will be hidden.
+hideline_regex=
+
 # If OFF don't show signatures when displaying articles
 show_signatures=ON
+
+# If ON show article score when displaying articles
+show_art_score=OFF
+
+# If ON remove soft hyphens when displaying articles
+suppress_soft_hyphens=OFF
 
 # If ON decode German style TeX umlaut codes to ISO and
 # show "a as Umlaut-a, etc.
 tex2iso_conv=OFF
 
-# Handling of uuencoded data in the pager
-# Possible values are (the default is marked with *):
-# * 0 = no, display raw uuencoded data
-#   1 = yes, uuencoded data will be condensed to a single tag line showing
+# Handling of none text in the pager
+# Possible values are any combination of (the default is marked with *):
+# * 0 = No, display raw data
+#   1 = uuencoded and yenc data will be condensed to a single tag line showing
 #       size and filename, similar to how MIME attachments are displayed
-#   2 = hide all, as for 1, but any line that looks like uuencoded data will
-#       be folded into a tag line.
-hide_uue=0
+#   2 = Also hide partial, as for 1, but any line that looks like uuencoded
+#       or yenc data will be folded into a tag line.
+#   4 = Hide Inline PGP
+#   8 = Hide Shar
+hide_inline_data=0
 
 # Format of quote line when mailing/posting/following-up an article
 # %A Address    %D Date   %F Addr+Name   %G Groupname   %M Message-ID
@@ -385,6 +413,26 @@ art_marked_killed=K
 # kill_level must be set accordingly, _ is turned into ' '
 art_marked_read_selected=:
 
+# Character used to show that a scope was read from the global
+# attributes file (default '!')
+# _ is turned into ' '
+scope_marked_global=!
+
+# Character used to show that a scope was read from the global
+# attributes file and the current group matches (default ':')
+# _ is turned into ' '
+scope_marked_global_match=:
+
+# Character used to show that a scope was read from the local
+# attributes file (default ' ')
+# _ is turned into ' '
+scope_marked_local=_
+
+# Character used to show that a scope was read from the local
+# attributes file and the current group matches (default '*')
+# _ is turned into ' '
+scope_marked_local_match=*
+
 # If ON a screen redraw will always be done after certain external commands
 force_screen_redraw=OFF
 
@@ -401,12 +449,6 @@ wrap_on_next_unread=ON
 # If ON enable mouse button support on xterm terminals
 use_mouse=OFF
 
-# If ON strip blanks from ends of lines for faster display on slow terminals.
-strip_blanks=ON
-
-# Maximum length of the names of newsgroups displayed
-groupname_max_length=32
-
 # If ON abbreviate (if necessary) long newsgroup names at group selection
 # level and article level like this:
 #   news.software.readers -> n.software.readers -> n.s.readers -> n.s.r.
@@ -421,6 +463,9 @@ default_filter_days=28
 
 # If ON, create local copies of NNTP overview files.
 cache_overview_files=ON
+
+# If ON, compress local copies of NNTP overview files.
+compress_overview_files=OFF
 
 # Number of articles to get (0=no limit), if negative sets maximum number
 # of already read articles to be read before first unread one
@@ -475,11 +520,11 @@ col_back=-1
 
 # Color of background for inverse text
 # Default: 4 (blue)
-col_invers_bg=1
+col_invers_bg=4
 
 # Color of foreground for inverse text
 # Default: 7 (white)
-col_invers_fg=7
+col_invers_fg=0
 
 # Color of text lines
 # Default: -1 (default color)
@@ -495,7 +540,7 @@ col_help=-1
 
 # Color of messages in last line
 # Default: 6 (cyan)
-col_message=6
+col_message=11
 
 # Color of quote-lines
 # Default: 2 (green)
@@ -515,11 +560,15 @@ col_head=2
 
 # Color of actual news header fields
 # Default: 9 (light red)
-col_newsheaders=9
+col_newsheaders=12
 
 # Color of article subject
 # Default: 6 (cyan)
-col_subject=6
+col_subject=11
+
+# Color of quoted text from external sources
+# Default: 5 (pink)
+col_extquote=5
 
 # Color of response counter
 # Default: 2 (green)
@@ -537,9 +586,17 @@ col_title=4
 # Default: 4 (blue)
 col_signature=4
 
+# Color of negative score
+# Default: 1 (red)
+col_score_neg=1
+
+# Color of positive score
+# Default: 2 (green)
+col_score_pos=2
+
 # Color of highlighted URLs
 # Default: -1 (default color)
-col_urls=-1
+col_urls=12
 
 # Color of verbatim blocks
 # Default: 5 (pink)
@@ -607,6 +664,9 @@ mail_address=Arvid Warnecke <usenet@nostalgix.org>
 # Wrap article lines at column
 wrap_column=0
 
+# Don't break long lines inside a word but on <SPACE> or <TAB>
+dont_break_words=OFF
+
 # Trim the article body, remove unnecessary blank lines.
 # Possible values are (the default is marked with *):
 # * 0 = Nothing special
@@ -633,28 +693,28 @@ translit=OFF
 # MIME encoding (8bit, base64, quoted-printable, 7bit) of the body
 # for mails and posts, if necessary. QP is efficient for most European
 # character sets (ISO-8859-X) with small fraction of non-US-ASCII chars,
-# while Base64 is more efficient for most 8bit East Asian, Greek, and
-# Russian charsets with a lot of 8bit characters.
+# while Base64 is more efficient for most 8-bit East Asian, Greek, and
+# Russian charsets with a lot of 8-bit characters.
 post_mime_encoding=quoted-printable
 mail_mime_encoding=quoted-printable
 
-# If ON, 8bit characters in news headers are NOT encoded.
-# default is OFF. Thus 8bit characters are encoded by default.
-# 8bit chars in header are encoded regardless of the value of this
+# If ON, 8-bit characters in news headers are NOT encoded.
+# default is OFF. Thus 8-bit characters are encoded by default.
+# 8-bit chars in header are encoded regardless of the value of this
 # parameter unless post_mime_encoding is 8bit as well.
 post_8bit_header=OFF
 
-# If ON, 8bit characters in mail headers are NOT encoded.
-# default is OFF. Thus 8bit characters are encoded by default.
-# 8bit chars in headers are encoded regardless of the value of this parameter
+# If ON, 8-bit characters in mail headers are NOT encoded.
+# default is OFF. Thus 8-bit characters are encoded by default.
+# 8-bit chars in headers are encoded regardless of the value of this parameter
 # unless mail_mime_encoding is 8bit as well. Note that RFC 2822
-# prohibits 8bit characters in mail headers so that you are advised NOT to
+# prohibits 8-bit characters in mail headers so that you are advised NOT to
 # turn it ON unless you have some compelling reason.
 mail_8bit_header=OFF
 
 # If --internal automatically use the built in MIME viewer for non-text
 # parts of articles.
-# Otherwise specify an external viewer program (eg, metamail) or leave blank
+# Otherwise specify an external viewer program (e.g. metamail) or leave blank
 # for no automatic viewing
 metamail_prog=--internal
 
@@ -665,8 +725,16 @@ ask_for_metamail=OFF
 # If ON strip multipart/alternative messages automatically
 alternative_handling=ON
 
-# If ON detect verbatim blocks in articles
-verbatim_handling=ON
+# How to treat verbatim blocks in articles
+# Possible values are (the default is marked with *):
+#   0 = Don't detect verbatim blocks
+# * 1 = Detect and show verbatim blocks including begin and end marks
+#   2 = Detect and show verbatim blocks, hide begin and end marks
+#   3 = Detect verbatim blocks and hide them completely
+verbatim_handling=1
+
+# If ON detect quoted text from external sources in articles
+extquote_handling=OFF
 
 # If ON strip unsubscribed groups from newsrc
 strip_newsrc=OFF
@@ -677,6 +745,14 @@ strip_newsrc=OFF
 #   1 = remove
 #   2 = highlight with D on selection screen
 strip_bogus=2
+
+# Show help sign, new mail sign, both or nothing in level titles.
+# Possible values are (the default is marked with *):
+#   0 = Don't show help or mail sign
+#   1 = Show only help sign
+#   2 = Show only mail sign if new mail have arrived
+# * 3 = Show mail sign if new mail has arrived else show help sign
+show_help_mail_sign=3
 
 # Format string for selection level representation
 # Default: %f %n %U  %G  %d
@@ -723,6 +799,96 @@ group_format=%n %m %R %L %S  %s  %F
 #   %T              Thread tree (only thread level)
 thread_format=%n %m  [%L,%S]  %T  %F
 
+# Format string for attachment level representation
+# Default: %t%s%e%c%d
+# Possible values are:
+#   %%              '%'
+#   %C              Charset
+#   %c              Like %C but with description
+#   %D              Line count
+#   %d              Like %D but with description
+#   %E              Content encoding
+#   %e              Like %E but with description
+#   %L              Language
+#   %l              Like %L but with description
+#   %S              Content subtype
+#   %s              Like %S but with description
+#   %T              Content type
+#   %t              Like %T but with description
+#   %Z              Size in bytes
+#   %z              Like %Z but with description
+attachment_format=%T%S%E%C%d
+
+# Format string for mime header at article level
+# Default: [-- %T%S%*n%z%*l%!c%!d%*e --]
+# Possible values are:
+#   %%              '%'
+#   %C              Charset
+#   %c              Like %C but with description
+#   %D              Line count
+#   %d              Like %D but with description
+#   %E              Content encoding
+#   %e              Like %E but with description
+#   %L              Language
+#   %l              Like %L but with description
+#   %N              Name
+#   %n              Like %N but with description
+#   %S              Content subtype
+#   %s              Like %S but with description
+#   %T              Content type
+#   %t              Like %T but with description
+#   %Z              Size in bytes
+#   %z              Like %Z but with description
+page_mime_format=[-- %T%S%*n%z%*l%!c%!d%*e --]
+
+# Format string for uue header at article level
+# Default: [-- %T%S%*n%I%!d%*e --]
+# Possible values are:
+#   %%              '%'
+#   %D              Line count
+#   %d              Like %D but with description
+#   %E              Content encoding
+#   %e              Like %E but with description
+#   %I              Complete/incomplete UUE part indicator
+#   %N              Name
+#   %n              Like %N but with description
+#   %S              Content subtype
+#   %s              Like %S but with description
+#   %T              Content type
+#   %t              Like %T but with description
+#   %Z              Size in bytes
+#   %z              Like %Z but with description
+page_uue_format=[-- %T%S%*n%I%!d%*e --]
+
+# Format string for yenc header at article level
+# Default: [-- %*N%!d%I [%F%G]%V%W%X --]
+# Possible values are:
+#   %%              '%'
+#   %D              Line count
+#   %d              Like %D but with description
+#   %E              Content encoding
+#   %e              Like %E but with description
+#   %F              Current part
+#   %f              Like %F but with description
+#   %G              Number of all parts
+#   %g              Like %G but with description
+#   %I              Complete/incomplete YENC part indicator
+#   %N              Name
+#   %n              Like %N but with description
+#   %S              Content subtype
+#   %s              Like %S but with description
+#   %T              Content type
+#   %t              Like %T but with description
+#   %V              Part size in bytes
+#   %v              Like %V but with description
+#   %W              Total size in bytes
+#   %w              Like %W but with description
+#   %X              CRC checksum
+#   %x              Like %X but with description
+#   %Z              Size in bytes
+#   %z              Like %Z but with description
+page_yenc_format=[-- %*N%!d%I [%F%G]%V%W%X --]
+
 # Format string for date representation
 date_format=%a, %d %b %Y %H:%M:%S
 
@@ -739,6 +905,7 @@ wildcard=0
 #   2 = NFKD
 #   3 = NFC
 #   4 = NFD
+#   5 = NFKC_CF
 normalization_form=1
 
 # If ON, bi-directional text is rendered by tin
@@ -763,17 +930,17 @@ default_filter_select_expire=OFF
 # Default action/prompt strings
 default_save_mode=a
 default_author_search=
-default_goto_group=
+default_goto_group=0
 default_config_search=mail
-default_group_search=sysadmin
+default_group_search=de.etc
 default_subject_search=
 default_art_search=mark
 default_repost_group=
-default_mail_address=arvid@nostalgix.org
+default_mail_address=drsall-2604@thh.votetaker.de
 default_move_group=10
 default_pipe_command=
-default_post_newsgroups=de.etc.sprache.deutsch
-default_post_subject=Re: Japsen
+default_post_newsgroups=de.alt.test
+default_post_subject=Re: Eternal test
 default_range_group=1-.
 default_range_select=1-.
 default_range_thread=1-.
