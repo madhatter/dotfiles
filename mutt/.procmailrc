@@ -5,7 +5,7 @@ LOGFILE=$HOME/.procmaillog
 
 # Spam automatisch aussortieren (rspamd)
 :0:
-* ^X-Spam-Flag: Yes
+* ^X-Spam: Yes
 spam-filtered/
 
 # Nach Empfänger sortieren
@@ -20,6 +20,10 @@ IN.arvid/
 :0:
 * ^TO.*madhatter@nostalgix\.org
 IN.madhatter/
+
+:0:
+* ^TO.*usenet@nostalgix\.org
+IN.usenet/
 
 # Alles andere
 :0:

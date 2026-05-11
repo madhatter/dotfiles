@@ -1,7 +1,7 @@
 # switch accounts with F-keys
-macro index,pager <f2> '<sync-mailbox><enter-command>source ~/.mutt.nostalgix_aw<enter><change-folder>!<enter>' "Switch to arvid.warnecke@nostalgix.org"
-macro index,pager <f3> '<sync-mailbox><enter-command>source ~/.mutt.nostalgix_m<enter><change-folder>!<enter>'  "Switch to madhatter@nostalgix.org"
-macro index,pager <f4> '<sync-mailbox><enter-command>source ~/.mutt.nostalgix_a<enter><change-folder>!<enter>'  "Switch to arvid@nostalgix.org"
+macro index,pager <f2> '<sync-mailbox><enter-command>source ~/.mutt.nostalgix_m<enter><change-folder>!<enter>'  "Switch to madhatter@nostalgix.org"
+macro index,pager <f3> '<sync-mailbox><enter-command>source ~/.mutt.nostalgix_a<enter><change-folder>!<enter>'  "Switch to arvid@nostalgix.org"
+macro index,pager <f4> '<sync-mailbox><enter-command>source ~/.mutt.nostalgix_aw<enter><change-folder>!<enter>' "Switch to arvid.warnecke@nostalgix.org"
 
 # fetch mail manually
 macro index + "!fetchmail\n" "Invoke fetchmail"
