@@ -4,7 +4,7 @@ hostname := `command -v hostnamectl > /dev/null 2>&1 && hostnamectl hostname || 
 
 # Define the list of packages to manage with stow
 packages := if os_name == "Darwin" { "certs claude fastfetch git karabiner mise tmux zsh"
-} else { "claude dunst fastfetch git mise picom redshift rofi tmux yazi zsh" }
+} else { "claude dunst fastfetch git mise picom redshift rofi tin tmux yazi zsh" }
 
 # General recipes for managing dotfiles with stow
 install: deploy-alacritty deploy-ghostty deploy-gnupg
