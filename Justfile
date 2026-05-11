@@ -281,11 +281,11 @@ deploy-mail:
     yay -S --needed neomutt msmtp fetchmail procmail urlscan w3m
     stow -R -d {{justfile_directory()}} -t "{{env_var('HOME')}}" mutt
     @for dir in IN.madhatter IN.arvid IN.arvid.warnecke \
+                IN.usenet \
                 IN.madhatter/DRAFTS IN.madhatter/SENT \
                 IN.arvid/DRAFTS IN.arvid/SENT \
                 IN.arvid.warnecke/DRAFTS IN.arvid.warnecke/SENT \
-                list.vim list.ruby-talk list.hbase-user \
-                list.arch-general list.arch-dev-public \
+                IN.usenet/DRAFTS IN.usenet/SENT \
                 spam spam-filtered ebay TV-Programm; do \
         mkdir -p "{{env_var('HOME')}}/mail/$$dir"/{cur,new,tmp}; \
     done
