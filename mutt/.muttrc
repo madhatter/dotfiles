@@ -35,8 +35,7 @@ folder-hook +IN.madhatter 'source ~/.mutt.nostalgix_m'
 
 # mailboxes to watch for new mail
 mailboxes +IN.madhatter +IN.arvid +IN.arvid.warnecke \
-          +list.vim +list.ruby-talk +list.hbase-user \
-          +list.arch-general +list.arch-dev-public \
+          +IN.usenet \
           +spam +spam-filtered +ebay
 
 set sort_browser=alpha
