@@ -66,6 +66,16 @@ install-arch-setup:
         sudo install -Dm644 {{justfile_directory()}}/systemd/disable-usb-wakeup.service \
             /etc/systemd/system/disable-usb-wakeup.service; \
         sudo systemctl enable --now disable-usb-wakeup; \
+        sudo pacman -S --needed acpid brightnessctl; \
+        sudo install -Dm644 {{justfile_directory()}}/acpi/events/backlight \
+            /etc/acpi/events/backlight; \
+        sudo install -Dm644 {{justfile_directory()}}/acpi/events/volume \
+            /etc/acpi/events/volume; \
+        sudo install -Dm755 {{justfile_directory()}}/acpi/handlers/backlight.sh \
+            /etc/acpi/handlers/backlight.sh; \
+        sudo install -Dm755 {{justfile_directory()}}/acpi/handlers/volume.sh \
+            /etc/acpi/handlers/volume.sh; \
+        sudo systemctl enable --now acpid; \
     fi
 
 # Also Arch Linux only: install NVIDIA Xorg configuration and modprobe settings
