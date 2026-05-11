@@ -47,7 +47,7 @@ static const unsigned int alphas[][3] = {
 /* tagging */
 //static const char *tags[] = { "", "", "󰆍", "󰈹", "󰭹", "󰓃", "󰓓", "󰍺" };
 //static const char *tags[] =  "g", "v", "s", "w", "c", "m", "~", "·" };
-static const char *tags[] = { "git", "vim", "sh", "www", "chat", "tune", "play", "misc" };
+static const char *tags[] = { "git", "vim", "sh", "www", "mail", "chat", "sfx", "play", "misc" };
 
 static const Rule rules[] = {
 	/* xprop(1):
@@ -58,11 +58,11 @@ static const Rule rules[] = {
 	{ "jetbrains-idea",	NULL,		NULL,		1 << 1,			0, 				1,		-1 }, // appears on tag 2, floating
 	{ "firefox",		NULL,		NULL,		1 << 3,			0, 				0,		-1 }, // appears on tag 4
 	{ "elecwhat",		NULL,		NULL,		1 << 4,			1, 				1,		-1 }, // appears on tag 5, floating, centered
-	{ "discord",		NULL,		NULL,		1 << 4,			0, 				1,		-1 }, // appears on tag 5, floating
-	{ "St",				NULL,		"ncmpcpp",	1 << 5,			1, 				1,		-1 }, // appears on tag 6, floating, centered
-	{ "Spotify",		NULL,		NULL,		1 << 5,			0, 				1,		-1 }, // appears on tag 6, floating
-	{ "steam",			NULL,		NULL,		1 << 6,			0, 				1,		-1 }, // appears on tag 7, floating
-	{ "Gimp",			NULL,		NULL,		1 << 7,			0, 				1,		-1 }, // appears on tag 8, floating
+	{ "discord",		NULL,		NULL,		1 << 5,			0, 				1,		-1 }, // appears on tag 6, floating
+	{ "St",				NULL,		"ncmpcpp",	1 << 6,			1, 				1,		-1 }, // appears on tag 7, floating, centered
+	{ "Spotify",		NULL,		NULL,		1 << 6,			0, 				1,		-1 }, // appears on tag 7, floating
+	{ "steam",			NULL,		NULL,		1 << 7,			0, 				1,		-1 }, // appears on tag 8, floating
+	{ "Gimp",			NULL,		NULL,		1 << 8,			0, 				1,		-1 }, // appears on tag 9, floating
 };
 
 /* layout(s) */
@@ -83,6 +83,7 @@ static const Layout layouts[] = {
 	{ "===",		bstackhoriz },
 	{ "[@]",		spiral },
 	{ "|M|",		centeredmaster },
+	{ "><M>",		centeredfloatingmaster },
 };
 
 /* key definitions */
@@ -109,9 +110,6 @@ static const char *voldown[]	= { "wpctl", "set-volume", "-l", "1.0", "@DEFAULT_A
 static const char *volup[]		= { "wpctl", "set-volume", "-l", "1.0", "@DEFAULT_AUDIO_SINK@","5%+",  NULL };
 static const char *voltoggle[]	= { "wpctl", "set-mute",   "@DEFAULT_AUDIO_SINK@", "toggle", NULL };
 
-static const char *brightup[]	= { "sudo", "light", "-A", "5", NULL};
-static const char *brightdown[] = { "sudo", "light", "-U", "5", NULL};
-
 static const char *next[]		= { "mpc", "next", NULL };
 static const char *play[]		= { "mpc", "toggle", NULL };
 static const char *prev[]		= { "mpc", "prev", NULL };
@@ -120,10 +118,12 @@ static const char *snext[]		= { "playerctl", "next", NULL };
 static const char *splay[]		= { "playerctl", "play-pause", NULL };
 static const char *sprev[]		= { "playerctl", "previous", NULL };
 
+static const char *scrnshtcmd[] = { "scrot", "-e", "mv $f ~/shots/", NULL };
+static const char *scrncutcmd[] = { "scrot", "-l", "style=dash,width=5,color=red" ,"-s", "-e", "xclip -selection clipboard -t image/png < $f", NULL };
+static const char *boseconnect[] = { "bose_connect.sh", NULL };
+
 static const Key keys[] = {
 	/* modifier					key 		function		argument */
-	{ 0,						XF86XK_MonBrightnessDown, spawn, {.v = brightdown} },
-	{ 0,						XF86XK_MonBrightnessUp,   spawn, {.v = brightup} },
 	{ MODKEY,					XK_r,		spawn,			roficmd },
 	{ MODKEY,					XK_Return,	spawn,			{.v = termcmd } },
 	{ MODKEY,					XK_a,		spawn,			{.v = lockcmd } },
@@ -137,12 +137,15 @@ static const Key keys[] = {
 	{ 0,						XF86XK_AudioRaiseVolume, spawn, {.v = volup   } },
 	{ 0,						XF86XK_AudioLowerVolume, spawn, {.v = voldown } },
 	{ 0,						XF86XK_AudioMute,		 spawn, {.v = voltoggle } },
-	{ MODKEY|ShiftMask,			XK_Left,   spawn,			{.v = prev } },
-	{ MODKEY|ShiftMask,			XK_Right,  spawn,			{.v = next } },
-	{ MODKEY|ShiftMask,			XK_p,      spawn,			{.v = play } },
-	{ MODKEY|ControlMask,		XK_Left,   spawn,			{.v = sprev } },
-	{ MODKEY|ControlMask,		XK_Right,  spawn,			{.v = snext } },
-	{ MODKEY|ControlMask,		XK_p,      spawn,			{.v = splay } },
+	{ MODKEY|ShiftMask,			XK_s,		spawn,			{.v = scrnshtcmd } },
+	{ MODKEY|ShiftMask|ControlMask, XK_s,	spawn,			{.v = scrncutcmd } },
+	{ MODKEY|ShiftMask,			XK_Left,    spawn,			{.v = prev } },
+	{ MODKEY|ShiftMask,			XK_Right,   spawn,			{.v = next } },
+	{ MODKEY|ShiftMask,			XK_p,       spawn,			{.v = play } },
+	{ MODKEY|ControlMask,		XK_Left,    spawn,			{.v = sprev } },
+	{ MODKEY|ControlMask,		XK_Right,   spawn,			{.v = snext } },
+	{ MODKEY|ControlMask,		XK_p,       spawn,			{.v = splay } },
+	{ MODKEY|ControlMask,		XK_b,       spawn,			{.v = boseconnect } },
 	{ MODKEY,					XK_b,		togglebar,		{0} },
 	{ MODKEY,					XK_j,		focusstack,		{.i = +1 } },
 	{ MODKEY,					XK_k,		focusstack,		{.i = -1 } },
@@ -153,11 +156,11 @@ static const Key keys[] = {
 	{ MODKEY|ShiftMask,			XK_Return,	zoom,			{0} },
 	{ MODKEY,					XK_Tab,		view,			{0} },
 	{ MODKEY|ShiftMask,			XK_c,		killclient,		{0} },
-	{ MODKEY,					XK_t,		setlayout,		{.v = &layouts[0]} },
-	{ MODKEY,					XK_f,		setlayout,		{.v = &layouts[1]} },
-	{ MODKEY,					XK_m,		setlayout,		{.v = &layouts[2]} },
-	{ MODKEY,					XK_u,		setlayout,		{.v = &layouts[3]} },
-	{ MODKEY,					XK_o,		setlayout,		{.v = &layouts[4]} },
+	{ MODKEY,					XK_t,		setlayout,		{.v = &layouts[0]} }, // tile
+	{ MODKEY,					XK_f,		setlayout,		{.v = &layouts[1]} }, // floating
+	{ MODKEY,					XK_m,		setlayout,		{.v = &layouts[2]} }, // monocle
+	{ MODKEY,					XK_u,		setlayout,		{.v = &layouts[3]} }, // bstack
+	{ MODKEY,					XK_o,		setlayout,		{.v = &layouts[4]} }, // bstackhoriz
 	{ MODKEY,					XK_space,	setlayout,		{0} },
 	{ MODKEY|ShiftMask,			XK_space,	togglefloating, {0} },
 	{ MODKEY,					XK_0,		view,			{.ui = ~0 } },
@@ -173,6 +176,7 @@ static const Key keys[] = {
 	/* layouts */
 	{ MODKEY,					XK_y,		setlayout,		{.v = &layouts[5]} },  // spiral
 	{ MODKEY,					XK_e,		setlayout,		{.v = &layouts[6]} },  // centeredmaster
+	{ MODKEY,					XK_s,		setlayout,		{.v = &layouts[7]} },  // centeredfloatingmaster
 	/* gaps */
 	{ MODKEY|Mod1Mask,			XK_u,		incrgaps,		{.i = +2} },
 	{ MODKEY|Mod1Mask|ShiftMask,XK_u,		incrgaps, 		{.i = -2} },
@@ -188,6 +192,7 @@ static const Key keys[] = {
 	TAGKEYS(					XK_6,						5)
 	TAGKEYS(					XK_7,						6)
 	TAGKEYS(					XK_8,						7)
+	TAGKEYS(					XK_9,						8)
 };
 
 /* button definitions */
