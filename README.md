@@ -36,6 +36,8 @@ dotfiles/
   ncmpcpp/            # ncmpcpp music player config (archbook only)
   network/            # DNS config: systemd-resolved and NetworkManager (Linux only)
   pacman/             # yay AUR helper config (Arch only)
+  systemd/            # systemd unit files and hooks (Arch only)
+  tin/                # tin terminal client config
   picom/              # picom compositor config (Arch only)
   pipewire-pc/        # PipeWire config for desktop PC
   pipewire-t460s/     # PipeWire config for T460s (archbook)
