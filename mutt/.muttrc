@@ -36,7 +36,7 @@ folder-hook +IN.madhatter 'source ~/.mutt.nostalgix_m'
 # mailboxes to watch for new mail
 mailboxes +IN.madhatter +IN.arvid +IN.arvid.warnecke \
           +IN.usenet \
-          +spam +spam-filtered +ebay
+          +spam-filtered +ebay
 
 set sort_browser=alpha
 set sort=threads
