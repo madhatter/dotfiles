@@ -1,6 +1,8 @@
 font-size = 15
 
-fullscreen = true
+#fullscreen = true
+# Use non-native fullscreen to avoid macOS space creation issues
+macos-non-native-fullscreen = true
 
 background = #161617
 foreground = #c9c7cd
