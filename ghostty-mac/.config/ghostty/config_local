@@ -1,8 +1,9 @@
 font-size = 15
 
-#fullscreen = true
-# Use non-native fullscreen to avoid macOS space creation issues
-macos-non-native-fullscreen = true
+# Use non-native fullscreen on macOS but show the menu bar because of the notch.
+fullscreen = non-native-visible-menu
+# Disable macOS window shadow to have a more fullscreen look
+macos-window-shadow = false
 
 background = #161617
 foreground = #c9c7cd
