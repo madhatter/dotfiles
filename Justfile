@@ -148,10 +148,6 @@ install-mpd:
         echo "This recipe is only for Arch Linux."; \
         exit 1; \
     fi
-    @if [ "{{hostname}}" != "archbook" ]; then \
-        echo "install-mpd is only for the T460S (archbook)."; \
-        exit 1; \
-    fi
     sudo pacman -S --needed mpd mpc ncmpcpp
     stow -R -d {{justfile_directory()}} -t "{{env_var('HOME')}}" mpd
     systemctl --user enable --now mpd
