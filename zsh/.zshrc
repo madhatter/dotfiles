@@ -66,6 +66,7 @@ setopt LOCAL_OPTIONS # allow functions to have local options
 setopt LOCAL_TRAPS # allow functions to have local traps
 setopt PROMPT_SUBST
 setopt NO_NOMATCH # stop bailing on the command when it fails to match a glob pattern
+setopt NO_BEEP
 
 fpath=(~/.zsh/completions $fpath)
 autoload -Uz compinit
