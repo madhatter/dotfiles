@@ -1,0 +1,50 @@
+!#include ".colors/dc2"
+!#include ".colors/dc1"
+
+## urxvt config
+URxvt*termName:        xterm-256color
+URxvt*background:      #282828
+URxvt*foreground:      #d5c4a1
+URxvt*loginShell:      true
+URxvt*scrollBar_right: false
+URxvt*scrollstyle:     plain
+URxvt*scrollBar:       false
+URxvt*borderLess:      false
+URxvt*geometry:        128x36
+URxvt*fading:          35
+URxvt*saveLines:       12000
+URxvt*font:            xft:BerkeleyMono Nerd Font Mono:size=12:style=Regular
+
+! Normal colors
+URxvt*color0:  #1d2021
+URxvt*color1:  #f5a191
+URxvt*color2:  #90b99f
+URxvt*color3:  #e6b99d
+URxvt*color4:  #aca1cf
+URxvt*color5:  #e29eca
+URxvt*color6:  #ea83a5
+URxvt*color7:  #c1c0d4
+! Bright colors
+URxvt*color8:  #353539
+URxvt*color9:  #ffae9f
+URxvt*color10: #9dc6ac
+URxvt*color11: #f0c5a9
+URxvt*color12: #b9aeda
+URxvt*color13: #ecaad6
+URxvt*color14: #f591b2
+URxvt*color15: #cac9dd
+
+#include ".Xdefaults.local"
+
+! Enable anti-aliasing
+Xft.antialias: 1
+
+! Set hinting style (slight is usually best for high density displays)
+Xft.hinting: 1
+Xft.hintstyle: hintslight
+
+! Subpixel rendering geometry
+Xft.rgba: rgb
+
+! Set cursor size (if supported by the cursor theme)
+Xcursor.size: 24
