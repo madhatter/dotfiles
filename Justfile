@@ -56,10 +56,6 @@ install-arch-setup:
     sudo pacman -S --needed pacman-contrib
     sudo install -Dm644 {{justfile_directory()}}/hooks/pacdiff.hook \
         /etc/pacman.d/hooks/pacdiff.hook
-    sudo install -Dm644 {{justfile_directory()}}/xorg/00-keyboard.conf \
-        /etc/X11/xorg.conf.d/00-keyboard.conf
-    sudo install -Dm644 {{justfile_directory()}}/xorg/30-touchpad.conf \
-        /etc/X11/xorg.conf.d/30-touchpad.conf
     stow -d {{justfile_directory()}} -t "{{env_var('HOME')}}" pacman
     @if [ "{{hostname}}" = "archbook" ]; then \
         echo "T460s detected. Deploying T460s configurations..."; \
@@ -77,6 +73,7 @@ install-arch-setup:
             /etc/acpi/handlers/volume.sh; \
         sudo systemctl enable --now acpid; \
     fi
+    just deploy-xorg
 
 # Also Arch Linux only: install NVIDIA Xorg configuration and modprobe settings
 install-nvidia-setup:
@@ -128,6 +125,25 @@ deploy-pipewire:
         stow -R -d {{justfile_directory()}} -t "{{env_var('HOME')}}" pipewire-pc; \
     fi
     systemctl --user restart pipewire
+
+# Deploy Xorg configuration (keyboard, touchpad, DPI)
+deploy-xorg:
+    @if [ "{{os_name}}" != "Linux" ]; then \
+        echo "This recipe is only for Arch Linux."; \
+        exit 1; \
+    fi
+    sudo install -Dm644 {{justfile_directory()}}/xorg/00-keyboard.conf \
+        /etc/X11/xorg.conf.d/00-keyboard.conf
+    stow -R -d {{justfile_directory()}} -t "{{env_var('HOME')}}" xorg-base
+    @if [ "{{hostname}}" = "archbook" ]; then \
+        echo "T460s detected. Deploying T460s Xorg config..."; \
+        sudo install -Dm644 {{justfile_directory()}}/xorg/30-touchpad.conf \
+            /etc/X11/xorg.conf.d/30-touchpad.conf; \
+        stow -R -d {{justfile_directory()}} -t "{{env_var('HOME')}}" xorg-t460s; \
+    else \
+        echo "Deploying PC Xorg config..."; \
+        stow -R -d {{justfile_directory()}} -t "{{env_var('HOME')}}" xorg-pc; \
+    fi
 
 # Install irssi (right now only on the server)
 install-irssi:
