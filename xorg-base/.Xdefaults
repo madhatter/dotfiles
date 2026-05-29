@@ -15,6 +15,7 @@ URxvt*fading:          35
 URxvt*saveLines:       12000
 URxvt*font:            xft:BerkeleyMono Nerd Font Mono:size=12:style=Regular
 URxvt*print-pipe:      cat > /dev/null
+URxvt*bell-command:    true
 URxvt*iso14755:                 false
 URxvt*iso14755_52:              false
 URxvt*perl-ext-common:          default,clipboard
