@@ -13,12 +13,13 @@ URxvt*borderLess:      false
 URxvt*geometry:        400x400
 URxvt*fading:          35
 URxvt*saveLines:       12000
-URxvt*font:            xft:BerkeleyMono Nerd Font Mono:size=13:style=Regular
+URxvt*font:            xft:BerkeleyMono Nerd Font Mono:size=14:style=Regular
 URxvt*print-pipe:      cat > /dev/null
 URxvt*bell-command:    true
 URxvt*iso14755:                 false
 URxvt*iso14755_52:              false
-URxvt*perl-ext-common:          default,clipboard
+URxvt*perl-ext-common:          default,-confirm-paste,clipboard
+URxvt*keysym.Shift-Return:      \033\015
 URxvt*keysym.Control-Shift-C:  perl:clipboard:copy
 URxvt*keysym.Control-Shift-V:  perl:clipboard:paste
 
