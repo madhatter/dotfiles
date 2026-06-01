@@ -59,7 +59,7 @@ static const Rule rules[] = {
 	{ "firefox",		NULL,		NULL,		1 << 3,			0, 				0,		-1 }, // appears on tag 4
 	{ "elecwhat",		NULL,		NULL,		1 << 4,			1, 				1,		-1 }, // appears on tag 5, floating, centered
 	{ "discord",		NULL,		NULL,		1 << 5,			0, 				1,		-1 }, // appears on tag 6, floating
-	{ "St",				NULL,		"ncmpcpp",	1 << 6,			1, 				1,		-1 }, // appears on tag 7, floating, centered
+	{ "URxvt",			NULL,		"ncmpcpp",	1 << 6,			1, 				1,		-1 }, // appears on tag 7, floating, centered
 	{ "Spotify",		NULL,		NULL,		1 << 6,			0, 				1,		-1 }, // appears on tag 7, floating
 	{ "steam",			NULL,		NULL,		1 << 7,			0, 				1,		-1 }, // appears on tag 8, floating
 	{ "Gimp",			NULL,		NULL,		1 << 8,			0, 				1,		-1 }, // appears on tag 9, floating
@@ -101,10 +101,10 @@ static const Layout layouts[] = {
 static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() */
 static const char *dmenucmd[]	= { "dmenu_run", "-m", dmenumon, NULL };
 static const Arg roficmd		= SHCMD("rofi -show drun");
-static const char *termcmd[]	= { "st", NULL };
+static const char *termcmd[]	= { "urxvt", NULL };
 
 static const char *lockcmd[]	= { "slock", NULL };
-static const char *ncmpcppcmd[] = { "st", "-t", "ncmpcpp", "-e", "ncmpcpp", NULL };
+static const char *ncmpcppcmd[] = { "urxvt", "-title", "ncmpcpp", "-e", "ncmpcpp", NULL };
 
 static const char *voldown[]	= { "wpctl", "set-volume", "-l", "1.0", "@DEFAULT_AUDIO_SINK@","5%-",  NULL };
 static const char *volup[]		= { "wpctl", "set-volume", "-l", "1.0", "@DEFAULT_AUDIO_SINK@","5%+",  NULL };
