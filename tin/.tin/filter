@@ -63,10 +63,3 @@ group=de.comp.editoren
 case=1
 score=hot
 subj=*vim*
-
-comment=Rule created by: add_posted_to_filter=ON.
-group=de.alt.test
-case=0
-score=hot
-msgid=*<10thjfj$1t05d$1@dont-email.me>*
-time=1780562742 (2026-06-04 08:45:42 UTC)
