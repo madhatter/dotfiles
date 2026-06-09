@@ -1,8 +1,10 @@
 # This is my zsh configuration file.
 
 # p10k instant prompt — must be at the very top
-if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
-  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+if [[ -n "$DISPLAY" || -n "$WAYLAND_DISPLAY" || -n "$SSH_CLIENT" || -n "$SSH_CONNECTION" ]]; then
+  if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
+    source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+  fi
 fi
 
 source ~/.zsh/history-substring-search/history-substring-search.zsh
@@ -245,16 +247,19 @@ yays() { yay -Ss "$@" --color always | awk '/\(Orphaned\)/{getline; next} 1'; }
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
-# load p10k framework — works on macOS (brew) and Arch (yay)
-for _p10k in \
-  "$(brew --prefix 2>/dev/null)/share/powerlevel10k/powerlevel10k.zsh-theme" \
-  "/usr/share/zsh-theme-powerlevel10k/powerlevel10k.zsh-theme" \
-  "$HOME/powerlevel10k/powerlevel10k.zsh-theme"; do
-  [[ -f "$_p10k" ]] && { source "$_p10k"; break }
-done
-unset _p10k
-
-source ~/.zsh/p10k_prompt.zsh
+# load p10k in graphical sessions and SSH, fall back to plain prompt on TTY
+if [[ -n "$DISPLAY" || -n "$WAYLAND_DISPLAY" || -n "$SSH_CLIENT" || -n "$SSH_CONNECTION" ]]; then
+  for _p10k in \
+    "$(brew --prefix 2>/dev/null)/share/powerlevel10k/powerlevel10k.zsh-theme" \
+    "/usr/share/zsh-theme-powerlevel10k/powerlevel10k.zsh-theme" \
+    "$HOME/powerlevel10k/powerlevel10k.zsh-theme"; do
+    [[ -f "$_p10k" ]] && { source "$_p10k"; break }
+  done
+  unset _p10k
+  source ~/.zsh/p10k_prompt.zsh
+else
+  source ~/.zsh/prompt.zsh
+fi
 
 autoload -U +X bashcompinit && bashcompinit
 
