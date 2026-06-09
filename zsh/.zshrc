@@ -205,6 +205,9 @@ fi
 # I will always call it mutt
 alias mutt='neomutt'
 
+# Stupid synology shell screws up normal terminal behavior
+alias nas="TERM=xterm-256color ssh -t madhatter@192.168.0.2 /bin/bash -l"
+
 # history search with arrow keys
 bindkey '^[[A' history-substring-search-up
 bindkey '^[[B' history-substring-search-down
