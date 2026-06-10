@@ -104,7 +104,7 @@ static const Arg roficmd		= SHCMD("rofi -show drun");
 static const char *termcmd[]	= { "urxvt", NULL };
 
 static const char *lockcmd[]	= { "slock", NULL };
-static const char *ncmpcppcmd[] = { "urxvt", "-title", "ncmpcpp", "-e", "ncmpcpp", NULL };
+static const char *ncmpcppcmd[] = { "urxvt", "-title", "ncmpcpp", "-geometry", "120x40", "-e", "ncmpcpp", NULL };
 
 static const char *voldown[]	= { "wpctl", "set-volume", "-l", "1.0", "@DEFAULT_AUDIO_SINK@","5%-",  NULL };
 static const char *volup[]		= { "wpctl", "set-volume", "-l", "1.0", "@DEFAULT_AUDIO_SINK@","5%+",  NULL };
