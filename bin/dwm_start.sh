@@ -53,5 +53,9 @@ dwmbar &
 # Lock screen on suspend and lid close
 xss-lock -- slock &
 
+# Disable Firefox's RDD Sandbox and set the VA-API driver to Intel's iHD for better video performance
+export MOZ_DISABLE_RDD_SANDBOX=1
+export LIBVA_DRIVER_NAME=iHD
+
 # Replace the shell with the window manager
 exec dwm
