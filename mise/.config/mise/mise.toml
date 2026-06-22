@@ -11,6 +11,7 @@ kotlin = "2"
 # empty = let mise manage versions automatically         
 #idiomatic_version_file_enable_tools = ["python", "java"]
 idiomatic_version_file_enable_tools = [] 
+experimental = true
 
 [settings.ruby]
 compile = false
