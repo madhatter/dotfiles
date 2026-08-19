@@ -19,3 +19,7 @@ prepend_preloaders = [
   { url = "*.txt", run = "duckdb", multi = false },  
   { url = "*.xlsx", run = "duckdb", multi = false }
 ]
+
+[preview]
+image_protocol = "ueberzug"
+

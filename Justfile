@@ -26,7 +26,7 @@ install-deps:
         brew install powerlevel10k fzf direnv mise jq oath-toolkit fastfetch alacritty vivid gnupg pinentry-mac ghostty; \
     else \
         echo "Installing dependencies via pacman..."; \
-        yay -S --needed zsh-theme-powerlevel10k fzf direnv mise jq oath-toolkit fastfetch xclip alacritty vivid rofi rofi-calc papirus-icon-theme picom slock xss-lock gnupg pinentry redshift ghostty dunst neomutt msmtp fetchmail procmail urlscan w3m; \
+        yay -S --needed zsh-theme-powerlevel10k fzf direnv mise jq oath-toolkit fastfetch xclip alacritty vivid rofi rofi-calc papirus-icon-theme picom slock xss-lock gnupg pinentry redshift ghostty dunst neomutt msmtp fetchmail procmail urlscan w3m yazi; \
     fi
 
 # Install work-related dependencies (AWS, cloud, infra tools) — macOS only
