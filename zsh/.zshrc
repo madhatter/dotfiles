@@ -192,6 +192,7 @@ alias ll='ls -la'
 
 # general aliases
 alias gp="git pull"
+alias cg='git --git-dir=$HOME/comfyui-content.git --work-tree=$HOME/src/ComfyUI'
 
 alias pip=pip3
 alias python=python3
