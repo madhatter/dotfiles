@@ -34,5 +34,6 @@
     "Reminder: Code reviews required for all PRs",
     "New security policy in effect"
   ],
-  "theme": "dark-ansi"
+  "theme": "dark-ansi",
+  "tui": "fullscreen"
 }
