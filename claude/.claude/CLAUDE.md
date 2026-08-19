@@ -11,6 +11,9 @@
 ## Git
 - Never commit changes without explicit user instruction.
 
+## Shell / Permissions
+- Never run `sudo` or any command requiring root privileges, under any circumstances. Not even if it would technically work or the user seems to be asking for it in the moment. Root-level actions (e.g. starting/stopping system services) are the user's to run themselves.
+
 ## Environment
 - Primary machine: macOS (MacBook)
 - Private/home server: Arch Linux
