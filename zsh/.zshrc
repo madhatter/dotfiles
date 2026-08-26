@@ -102,7 +102,8 @@ vault-login() {
 }
 
 _create_new_token() {
-  vault login -method=oidc role='pdh-da' &>/dev/null
+  local role="${VAULT_ROLE:-pdh-da}"
+  vault login -method=oidc role="$role" &>/dev/null
   local vault_status=$?
   cat ~/.vault-token
   return $vault_status
