@@ -152,7 +152,7 @@ install-irssi:
         exit 1; \
     fi
     @if [ "{{hostname}}" != "brutal" ]; then \
-        echo "install-mpd is only for the T460S (archbook)."; \
+        echo "install-irssi is only for the server (brutal)."; \
         exit 1; \
     fi
     sudo pacman -S --needed irssi
@@ -349,6 +349,6 @@ setup-archbook:
   just deploy-iwlwifi
   just deploy-pipewire
   just deploy-network-setup
-  just install-mail 
+  just deploy-mail
   just install-mpd
   @echo "archbook setup complete."
