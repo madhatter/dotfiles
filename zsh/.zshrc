@@ -173,6 +173,7 @@ aws-clear() {
 lopilot() {
   local profile="${1:-qwen38}"
   local envfile="$HOME/.config/lopilot/${profile}.env"
+  local mcpfile="$HOME/.config/lopilot/mcp-searxng.json"
   if [[ ! -f "$envfile" ]]; then
     echo "Unknown profile: $profile"
     ls "$HOME/.config/lopilot" | sed 's/\.env$//'
@@ -180,7 +181,11 @@ lopilot() {
   fi
   source "$envfile"
   (( $# > 0 )) && shift
-  copilot "$@"
+  if [[ -f "$mcpfile" ]]; then
+    copilot --additional-mcp-config "$mcpfile" "$@"
+  else
+    copilot "$@"
+  fi
 }
 
 # everything colorful
