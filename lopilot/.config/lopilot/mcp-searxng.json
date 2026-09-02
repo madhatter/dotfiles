@@ -1,0 +1,13 @@
+{
+  "mcpServers": {
+    "searxng": {
+      "type": "local",
+      "command": "npx",
+      "args": ["-y", "mcp-searxng"],
+      "env": {
+        "SEARXNG_URL": "http://192.168.0.100:8888"
+      },
+      "tools": ["*"]
+    }
+  }
+}
