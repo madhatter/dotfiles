@@ -168,6 +168,20 @@ aws-clear() {
     echo "All AWS profiles cleared"
 }
 
+# local copilot...
+lopilot() {
+  local profile="${1:-qwen38}"
+  local envfile="$HOME/.config/lopilot/${profile}.env"
+  if [[ ! -f "$envfile" ]]; then
+    echo "Unknown profile: $profile"
+    ls "$HOME/.config/lopilot" | sed 's/\.env$//'
+    return 1
+  fi
+  source "$envfile"
+  (( $# > 0 )) && shift
+  copilot "$@"
+}
+
 # everything colorful
 if command -v vivid &>/dev/null; then
     export LS_COLORS=$(vivid generate jellybeans)
