@@ -10,6 +10,7 @@
 
 ## Git
 - Never commit changes without explicit user instruction.
+- Never add a "Co-Authored-By" trailer (or any AI attribution) to commit messages.
 
 ## Shell / Permissions
 - Never run `sudo` or any command requiring root privileges, under any circumstances. Not even if it would technically work or the user seems to be asking for it in the moment. Root-level actions (e.g. starting/stopping system services) are the user's to run themselves.
