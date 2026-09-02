@@ -28,6 +28,7 @@ export GOPATH="$HOME/code/go"
 
 # what is the best editor one can wish for
 export EDITOR="nvim"
+export DIFFPROG="nvim -d"
 
 # don't talk german to me
 export LANG="en_US.UTF-8"
