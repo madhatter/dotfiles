@@ -182,7 +182,7 @@ lopilot() {
   source "$envfile"
   (( $# > 0 )) && shift
   if [[ -f "$mcpfile" ]]; then
-    copilot --additional-mcp-config "$mcpfile" "$@"
+    copilot --additional-mcp-config "@$mcpfile" "$@"
   else
     copilot "$@"
   fi
