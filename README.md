@@ -131,7 +131,7 @@ just deploy-keyd          # archbook only: keyd key remapping daemon
 just deploy-tlp           # archbook only: TLP power management
 just deploy-iwlwifi       # archbook only: iwlwifi modprobe config
 just deploy-mail          # archbook only: neomutt mail setup
-just deploy-network-setup # Linux only: systemd-resolved and NetworkManager DNS config
+just deploy-network-setup # Linux only: systemd-resolved, systemd-networkd and iwd
 just setup-archbook       # full archbook setup: runs all relevant recipes in order
 just deploy-alacritty     # deploy Alacritty base + OS-specific overrides
 just remove-alacritty     # remove Alacritty symlinks
@@ -154,7 +154,7 @@ just remove-gnupg         # remove GnuPG symlinks
 - keyd (archbook only) remaps CapsLock+h/j/k/l to arrow keys and is restarted on resume from sleep via a systemd-sleep hook.
 - TLP handles battery and power management on the T460s. `systemd-rfkill` and `power-profiles-daemon` are masked to avoid conflicts.
 - mutt uses neomutt with fetchmail, procmail, and msmtp. Credentials go in `~/.fetchmailrc` and `~/.msmtprc` — these are not in the repo.
-- DNS uses systemd-resolved with Quad9 over TLS (primary) and Mullvad (fallback). NetworkManager is configured to ignore DHCP-provided DNS servers.
+- DNS uses systemd-resolved with Quad9 over TLS (primary) and Mullvad (fallback). NetworkManager is disabled in favor of systemd-networkd, which ignores DHCP-provided DNS servers (`UseDNS=no`).
 
 ## Questions or ideas
 

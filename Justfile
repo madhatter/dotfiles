@@ -158,7 +158,7 @@ install-irssi:
     sudo pacman -S --needed irssi
     stow -R -d {{justfile_directory()}} -t "{{env_var('HOME')}}" irssi
  
-# Install mpd and ncmpcpp for T460S (archbook) with music on SD card
+# Install mpd and ncmpcpp (all Linux machines)
 install-mpd:
     @if [ "{{os_name}}" != "Linux" ]; then \
         echo "This recipe is only for Arch Linux."; \
@@ -322,6 +322,7 @@ deploy-network-setup:
         echo "This recipe is only for Linux."; \
         exit 1; \
     fi
+    sudo pacman -S --needed iwd
     sudo install -Dm644 {{justfile_directory()}}/network/resolved.conf \
         /etc/systemd/resolved.conf
     sudo install -Dm644 {{justfile_directory()}}/network/25-wireless.network \
@@ -343,6 +344,7 @@ setup-archbook:
   fi
   just install-arch-setup
   just install-deps
+  just install
   just install-tmux-plugins
   just deploy-keyd
   just deploy-tlp
