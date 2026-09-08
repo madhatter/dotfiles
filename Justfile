@@ -40,10 +40,10 @@ test:
 install-deps:
     @if [ "{{os_name}}" = "Darwin" ]; then \
         echo "Installing dependencies via Homebrew..."; \
-        brew install powerlevel10k fzf direnv mise jq oath-toolkit fastfetch alacritty vivid gnupg pinentry-mac ghostty; \
+        brew install powerlevel10k fzf direnv mise jq oath-toolkit fastfetch alacritty vivid gnupg pinentry-mac ghostty tmux; \
     else \
         echo "Installing dependencies via pacman..."; \
-        yay -S --needed zsh-theme-powerlevel10k fzf direnv mise jq oath-toolkit fastfetch xclip alacritty vivid rofi rofi-calc papirus-icon-theme picom slock xss-lock gnupg pinentry redshift ghostty dunst neomutt msmtp fetchmail procmail urlscan w3m yazi; \
+        yay -S --needed zsh-theme-powerlevel10k fzf direnv mise jq oath-toolkit fastfetch xclip alacritty vivid rofi rofi-calc papirus-icon-theme picom slock xss-lock gnupg pinentry redshift ghostty dunst neomutt msmtp fetchmail procmail urlscan w3m yazi tmux; \
     fi
 
 # Install work-related dependencies (AWS, cloud, infra tools) — macOS only
@@ -121,10 +121,11 @@ install-dwm-setup:
 
 # Install tpm and tmux plugins
 install-tmux-plugins:
+    @mkdir -p "{{env_var('HOME')}}/.config/tmux/plugins"
     @if [ ! -d "{{env_var('HOME')}}/.config/tmux/plugins/tpm" ]; then \
-        git clone https://github.com/tmux-plugins/tpm ~/.config/tmux/plugins/tpm; \
+        git clone https://github.com/tmux-plugins/tpm "{{env_var('HOME')}}/.config/tmux/plugins/tpm"; \
     fi
-    ~/.config/tmux/plugins/tpm/bin/install_plugins
+    "{{env_var('HOME')}}/.config/tmux/plugins/tpm/bin/install_plugins"
 
 # Deploy PipeWire configuration for different hosts
 deploy-pipewire:
