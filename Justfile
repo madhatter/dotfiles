@@ -175,7 +175,7 @@ install-irssi:
     fi
     sudo pacman -S --needed irssi
     stow -R -d {{justfile_directory()}} -t "{{env_var('HOME')}}" irssi
- 
+
 # Install mpd and ncmpcpp (all Linux machines)
 install-mpd:
     @if [ "{{os_name}}" != "Linux" ]; then \
