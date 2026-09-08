@@ -1,2 +1,6 @@
 # Cloned at runtime by install-tmux-plugins into the stowed tmux package
 tmux/.config/tmux/plugins/
+
+# Runtime files created by the applications themselves
+ncmpcpp/.config/ncmpcpp/error.log
+tin/.tin/newsrctable
