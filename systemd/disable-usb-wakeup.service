@@ -4,8 +4,9 @@ DefaultDependencies=no
 
 [Service]
 Type=oneshot
-# Check if XHC is enabled for wakeup. If true, toggle it to disable.
-ExecStart=/bin/sh -c "if grep -q '^XHC.*enabled' /proc/acpi/wakeup; then echo XHC > /proc/acpi/wakeup; fi"
+# Toggle off wakeup for every XHC* device (XHC/XHCI) that has it enabled.
+# Note: $$ is required so systemd passes a literal $ to the shell.
+ExecStart=/bin/sh -c "awk '$$1 ~ /^XHC/ && $$3 == \"*enabled\" {print $$1}' /proc/acpi/wakeup | while read -r d; do echo \"$$d\" > /proc/acpi/wakeup; done"
 
 [Install]
 WantedBy=multi-user.target
