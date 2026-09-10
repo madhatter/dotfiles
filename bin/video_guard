@@ -1,0 +1,46 @@
+#!/bin/sh
+# Keep the display on while a video plays in Firefox or Chromium.
+# Detects an uncorked browser output stream via pactl and resets the X idle
+# timer so DPMS never blanks and xss-lock never triggers. When the video is
+# paused (stream corked) or nothing plays, the screen locks normally after
+# the usual idle timeout.
+# Usage: video_guard [-v]
+
+readonly INTERVAL=15
+
+verbose=0
+[ "${1:-}" = "-v" ] && verbose=1
+
+# Print "active" if any Firefox/Chromium output stream is currently uncorked
+# (i.e. actually producing audio / playing). Parsed from a single pactl call.
+browser_audio_active() {
+    pactl list sink-inputs 2>/dev/null | awk '
+        function flush() {
+            if (corked == "no" && app ~ /firefox|chromium|chrome/) print "active"
+            corked = ""; app = ""
+        }
+        /^Sink Input #/ { if (started) flush(); started = 1; next }
+        /^[ \t]*Corked:/ { corked = $2 }
+        /application\.process\.binary/ {
+            s = $0
+            i = index(s, "\"")
+            if (i > 0) {
+                r = substr(s, i + 1)
+                j = index(r, "\"")
+                if (j > 0) app = substr(r, 1, j - 1)
+            }
+        }
+        /^$/ { if (started) flush() }
+        END { if (started) flush() }
+    ' | head -n 1
+}
+
+while true; do
+    state="$(browser_audio_active)"
+    if [ "$state" = "active" ]; then
+        xset s reset 2>/dev/null
+        xset dpms force On 2>/dev/null
+    fi
+    [ "$verbose" = 1 ] && echo "[$(date +%T)] browser=${state:-none}"
+    sleep "$INTERVAL"
+done
