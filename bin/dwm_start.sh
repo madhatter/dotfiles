@@ -53,6 +53,9 @@ dwmbar &
 # Lock screen on suspend and lid close
 xss-lock -- slock &
 
+# Keep the display awake while a browser video is playing
+"$HOME/bin/video_guard" &
+
 # Disable Firefox's RDD Sandbox and set the VA-API driver to Intel's iHD for better video performance
 export MOZ_DISABLE_RDD_SANDBOX=1
 export LIBVA_DRIVER_NAME=iHD
