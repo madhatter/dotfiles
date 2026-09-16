@@ -1,0 +1,43 @@
+# Hermes skin — "lilac"
+# Dezentes Flieder/Periwinkle auf Gruvbox-Dunkel.
+# Abgeleitet 1:1 von der Alacritty-/p10k-Palette (aca1cf / b9aeda / e29eca auf 282828).
+name: lilac
+description: Subtle lilac & periwinkle on gruvbox dark
+
+colors:
+  # Basis — exakt die Terminal-Farben, damit es nahtlos wirkt
+  background: "#282828"
+  ui_accent: "#aca1cf"        # Periwinkle (normal blue) — Hauptakzent
+  banner_accent: "#aca1cf"
+
+  # Text-Hierarchie
+  banner_title: "#b9aeda"     # helles Flieder (bright blue)
+  banner_text: "#d5c4a1"      # warmes Creme (Terminal-FG)
+  ui_text: "#d5c4a1"
+  banner_dim: "#757581"       # gedämpftes Violett-Grau (Cursor-Ton)
+  banner_border: "#5c5570"    # Rahmen/Linien — sichtbar wie das alte Bronze, aber in Violett
+  ui_border: "#5c5570"
+
+  # Semantischer Status — direkt aus der Terminal-Palette
+  ui_ok: "#90b99f"            # normal green
+  ui_warn: "#e6b99d"          # normal yellow (warm)
+  ui_error: "#f5a191"         # normal red
+  ui_label: "#aca1cf"
+
+  # CLI / TUI Chrome
+  prompt: "#b9aeda"
+  input_rule: "#aca1cf"
+  response_border: "#757581"
+  status_bar_bg: "#262626"    # hauchdunkler als BG, dezent abgesetzt
+  status_bar_text: "#d5c4a1"
+  status_bar_strong: "#b9aeda"  # Modell-Name links + Session-Badge rechts (sonst Gold vom Default!)
+  status_bar_dim: "#7d7488"     # │-Trenner — sichtbar, aber ruhig
+  status_bar_good: "#90b99f"
+  status_bar_warn: "#e6b99d"
+  status_bar_critical: "#f5a191"
+  session_label: "#b9aeda"
+  session_border: "#4a4458"
+
+  # Autocomplete-Menü — statt Navy-Fallback in Violett
+  completion_menu_bg: "#262626"
+  completion_menu_current_bg: "#3a3448"

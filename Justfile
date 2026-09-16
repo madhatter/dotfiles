@@ -3,8 +3,8 @@ os_name := `uname -s`
 hostname := `command -v hostnamectl > /dev/null 2>&1 && hostnamectl hostname || hostname`
 
 # Define the list of packages to manage with stow
-packages := if os_name == "Darwin" { "certs claude fastfetch git karabiner lopilot mise tmux zsh"
-} else { "claude dunst fastfetch git lopilot mise picom redshift rofi tin tmux yazi zsh" }
+packages := if os_name == "Darwin" { "certs claude fastfetch git hermes karabiner lopilot mise tmux zsh"
+} else { "claude dunst fastfetch git hermes lopilot mise picom redshift rofi tin tmux yazi zsh" }
 
 # All packages that may be stowed on this host (used by uninstall)
 all_packages := if os_name == "Darwin" {
