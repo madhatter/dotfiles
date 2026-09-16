@@ -1,0 +1,84 @@
+model:
+  default: /home/madhatter/models/qwen38/Qwen3.8-27B-UD-Q3_K_XL.gguf
+  provider: custom
+  base_url: http://nostromo:8082/qwen38-27b/v1
+display:
+  skin: lilac
+onboarding:
+  seen:
+    tool_progress_prompt: true
+    busy_input_prompt: true
+_config_version: 41
+custom_providers:
+  - name: qwen38-27b
+    base_url: http://nostromo:8082/qwen38-27b/v1
+    model: /home/madhatter/models/qwen38/Qwen3.8-27B-UD-Q3_K_XL.gguf
+    models:
+      /home/madhatter/models/qwen38/Qwen3.8-27B-UD-Q3_K_XL.gguf: {}
+    models_discovered: true
+  - name: gemma4-26b
+    base_url: http://nostromo:8082/gemma4-26b/v1
+    model: /home/madhatter/models/gemma4/gemma-4-26B-A4B-it-UD-Q4_K_XL.gguf
+    models:
+      /home/madhatter/models/gemma4/gemma-4-26B-A4B-it-UD-Q4_K_XL.gguf: {}
+    models_discovered: true
+  - name: qwen3-coder-30b-q3
+    base_url: http://nostromo:8082/qwen3-coder-30b-q3/v1
+    model: /home/madhatter/models/qwen3-coder-q3/Qwen3-Coder-30B-A3B-Instruct-UD-Q3_K_XL.gguf
+    models:
+      /home/madhatter/models/qwen3-coder-q3/Qwen3-Coder-30B-A3B-Instruct-UD-Q3_K_XL.gguf: {}
+    models_discovered: true
+  - name: qwen35-9b
+    base_url: http://nostromo:8082/qwen35-9b/v1
+    model: /home/madhatter/models/qwen35/Qwen3.5-9B-Q4_K_M.gguf
+    models:
+      /home/madhatter/models/qwen35/Qwen3.5-9B-Q4_K_M.gguf: {}
+    models_discovered: true
+clarify:
+  timeout: 0
+
+mcp_servers:
+  nfl-data:
+    command: "/home/madhatter/.local/bin/nfl-data-mcp"   # Pfad aus command -v
+    args: []
+    env:
+      NFL_MCP_DATA_DIR: "/home/madhatter/.local/share/nfl-data-mcp"
+      NFL_MCP_MODE: "auto"
+
+# ── Security ──────────────────────────────────────────────────────────
+# Secret redaction is ON by default — strings that look like API keys,
+# tokens, and passwords are masked in tool output, logs, and chat
+# responses before the model or user ever sees them. Set redact_secrets
+# to false to disable (e.g. when developing the redactor itself).
+# tirith pre-exec scanning is enabled by default when the tirith binary
+# is available. Configure via security.tirith_* keys or env vars
+# (TIRITH_ENABLED, TIRITH_BIN, TIRITH_TIMEOUT, TIRITH_FAIL_OPEN).
+#
+# security:
+#   redact_secrets: true
+#   tirith_enabled: true
+#   tirith_path: "tirith"
+#   tirith_timeout: 5
+#   tirith_fail_open: true
+
+# ── Fallback Model ────────────────────────────────────────────────────
+# Automatic provider failover when primary is unavailable.
+# Uncomment and configure to enable. Triggers on rate limits (429),
+# overload (529), service errors (503), or connection failures.
+#
+# Supported providers:
+#   openrouter   (OPENROUTER_API_KEY)  — routes to any model
+#   openai-codex (OAuth — hermes auth) — OpenAI Codex
+#   nous         (OAuth — hermes auth) — Nous Portal
+#   zai          (ZAI_API_KEY)         — Z.AI / GLM
+#   kimi-coding  (KIMI_API_KEY)        — Kimi / Moonshot
+#   kimi-coding-cn (KIMI_CN_API_KEY)   — Kimi / Moonshot (China)
+#   minimax      (MINIMAX_API_KEY)     — MiniMax
+#   minimax-cn   (MINIMAX_CN_API_KEY)  — MiniMax (China)
+#   bedrock      (AWS IAM / boto3)     — AWS Bedrock (Converse API)
+#
+# For custom OpenAI-compatible endpoints, add base_url and key_env.
+#
+# fallback_model:
+#   provider: openrouter
+#   model: anthropic/claude-sonnet-4
