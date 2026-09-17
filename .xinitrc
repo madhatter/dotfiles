@@ -31,5 +31,10 @@ export SSH_AUTH_SOCK
 
 export _JAVA_AWT_WM_NONREPARENTING=1
 
+# stop the llm orchestrator if it is running
+if systemctl --user is-active --quiet llm-orchestrator.service; then
+    systemctl --user stop llm-orchestrator.service
+fi
+
 # start the windowmanager
 $HOME/bin/dwm_start.sh
