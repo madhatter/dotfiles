@@ -7,3 +7,6 @@ tin/.tin/newsrctable
 
 # Karabiner writes backups next to its config
 karabiner/.config/karabiner/automatic_backups/
+
+# Work identity, kept local only
+git/.gitconfig-work

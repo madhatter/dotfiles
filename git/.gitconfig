@@ -41,6 +41,7 @@
 [diff]
   memonicprefix = true
 [core]
+  sshCommand = ssh -i ~/.ssh/id_ed25519 -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no
 	excludesfile = ~/.gitignore
 
 [init]
@@ -57,3 +58,7 @@
   allowedSignersFile = ~/.ssh/allowed_signers
 [url "git@github.com:"]
 	insteadOf = https://github.com/
+
+# Work identity and SSH key for everything under ~/dev
+[includeIf "gitdir:~/dev/"]
+	path = ~/.gitconfig-work

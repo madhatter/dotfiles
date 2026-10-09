@@ -14,9 +14,6 @@ set -gx GOPROXY https://proxy.golang.org
 set -gx NODE_OPTIONS --use-openssl-ca
 set -gx NODE_EXTRA_CA_CERTS $HOME/Ottogroup-Root-CA-v01.pem
 
-# Git SSH key
-set -gx GIT_SSH_COMMAND "ssh -i $HOME/.ssh/id_ed25519 -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no"
-
 # macOS / Homebrew
 if test (uname -s) = Darwin
     # Homebrew environment (sets HOMEBREW_PREFIX, HOMEBREW_CELLAR, prepends brew paths to PATH)

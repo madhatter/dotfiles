@@ -237,8 +237,6 @@ bindkey '^[[B' history-substring-search-down
 # if there is a zprofile, use it
 [[ -e ~/.zprofile ]] && emulate sh -c 'source ~/.zprofile'
 
-export GIT_SSH_COMMAND="ssh -i $HOME/.ssh/id_ed25519 -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no"
-
 # Set CA bundle overrides only on macOS (Darwin).
 # Linux handles root CAs natively via the system trust store.
 if [[ -f "$HOME/.config/certs/combined_ca_bundle.pem" ]]; then
