@@ -1,0 +1,176 @@
+{
+  "title": "Desktop Switching with Cmd+Number",
+  "rules": [
+    {
+      "description": "Switch to Desktop 1 with Cmd+1",
+      "manipulators": [
+        {
+          "type": "basic",
+          "from": {
+            "key_code": "1",
+            "modifiers": {
+              "mandatory": ["command"]
+            }
+          },
+          "to": [
+            {
+              "shell_command": "osascript -e 'tell application \"System Events\" to keystroke \"1\" using {control down, command down}'"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "description": "Switch to Desktop 2 with Cmd+2",
+      "manipulators": [
+        {
+          "type": "basic",
+          "from": {
+            "key_code": "2",
+            "modifiers": {
+              "mandatory": ["command"]
+            }
+          },
+          "to": [
+            {
+              "shell_command": "osascript -e 'tell application \"System Events\" to keystroke \"2\" using {control down, command down}'"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "description": "Switch to Desktop 3 with Cmd+3",
+      "manipulators": [
+        {
+          "type": "basic",
+          "from": {
+            "key_code": "3",
+            "modifiers": {
+              "mandatory": ["command"]
+            }
+          },
+          "to": [
+            {
+              "shell_command": "osascript -e 'tell application \"System Events\" to keystroke \"3\" using {control down, command down}'"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "description": "Switch to Desktop 4 with Cmd+4",
+      "manipulators": [
+        {
+          "type": "basic",
+          "from": {
+            "key_code": "4",
+            "modifiers": {
+              "mandatory": ["command"]
+            }
+          },
+          "to": [
+            {
+              "shell_command": "osascript -e 'tell application \"System Events\" to keystroke \"4\" using {control down, command down}'"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "description": "Switch to Desktop 5 with Cmd+5",
+      "manipulators": [
+        {
+          "type": "basic",
+          "from": {
+            "key_code": "5",
+            "modifiers": {
+              "mandatory": ["command"]
+            }
+          },
+          "to": [
+            {
+              "shell_command": "osascript -e 'tell application \"System Events\" to keystroke \"5\" using {control down, command down}'"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "description": "Switch to Desktop 6 with Cmd+6",
+      "manipulators": [
+        {
+          "type": "basic",
+          "from": {
+            "key_code": "6",
+            "modifiers": {
+              "mandatory": ["command"]
+            }
+          },
+          "to": [
+            {
+              "shell_command": "osascript -e 'tell application \"System Events\" to keystroke \"6\" using {control down, command down}'"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "description": "Switch to Desktop 7 with Cmd+7",
+      "manipulators": [
+        {
+          "type": "basic",
+          "from": {
+            "key_code": "7",
+            "modifiers": {
+              "mandatory": ["command"]
+            }
+          },
+          "to": [
+            {
+              "shell_command": "osascript -e 'tell application \"System Events\" to keystroke \"7\" using {control down, command down}'"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "description": "Switch to Desktop 8 with Cmd+8",
+      "manipulators": [
+        {
+          "type": "basic",
+          "from": {
+            "key_code": "8",
+            "modifiers": {
+              "mandatory": ["command"]
+            }
+          },
+          "to": [
+            {
+              "shell_command": "osascript -e 'tell application \"System Events\" to keystroke \"8\" using {control down, command down}'"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "description": "Switch to Desktop 9 with Cmd+9",
+      "manipulators": [
+        {
+          "type": "basic",
+          "from": {
+            "key_code": "9",
+            "modifiers": {
+              "mandatory": ["command"]
+            }
+          },
+          "to": [
+            {
+              "shell_command": "osascript -e 'tell application \"System Events\" to keystroke \"9\" using {control down, command down}'"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

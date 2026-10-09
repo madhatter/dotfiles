@@ -4,3 +4,6 @@ tmux/.config/tmux/plugins/
 # Runtime files created by the applications themselves
 ncmpcpp/.config/ncmpcpp/error.log
 tin/.tin/newsrctable
+
+# Karabiner writes backups next to its config
+karabiner/.config/karabiner/automatic_backups/
