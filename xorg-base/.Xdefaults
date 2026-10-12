@@ -54,5 +54,5 @@ Xft.hintstyle: hintslight
 ! Subpixel rendering geometry
 Xft.rgba: rgb
 
-! Set cursor size (if supported by the cursor theme)
-Xcursor.size: 24
+! Cursor theme (size is set per host in .Xdefaults.local)
+Xcursor.theme: Adwaita

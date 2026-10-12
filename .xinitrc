@@ -18,12 +18,10 @@ if [ "$(hostnamectl hostname)" = "archbook" ]; then
     xinput set-prop 11 "libinput Accel Speed" -0.9
 fi
 
-# overwrite .Xdefaults dpi setting on the laptop
-if [ "$(hostnamectl hostname)" = "archbook" ]; then
-    xrdb -merge - <<EOF
-Xft.dpi: 110
-EOF
-fi
+# load X resources and pass cursor settings to GTK/Chromium/Steam
+xrdb -merge "$HOME/.Xdefaults"
+export XCURSOR_THEME=Adwaita
+export XCURSOR_SIZE="$(xrdb -query | awk '/^Xcursor.size:/ {print $2}')"
 
 #eval $(/usr/bin/gnome-keyring-daemon --start --components=pkcs11,secrets,ssh)
 #eval $(/usr/bin/gnome-keyring-daemon --daemonize --replace --components=pkcs11,secrets,ssh)
