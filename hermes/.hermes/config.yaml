@@ -8,7 +8,7 @@ onboarding:
   seen:
     tool_progress_prompt: true
     busy_input_prompt: true
-_config_version: 41
+_config_version: 51
 custom_providers:
   - name: qwen38-27b
     base_url: http://nostromo:8082/qwen38-27b/v1
@@ -44,6 +44,11 @@ mcp_servers:
     env:
       NFL_MCP_DATA_DIR: "/home/madhatter/.local/share/nfl-data-mcp"
       NFL_MCP_MODE: "auto"
+
+
+  nhl-data:
+    command: "npx"
+    args: ["-y", "@mrfentmen/nhl-mcp"]
 
 # ── Security ──────────────────────────────────────────────────────────
 # Secret redaction is ON by default — strings that look like API keys,
