@@ -41,7 +41,8 @@
 [diff]
   memonicprefix = true
 [core]
-  sshCommand = ssh -i ~/.ssh/id_ed25519 -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no
+  # Private key by default; IdentitiesOnly prevents agent keys from being offered first
+  sshCommand = ssh -i ~/.ssh/id_ed25519 -o IdentitiesOnly=yes
 	excludesfile = ~/.gitignore
 
 [init]
@@ -59,6 +60,8 @@
 [url "git@github.com:"]
 	insteadOf = https://github.com/
 
-# Work identity and SSH key for everything under ~/dev
+# Work identity and SSH key for everything under ~/dev and the work vault
 [includeIf "gitdir:~/dev/"]
+	path = ~/.gitconfig-work
+[includeIf "gitdir:~/vaults/work/"]
 	path = ~/.gitconfig-work
