@@ -8,7 +8,7 @@ onboarding:
   seen:
     tool_progress_prompt: true
     busy_input_prompt: true
-_config_version: 51
+_config_version: 52
 custom_providers:
   - name: qwen38-27b
     base_url: http://nostromo:8082/qwen38-27b/v1
