@@ -39,6 +39,7 @@ function _p10k_git_status() {
   typeset -g POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(
     os_icon
     dir
+    background_jobs
     newline
     prompt_char
   )
@@ -79,6 +80,12 @@ function _p10k_git_status() {
   # dir: dark background, light text
   typeset -g POWERLEVEL9K_DIR_BACKGROUND='#3c3836'
   typeset -g POWERLEVEL9K_DIR_FOREGROUND=7
+
+  # background_jobs: only shown while suspended/background jobs exist
+  typeset -g POWERLEVEL9K_BACKGROUND_JOBS_VERBOSE=true
+  typeset -g POWERLEVEL9K_BACKGROUND_JOBS_VERBOSE_ALWAYS=true
+  typeset -g POWERLEVEL9K_BACKGROUND_JOBS_BACKGROUND='#3c3836'
+  typeset -g POWERLEVEL9K_BACKGROUND_JOBS_FOREGROUND='#fabd2f'
 
   # GitHub user: dark pill (inner), hidden outside git repos
   typeset -g POWERLEVEL9K_CUSTOM_GITHUB_USER='git rev-parse --is-inside-work-tree &>/dev/null && echo "${GITHUB_ACTIVE_HANDLE:-madhatter}"'
