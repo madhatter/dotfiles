@@ -5,6 +5,7 @@ rust = "latest"
 kotlin = "2"
 "npm:cdktf" = "latest"
 "npm:cdktf-cli" = { version = "latest", node = "22" }
+"npm:opencode-ai" = { version = "1", allow_builds = ["opencode-ai"] }
 
 [settings]
 # Enable automatic .tool-versions creation for tools     

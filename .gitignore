@@ -10,3 +10,8 @@ karabiner/.config/karabiner/automatic_backups/
 
 # Work identity, kept local only
 git/.gitconfig-work
+
+# opencode runtime files written into its config dir
+opencode/.config/opencode/node_modules/
+opencode/.config/opencode/package.json
+opencode/.config/opencode/bun.lock

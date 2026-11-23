@@ -3,16 +3,16 @@ os_name := `uname -s`
 hostname := `command -v hostnamectl > /dev/null 2>&1 && hostnamectl hostname || hostname`
 
 # Define the list of packages to manage with stow
-packages := if os_name == "Darwin" { "certs claude fastfetch git hermes karabiner lopilot mise tmux zsh"
-} else { "claude dunst fastfetch git hermes lopilot mise picom redshift rofi tin tmux yazi zsh" }
+packages := if os_name == "Darwin" { "certs claude fastfetch git hermes karabiner lopilot opencode mise tmux zsh"
+} else { "claude dunst fastfetch git hermes lopilot mise opencode picom redshift rofi tin tmux yazi zsh" }
 
 # All packages that may be stowed on this host (used by uninstall)
 all_packages := if os_name == "Darwin" {
-    "alacritty-base alacritty-mac certs claude fastfetch git gnupg-base gnupg-mac ghostty-base ghostty-mac karabiner lopilot mise tmux zsh"
+    "alacritty-base alacritty-mac certs claude fastfetch git gnupg-base gnupg-mac ghostty-base ghostty-mac karabiner lopilot opencode mise tmux zsh"
 } else if hostname == "archbook" {
-    "alacritty-base alacritty-linux claude dunst fastfetch git gnupg-base gnupg-linux ghostty-base ghostty-linux lopilot mise mpd mutt ncmpcpp pacman picom redshift rofi tin tmux xorg-base xorg-t460s yazi zsh pipewire-t460s"
+    "alacritty-base alacritty-linux claude dunst fastfetch git gnupg-base gnupg-linux ghostty-base ghostty-linux lopilot mise opencode mpd mutt ncmpcpp pacman picom redshift rofi tin tmux xorg-base xorg-t460s yazi zsh pipewire-t460s"
 } else {
-    "alacritty-base alacritty-linux claude dunst fastfetch git gnupg-base gnupg-linux ghostty-base ghostty-linux lopilot mise mpd mutt ncmpcpp pacman picom redshift rofi tin tmux xorg-base xorg-pc yazi zsh pipewire-pc irssi"
+    "alacritty-base alacritty-linux claude dunst fastfetch git gnupg-base gnupg-linux ghostty-base ghostty-linux lopilot mise opencode mpd mutt ncmpcpp pacman picom redshift rofi tin tmux xorg-base xorg-pc yazi zsh pipewire-pc irssi"
 }
 
 # General recipes for managing dotfiles with stow

@@ -299,6 +299,9 @@ complete -C aws_completer aws
 export BUN_INSTALL="$HOME/.bun"
 export PATH="$BUN_INSTALL/bin:$PATH"
 
+# opencode: merge local LLM providers from llm-local into the global config
+export OPENCODE_CONFIG="$HOME/code/llm-local/config/opencode_orchestrator.json"
+
 # GPG agent initialization ($TTY instead of $(tty) because of p10k interference)
 export GPG_TTY=$TTY
 gpg-connect-agent updatestartuptty /bye >/dev/null 2>&1
