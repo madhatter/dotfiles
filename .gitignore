@@ -15,3 +15,6 @@ git/.gitconfig-work
 opencode/.config/opencode/node_modules/
 opencode/.config/opencode/package.json
 opencode/.config/opencode/bun.lock
+
+# Private, host-local instructions (loaded via "instructions" in opencode.json)
+opencode/.config/opencode/AGENTS.local.md
