@@ -27,3 +27,5 @@ FPATH=$(brew --prefix)/share/zsh-completions:$(brew --prefix)/share/zsh/site-fun
 # copies the generated token to the clipboard.
 mfa() { oathtool --base32 --totp "$(cat ~/.mfa/$1.mfa)" | tee >(tr -d \\n | pbcopy) }
 
+# Personal OpenCode settings merged on top of the work config
+[[ -f ~/.agents/opencode.json ]] && export OPENCODE_CONFIG=~/.agents/opencode.json
