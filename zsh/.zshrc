@@ -51,6 +51,8 @@ if [[ $(uname -s) == "Darwin" ]]; then
   export PATH="/opt/homebrew/opt/gnu-sed/libexec/gnubin:/opt/homebrew/opt/ruby/bin:$PATH"
 fi
 
+# SSH agent socket for key management
+export SSH_AUTH_SOCK="$XDG_RUNTIME_DIR/ssh-agent.socket"
 
 # history settings
 export HISTFILE=$HOME/.zsh_history
